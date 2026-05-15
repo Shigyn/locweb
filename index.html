@@ -49,96 +49,34 @@
 .splash-name span{color:#E8281E;}
 @keyframes splashLogoIn{0%{opacity:0;transform:scale(.75) translateY(8px);}100%{opacity:1;transform:scale(1) translateY(0);}}
 body.splash-done #splash{display:none;}
-
-/* ── BASE ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
-body{background:#ffffff;color:#111111;font-family:‘Plus Jakarta Sans’,sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;}
-
-/* ── NAV ── */
-nav{
-position:fixed;top:0;left:0;right:0;z-index:500;
-padding:0 20px;height:60px;
-display:flex;justify-content:space-between;align-items:center;
-background:rgba(255,255,255,0.94);
-backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-border-bottom:1px solid rgba(0,0,0,0.07);
-}
+body{background:#ffffff;color:#111111;font-family:'Plus Jakarta Sans',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 20px;height:60px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.07);}
 .logo-wrap{text-decoration:none;display:flex;align-items:center;gap:10px;}
 .logo-icon{width:42px;height:42px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .logo-icon svg{width:42px;height:42px;}
 .logo-text{font-weight:800;font-size:1.05rem;color:#111111;letter-spacing:-.02em;}
 .logo-text span{color:#E8281E;}
-
-/* NAV MENU */
 .nav-right{display:flex;align-items:center;gap:4px;}
 .nav-links{display:none;align-items:center;gap:2px;}
-.nav-links a{
-font-family:‘Plus Jakarta Sans’,sans-serif;
-font-size:.76rem;font-weight:600;
-color:#555;text-decoration:none;
-padding:7px 11px;border-radius:8px;
-transition:color .2s,background .2s;
-white-space:nowrap;
-}
+.nav-links a{font-family:'Plus Jakarta Sans',sans-serif;font-size:.76rem;font-weight:600;color:#555;text-decoration:none;padding:7px 11px;border-radius:8px;transition:color .2s,background .2s;white-space:nowrap;}
 .nav-links a:hover{color:#E8281E;background:rgba(232,40,30,0.06);}
-.nav-cta{
-background:#E8281E;color:white!important;
-font-family:‘Plus Jakarta Sans’,sans-serif;
-font-weight:700;font-size:.78rem;padding:8px 16px;
-text-decoration:none;border-radius:8px;
-transition:opacity .2s,transform .2s;
-margin-left:6px;
-white-space:nowrap;
-}
+.nav-cta{background:#E8281E;color:white!important;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.78rem;padding:8px 16px;text-decoration:none;border-radius:8px;transition:opacity .2s,transform .2s;margin-left:6px;white-space:nowrap;}
 .nav-cta:hover{opacity:.88;transform:translateY(-1px);}
-
-/* BURGER */
-.nav-burger{
-display:flex;flex-direction:column;gap:4.5px;cursor:pointer;
-background:none;border:none;padding:8px;border-radius:8px;
-transition:background .2s;
-}
+.nav-burger{display:flex;flex-direction:column;gap:4.5px;cursor:pointer;background:none;border:none;padding:8px;border-radius:8px;transition:background .2s;}
 .nav-burger:hover{background:rgba(0,0,0,0.04);}
 .nav-burger span{display:block;width:20px;height:1.5px;background:#111;border-radius:2px;transition:transform .3s,opacity .3s;}
 .nav-burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
 .nav-burger.open span:nth-child(2){opacity:0;}
 .nav-burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-
-/* MOBILE DRAWER */
-.nav-drawer{
-position:fixed;top:60px;left:0;right:0;z-index:499;
-background:rgba(255,255,255,0.98);
-backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-border-bottom:1px solid rgba(0,0,0,0.07);
-padding:16px 20px 20px;
-display:none;flex-direction:column;gap:4px;
-transform:translateY(-8px);
-opacity:0;
-transition:opacity .25s,transform .25s;
-}
+.nav-drawer{position:fixed;top:60px;left:0;right:0;z-index:499;background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.07);padding:16px 20px 20px;display:none;flex-direction:column;gap:4px;transform:translateY(-8px);opacity:0;transition:opacity .25s,transform .25s;}
 .nav-drawer.open{display:flex;opacity:1;transform:translateY(0);}
-.nav-drawer a{
-font-family:‘Plus Jakarta Sans’,sans-serif;
-font-size:.88rem;font-weight:600;color:#333;
-text-decoration:none;padding:10px 12px;
-border-radius:10px;transition:background .2s,color .2s;
-}
+.nav-drawer a{font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;font-weight:600;color:#333;text-decoration:none;padding:10px 12px;border-radius:10px;transition:background .2s,color .2s;}
 .nav-drawer a:hover{background:rgba(232,40,30,0.06);color:#E8281E;}
-.nav-drawer .drawer-cta{
-background:#E8281E;color:white!important;
-text-align:center;margin-top:8px;padding:13px;
-border-radius:10px;font-weight:700;
-}
+.nav-drawer .drawer-cta{background:#E8281E;color:white!important;text-align:center;margin-top:8px;padding:13px;border-radius:10px;font-weight:700;}
 .nav-drawer .drawer-cta:hover{background:#c72218;opacity:1;}
-
-@media(min-width:768px){
-.nav-links{display:flex;}
-.nav-burger{display:none;}
-nav{padding:0 5vw;}
-}
-
-/* ── HERO ── */
+@media(min-width:768px){.nav-links{display:flex;}.nav-burger{display:none;}nav{padding:0 5vw;}}
 #hero{min-height:100svh;padding:100px 20px 60px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
 .hero-accent-line{position:absolute;top:0;bottom:0;right:22vw;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,40,30,.1),transparent);pointer-events:none;}
 .hero-accent-dot{position:absolute;top:110px;right:calc(22vw - 3px);width:7px;height:7px;background:#E8281E;border-radius:50%;animation:blink 2.5s infinite;}
@@ -148,127 +86,49 @@ nav{padding:0 5vw;}
 .badge span{font-size:.7rem;font-weight:700;color:#E8281E;letter-spacing:.08em;text-transform:uppercase;}
 h1{font-size:clamp(2.6rem,8vw,5.4rem);font-weight:800;line-height:1.04;letter-spacing:-.035em;color:#111111;margin-bottom:18px;}
 h1 em{font-style:normal;color:#E8281E;}
-.hero-sub{font-size:clamp(.95rem,2vw,1.08rem);color:#888888;max-width:400px;line-height:1.75;margin-bottom:28px;}
+.hero-sub{font-size:clamp(.95rem,2vw,1.08rem);color:#888888;max-width:440px;line-height:1.75;margin-bottom:18px;}
+.hero-pills-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+.hero-pill-sm{display:inline-flex;align-items:center;gap:6px;background:#f7f6f3;border:1px solid rgba(0,0,0,0.07);border-radius:100px;padding:7px 14px;font-size:.76rem;color:#333333;font-weight:500;}
+.hero-pill-sm .dot-r{width:5px;height:5px;background:#E8281E;border-radius:50%;flex-shrink:0;}
 .hero-pill{display:inline-flex;align-items:center;gap:8px;background:#f7f6f3;border:1px solid rgba(0,0,0,0.07);border-radius:100px;padding:10px 18px;font-size:.84rem;color:#333333;margin-bottom:28px;width:fit-content;font-weight:500;}
 .hero-pill strong{color:#E8281E;}
-.btn-main{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#E8281E;color:white;font-family:‘Plus Jakarta Sans’,sans-serif;font-weight:700;font-size:.95rem;padding:16px 28px;text-decoration:none;border-radius:12px;box-shadow:0 4px 20px rgba(232,40,30,.28);transition:transform .2s,box-shadow .2s;width:100%;max-width:320px;}
+.btn-main{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#E8281E;color:white;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.95rem;padding:16px 28px;text-decoration:none;border-radius:12px;box-shadow:0 4px 20px rgba(232,40,30,.28);transition:transform .2s,box-shadow .2s;width:100%;max-width:320px;}
 .btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,40,30,.38);}
 .scroll-hint{margin-top:44px;display:flex;align-items:center;gap:10px;font-size:.72rem;color:#888888;text-transform:uppercase;letter-spacing:.1em;}
-.scroll-hint::before{content:’’;width:22px;height:1px;background:rgba(0,0,0,.2);}
-
-/* ── MARQUEE ── */
+.scroll-hint::before{content:'';width:22px;height:1px;background:rgba(0,0,0,.2);}
 .mq{overflow:hidden;border-top:1px solid rgba(0,0,0,0.07);border-bottom:1px solid rgba(0,0,0,0.07);padding:11px 0;background:#f7f6f3;}
-.mq-track{display:flex;width:max-content;animation:mq 22s linear infinite;}
+.mq-track{display:flex;width:max-content;animation:mq 26s linear infinite;}
 .mq-item{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#888888;padding:0 22px;white-space:nowrap;}
 .mq-item .dot{color:#E8281E;margin-left:22px;}
 @keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-/* ── SECTIONS ── */
 section{padding:72px 20px;}
 .s-tag{font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:#E8281E;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-.s-tag::before{content:’’;width:14px;height:1px;background:#E8281E;}
+.s-tag::before{content:'';width:14px;height:1px;background:#E8281E;}
 h2{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:10px;color:#111111;}
 .s-sub{font-size:.9rem;color:#888888;line-height:1.75;margin-bottom:36px;}
-
-/* ── SERVICES ── */
 #services{background:#111111;color:white;position:relative;overflow:hidden;}
-#services::before{
-content:’’;position:absolute;top:-120px;right:-80px;
-width:400px;height:400px;border-radius:50%;
-background:radial-gradient(circle,rgba(232,40,30,.15) 0%,transparent 70%);
-pointer-events:none;
-}
-#services .s-tag{color:#E8281E;}
-#services .s-tag::before{background:#E8281E;}
-#services h2{color:white;}
-#services .s-sub{color:rgba(255,255,255,.5);}
-
-/* TABS */
-.srv-tabs{
-display:flex;gap:6px;flex-wrap:wrap;
-margin-bottom:28px;margin-top:28px;
-}
-.srv-tab{
-font-family:‘Plus Jakarta Sans’,sans-serif;
-font-size:.73rem;font-weight:700;
-letter-spacing:.04em;text-transform:uppercase;
-padding:8px 14px;border-radius:8px;
-border:1px solid rgba(255,255,255,.12);
-background:transparent;color:rgba(255,255,255,.5);
-cursor:pointer;transition:all .2s;
-white-space:nowrap;
-}
+#services::before{content:'';position:absolute;top:-120px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(232,40,30,.15) 0%,transparent 70%);pointer-events:none;}
+#services .s-tag{color:#E8281E;}#services .s-tag::before{background:#E8281E;}
+#services h2{color:white;}#services .s-sub{color:rgba(255,255,255,.5);}
+.srv-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px;margin-top:28px;}
+.srv-tab{font-family:'Plus Jakarta Sans',sans-serif;font-size:.73rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:8px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;transition:all .2s;white-space:nowrap;}
 .srv-tab:hover{border-color:rgba(232,40,30,.4);color:rgba(255,255,255,.8);}
 .srv-tab.active{background:#E8281E;border-color:#E8281E;color:white;}
-
-/* PANELS */
 .srv-panels{position:relative;}
 .srv-panel{display:none;}
 .srv-panel.active{display:block;}
-
-/* ONE-SHOT GRID */
-.srv-oneshot-grid{
-display:grid;
-grid-template-columns:1fr;
-gap:10px;
-}
-.srv-card{
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.08);
-border-radius:14px;
-padding:20px 18px;
-transition:border-color .25s,background .25s,transform .25s;
-position:relative;overflow:hidden;
-}
-.srv-card:hover{
-border-color:rgba(232,40,30,.35);
-background:rgba(232,40,30,.04);
-transform:translateY(-2px);
-}
+.srv-oneshot-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.srv-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 18px;transition:border-color .25s,background .25s,transform .25s;position:relative;overflow:hidden;}
+.srv-card:hover{border-color:rgba(232,40,30,.35);background:rgba(232,40,30,.04);transform:translateY(-2px);}
 .srv-card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:12px;}
-.srv-card-name{
-font-size:.88rem;font-weight:800;color:white;
-line-height:1.3;
-}
-.srv-card-price{
-font-size:.82rem;font-weight:800;
-color:#E8281E;white-space:nowrap;
-flex-shrink:0;
-background:rgba(232,40,30,.12);
-border:1px solid rgba(232,40,30,.25);
-border-radius:6px;
-padding:3px 9px;
-}
+.srv-card-name{font-size:.88rem;font-weight:800;color:white;line-height:1.3;}
+.srv-card-price{font-size:.82rem;font-weight:800;color:#E8281E;white-space:nowrap;flex-shrink:0;background:rgba(232,40,30,.12);border:1px solid rgba(232,40,30,.25);border-radius:6px;padding:3px 9px;}
 .srv-card-price.free{color:rgba(255,255,255,.4);background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);font-size:.72rem;}
 .srv-card-apporte,.srv-card-client{font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.65;margin-top:6px;}
-.srv-card-apporte strong,.srv-card-client strong{
-color:rgba(255,255,255,.7);
-font-weight:700;font-size:.65rem;
-text-transform:uppercase;letter-spacing:.08em;
-display:block;margin-bottom:3px;margin-top:10px;
-}
+.srv-card-apporte strong,.srv-card-client strong{color:rgba(255,255,255,.7);font-weight:700;font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:3px;margin-top:10px;}
 .srv-card-apporte strong:first-child{margin-top:0;}
-
-/* BADGE PACK */
-.srv-pack-badge{
-position:absolute;top:14px;right:14px;
-background:#E8281E;color:white;
-font-size:.58rem;font-weight:800;
-letter-spacing:.08em;text-transform:uppercase;
-padding:3px 8px;border-radius:100px;
-}
-
-/* ABONNEMENTS */
-.srv-recur-grid{
-display:flex;flex-direction:column;gap:12px;
-}
-.srv-recur-card{
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.08);
-border-radius:16px;
-padding:24px 20px;
-transition:border-color .25s,transform .25s;
-}
+.srv-recur-grid{display:flex;flex-direction:column;gap:12px;}
+.srv-recur-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px 20px;transition:border-color .25s,transform .25s;}
 .srv-recur-card:hover{border-color:rgba(232,40,30,.4);transform:translateY(-2px);}
 .srv-recur-card.featured{border-color:#E8281E;border-width:2px;background:rgba(232,40,30,.05);}
 .srv-recur-head{display:flex;align-items:baseline;gap:8px;margin-bottom:14px;}
@@ -278,15 +138,8 @@ transition:border-color .25s,transform .25s;
 .srv-recur-name{font-size:.8rem;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;}
 .srv-recur-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
 .srv-recur-list li{font-size:.79rem;display:flex;gap:9px;align-items:flex-start;line-height:1.45;color:rgba(255,255,255,.6);}
-.srv-recur-list li::before{content:‘→’;color:#E8281E;flex-shrink:0;font-weight:700;}
-
-/* PACK PROMO */
-.srv-pack-highlight{
-margin-top:16px;
-background:rgba(232,40,30,.08);
-border:1.5px solid rgba(232,40,30,.35);
-border-radius:16px;padding:22px 20px;
-}
+.srv-recur-list li::before{content:'→';color:#E8281E;flex-shrink:0;font-weight:700;}
+.srv-pack-highlight{margin-top:16px;background:rgba(232,40,30,.08);border:1.5px solid rgba(232,40,30,.35);border-radius:16px;padding:22px 20px;}
 .srv-pack-highlight h3{font-size:1rem;font-weight:800;color:white;margin-bottom:6px;}
 .srv-pack-highlight p{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.7;}
 .srv-pack-price-row{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap;}
@@ -294,34 +147,61 @@ border-radius:16px;padding:22px 20px;
 .srv-pack-num .cur{font-size:.9rem;vertical-align:super;}
 .srv-pack-detail{font-size:.75rem;color:rgba(255,255,255,.4);line-height:1.6;}
 .srv-pack-detail strong{color:rgba(255,255,255,.65);display:block;}
-
-/* NOTE PRIX */
-.srv-price-note{
-margin-top:20px;
-font-size:.74rem;
-color:rgba(255,255,255,.3);
-line-height:1.7;
-border-top:1px solid rgba(255,255,255,.06);
-padding-top:16px;
-}
+.srv-price-note{margin-top:20px;font-size:.74rem;color:rgba(255,255,255,.3);line-height:1.7;border-top:1px solid rgba(255,255,255,.06);padding-top:16px;}
 .srv-price-note strong{color:rgba(255,255,255,.5);}
-
-/* ── OFFRE ── */
 #offre{background:#f7f6f3;}
 .offre-cards{display:flex;flex-direction:column;gap:12px;margin-top:28px;}
 .o-card{background:#ffffff;border:1px solid rgba(0,0,0,0.07);border-radius:16px;padding:26px 22px;box-shadow:0 2px 20px rgba(0,0,0,.06);}
 .o-card.main{border-color:#E8281E;border-width:2px;position:relative;overflow:hidden;}
-.o-card.main::before{content:‘Mensuel’;position:absolute;top:14px;right:14px;background:#E8281E;color:white;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;}
+.o-card.main::before{content:'Mensuel';position:absolute;top:14px;right:14px;background:#E8281E;color:white;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;}
 .o-name{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#888888;margin-bottom:14px;display:block;}
 .o-price{font-size:3rem;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:4px;color:#111111;}
 .o-price .cur{font-size:1.3rem;vertical-align:super;color:#E8281E;}
 .o-freq{font-size:.76rem;color:#888888;margin-bottom:22px;display:block;}
 .o-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
 .o-list li{font-size:.83rem;display:flex;gap:10px;align-items:flex-start;line-height:1.45;color:#333333;}
-.o-list li::before{content:‘→’;color:#E8281E;flex-shrink:0;font-weight:700;}
+.o-list li::before{content:'→';color:#E8281E;flex-shrink:0;font-weight:700;}
 .offre-note{font-size:.74rem;color:#888888;text-align:center;margin-top:14px;line-height:1.6;}
-
-/* ── PROBLÈME ── */
+/* COMPARATIF */
+#comparatif{background:#ffffff;}
+.comp-wrap{overflow-x:auto;margin-top:28px;border-radius:14px;box-shadow:0 2px 20px rgba(0,0,0,.06);}
+.comp-table{width:100%;border-collapse:collapse;min-width:520px;}
+.comp-table th{padding:13px 16px;text-align:center;font-size:.71rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;}
+.comp-table th:first-child{text-align:left;background:#f7f6f3;}
+.comp-table th.lw{background:#111111;color:white;}
+.comp-table th.ot{background:#f7f6f3;color:rgba(0,0,0,.4);}
+.comp-table td{padding:12px 16px;font-size:.8rem;border-top:1px solid rgba(0,0,0,.05);text-align:center;color:rgba(0,0,0,.45);}
+.comp-table td:first-child{text-align:left;font-weight:600;color:#111111;background:#fafaf8;}
+.comp-table td.lw{background:rgba(232,40,30,.04);font-weight:600;color:#111111;}
+.cy{color:#16a34a;font-weight:700;}.cn{color:#dc2626;}.cm{color:#d97706;}
+/* ROI */
+#roi{background:#111111;color:white;}
+#roi .s-tag{color:#E8281E;}#roi .s-tag::before{background:#E8281E;}
+#roi h2{color:white;}#roi .s-sub{color:rgba(255,255,255,.5);}
+.roi-wrap{display:grid;grid-template-columns:1fr;gap:24px;margin-top:28px;}
+.roi-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px 22px;}
+.roi-box h3{font-size:.92rem;font-weight:800;color:white;margin-bottom:20px;}
+.roi-field{margin-bottom:16px;}
+.roi-field label{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:7px;}
+.roi-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:600;padding:11px 14px;border-radius:10px;outline:none;transition:border-color .2s;}
+.roi-input:focus{border-color:#E8281E;}
+.roi-result{background:#E8281E;border-radius:12px;padding:18px 20px;margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+.roi-result-label{font-size:.72rem;color:rgba(255,255,255,.7);}
+.roi-result-val{font-size:1.8rem;font-weight:800;color:white;letter-spacing:-.02em;line-height:1;}
+.roi-points{display:flex;flex-direction:column;gap:14px;}
+.roi-point{display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;transition:border-color .25s;}
+.roi-point:hover{border-color:rgba(232,40,30,.3);}
+.roi-point-n{font-size:.65rem;font-weight:800;color:#E8281E;letter-spacing:.1em;padding-top:2px;flex-shrink:0;width:28px;}
+.roi-point h4{font-size:.87rem;font-weight:700;color:white;margin-bottom:4px;}
+.roi-point p{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.7;}
+/* MÉTIERS */
+#metiers{background:#f7f6f3;}
+.metiers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:28px;}
+.metier-card{background:#ffffff;border:1px solid rgba(0,0,0,0.07);border-radius:14px;padding:18px 14px;text-align:center;transition:border-color .25s,transform .25s,box-shadow .25s;cursor:default;}
+.metier-card:hover{border-color:rgba(232,40,30,.3);transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,40,30,.08);}
+.metier-icon{font-size:1.8rem;margin-bottom:8px;display:block;}
+.metier-card h4{font-size:.82rem;font-weight:800;margin-bottom:3px;color:#111111;}
+.metier-card p{font-size:.7rem;color:#888888;}
 #probleme{background:#ffffff;}
 .prob-list{display:flex;flex-direction:column;gap:0;margin-top:28px;}
 .prob-item{padding:20px 0 20px 16px;border-left:2px solid transparent;border-bottom:1px solid rgba(0,0,0,0.07);transition:border-color .3s,background .3s,padding-left .3s;}
@@ -330,8 +210,6 @@ padding-top:16px;
 .prob-n{font-size:.65rem;font-weight:700;color:#E8281E;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px;display:block;}
 .prob-item h3{font-size:.93rem;font-weight:700;margin-bottom:5px;color:#111111;}
 .prob-item p{font-size:.81rem;color:#888888;line-height:1.7;}
-
-/* ── COMMENT ── */
 #comment{background:#f7f6f3;}
 .steps{display:flex;flex-direction:column;margin-top:28px;}
 .step{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid rgba(0,0,0,0.07);transition:padding-left .3s;}
@@ -340,8 +218,7 @@ padding-top:16px;
 .step-n{font-size:.68rem;font-weight:800;color:#E8281E;letter-spacing:.06em;padding-top:3px;flex-shrink:0;width:30px;}
 .step h3{font-size:.93rem;font-weight:700;margin-bottom:5px;color:#111111;}
 .step p{font-size:.81rem;color:#888888;line-height:1.7;}
-
-/* ── GESTION ── */
+.step-badge{display:inline-block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:rgba(232,40,30,.08);border:1px solid rgba(232,40,30,.18);color:#E8281E;padding:2px 8px;border-radius:100px;margin-left:8px;vertical-align:middle;}
 #gestion{background:#ffffff;}
 .g-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px;}
 .g-card{background:#f7f6f3;border:1px solid rgba(0,0,0,0.07);border-radius:14px;padding:18px 15px;transition:border-color .25s,transform .25s,box-shadow .25s;}
@@ -349,16 +226,12 @@ padding-top:16px;
 .g-icon{width:30px;height:30px;border-radius:8px;background:rgba(232,40,30,0.08);border:1px solid rgba(232,40,30,0.18);display:flex;align-items:center;justify-content:center;font-size:.85rem;margin-bottom:10px;}
 .g-card h3{font-size:.82rem;font-weight:700;margin-bottom:5px;color:#111111;}
 .g-card p{font-size:.73rem;color:#888888;line-height:1.65;}
-
-/* ── POUR QUI ── */
 #pourqui{background:#f7f6f3;}
 .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px;}
 .tag{padding:7px 14px;border:1px solid rgba(0,0,0,0.07);border-radius:100px;font-size:.77rem;color:#333333;background:#ffffff;transition:all .2s;cursor:default;}
 .tag:hover{border-color:#E8281E;color:#E8281E;background:rgba(232,40,30,0.08);transform:translateY(-1px);}
 .pq-sub{margin-top:26px;font-size:.87rem;color:#888888;line-height:1.8;}
 .pq-sub strong{color:#111111;font-weight:600;}
-
-/* ── TÉMOIGNAGES ── */
 #temoignages{background:#ffffff;}
 .temo-list{display:flex;flex-direction:column;gap:10px;margin-top:28px;}
 .temo{background:#f7f6f3;border:1px solid rgba(0,0,0,0.07);border-radius:16px;padding:22px 18px;transition:border-color .25s,box-shadow .25s;}
@@ -367,21 +240,17 @@ padding-top:16px;
 .temo p{font-size:.83rem;line-height:1.8;color:#333333;margin-bottom:14px;}
 .temo-who strong{font-size:.84rem;font-weight:700;display:block;margin-bottom:2px;color:#111111;}
 .temo-who span{font-size:.7rem;color:#888888;text-transform:uppercase;letter-spacing:.06em;}
-
-/* ── FAQ ── */
 #faq{background:#f7f6f3;}
 .faq-list{display:flex;flex-direction:column;gap:6px;margin-top:28px;}
 .faq-item{background:#ffffff;border:1px solid rgba(0,0,0,0.07);border-radius:12px;overflow:hidden;transition:border-color .2s;}
 .faq-item.open{border-color:#E8281E;}
-.faq-q{width:100%;background:none;border:none;color:#111111;font-family:‘Plus Jakarta Sans’,sans-serif;font-size:.87rem;font-weight:700;padding:17px 15px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;transition:color .2s;}
+.faq-q{width:100%;background:none;border:none;color:#111111;font-family:'Plus Jakarta Sans',sans-serif;font-size:.87rem;font-weight:700;padding:17px 15px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;transition:color .2s;}
 .faq-q:hover{color:#E8281E;}
 .faq-ico{width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(0,0,0,0.07);display:flex;align-items:center;justify-content:center;color:#E8281E;font-size:.82rem;flex-shrink:0;transition:transform .3s,border-color .2s;}
 .faq-item.open .faq-ico{transform:rotate(45deg);border-color:#E8281E;}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
 .faq-item.open .faq-a{max-height:200px;}
 .faq-a p{padding:0 15px 16px;font-size:.81rem;color:#888888;line-height:1.8;}
-
-/* ── CONTACT ── */
 #contact{background:#ffffff;}
 .contact-top{margin-bottom:24px;}
 .contact-top p{font-size:.87rem;color:#888888;line-height:1.75;margin-top:8px;}
@@ -390,57 +259,47 @@ padding-top:16px;
 .perk-dot{width:5px;height:5px;background:#E8281E;border-radius:50%;flex-shrink:0;}
 .cform{display:flex;flex-direction:column;gap:10px;}
 .cform-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.cform input,.cform select,.cform textarea{background:#f7f6f3;border:1px solid rgba(0,0,0,0.07);color:#111111;font-family:‘Plus Jakarta Sans’,sans-serif;font-size:.87rem;padding:13px 15px;width:100%;outline:none;border-radius:10px;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;}
+.cform input,.cform select,.cform textarea{background:#f7f6f3;border:1px solid rgba(0,0,0,0.07);color:#111111;font-family:'Plus Jakarta Sans',sans-serif;font-size:.87rem;padding:13px 15px;width:100%;outline:none;border-radius:10px;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;}
 .cform input::placeholder,.cform textarea::placeholder{color:rgba(0,0,0,.25);}
 .cform input:focus,.cform select:focus,.cform textarea:focus{border-color:#E8281E;background:#ffffff;box-shadow:0 0 0 3px rgba(232,40,30,.08);}
 .cform select{cursor:pointer;color:rgba(0,0,0,.4);}
 .cform select option{color:#111111;}
 .cform textarea{resize:vertical;min-height:86px;}
-.btn-submit{background:#E8281E;color:white;font-family:‘Plus Jakarta Sans’,sans-serif;font-weight:700;font-size:.92rem;padding:16px;border:none;cursor:pointer;border-radius:12px;width:100%;box-shadow:0 4px 16px rgba(232,40,30,.25);transition:opacity .2s,transform .2s;}
+.btn-submit{background:#E8281E;color:white;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.92rem;padding:16px;border:none;cursor:pointer;border-radius:12px;width:100%;box-shadow:0 4px 16px rgba(232,40,30,.25);transition:opacity .2s,transform .2s;}
 .btn-submit:hover{opacity:.9;transform:translateY(-1px);}
-
-/* ── FOOTER ── */
 footer{background:#f7f6f3;border-top:1px solid rgba(0,0,0,0.07);padding:26px 20px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;}
 footer p{font-size:.71rem;color:#888888;}
-
-/* ── WHATSAPP ── */
 .wa{position:fixed;bottom:22px;right:18px;z-index:400;background:#25D366;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,.4);animation:wafloat 3s ease-in-out infinite;}
 .wa:hover{transform:scale(1.08);animation:none;}
 @keyframes wafloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
-
-/* ── SCROLL REVEAL ── */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
 .rv.on{opacity:1;transform:translateY(0);}
 .rvl{opacity:0;transform:translateX(-16px);transition:opacity .55s ease,transform .55s ease;}
 .rvl.on{opacity:1;transform:translateX(0);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 .ha{opacity:0;animation:fadeUp .65s ease forwards;}
-.ha1{animation-delay:.05s;}.ha2{animation-delay:.18s;}.ha3{animation-delay:.32s;}.ha4{animation-delay:.46s;}.ha5{animation-delay:.6s;}
-
-/* ── RESPONSIVE ── */
+.ha1{animation-delay:.05s;}.ha2{animation-delay:.18s;}.ha3{animation-delay:.32s;}.ha4{animation-delay:.46s;}.ha5{animation-delay:.6s;}.ha6{animation-delay:.74s;}
 @media(min-width:768px){
 #hero{padding:120px 5vw 80px;}
 section{padding:96px 5vw;}
-.offre-cards{flex-direction:row;gap:16px;}
-.o-card{flex:1;}
+.offre-cards{flex-direction:row;gap:16px;}.o-card{flex:1;}
 .prob-list{display:grid;grid-template-columns:1fr 1fr;gap:0;}
 .g-grid{grid-template-columns:repeat(3,1fr);}
 .temo-list{display:grid;grid-template-columns:repeat(3,1fr);}
 footer{flex-direction:row;justify-content:space-between;text-align:left;}
 .btn-main{width:auto;}
 .srv-oneshot-grid{grid-template-columns:repeat(2,1fr);}
-.srv-recur-grid{flex-direction:row;}
-.srv-recur-card{flex:1;}
+.srv-recur-grid{flex-direction:row;}.srv-recur-card{flex:1;}
+.roi-wrap{grid-template-columns:1fr 1fr;}
+.metiers-grid{grid-template-columns:repeat(4,1fr);}
 }
 @media(min-width:1024px){
 .srv-oneshot-grid{grid-template-columns:repeat(3,1fr);}
+.metiers-grid{grid-template-columns:repeat(5,1fr);}
 }
 </style>
-
 </head>
 <body>
-
-<!-- ── SPLASH ── -->
 
 <div id="splash">
   <canvas id="splash-canvas"></canvas>
@@ -453,21 +312,12 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   </div>
 </div>
 
-<!-- ── NAV ── -->
-
 <nav>
   <a href="#" class="logo-wrap">
-    <div class="logo-icon">
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/>
-        <text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text>
-      </svg>
-    </div>
+    <div class="logo-icon"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text></svg></div>
     <span class="logo-text">Loc<span>Web</span></span>
   </a>
-
   <div class="nav-right">
-    <!-- Desktop links -->
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#offre">Offre</a>
@@ -476,25 +326,18 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
       <a href="#faq">FAQ</a>
       <a href="#contact" class="nav-cta">Démarrer →</a>
     </div>
-    <!-- Mobile burger -->
-    <button class="nav-burger" id="burgerBtn" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- Mobile drawer -->
-
 <div class="nav-drawer" id="navDrawer">
-  <a href="#services" class="drawer-link">Services & tarifs</a>
-  <a href="#offre" class="drawer-link">L'offre</a>
-  <a href="#comment" class="drawer-link">Comment ça marche</a>
-  <a href="#temoignages" class="drawer-link">Avis clients</a>
-  <a href="#faq" class="drawer-link">FAQ</a>
+  <a href="#services">Services & tarifs</a>
+  <a href="#offre">L'offre</a>
+  <a href="#comment">Comment ça marche</a>
+  <a href="#temoignages">Avis clients</a>
+  <a href="#faq">FAQ</a>
   <a href="#contact" class="drawer-cta">Démarrer →</a>
 </div>
-
-<!-- ── HERO ── -->
 
 <section id="hero">
   <div class="hero-accent-line"></div>
@@ -502,312 +345,177 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   <div class="badge ha ha1"><div class="badge-dot"></div><span>Partout en France</span></div>
   <h1 class="ha ha2">Votre site est<br><em>offert.</em><br>On gère le reste.</h1>
   <p class="hero-sub ha ha3">Vous ne payez que l'hébergement, le nom de domaine et le support technique. Rien de plus.</p>
-  <div class="hero-pill ha ha4"><strong>50€</strong> mise en service &nbsp;·&nbsp; <strong>49€/mois</strong> tout inclus</div>
-  <a href="#contact" class="btn-main ha ha5">Je veux voir ma page <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-  <div class="scroll-hint ha ha5">Découvrir</div>
+  <div class="hero-pills-row ha ha4">
+    <div class="hero-pill-sm"><span class="dot-r"></span>Optimisé pour votre métier</div>
+    <div class="hero-pill-sm"><span class="dot-r"></span>SEO local &amp; région inclus</div>
+    <div class="hero-pill-sm"><span class="dot-r"></span>Livraison 48h</div>
+  </div>
+  <div class="hero-pill ha ha5"><strong>50€</strong> mise en service &nbsp;·&nbsp; <strong>49€/mois</strong> tout inclus</div>
+  <a href="#contact" class="btn-main ha ha6">Je veux voir ma page <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  <div class="scroll-hint ha ha6">Découvrir</div>
 </section>
-
-<!-- ── MARQUEE ── -->
 
 <div class="mq">
   <div class="mq-track">
-    <span class="mq-item">Site offert<span class="dot">◆</span></span><span class="mq-item">Hébergement inclus<span class="dot">◆</span></span><span class="mq-item">Domaine offert<span class="dot">◆</span></span><span class="mq-item">Livraison 48h<span class="dot">◆</span></span><span class="mq-item">Zéro gestion<span class="dot">◆</span></span><span class="mq-item">Partout en France<span class="dot">◆</span></span><span class="mq-item">Support WhatsApp<span class="dot">◆</span></span><span class="mq-item">Site offert<span class="dot">◆</span></span><span class="mq-item">Hébergement inclus<span class="dot">◆</span></span><span class="mq-item">Domaine offert<span class="dot">◆</span></span><span class="mq-item">Livraison 48h<span class="dot">◆</span></span><span class="mq-item">Zéro gestion<span class="dot">◆</span></span><span class="mq-item">Partout en France<span class="dot">◆</span></span><span class="mq-item">Support WhatsApp<span class="dot">◆</span></span>
+    <span class="mq-item">Site offert<span class="dot">◆</span></span>
+    <span class="mq-item">Optimisé pour votre métier<span class="dot">◆</span></span>
+    <span class="mq-item">SEO local &amp; région<span class="dot">◆</span></span>
+    <span class="mq-item">Hébergement inclus<span class="dot">◆</span></span>
+    <span class="mq-item">Domaine offert<span class="dot">◆</span></span>
+    <span class="mq-item">Livraison 48h<span class="dot">◆</span></span>
+    <span class="mq-item">Zéro gestion<span class="dot">◆</span></span>
+    <span class="mq-item">Partout en France<span class="dot">◆</span></span>
+    <span class="mq-item">Support WhatsApp<span class="dot">◆</span></span>
+    <span class="mq-item">Site offert<span class="dot">◆</span></span>
+    <span class="mq-item">Optimisé pour votre métier<span class="dot">◆</span></span>
+    <span class="mq-item">SEO local &amp; région<span class="dot">◆</span></span>
+    <span class="mq-item">Hébergement inclus<span class="dot">◆</span></span>
+    <span class="mq-item">Domaine offert<span class="dot">◆</span></span>
+    <span class="mq-item">Livraison 48h<span class="dot">◆</span></span>
+    <span class="mq-item">Zéro gestion<span class="dot">◆</span></span>
+    <span class="mq-item">Partout en France<span class="dot">◆</span></span>
+    <span class="mq-item">Support WhatsApp<span class="dot">◆</span></span>
   </div>
 </div>
-
-<!-- ── SERVICES ── -->
 
 <section id="services">
   <span class="s-tag">Services &amp; tarifs</span>
   <h2 class="rv">Tout ce dont vous<br>avez besoin.</h2>
   <p class="s-sub rv">Site web, supports print, réseaux sociaux, fiche Google — on s'occupe de toute votre présence en ligne.</p>
-
   <div class="srv-tabs rv">
     <button class="srv-tab active" data-panel="oneshot">Paiement unique</button>
     <button class="srv-tab" data-panel="recur">Abonnements</button>
     <button class="srv-tab" data-panel="packs">Packs</button>
   </div>
-
-  <!-- PANEL : ONE-SHOT -->
-
   <div class="srv-panel active" id="panel-oneshot">
     <div class="srv-oneshot-grid rv">
-
-```
-  <div class="srv-card">
-    <div class="srv-card-head">
-      <div class="srv-card-name">🌐 Site web vitrine</div>
-      <div class="srv-card-price free">Inclus*</div>
+      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">🌐 Site web vitrine</div><div class="srv-card-price free">Inclus*</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Page one-page complète, design adapté à votre activité, formulaire contact, bouton WhatsApp, visible sur Google, hébergé et maintenu.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Nom, activité, ville, services, téléphone, email, photos si disponibles.</div></div>
+      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">🗺️ Fiche Google Maps</div><div class="srv-card-price">49€/mois</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Optimisation description, catégories, horaires, ajout photos, cohérence avec le site.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Accès gestionnaire à votre fiche Google Business, photos de l'activité chaque mois si possible.</div></div>
+      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">💳 Carte de visite</div><div class="srv-card-price">69€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Design recto/verso au format print, prêt à envoyer à l'imprimeur.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Nom, prénom, métier, téléphone, email, site web, logo si existant.</div></div>
+      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">📄 Flyer A5</div><div class="srv-card-price">69€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Design A5 prêt à imprimer, adapté à votre activité et cohérent avec votre site.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Texte à mettre en avant, offre ou promotion, coordonnées, photos si disponibles.</div></div>
+      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">📘 Fiche présentation PDF</div><div class="srv-card-price">69€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Document A4 une page — logo, présentation activité, services, coordonnées. À envoyer par mail à vos prospects.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Texte de présentation, services détaillés, coordonnées, logo si existant.</div></div>
+      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">📣 Bannière Facebook</div><div class="srv-card-price">69€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Visuel 820×312px prêt à uploader, cohérent avec votre identité visuelle.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Texte souhaité, couleurs si préférence, logo si existant.</div></div>
+      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">🖼️ Pack 3 visuels réseaux</div><div class="srv-card-price">69€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>3 visuels 1080×1080 prêts à poster — présentation, service, accroche.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Texte de chaque post, ton souhaité, logo si existant.</div></div>
+      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">⭐ QR Code avis Google</div><div class="srv-card-price">29€ / 59€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>QR code haute résolution prêt à imprimer ou afficher, redirige directement vers votre page avis Google.<br><br><span style="color:rgba(255,255,255,.5);font-size:.72rem;">Version noir &amp; blanc · 29€ &nbsp;·&nbsp; Version couleur personnalisée · 59€</span></div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Lien vers votre fiche Google Business.</div></div>
     </div>
-    <div class="srv-card-apporte">
-      <strong>Ce qu'on vous apporte</strong>
-      Page one-page complète, design adapté à votre activité, formulaire contact, bouton WhatsApp, visible sur Google, hébergé et maintenu.
-    </div>
-    <div class="srv-card-client">
-      <strong>Ce que vous fournissez</strong>
-      Nom, activité, ville, services, téléphone, email, photos si disponibles.
-    </div>
+    <p class="srv-price-note rv">* Le site web est offert avec la mise en service à <strong>50€</strong> + abonnement mensuel <strong>49€/mois</strong>. Tous les autres services sont des options à la carte, sans engagement.</p>
   </div>
-
-  <div class="srv-card">
-    <div class="srv-card-head">
-      <div class="srv-card-name">🗺️ Fiche Google Maps</div>
-      <div class="srv-card-price">49€/mois</div>
-    </div>
-    <div class="srv-card-apporte">
-      <strong>Ce qu'on vous apporte</strong>
-      Optimisation description, catégories, horaires, ajout photos, cohérence avec le site.
-    </div>
-    <div class="srv-card-client">
-      <strong>Ce que vous fournissez</strong>
-      Accès gestionnaire à votre fiche Google Business, photos de l'activité chaque mois si possible.
-    </div>
-  </div>
-
-  <div class="srv-card">
-    <div class="srv-card-head">
-      <div class="srv-card-name">💳 Carte de visite</div>
-      <div class="srv-card-price">69€</div>
-    </div>
-    <div class="srv-card-apporte">
-      <strong>Ce qu'on vous apporte</strong>
-      Design recto/verso au format print, prêt à envoyer à l'imprimeur.
-    </div>
-    <div class="srv-card-client">
-      <strong>Ce que vous fournissez</strong>
-      Nom, prénom, métier, téléphone, email, site web, logo si existant.
-    </div>
-  </div>
-
-  <div class="srv-card">
-    <div class="srv-card-head">
-      <div class="srv-card-name">📄 Flyer A5</div>
-      <div class="srv-card-price">69€</div>
-    </div>
-    <div class="srv-card-apporte">
-      <strong>Ce qu'on vous apporte</strong>
-      Design A5 prêt à imprimer, adapté à votre activité et cohérent avec votre site.
-    </div>
-    <div class="srv-card-client">
-      <strong>Ce que vous fournissez</strong>
-      Texte à mettre en avant, offre ou promotion, coordonnées, photos si disponibles.
-    </div>
-  </div>
-
-  <div class="srv-card">
-    <div class="srv-card-head">
-      <div class="srv-card-name">📘 Fiche présentation PDF</div>
-      <div class="srv-card-price">69€</div>
-    </div>
-    <div class="srv-card-apporte">
-      <strong>Ce qu'on vous apporte</strong>
-      Document A4 une page — logo, présentation activité, services, coordonnées. À envoyer par mail à vos prospects.
-    </div>
-    <div class="srv-card-client">
-      <strong>Ce que vous fournissez</strong>
-      Texte de présentation, services détaillés, coordonnées, logo si existant.
-    </div>
-  </div>
-
-  <div class="srv-card">
-    <div class="srv-card-head">
-      <div class="srv-card-name">📣 Bannière Facebook</div>
-      <div class="srv-card-price">69€</div>
-    </div>
-    <div class="srv-card-apporte">
-      <strong>Ce qu'on vous apporte</strong>
-      Visuel 820×312px prêt à uploader, cohérent avec votre identité visuelle.
-    </div>
-    <div class="srv-card-client">
-      <strong>Ce que vous fournissez</strong>
-      Texte souhaité, couleurs si préférence, logo si existant.
-    </div>
-  </div>
-
-  <div class="srv-card">
-    <div class="srv-card-head">
-      <div class="srv-card-name">🖼️ Pack 3 visuels réseaux</div>
-      <div class="srv-card-price">69€</div>
-    </div>
-    <div class="srv-card-apporte">
-      <strong>Ce qu'on vous apporte</strong>
-      3 visuels 1080×1080 prêts à poster — présentation, service, accroche.
-    </div>
-    <div class="srv-card-client">
-      <strong>Ce que vous fournissez</strong>
-      Texte de chaque post, ton souhaité, logo si existant.
-    </div>
-  </div>
-
-  <div class="srv-card">
-    <div class="srv-card-head">
-      <div class="srv-card-name">⭐ QR Code avis Google</div>
-      <div class="srv-card-price">29€ / 59€</div>
-    </div>
-    <div class="srv-card-apporte">
-      <strong>Ce qu'on vous apporte</strong>
-      QR code haute résolution prêt à imprimer ou afficher, redirige directement vers votre page avis Google.
-      <br><br>
-      <span style="color:rgba(255,255,255,.5);font-size:.72rem;">Version noir &amp; blanc · 29€ &nbsp;·&nbsp; Version couleur personnalisée · 59€</span>
-    </div>
-    <div class="srv-card-client">
-      <strong>Ce que vous fournissez</strong>
-      Lien vers votre fiche Google Business.
-    </div>
-  </div>
-
-</div>
-<p class="srv-price-note rv">* Le site web est offert avec la mise en service à <strong>50€</strong> + abonnement mensuel <strong>49€/mois</strong>. Tous les autres services sont des options à la carte, sans engagement.</p>
-```
-
-  </div>
-
-  <!-- PANEL : ABONNEMENTS -->
-
   <div class="srv-panel" id="panel-recur">
     <div class="srv-recur-grid rv">
-
-```
-  <div class="srv-recur-card featured">
-    <div class="srv-recur-name">Site web + Hébergement</div>
-    <div class="srv-recur-head">
-      <div class="srv-recur-price"><span class="cur">€</span>49</div>
-      <div class="srv-recur-freq">/mois · résiliable</div>
+      <div class="srv-recur-card featured"><div class="srv-recur-name">Site web + Hébergement</div><div class="srv-recur-head"><div class="srv-recur-price"><span class="cur">€</span>49</div><div class="srv-recur-freq">/mois · résiliable</div></div><ul class="srv-recur-list"><li>Hébergement haute disponibilité</li><li>Nom de domaine .fr ou .com inclus</li><li>Maintenance &amp; mises à jour</li><li>Modifications mineures incluses</li><li>Support direct par WhatsApp</li></ul></div>
+      <div class="srv-recur-card"><div class="srv-recur-name">Fiche Google Maps</div><div class="srv-recur-head"><div class="srv-recur-price"><span class="cur">€</span>49</div><div class="srv-recur-freq">/mois</div></div><ul class="srv-recur-list"><li>Optimisation mensuelle de votre fiche</li><li>Mise à jour photos et horaires</li><li>Cohérence avec votre site web</li><li>Suivi des avis clients</li></ul></div>
+      <div class="srv-recur-card"><div class="srv-recur-name">Réseaux sociaux</div><div class="srv-recur-head"><div class="srv-recur-price"><span class="cur">€</span>149</div><div class="srv-recur-freq">/mois · par réseau</div></div><ul class="srv-recur-list"><li>10 posts par mois</li><li>Visuels 1080×1080 sur mesure</li><li>Textes rédigés et optimisés</li><li>Charte graphique cohérente</li><li>Programmation et publication</li></ul></div>
     </div>
-    <ul class="srv-recur-list">
-      <li>Hébergement haute disponibilité</li>
-      <li>Nom de domaine .fr ou .com inclus</li>
-      <li>Maintenance &amp; mises à jour</li>
-      <li>Modifications mineures incluses</li>
-      <li>Support direct par WhatsApp</li>
-    </ul>
+    <p class="srv-price-note rv">Tous les abonnements sont <strong>sans engagement</strong> et résiliables à tout moment.</p>
   </div>
-
-  <div class="srv-recur-card">
-    <div class="srv-recur-name">Fiche Google Maps</div>
-    <div class="srv-recur-head">
-      <div class="srv-recur-price"><span class="cur">€</span>49</div>
-      <div class="srv-recur-freq">/mois</div>
-    </div>
-    <ul class="srv-recur-list">
-      <li>Optimisation mensuelle de votre fiche</li>
-      <li>Mise à jour photos et horaires</li>
-      <li>Cohérence avec votre site web</li>
-      <li>Suivi des avis clients</li>
-    </ul>
-  </div>
-
-  <div class="srv-recur-card">
-    <div class="srv-recur-name">Réseaux sociaux</div>
-    <div class="srv-recur-head">
-      <div class="srv-recur-price"><span class="cur">€</span>149</div>
-      <div class="srv-recur-freq">/mois · par réseau</div>
-    </div>
-    <ul class="srv-recur-list">
-      <li>10 posts par mois</li>
-      <li>Visuels 1080×1080 sur mesure</li>
-      <li>Textes rédigés et optimisés</li>
-      <li>Charte graphique cohérente</li>
-      <li>Programmation et publication</li>
-    </ul>
-  </div>
-
-</div>
-<p class="srv-price-note rv">Tous les abonnements sont <strong>sans engagement</strong> et résiliables à tout moment. Les abonnements peuvent être combinés pour une présence en ligne complète.</p>
-```
-
-  </div>
-
-  <!-- PANEL : PACKS -->
-
   <div class="srv-panel" id="panel-packs">
     <div class="rv">
       <div class="srv-pack-highlight">
         <div style="display:inline-block;background:#E8281E;color:white;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:12px;">⚡ Meilleure valeur</div>
         <h3>Pack Présence Complète</h3>
         <p>Flyer A5 + Carte de visite + Fiche PDF + QR Code avis Google — une charte graphique cohérente sur tous vos supports.</p>
-        <div class="srv-pack-price-row">
-          <div class="srv-pack-num"><span class="cur">€</span>199</div>
-          <div class="srv-pack-detail">
-            <strong>QR Code couleur inclus (59€)</strong>
-            Au lieu de 266€ à l'unité · Économie de 67€
-          </div>
-        </div>
+        <div class="srv-pack-price-row"><div class="srv-pack-num"><span class="cur">€</span>199</div><div class="srv-pack-detail"><strong>QR Code couleur inclus (59€)</strong>Au lieu de 266€ à l'unité · Économie de 67€</div></div>
       </div>
-
-```
-  <div class="srv-pack-highlight" style="margin-top:12px;background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.12);">
-    <div style="display:inline-block;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:12px;">🚀 Tout-en-un</div>
-    <h3>Pack Démarrage Total</h3>
-    <p>Site web + Pack Présence Complète (Flyer + Carte + Fiche PDF + QR Code) — vous démarrez avec tout ce qu'il faut.</p>
-    <div class="srv-pack-price-row">
-      <div class="srv-pack-num"><span class="cur">€</span>249</div>
-      <div class="srv-pack-detail">
-        <strong>Mise en service site + pack complet</strong>
-        + abonnement 49€/mois — tout inclus dès le départ
+      <div class="srv-pack-highlight" style="margin-top:12px;background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.12);">
+        <div style="display:inline-block;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:12px;">🚀 Tout-en-un</div>
+        <h3>Pack Démarrage Total</h3>
+        <p>Site web + Pack Présence Complète (Flyer + Carte + Fiche PDF + QR Code) — vous démarrez avec tout ce qu'il faut.</p>
+        <div class="srv-pack-price-row"><div class="srv-pack-num"><span class="cur">€</span>249</div><div class="srv-pack-detail"><strong>Mise en service site + pack complet</strong>+ abonnement 49€/mois — tout inclus dès le départ</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
+        <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">Pack Carte + Flyer</div><div class="srv-card-price">119€</div></div><div class="srv-card-apporte" style="margin-top:8px;">Design cohérent entre eux, même charte graphique — carte de visite recto/verso + flyer A5 prêts à imprimer.</div></div>
+        <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">Mise en service</div><div class="srv-card-price">50€</div></div><div class="srv-card-apporte" style="margin-top:8px;">Création de votre site one-page sur mesure. Payé une seule fois. Prévisualisation avant paiement.</div></div>
       </div>
     </div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
-    <div class="srv-card">
-      <div class="srv-card-head">
-        <div class="srv-card-name">Pack Carte + Flyer</div>
-        <div class="srv-card-price">119€</div>
-      </div>
-      <div class="srv-card-apporte" style="margin-top:8px;">Design cohérent entre eux, même charte graphique — carte de visite recto/verso + flyer A5 prêts à imprimer.</div>
-    </div>
-    <div class="srv-card">
-      <div class="srv-card-head">
-        <div class="srv-card-name">Mise en service</div>
-        <div class="srv-card-price">50€</div>
-      </div>
-      <div class="srv-card-apporte" style="margin-top:8px;">Création de votre site one-page sur mesure. Payé une seule fois. Prévisualisation avant paiement.</div>
-    </div>
-  </div>
-</div>
-<p class="srv-price-note rv">Les packs sont <strong>disponibles à la commande</strong>. Contactez-moi pour discuter de la meilleure combinaison pour votre activité.</p>
-```
-
+    <p class="srv-price-note rv">Les packs sont <strong>disponibles à la commande</strong>. Contactez-moi pour discuter de la meilleure combinaison pour votre activité.</p>
   </div>
 </section>
-
-<!-- ── OFFRE ── -->
 
 <section id="offre">
   <span class="s-tag">L'offre</span>
   <h2 class="rv">Simple.<br>Transparent.</h2>
   <p class="s-sub rv">Le site est offert. Vous payez uniquement ce qui le fait tourner.</p>
   <div class="offre-cards">
-    <div class="o-card rv">
-      <span class="o-name">Mise en service</span>
-      <div class="o-price"><span class="cur">€</span>50</div>
-      <span class="o-freq">Payé une seule fois</span>
-      <ul class="o-list">
-        <li>Création de votre page sur mesure</li>
-        <li>Design adapté à votre activité</li>
-        <li>Formulaire de contact intégré</li>
-        <li>Bouton d'appel &amp; WhatsApp direct</li>
-        <li>Prévisualisation avant paiement</li>
-      </ul>
-    </div>
-    <div class="o-card main rv">
-      <span class="o-name">Hébergement + Support</span>
-      <div class="o-price"><span class="cur">€</span>49</div>
-      <span class="o-freq">Résiliable à tout moment</span>
-      <ul class="o-list">
-        <li>Hébergement haute disponibilité</li>
-        <li>Nom de domaine .fr ou .com inclus</li>
-        <li>Maintenance &amp; mises à jour</li>
-        <li>Modifications mineures incluses</li>
-        <li>Support direct par WhatsApp</li>
-      </ul>
-    </div>
+    <div class="o-card rv"><span class="o-name">Mise en service</span><div class="o-price"><span class="cur">€</span>50</div><span class="o-freq">Payé une seule fois</span><ul class="o-list"><li>Création de votre page sur mesure</li><li>Design adapté à votre activité</li><li>Formulaire de contact intégré</li><li>Bouton d'appel &amp; WhatsApp direct</li><li>Prévisualisation avant paiement</li></ul></div>
+    <div class="o-card main rv"><span class="o-name">Hébergement + Support</span><div class="o-price"><span class="cur">€</span>49</div><span class="o-freq">Résiliable à tout moment</span><ul class="o-list"><li>Hébergement haute disponibilité</li><li>Nom de domaine .fr ou .com inclus</li><li>Maintenance &amp; mises à jour</li><li>Modifications mineures incluses</li><li>Support direct par WhatsApp</li></ul></div>
   </div>
   <p class="offre-note rv">Pas de contrat. Pas d'engagement. Votre page reste en ligne tant que vous êtes abonné.</p>
 </section>
 
-<!-- ── PROBLÈME ── -->
+<!-- ── COMPARATIF ── -->
+
+<section id="comparatif">
+  <span class="s-tag">Comparatif honnête</span>
+  <h2 class="rv">LocWeb vs<br>les alternatives.</h2>
+  <p class="s-sub rv">Sans langue de bois. Voici ce que chaque option offre vraiment.</p>
+  <div class="comp-wrap rv">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Critère</th>
+          <th class="lw">LocWeb</th>
+          <th class="ot">Pages Jaunes</th>
+          <th class="ot">Faire soi-même</th>
+          <th class="ot">Grande agence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Création offerte</td><td class="lw"><span class="cy">✓ Oui</span></td><td><span class="cn">✗ Non</span></td><td><span class="cy">✓ Oui</span></td><td><span class="cn">✗ 2 000–5 000€</span></td></tr>
+        <tr><td>Optimisé votre métier</td><td class="lw"><span class="cy">✓ Sur-mesure</span></td><td><span class="cm">Générique</span></td><td><span class="cn">✗ Vous gérez</span></td><td><span class="cy">✓ Oui</span></td></tr>
+        <tr><td>SEO local & région</td><td class="lw"><span class="cy">✓ Inclus</span></td><td><span class="cm">Basique</span></td><td><span class="cn">✗ Non</span></td><td><span class="cm">En option</span></td></tr>
+        <tr><td>Délai livraison</td><td class="lw"><span class="cy">48h</span></td><td><span class="cm">2–4 semaines</span></td><td><span class="cn">Illimité</span></td><td><span class="cn">4–8 semaines</span></td></tr>
+        <tr><td>Support humain</td><td class="lw"><span class="cy">✓ WhatsApp</span></td><td><span class="cm">Hotline</span></td><td><span class="cn">✗ Non</span></td><td><span class="cm">Ticket</span></td></tr>
+        <tr><td>Prix mensuel</td><td class="lw"><span class="cy">49€/mois</span></td><td><span class="cn">80–200€</span></td><td><span class="cm">5–15€</span></td><td><span class="cn">200€+</span></td></tr>
+        <tr><td>Sans engagement</td><td class="lw"><span class="cy">✓ Oui</span></td><td><span class="cn">✗ 12 mois</span></td><td><span class="cy">✓ Oui</span></td><td><span class="cn">✗ Contrat</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── ROI ── -->
+
+<section id="roi">
+  <span class="s-tag">Retour sur investissement</span>
+  <h2 class="rv">Rentabilisé dès<br>le 1er client.</h2>
+  <p class="s-sub rv">Calculez ce qu'un client supplémentaire par semaine représente face à 49€/mois.</p>
+  <div class="roi-wrap">
+    <div class="roi-box rv">
+      <h3>🧮 Calculateur ROI</h3>
+      <div class="roi-field"><label>Prix moyen d'une intervention (€)</label><input type="number" class="roi-input" id="roi-prix" value="400" min="0"></div>
+      <div class="roi-field"><label>Clients supplémentaires estimés / mois</label><input type="number" class="roi-input" id="roi-clients" value="4" min="0"></div>
+      <div class="roi-result">
+        <div><div class="roi-result-label">CA supplémentaire / mois</div><div class="roi-result-val" id="roi-val">1 600€</div></div>
+        <div style="text-align:right"><div class="roi-result-label">Votre investissement</div><div class="roi-result-val">49€</div></div>
+      </div>
+    </div>
+    <div class="roi-points">
+      <div class="roi-point rv"><div class="roi-point-n">01 →</div><div><h4>Formulaire 24h/24</h4><p>Votre site reçoit des demandes même la nuit et le week-end. Vous vous réveillez avec des prospects qualifiés.</p></div></div>
+      <div class="roi-point rv"><div class="roi-point-n">02 →</div><div><h4>Zéro commission</h4><p>Contrairement aux plateformes, vous gardez 100% de vos revenus. Pas d'intermédiaire entre vous et vos clients.</p></div></div>
+      <div class="roi-point rv"><div class="roi-point-n">03 →</div><div><h4>Crédibilité immédiate</h4><p>Un site pro inspire confiance. Vos prospects arrivent déjà convaincus avant le premier contact.</p></div></div>
+      <div class="roi-point rv"><div class="roi-point-n">04 →</div><div><h4>SEO local durable</h4><p>Votre site remonte dans Google sur "votre métier + votre ville". Visibilité gratuite et durable dans le temps.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MÉTIERS ── -->
+
+<section id="metiers">
+  <span class="s-tag">Votre métier</span>
+  <h2 class="rv">Un site conçu<br>pour ce que vous faites.</h2>
+  <p class="s-sub rv">Chaque site est adapté à votre secteur et optimisé pour votre région. Pas un template générique.</p>
+  <div class="metiers-grid">
+    <div class="metier-card rv"><span class="metier-icon">🎨</span><h4>Peintre</h4><p>Avant/après, devis en ligne</p></div>
+    <div class="metier-card rv"><span class="metier-icon">🔧</span><h4>Plombier</h4><p>Urgences, appel direct</p></div>
+    <div class="metier-card rv"><span class="metier-icon">⚡</span><h4>Électricien</h4><p>Certifications, devis rapide</p></div>
+    <div class="metier-card rv"><span class="metier-icon">🧱</span><h4>Maçon</h4><p>Chantiers, réalisations</p></div>
+    <div class="metier-card rv"><span class="metier-icon">🪚</span><h4>Menuisier</h4><p>Portfolio sur-mesure</p></div>
+    <div class="metier-card rv"><span class="metier-icon">🌳</span><h4>Paysagiste</h4><p>Aménagements, photos</p></div>
+    <div class="metier-card rv"><span class="metier-icon">🏠</span><h4>Couvreur</h4><p>Toiture, urgences</p></div>
+    <div class="metier-card rv"><span class="metier-icon">💆</span><h4>Thérapeute</h4><p>Bien-être, réservation</p></div>
+    <div class="metier-card rv"><span class="metier-icon">🔮</span><h4>Voyant</h4><p>Confiance, discrétion</p></div>
+    <div class="metier-card rv"><span class="metier-icon">🍽️</span><h4>Restaurateur</h4><p>Menu, réservation</p></div>
+  </div>
+</section>
 
 <section id="probleme">
   <span class="s-tag">Pourquoi c'est utile</span>
@@ -820,20 +528,17 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   </div>
 </section>
 
-<!-- ── COMMENT ── -->
-
 <section id="comment">
   <span class="s-tag">Comment ça marche</span>
   <h2 class="rv">Simple comme<br>un coup de fil.</h2>
   <div class="steps">
-    <div class="step rvl"><div class="step-n">01 →</div><div><h3>Vous me parlez de votre activité</h3><p>Un message, un appel. Je vous pose quelques questions. Rien de plus.</p></div></div>
-    <div class="step rvl"><div class="step-n">02 →</div><div><h3>Je crée votre page en 48h</h3><p>Vous recevez un lien pour voir le résultat avant de payer. On ajuste si besoin.</p></div></div>
-    <div class="step rvl"><div class="step-n">03 →</div><div><h3>Vous payez, c'est en ligne</h3><p>50€ de mise en service, puis 49€/mois. Votre nom de domaine est activé, votre page est visible.</p></div></div>
-    <div class="step rvl"><div class="step-n">04 →</div><div><h3>Vous n'y pensez plus jamais</h3><p>Hébergement, maintenance, mises à jour — je gère. Vous avez d'autres choses à faire.</p></div></div>
+    <div class="step rvl"><div class="step-n">01 →</div><div><h3>Vous me parlez de votre activité <span class="step-badge">Jour 1</span></h3><p>Un message, un appel. Je vous pose quelques questions sur votre métier, votre zone, vos objectifs. Rien de plus.</p></div></div>
+    <div class="step rvl"><div class="step-n">02 →</div><div><h3>Je crée votre page en 48h <span class="step-badge">Jours 2–3</span></h3><p>Site sur-mesure adapté à votre secteur. Vous recevez un lien pour voir le résultat avant de payer. On ajuste si besoin.</p></div></div>
+    <div class="step rvl"><div class="step-n">03 →</div><div><h3>Vous validez et payez <span class="step-badge">Jour 4</span></h3><p>50€ de mise en service, puis 49€/mois. Votre nom de domaine est activé, votre page est visible partout.</p></div></div>
+    <div class="step rvl"><div class="step-n">04 →</div><div><h3>On optimise votre SEO local <span class="step-badge">Jour 5</span></h3><p>Votre site est soumis à Google, optimisé pour votre métier et votre région. Il commence à remonter dans les résultats.</p></div></div>
+    <div class="step rvl"><div class="step-n">05 →</div><div><h3>Vous n'y pensez plus jamais <span class="step-badge">En continu</span></h3><p>Hébergement, maintenance, mises à jour — je gère. Vous avez d'autres choses à faire.</p></div></div>
   </div>
 </section>
-
-<!-- ── GESTION ── -->
 
 <section id="gestion">
   <span class="s-tag">Ce qu'on gère pour vous</span>
@@ -848,8 +553,6 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   </div>
 </section>
 
-<!-- ── POUR QUI ── -->
-
 <section id="pourqui">
   <span class="s-tag">Pour qui</span>
   <h2 class="rv">Pour ceux qui font<br>un vrai métier.</h2>
@@ -858,8 +561,6 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   </div>
   <p class="pq-sub rv">Vous êtes <strong>indépendant ou chef d'une petite structure</strong>. Vous n'avez pas envie de vous occuper d'internet. <strong>C'est exactement pour ça qu'on est là.</strong></p>
 </section>
-
-<!-- ── TÉMOIGNAGES ── -->
 
 <section id="temoignages">
   <span class="s-tag">Ils nous font confiance</span>
@@ -871,8 +572,6 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   </div>
 </section>
 
-<!-- ── FAQ ── -->
-
 <section id="faq">
   <span class="s-tag">Questions fréquentes</span>
   <h2 class="rv">On répond à tout.</h2>
@@ -883,10 +582,9 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
     <div class="faq-item"><button class="faq-q">Vous travaillez partout en France ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Oui, tout se passe à distance. WhatsApp ou email, peu importe votre ville.</p></div></div>
     <div class="faq-item"><button class="faq-q">Je peux modifier ma page après ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Les petites modifications — texte, horaires, photo, téléphone — sont incluses. Envoyez-moi un message et c'est réglé.</p></div></div>
     <div class="faq-item"><button class="faq-q">Peut-on commander uniquement un flyer ou une carte de visite ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Oui, tous les supports print (carte, flyer, fiche PDF, bannière, QR code) sont disponibles à la carte, sans avoir de site web chez nous.</p></div></div>
+    <div class="faq-item"><button class="faq-q">Mon site sera vraiment visible sur Google ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Oui. Chaque site est optimisé pour le SEO local dès la création — balises, contenu géolocalisé, Google Search Console. Les résultats arrivent progressivement selon la concurrence de votre secteur et ville.</p></div></div>
   </div>
 </section>
-
-<!-- ── CONTACT ── -->
 
 <section id="contact">
   <div class="contact-top rv">
@@ -922,34 +620,25 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   </form>
 </section>
 
-<!-- ── FOOTER ── */
 <footer>
   <a href="#" class="logo-wrap">
-    <div class="logo-icon" style="width:32px;height:32px;">
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;">
-        <polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/>
-        <text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text>
-      </svg>
-    </div>
+    <div class="logo-icon" style="width:32px;height:32px;"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;"><polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text></svg></div>
     <span class="logo-text">Loc<span>Web</span></span>
   </a>
   <p>Votre image en ligne, on s'en occupe · Partout en France</p>
   <p>© 2025 LocWeb</p>
 </footer>
 
-<!-- ── WHATSAPP ── -->
-
 <a href="https://wa.me/33600000000" class="wa" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-/* ── SPLASH TUNNEL ── */
 (function(){
-  const canvas = document.getElementById('splash-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, cx, cy, lines, startTime, animId;
-  const DURATION = 3.2;
+  const canvas=document.getElementById('splash-canvas');
+  const ctx=canvas.getContext('2d');
+  let W,H,cx,cy,lines,startTime,animId;
+  const DURATION=3.2;
   function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;cx=W/2;cy=H/2;}
   function createLines(n){lines=[];for(let i=0;i<n;i++){const baseAngle=(i/n)*Math.PI*2;const jitter=(Math.random()-.5)*(Math.PI*2/n)*.5;const isRed=(i%12===0);lines.push({angle:baseAngle+jitter,speed:.18+Math.random()*.14,length:.04+Math.random()*.12,opacity:isRed?.9:(.08+Math.random()*.35),width:isRed?2:(.5+Math.random()*1.2),isRed,offset:Math.random()});}}
   function easeInQuart(t){return t*t*t*t;}
@@ -982,49 +671,44 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   resize();createLines(160);requestAnimationFrame(draw);window.addEventListener('resize',resize);
 })();
 
-/* ── BURGER MENU ── */
-const burger = document.getElementById('burgerBtn');
-const drawer = document.getElementById('navDrawer');
-burger.addEventListener('click', () => {
-  const isOpen = drawer.classList.contains('open');
+const burger=document.getElementById('burgerBtn');
+const drawer=document.getElementById('navDrawer');
+burger.addEventListener('click',()=>{
+  const isOpen=drawer.classList.contains('open');
   burger.classList.toggle('open');
-  if(isOpen){ drawer.style.opacity='0'; drawer.style.transform='translateY(-8px)'; setTimeout(()=>drawer.classList.remove('open'),250); }
-  else{ drawer.classList.add('open'); requestAnimationFrame(()=>{ drawer.style.opacity='1'; drawer.style.transform='translateY(0)'; }); }
+  if(isOpen){drawer.style.opacity='0';drawer.style.transform='translateY(-8px)';setTimeout(()=>drawer.classList.remove('open'),250);}
+  else{drawer.classList.add('open');requestAnimationFrame(()=>{drawer.style.opacity='1';drawer.style.transform='translateY(0)';});}
 });
-// Close drawer on link click
-drawer.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    burger.classList.remove('open');
-    drawer.style.opacity='0'; drawer.style.transform='translateY(-8px)';
-    setTimeout(()=>drawer.classList.remove('open'),250);
-  });
-});
+drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{burger.classList.remove('open');drawer.style.opacity='0';drawer.style.transform='translateY(-8px)';setTimeout(()=>drawer.classList.remove('open'),250);});});
 
-/* ── SERVICES TABS ── */
-document.querySelectorAll('.srv-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.srv-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.srv-panel').forEach(p => p.classList.remove('active'));
+document.querySelectorAll('.srv-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.srv-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.srv-panel').forEach(p=>p.classList.remove('active'));
     tab.classList.add('active');
-    document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+    document.getElementById('panel-'+tab.dataset.panel).classList.add('active');
   });
 });
 
-/* ── SCROLL REVEAL ── */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('on'), i*75); io.unobserve(e.target); }
-  });
-}, {threshold:0.08});
-document.querySelectorAll('.rv, .rvl').forEach(el => io.observe(el));
+function updateROI(){
+  const prix=parseFloat(document.getElementById('roi-prix').value)||0;
+  const clients=parseFloat(document.getElementById('roi-clients').value)||0;
+  document.getElementById('roi-val').textContent=(prix*clients).toLocaleString('fr-FR')+'€';
+}
+document.getElementById('roi-prix').addEventListener('input',updateROI);
+document.getElementById('roi-clients').addEventListener('input',updateROI);
 
-/* ── FAQ ── */
-document.querySelectorAll('.faq-q').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement;
-    const isOpen = item.classList.contains('open');
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('on'),i*75);io.unobserve(e.target);}});
+},{threshold:0.08});
+document.querySelectorAll('.rv, .rvl').forEach(el=>io.observe(el));
+
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.parentElement;
+    const isOpen=item.classList.contains('open');
     document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-    if(!isOpen) item.classList.add('open');
+    if(!isOpen)item.classList.add('open');
   });
 });
 </script>
