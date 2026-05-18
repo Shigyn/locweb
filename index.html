@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LocWeb - Site web gratuit pour artisans et indépendants</title>
-<meta name="description" content="Votre site web est offert. Artisans, indépendants : obtenez votre site professionnel gratuitement. 50€ de mise en service + 49€/mois hébergement et support inclus.">
+<meta name="description" content="Votre site web professionnel offert. Artisans, indépendants : création 100% gratuite. 49€/mois hébergement et support inclus. Partout en France.">
 <link rel="canonical" href="https://locweb.fr">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LocWeb - Site web gratuit pour artisans et indépendants">
-<meta property="og:description" content="Votre site web est offert. 50€ de mise en service + 49€/mois. Hébergement, domaine et support inclus.">
+<meta property="og:title" content="LocWeb - Création de site web 100% offerte">
+<meta property="og:description" content="Votre site web professionnel offert. 49€/mois tout inclus. Partout en France.">
 <meta property="og:url" content="https://locweb.fr">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"LocWeb","url":"https://locweb.fr","priceRange":"€"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"LocWeb","url":"https://locweb.fr","priceRange":"€","telephone":"+33745531434"}</script>
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,38 +63,40 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 20px;height:60px;d
 .hero-accent-line{position:absolute;top:0;bottom:0;right:22vw;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,40,30,.1),transparent);pointer-events:none;}
 .hero-accent-dot{position:absolute;top:110px;right:calc(22vw - 3px);width:7px;height:7px;background:#E8281E;border-radius:50%;animation:blink 2.5s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
-.hero-urgence{display:inline-flex;align-items:center;gap:8px;background:#E8281E;border-radius:100px;padding:7px 16px;margin-bottom:20px;width:fit-content;}
-.hero-urgence span{font-size:.7rem;font-weight:800;color:white;letter-spacing:.1em;text-transform:uppercase;}
-.hero-urgence-dot{width:6px;height:6px;background:white;border-radius:50%;animation:blink 1.5s infinite;}
-.hero-prix-block{margin-bottom:20px;}
-.hero-prix-barre{font-size:clamp(1rem,3vw,1.2rem);color:#aaa;font-weight:600;margin-bottom:2px;}
-.hero-prix-barre s{text-decoration-color:#E8281E;}
-.hero-prix-gratuit{font-size:clamp(4rem,14vw,9rem);font-weight:800;line-height:.9;letter-spacing:-.04em;color:#E8281E;display:block;}
-.hero-prix-label{font-size:.85rem;color:#888;margin-top:6px;font-weight:500;}
-h1{font-size:clamp(1.6rem,4.5vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:#111;margin-bottom:14px;}
+
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:#E8281E;border-radius:100px;padding:7px 16px;margin-bottom:24px;width:fit-content;}
+.hero-badge-dot{width:6px;height:6px;background:white;border-radius:50%;animation:blink 1.5s infinite;}
+.hero-badge span{font-size:.7rem;font-weight:800;color:white;letter-spacing:.1em;text-transform:uppercase;}
+
+.hero-tag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:#E8281E;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.hero-tag::before{content:'';width:14px;height:1px;background:#E8281E;}
+
+h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:800;line-height:1.04;letter-spacing:-.035em;color:#111;margin-bottom:8px;}
 h1 em{font-style:normal;color:#E8281E;}
-.hero-sub{font-size:clamp(.92rem,2vw,1rem);color:#888;max-width:420px;line-height:1.75;margin-bottom:20px;}
-.hero-pills-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
-.hero-pill-sm{display:inline-flex;align-items:center;gap:6px;background:#f7f6f3;border:1px solid rgba(0,0,0,.07);border-radius:100px;padding:7px 14px;font-size:.76rem;color:#333;font-weight:500;}
-.hero-pill-sm .dot-r{width:5px;height:5px;background:#E8281E;border-radius:50%;flex-shrink:0;}
-.hero-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
-.btn-main{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#E8281E;color:white;font-weight:700;font-size:.95rem;padding:16px 28px;text-decoration:none;border-radius:12px;box-shadow:0 4px 20px rgba(232,40,30,.3);transition:transform .2s,box-shadow .2s;width:100%;max-width:300px;}
-.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,40,30,.4);}
-.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:#f7f6f3;border:1px solid rgba(0,0,0,.08);color:#333;font-weight:600;font-size:.88rem;padding:16px 22px;text-decoration:none;border-radius:12px;transition:border-color .2s,color .2s;}
-.btn-ghost:hover{border-color:#E8281E;color:#E8281E;}
+.hero-creation{font-size:clamp(1rem,3vw,1.5rem);font-weight:700;color:#111;margin-bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.hero-creation-badge{background:#E8281E;color:white;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:4px 12px;border-radius:100px;}
+.hero-sub{font-size:clamp(.9rem,2vw,1rem);color:#888;max-width:400px;line-height:1.75;margin-bottom:32px;}
 
-/* HERO PROOF CARDS */
-.hero-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px;max-width:420px;}
-.hero-proof-card{background:#f7f6f3;border:1px solid rgba(0,0,0,.07);border-radius:10px;padding:10px 12px;text-align:center;}
-.hero-proof-card .proof-icon{font-size:1rem;display:block;margin-bottom:4px;}
-.hero-proof-card span{font-size:.68rem;font-weight:600;color:#333;line-height:1.3;display:block;}
+.hero-cta-block{display:flex;flex-direction:column;gap:12px;max-width:320px;}
+.btn-appel{display:flex;align-items:center;justify-content:center;gap:10px;background:#E8281E;color:white;font-weight:700;font-size:1rem;padding:18px 28px;text-decoration:none;border-radius:14px;box-shadow:0 6px 28px rgba(232,40,30,.35);transition:transform .2s,box-shadow .2s;width:100%;}
+.btn-appel:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(232,40,30,.45);}
+.btn-appel-pulse{animation:btnpulse 2.5s ease-in-out infinite;}
+@keyframes btnpulse{0%,100%{box-shadow:0 6px 28px rgba(232,40,30,.35);}50%{box-shadow:0 6px 40px rgba(232,40,30,.6);}}
+.hero-scroll-link{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.78rem;color:#888;text-decoration:none;font-weight:500;transition:color .2s;}
+.hero-scroll-link:hover{color:#E8281E;}
+.hero-scroll-link::after{content:'↓';font-size:1rem;}
 
-.scroll-hint{margin-top:36px;display:flex;align-items:center;gap:10px;font-size:.72rem;color:#888;text-transform:uppercase;letter-spacing:.1em;}
-.scroll-hint::before{content:'';width:22px;height:1px;background:rgba(0,0,0,.2);}
+.hero-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:28px;max-width:360px;}
+.hero-proof-card{background:#f7f6f3;border:1px solid rgba(0,0,0,.07);border-radius:10px;padding:10px 8px;text-align:center;}
+.hero-proof-card .proof-icon{font-size:.9rem;display:block;margin-bottom:3px;}
+.hero-proof-card span{font-size:.65rem;font-weight:600;color:#333;line-height:1.3;display:block;}
+
+.scroll-hint{margin-top:36px;display:flex;align-items:center;gap:10px;font-size:.72rem;color:#bbb;text-transform:uppercase;letter-spacing:.1em;}
+.scroll-hint::before{content:'';width:22px;height:1px;background:rgba(0,0,0,.15);}
 
 /* ── MARQUEE ── */
 .mq{overflow:hidden;border-top:1px solid rgba(0,0,0,.07);border-bottom:1px solid rgba(0,0,0,.07);padding:11px 0;background:#f7f6f3;}
-.mq-track{display:flex;width:max-content;animation:mq 26s linear infinite;}
+.mq-track{display:flex;width:max-content;animation:mq 50s linear infinite;}
 .mq-item{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#888;padding:0 22px;white-space:nowrap;}
 .mq-item .dot{color:#E8281E;margin-left:22px;}
 @keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
@@ -108,7 +110,7 @@ h1 em{font-style:normal;color:#E8281E;}
 @media(min-width:768px){.cta-band{padding:20px 5vw;}}
 
 /* ── SECTIONS ── */
-section{padding:72px 20px;}
+section{padding:80px 20px;}
 .s-tag{font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:#E8281E;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .s-tag::before{content:'';width:14px;height:1px;background:#E8281E;}
 h2{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:10px;color:#111;}
@@ -123,6 +125,40 @@ h2{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.08;letter-spac
 .prob-n{font-size:.65rem;font-weight:700;color:#E8281E;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px;display:block;}
 .prob-item h3{font-size:.93rem;font-weight:700;margin-bottom:5px;}
 .prob-item p{font-size:.81rem;color:#888;line-height:1.7;}
+
+/* ── COMMENT ── */
+#comment{background:#f7f6f3;}
+.steps{display:flex;flex-direction:column;margin-top:28px;}
+.step{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid rgba(0,0,0,.07);transition:padding-left .3s;}
+.step:hover{padding-left:8px;}
+.step:last-child{border-bottom:none;}
+.step-n{font-size:.68rem;font-weight:800;color:#E8281E;letter-spacing:.06em;padding-top:3px;flex-shrink:0;width:30px;}
+.step h3{font-size:.93rem;font-weight:700;margin-bottom:5px;}
+.step p{font-size:.81rem;color:#888;line-height:1.7;}
+.step-badge{display:inline-block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:rgba(232,40,30,.08);border:1px solid rgba(232,40,30,.18);color:#E8281E;padding:2px 8px;border-radius:100px;margin-left:8px;vertical-align:middle;}
+
+/* ── TÉMOIGNAGES ── */
+#temoignages{background:#fff;}
+.temo-list{display:flex;flex-direction:column;gap:10px;margin-top:28px;}
+.temo{background:#f7f6f3;border:1px solid rgba(0,0,0,.07);border-radius:16px;padding:22px 18px;transition:border-color .25s,box-shadow .25s;}
+.temo:hover{border-color:rgba(232,40,30,.3);box-shadow:0 4px 18px rgba(232,40,30,.08);}
+.temo-stars{color:#E8281E;font-size:.88rem;margin-bottom:10px;letter-spacing:2px;}
+.temo p{font-size:.83rem;line-height:1.8;color:#333;margin-bottom:14px;}
+.temo-who strong{font-size:.84rem;font-weight:700;display:block;margin-bottom:2px;}
+.temo-who span{font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.06em;}
+
+/* ── FAQ ── */
+#faq{background:#f7f6f3;}
+.faq-list{display:flex;flex-direction:column;gap:6px;margin-top:28px;}
+.faq-item{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;overflow:hidden;transition:border-color .2s;}
+.faq-item.open{border-color:#E8281E;}
+.faq-q{width:100%;background:none;border:none;color:#111;font-family:'Plus Jakarta Sans',sans-serif;font-size:.87rem;font-weight:700;padding:17px 15px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;transition:color .2s;}
+.faq-q:hover{color:#E8281E;}
+.faq-ico{width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(0,0,0,.07);display:flex;align-items:center;justify-content:center;color:#E8281E;font-size:.82rem;flex-shrink:0;transition:transform .3s,border-color .2s;}
+.faq-item.open .faq-ico{transform:rotate(45deg);border-color:#E8281E;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.faq-item.open .faq-a{max-height:200px;}
+.faq-a p{padding:0 15px 16px;font-size:.81rem;color:#888;line-height:1.8;}
 
 /* ── OFFRE ── */
 #offre{background:#f7f6f3;}
@@ -163,9 +199,13 @@ h2{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.08;letter-spac
 .roi-field label{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:7px;}
 .roi-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:600;padding:11px 14px;border-radius:10px;outline:none;transition:border-color .2s;}
 .roi-input:focus{border-color:#E8281E;}
-.roi-result{background:#E8281E;border-radius:12px;padding:18px 20px;margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+.roi-results{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+.roi-result{border-radius:12px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+.roi-result.monthly{background:#E8281E;}
+.roi-result.annual{background:rgba(232,40,30,.2);border:1px solid rgba(232,40,30,.4);}
 .roi-result-label{font-size:.72rem;color:rgba(255,255,255,.7);}
 .roi-result-val{font-size:1.8rem;font-weight:800;color:white;letter-spacing:-.02em;line-height:1;}
+.roi-result.annual .roi-result-val{font-size:2.2rem;}
 .roi-points{display:flex;flex-direction:column;gap:14px;}
 .roi-point{display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;transition:border-color .25s;}
 .roi-point:hover{border-color:rgba(232,40,30,.3);}
@@ -184,23 +224,11 @@ h2{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.08;letter-spac
 .metiers-sub{margin-top:20px;font-size:.87rem;color:#888;line-height:1.8;}
 .metiers-sub strong{color:#111;font-weight:600;}
 
-/* ── COMMENT ── */
-#comment{background:#fff;}
-.steps{display:flex;flex-direction:column;margin-top:28px;}
-.step{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid rgba(0,0,0,.07);transition:padding-left .3s;}
-.step:hover{padding-left:8px;}
-.step:last-child{border-bottom:none;}
-.step-n{font-size:.68rem;font-weight:800;color:#E8281E;letter-spacing:.06em;padding-top:3px;flex-shrink:0;width:30px;}
-.step h3{font-size:.93rem;font-weight:700;margin-bottom:5px;}
-.step p{font-size:.81rem;color:#888;line-height:1.7;}
-.step-badge{display:inline-block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:rgba(232,40,30,.08);border:1px solid rgba(232,40,30,.18);color:#E8281E;padding:2px 8px;border-radius:100px;margin-left:8px;vertical-align:middle;}
-
 /* ── SERVICES ── */
 #services{background:#111;color:white;position:relative;overflow:hidden;}
 #services::before{content:'';position:absolute;top:-120px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(232,40,30,.15) 0%,transparent 70%);pointer-events:none;}
 #services .s-tag{color:#E8281E;}#services .s-tag::before{background:#E8281E;}
 #services h2{color:white;}#services .s-sub{color:rgba(255,255,255,.5);}
-
 .billing-toggle{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
 .toggle-label{font-size:.8rem;color:rgba(255,255,255,.5);font-weight:600;}
 .toggle-label.active{color:white;}
@@ -211,7 +239,6 @@ h2{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.08;letter-spac
 .toggle-switch input:checked + .toggle-slider{background:#E8281E;}
 .toggle-switch input:checked + .toggle-slider::before{transform:translateX(22px);}
 .toggle-badge{background:#E8281E;color:white;font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:100px;}
-
 .srv-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px;margin-top:28px;}
 .srv-tab{font-family:'Plus Jakarta Sans',sans-serif;font-size:.73rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:8px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;transition:all .2s;white-space:nowrap;}
 .srv-tab:hover{border-color:rgba(232,40,30,.4);color:rgba(255,255,255,.8);}
@@ -256,29 +283,6 @@ h2{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.08;letter-spac
 .srv-price-note{margin-top:20px;font-size:.74rem;color:rgba(255,255,255,.3);line-height:1.7;border-top:1px solid rgba(255,255,255,.06);padding-top:16px;}
 .srv-price-note strong{color:rgba(255,255,255,.5);}
 
-/* ── TÉMOIGNAGES ── */
-#temoignages{background:#fff;}
-.temo-list{display:flex;flex-direction:column;gap:10px;margin-top:28px;}
-.temo{background:#f7f6f3;border:1px solid rgba(0,0,0,.07);border-radius:16px;padding:22px 18px;transition:border-color .25s,box-shadow .25s;}
-.temo:hover{border-color:rgba(232,40,30,.3);box-shadow:0 4px 18px rgba(232,40,30,.08);}
-.temo-stars{color:#E8281E;font-size:.88rem;margin-bottom:10px;letter-spacing:2px;}
-.temo p{font-size:.83rem;line-height:1.8;color:#333;margin-bottom:14px;}
-.temo-who strong{font-size:.84rem;font-weight:700;display:block;margin-bottom:2px;}
-.temo-who span{font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.06em;}
-
-/* ── FAQ ── */
-#faq{background:#f7f6f3;}
-.faq-list{display:flex;flex-direction:column;gap:6px;margin-top:28px;}
-.faq-item{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;overflow:hidden;transition:border-color .2s;}
-.faq-item.open{border-color:#E8281E;}
-.faq-q{width:100%;background:none;border:none;color:#111;font-family:'Plus Jakarta Sans',sans-serif;font-size:.87rem;font-weight:700;padding:17px 15px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;transition:color .2s;}
-.faq-q:hover{color:#E8281E;}
-.faq-ico{width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(0,0,0,.07);display:flex;align-items:center;justify-content:center;color:#E8281E;font-size:.82rem;flex-shrink:0;transition:transform .3s,border-color .2s;}
-.faq-item.open .faq-ico{transform:rotate(45deg);border-color:#E8281E;}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
-.faq-item.open .faq-a{max-height:200px;}
-.faq-a p{padding:0 15px 16px;font-size:.81rem;color:#888;line-height:1.8;}
-
 /* ── CONTACT ── */
 #contact{background:#fff;}
 .contact-top{margin-bottom:24px;}
@@ -306,14 +310,26 @@ footer p{font-size:.71rem;color:#888;}
 .wa:hover{transform:scale(1.08);animation:none;}
 @keyframes wafloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
 
-/* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
+/* ── ANIMATIONS SCROLL ── */
+/* Fade up — textes */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
 .rv.on{opacity:1;transform:translateY(0);}
-.rvl{opacity:0;transform:translateX(-16px);transition:opacity .55s ease,transform .55s ease;}
+
+/* Fade left — étapes */
+.rvl{opacity:0;transform:translateX(-20px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1);}
 .rvl.on{opacity:1;transform:translateX(0);}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
-.ha{opacity:0;animation:fadeUp .65s ease forwards;}
-.ha1{animation-delay:.05s;}.ha2{animation-delay:.15s;}.ha3{animation-delay:.28s;}.ha4{animation-delay:.42s;}.ha5{animation-delay:.56s;}.ha6{animation-delay:.7s;}.ha7{animation-delay:.84s;}
+
+/* Fade scale — cards */
+.rvs{opacity:0;transform:translateY(20px) scale(.97);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1);}
+.rvs.on{opacity:1;transform:translateY(0) scale(1);}
+
+/* Delay classes */
+.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}.d5{transition-delay:.4s;}
+
+/* Hero entrée */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.ha{opacity:0;animation:fadeUp .7s cubic-bezier(.16,1,.3,1) forwards;}
+.ha1{animation-delay:.1s;}.ha2{animation-delay:.22s;}.ha3{animation-delay:.36s;}.ha4{animation-delay:.5s;}.ha5{animation-delay:.64s;}.ha6{animation-delay:.78s;}.ha7{animation-delay:.92s;}
 
 /* ── RESPONSIVE ── */
 @media(min-width:768px){
@@ -323,12 +339,10 @@ section{padding:96px 5vw;}
 .prob-list{display:grid;grid-template-columns:1fr 1fr;}
 .temo-list{display:grid;grid-template-columns:repeat(3,1fr);}
 footer{flex-direction:row;justify-content:space-between;text-align:left;}
-.btn-main{width:auto;}
 .srv-oneshot-grid{grid-template-columns:repeat(2,1fr);}
 .srv-recur-grid{flex-direction:row;}.srv-recur-card{flex:1;}
 .roi-wrap{grid-template-columns:1fr 1fr;}
 .metiers-grid{grid-template-columns:repeat(4,1fr);}
-.hero-proof{grid-template-columns:repeat(3,1fr);}
 }
 @media(min-width:1024px){
 .srv-oneshot-grid{grid-template-columns:repeat(3,1fr);}
@@ -355,8 +369,8 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   </a>
   <div class="nav-right">
     <div class="nav-links">
-      <a href="#offre">Offre</a>
       <a href="#comment">Comment</a>
+      <a href="#offre">Offre</a>
       <a href="#services">Tarifs</a>
       <a href="#temoignages">Avis</a>
       <a href="#faq">FAQ</a>
@@ -366,8 +380,8 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   </div>
 </nav>
 <div class="nav-drawer" id="navDrawer">
-  <a href="#offre">L'offre</a>
   <a href="#comment">Comment ça marche</a>
+  <a href="#offre">L'offre</a>
   <a href="#services">Tarifs</a>
   <a href="#temoignages">Avis clients</a>
   <a href="#faq">FAQ</a>
@@ -378,35 +392,31 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
 <section id="hero">
   <div class="hero-accent-line"></div>
   <div class="hero-accent-dot"></div>
-  <div class="hero-urgence ha ha1"><div class="hero-urgence-dot"></div><span>Offre disponible — Partout en France</span></div>
-  <div class="hero-prix-block ha ha2">
-    <div class="hero-prix-barre">Valeur réelle de votre site : <s>2 490€</s></div>
-    <span class="hero-prix-gratuit">0€</span>
-    <div class="hero-prix-label">Création 100% offerte. Le seul truc que vous payez :</div>
+
+  <div class="hero-badge ha ha1"><div class="hero-badge-dot"></div><span>Partout en France</span></div>
+
+  <div class="hero-tag ha ha2">Votre site web professionnel</div>
+
+  <h1 class="ha ha3">Création<br><em>100% Offerte.</em></h1>
+
+  <p class="hero-sub ha ha4">Hébergement, domaine, maintenance, support — nous gérons tout. Vous, vous faites votre métier.</p>
+
+  <div class="hero-cta-block ha ha5">
+    <a href="tel:0745531434" class="btn-appel btn-appel-pulse">📞 Appeler maintenant →</a>
+    <a href="#comment" class="hero-scroll-link">Voir comment ça marche</a>
   </div>
-  <h1 class="ha ha3"><em>49€/mois.</em> Tout inclus.<br>Résiliable quand vous voulez.</h1>
-  <p class="hero-sub ha ha4">Hébergement, domaine, maintenance, support — on gère tout. Vous, vous faites votre métier.</p>
-  <div class="hero-pills-row ha ha5">
-    <div class="hero-pill-sm"><span class="dot-r"></span>Optimisé pour votre métier</div>
-    <div class="hero-pill-sm"><span class="dot-r"></span>SEO local &amp; région inclus</div>
-    <div class="hero-pill-sm"><span class="dot-r"></span>Livraison en 48h</div>
-  </div>
-  <div class="hero-btns ha ha6">
-    <a href="tel:0745531434" class="btn-main">📞 Appeler maintenant →</a>
-    <a href="#contact" class="btn-ghost">Ou envoyer un message</a>
-  </div>
-  <div class="hero-proof ha ha7">
+
+  <div class="hero-proof ha ha6">
+    <div class="hero-proof-card"><span class="proof-icon">🎁</span><span>Création offerte</span></div>
+    <div class="hero-proof-card"><span class="proof-icon">⚡</span><span>Livraison 48h</span></div>
     <div class="hero-proof-card"><span class="proof-icon">🔓</span><span>Sans engagement</span></div>
-    <div class="hero-proof-card"><span class="proof-icon">👁️</span><span>Prévisualisation gratuite</span></div>
-    <div class="hero-proof-card"><span class="proof-icon">⚡</span><span>Réponse sous 24h</span></div>
   </div>
-  <div class="scroll-hint ha ha7">Découvrir l'offre complète</div>
 </section>
 
 <!-- MARQUEE -->
 <div class="mq">
   <div class="mq-track">
-    <span class="mq-item">Création offerte — 0€<span class="dot">◆</span></span>
+    <span class="mq-item">Création 100% offerte<span class="dot">◆</span></span>
     <span class="mq-item">Optimisé pour votre métier<span class="dot">◆</span></span>
     <span class="mq-item">SEO local &amp; région<span class="dot">◆</span></span>
     <span class="mq-item">Hébergement inclus<span class="dot">◆</span></span>
@@ -415,7 +425,7 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
     <span class="mq-item">Zéro gestion<span class="dot">◆</span></span>
     <span class="mq-item">Support WhatsApp<span class="dot">◆</span></span>
     <span class="mq-item">Résiliable à tout moment<span class="dot">◆</span></span>
-    <span class="mq-item">Création offerte — 0€<span class="dot">◆</span></span>
+    <span class="mq-item">Création 100% offerte<span class="dot">◆</span></span>
     <span class="mq-item">Optimisé pour votre métier<span class="dot">◆</span></span>
     <span class="mq-item">SEO local &amp; région<span class="dot">◆</span></span>
     <span class="mq-item">Hébergement inclus<span class="dot">◆</span></span>
@@ -429,29 +439,81 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
 
 <!-- PROBLÈME -->
 <section id="probleme">
-  <span class="s-tag">Pourquoi c'est utile</span>
+  <span class="s-tag rv">Pourquoi c'est utile</span>
   <h2 class="rv">Vos clients vous cherchent.<br>Que trouvent-ils ?</h2>
   <div class="prob-list">
-    <div class="prob-item rv"><span class="prob-n">01</span><h3>Introuvable sur Google</h3><p>Sans présence en ligne, vos concurrents captent vos clients. Chaque jour sans page, c'est une opportunité perdue.</p></div>
-    <div class="prob-item rv"><span class="prob-n">02</span><h3>Première impression ratée</h3><p>Un Facebook à l'abandon ou rien du tout — ça n'inspire pas confiance. Vos clients méritent mieux.</p></div>
-    <div class="prob-item rv"><span class="prob-n">03</span><h3>Trop cher, trop compliqué</h3><p>Les agences facturent des milliers d'euros. Les outils DIY prennent des semaines. Aucune option ne convient.</p></div>
-    <div class="prob-item rv"><span class="prob-n">04</span><h3>Personne pour s'en occuper</h3><p>Vous avez un métier à faire tourner. Vous n'avez pas le temps de gérer un hébergeur et un nom de domaine.</p></div>
+    <div class="prob-item rvl d1"><span class="prob-n">01</span><h3>Introuvable sur Google</h3><p>Sans présence en ligne, vos concurrents captent vos clients. Chaque jour sans page, c'est une opportunité perdue.</p></div>
+    <div class="prob-item rvl d2"><span class="prob-n">02</span><h3>Première impression ratée</h3><p>Un Facebook à l'abandon ou rien du tout — ça n'inspire pas confiance. Vos clients méritent mieux.</p></div>
+    <div class="prob-item rvl d3"><span class="prob-n">03</span><h3>Trop cher, trop compliqué</h3><p>Les agences facturent des milliers d'euros. Les outils DIY prennent des semaines. Aucune option ne convient.</p></div>
+    <div class="prob-item rvl d4"><span class="prob-n">04</span><h3>Personne pour s'en occuper</h3><p>Vous avez un métier à faire tourner. Vous n'avez pas le temps de gérer un hébergeur et un nom de domaine.</p></div>
   </div>
 </section>
 
 <!-- CTA BAND 1 -->
 <div class="cta-band">
-  <div class="cta-band-text"><strong>La solution existe.</strong> Un appel suffit pour démarrer — on s'occupe de tout le reste.</div>
+  <div class="cta-band-text"><strong>La solution existe.</strong> Un appel suffit — nous nous occupons de tout le reste.</div>
+  <a href="tel:0745531434" class="cta-band-btn">📞 Appeler maintenant →</a>
+</div>
+
+<!-- COMMENT -->
+<section id="comment">
+  <span class="s-tag rv">Comment ça marche</span>
+  <h2 class="rv">Simple comme<br>un coup de fil.</h2>
+  <p class="s-sub rv">Pas besoin de tout décider avant d'appeler. On vous guide étape par étape.</p>
+  <div class="steps">
+    <div class="step rvl d1"><div class="step-n">01 →</div><div><h3>Vous nous appelez <span class="step-badge">Jour 1</span></h3><p>Nous vous posons quelques questions sur votre métier, votre zone, vos objectifs. 10 minutes suffisent.</p></div></div>
+    <div class="step rvl d2"><div class="step-n">02 →</div><div><h3>Nous créons votre page en 48h <span class="step-badge">Jours 2–3</span></h3><p>Site sur-mesure adapté à votre secteur. Vous recevez un lien pour voir le résultat avant de payer.</p></div></div>
+    <div class="step rvl d3"><div class="step-n">03 →</div><div><h3>Vous validez et payez <span class="step-badge">Jour 4</span></h3><p>50€ de mise en service, puis 49€/mois. Domaine activé, page visible partout.</p></div></div>
+    <div class="step rvl d4"><div class="step-n">04 →</div><div><h3>On optimise votre SEO local <span class="step-badge">Jour 5</span></h3><p>Votre site est soumis à Google, optimisé pour votre métier et votre région.</p></div></div>
+    <div class="step rvl d5"><div class="step-n">05 →</div><div><h3>Vous n'y pensez plus jamais <span class="step-badge">En continu</span></h3><p>Hébergement, maintenance, mises à jour — nous gérons. Vous avez d'autres choses à faire.</p></div></div>
+  </div>
+</section>
+
+<!-- CTA BAND 2 -->
+<div class="cta-band">
+  <div class="cta-band-text"><strong>Pas besoin de tout savoir avant d'appeler.</strong> On vous explique tout en 10 minutes.</div>
+  <a href="tel:0745531434" class="cta-band-btn">📞 Appeler — c'est gratuit →</a>
+</div>
+
+<!-- TÉMOIGNAGES -->
+<section id="temoignages">
+  <span class="s-tag rv">Ils nous font confiance</span>
+  <h2 class="rv">Ce qu'ils en disent</h2>
+  <div class="temo-list">
+    <div class="temo rvs d1"><div class="temo-stars">★★★★★</div><p>J'avais honte de ne pas avoir de site depuis des années. En deux jours c'était réglé. Maintenant mes clients me retrouvent facilement.</p><div class="temo-who"><strong>Isabelle M.</strong><span>Voyante - Toulouse</span></div></div>
+    <div class="temo rvs d2"><div class="temo-stars">★★★★★</div><p>Le premier client venu via ma page a largement couvert les 49€ du mois. Je n'ai rien eu à faire à part valider le design.</p><div class="temo-who"><strong>Karim B.</strong><span>Peintre - Lyon</span></div></div>
+    <div class="temo rvs d3"><div class="temo-stars">★★★★★</div><p>Mes clients me disent qu'ils m'ont trouvée sur internet et que ma page les a rassurés. Avant ils ne trouvaient rien.</p><div class="temo-who"><strong>Sophie R.</strong><span>Naturopathe - Bordeaux</span></div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <span class="s-tag rv">Questions fréquentes</span>
+  <h2 class="rv">On répond à tout.</h2>
+  <div class="faq-list">
+    <div class="faq-item rv d1"><button class="faq-q">Est-ce qu'on peut arrêter quand on veut ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Oui, sans préavis. Si vous stoppez l'abonnement, votre page est mise hors ligne. Vous pouvez reprendre à tout moment.</p></div></div>
+    <div class="faq-item rv d2"><button class="faq-q">Le site nous appartient vraiment ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Le site est créé pour vous et reste en ligne tant que l'abonnement est actif. C'est ce modèle qui permet de vous l'offrir sans frais élevés.</p></div></div>
+    <div class="faq-item rv d3"><button class="faq-q">Combien de temps pour être en ligne ?<span class="faq-ico">+</span></button><div class="faq-a"><p>24 à 48h après notre échange. Vous voyez d'abord votre page sur un lien temporaire. Dès que vous validez et payez, tout est actif.</p></div></div>
+    <div class="faq-item rv d4"><button class="faq-q">Vous travaillez partout en France ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Oui, tout se passe à distance. WhatsApp ou téléphone, peu importe votre ville.</p></div></div>
+    <div class="faq-item rv d5"><button class="faq-q">Peut-on modifier la page après ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Les petites modifications — texte, horaires, photo, téléphone — sont incluses. Envoyez-nous un message et c'est réglé.</p></div></div>
+    <div class="faq-item rv"><button class="faq-q">Mon site sera vraiment visible sur Google ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Oui. Chaque site est optimisé SEO local dès la création — balises, contenu géolocalisé, Google Search Console.</p></div></div>
+    <div class="faq-item rv"><button class="faq-q">Je ne sais pas exactement ce que je veux — vous pouvez nous aider ?<span class="faq-ico">+</span></button><div class="faq-a"><p>C'est exactement pour ça qu'on est là. Appelez-nous, on discute de votre activité et nous vous disons ce qui vous convient le mieux. Pas de pression, pas d'engagement.</p></div></div>
+  </div>
+</section>
+
+<!-- CTA BAND 3 -->
+<div class="cta-band">
+  <div class="cta-band-text"><strong>Vous aussi, soyez visible dès cette semaine.</strong> Un appel suffit pour démarrer.</div>
   <a href="tel:0745531434" class="cta-band-btn">📞 Appeler maintenant →</a>
 </div>
 
 <!-- OFFRE -->
 <section id="offre">
-  <span class="s-tag">L'offre</span>
+  <span class="s-tag rv">L'offre</span>
   <h2 class="rv">Simple.<br>Transparent.</h2>
   <p class="s-sub rv">Le site est offert. Vous payez uniquement ce qui le fait tourner.</p>
   <div class="offre-cards">
-    <div class="o-card rv">
+    <div class="o-card rvs d1">
       <span class="o-name">Mise en service</span>
       <div class="o-price"><span class="cur">€</span>50</div>
       <span class="o-freq">Payé une seule fois</span>
@@ -463,7 +525,7 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
         <li>Prévisualisation avant paiement</li>
       </ul>
     </div>
-    <div class="o-card main rv">
+    <div class="o-card main rvs d2">
       <span class="o-name">Hébergement + Support</span>
       <div class="o-price"><span class="cur">€</span>49</div>
       <span class="o-freq">Résiliable à tout moment</span>
@@ -481,7 +543,7 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
 
 <!-- COMPARATIF -->
 <section id="comparatif">
-  <span class="s-tag">Comparatif honnête</span>
+  <span class="s-tag rv">Comparatif honnête</span>
   <h2 class="rv">LocWeb vs<br>les alternatives.</h2>
   <p class="s-sub rv">Sans langue de bois.</p>
   <div class="comp-wrap rv">
@@ -502,15 +564,9 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   </div>
 </section>
 
-<!-- CTA BAND 2 -->
-<div class="cta-band">
-  <div class="cta-band-text"><strong>Des questions sur l'offre ?</strong> Appelez, on discute de ce qui vous convient le mieux.</div>
-  <a href="https://wa.me/33745531434" class="cta-band-btn" target="_blank">💬 WhatsApp direct →</a>
-</div>
-
 <!-- ROI -->
 <section id="roi">
-  <span class="s-tag">Retour sur investissement</span>
+  <span class="s-tag rv">Retour sur investissement</span>
   <h2 class="rv">Rentabilisé dès<br>le 1er client.</h2>
   <p class="s-sub rv">Calculez ce qu'un client de plus par semaine représente face à 49€/mois.</p>
   <div class="roi-wrap">
@@ -518,82 +574,63 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
       <h3>🧮 Calculateur ROI</h3>
       <div class="roi-field"><label>Prix moyen d'une intervention (€)</label><input type="number" class="roi-input" id="roi-prix" value="400" min="0"></div>
       <div class="roi-field"><label>Clients supplémentaires estimés / mois</label><input type="number" class="roi-input" id="roi-clients" value="4" min="0"></div>
-      <div class="roi-result">
-        <div><div class="roi-result-label">CA supplémentaire / mois</div><div class="roi-result-val" id="roi-val">1 600€</div></div>
-        <div style="text-align:right"><div class="roi-result-label">Votre investissement</div><div class="roi-result-val">49€</div></div>
+      <div class="roi-results">
+        <div class="roi-result monthly">
+          <div><div class="roi-result-label">CA supplémentaire / mois</div><div class="roi-result-val" id="roi-val-month">1 600€</div></div>
+          <div style="text-align:right"><div class="roi-result-label">Votre investissement</div><div class="roi-result-val">49€</div></div>
+        </div>
+        <div class="roi-result annual">
+          <div><div class="roi-result-label">CA supplémentaire / an</div><div class="roi-result-val" id="roi-val-year">19 200€</div></div>
+          <div style="text-align:right"><div class="roi-result-label">Abonnement annuel</div><div class="roi-result-val">588€</div></div>
+        </div>
       </div>
     </div>
     <div class="roi-points">
-      <div class="roi-point rv"><div class="roi-point-n">01 →</div><div><h4>Formulaire 24h/24</h4><p>Votre site reçoit des demandes même la nuit et le week-end.</p></div></div>
-      <div class="roi-point rv"><div class="roi-point-n">02 →</div><div><h4>Zéro commission</h4><p>Contrairement aux plateformes, vous gardez 100% de vos revenus.</p></div></div>
-      <div class="roi-point rv"><div class="roi-point-n">03 →</div><div><h4>Crédibilité immédiate</h4><p>Un site pro inspire confiance. Vos prospects arrivent déjà convaincus.</p></div></div>
-      <div class="roi-point rv"><div class="roi-point-n">04 →</div><div><h4>SEO local durable</h4><p>Votre site remonte dans Google sur "votre métier + votre ville".</p></div></div>
+      <div class="roi-point rv d1"><div class="roi-point-n">01 →</div><div><h4>Formulaire 24h/24</h4><p>Votre site reçoit des demandes même la nuit et le week-end.</p></div></div>
+      <div class="roi-point rv d2"><div class="roi-point-n">02 →</div><div><h4>Zéro commission</h4><p>Contrairement aux plateformes, vous gardez 100% de vos revenus.</p></div></div>
+      <div class="roi-point rv d3"><div class="roi-point-n">03 →</div><div><h4>Crédibilité immédiate</h4><p>Un site pro inspire confiance. Vos prospects arrivent déjà convaincus.</p></div></div>
+      <div class="roi-point rv d4"><div class="roi-point-n">04 →</div><div><h4>SEO local durable</h4><p>Votre site remonte dans Google sur "votre métier + votre ville".</p></div></div>
     </div>
-  </div>
-</section>
-
-<!-- MÉTIERS -->
-<section id="metiers">
-  <span class="s-tag">Votre métier</span>
-  <h2 class="rv">Un site conçu<br>pour ce que vous faites.</h2>
-  <p class="s-sub rv">Chaque site est adapté à votre secteur et optimisé pour votre région. Pas un template générique.</p>
-  <div class="metiers-grid">
-    <div class="metier-card rv"><span class="metier-icon">🎨</span><h4>Peintre</h4><p>Avant/après, devis</p></div>
-    <div class="metier-card rv"><span class="metier-icon">🔧</span><h4>Plombier</h4><p>Urgences, appel direct</p></div>
-    <div class="metier-card rv"><span class="metier-icon">⚡</span><h4>Électricien</h4><p>Certifications, devis</p></div>
-    <div class="metier-card rv"><span class="metier-icon">🧱</span><h4>Maçon</h4><p>Chantiers, réalisations</p></div>
-    <div class="metier-card rv"><span class="metier-icon">🪚</span><h4>Menuisier</h4><p>Portfolio sur-mesure</p></div>
-    <div class="metier-card rv"><span class="metier-icon">🌳</span><h4>Paysagiste</h4><p>Aménagements, photos</p></div>
-    <div class="metier-card rv"><span class="metier-icon">🏠</span><h4>Couvreur</h4><p>Toiture, urgences</p></div>
-    <div class="metier-card rv"><span class="metier-icon">💆</span><h4>Thérapeute</h4><p>Bien-être, réservation</p></div>
-    <div class="metier-card rv"><span class="metier-icon">🔮</span><h4>Voyant</h4><p>Confiance, discrétion</p></div>
-    <div class="metier-card rv"><span class="metier-icon">🍽️</span><h4>Restaurateur</h4><p>Menu, réservation</p></div>
-  </div>
-  <p class="metiers-sub rv">Vous êtes <strong>indépendant ou chef d'une petite structure</strong>. Vous n'avez pas envie de vous occuper d'internet. <strong>C'est exactement pour ça qu'on est là.</strong></p>
-</section>
-
-<!-- CTA BAND 3 -->
-<div class="cta-band">
-  <div class="cta-band-text"><strong>Vous vous reconnaissez ?</strong> Appelez-nous, nous vous expliquons tout en 5 minutes.</div>
-  <a href="tel:0745531434" class="cta-band-btn">📞 Appeler — c'est gratuit →</a>
-</div>
-
-<!-- COMMENT -->
-<section id="comment">
-  <span class="s-tag">Comment ça marche</span>
-  <h2 class="rv">Simple comme<br>un coup de fil.</h2>
-  <div class="steps">
-    <div class="step rvl"><div class="step-n">01 →</div><div><h3>Vous nous appelez ou nous écrivez <span class="step-badge">Jour 1</span></h3><p>Nous vous posons quelques questions sur votre métier, votre zone, vos objectifs. 10 minutes suffisent.</p></div></div>
-    <div class="step rvl"><div class="step-n">02 →</div><div><h3>Nous créons votre page en 48h <span class="step-badge">Jours 2–3</span></h3><p>Site sur-mesure adapté à votre secteur. Vous recevez un lien pour voir le résultat avant de payer.</p></div></div>
-    <div class="step rvl"><div class="step-n">03 →</div><div><h3>Vous validez et payez <span class="step-badge">Jour 4</span></h3><p>50€ de mise en service, puis 49€/mois. Domaine activé, page visible partout.</p></div></div>
-    <div class="step rvl"><div class="step-n">04 →</div><div><h3>On optimise votre SEO local <span class="step-badge">Jour 5</span></h3><p>Votre site est soumis à Google, optimisé pour votre métier et votre région.</p></div></div>
-    <div class="step rvl"><div class="step-n">05 →</div><div><h3>Vous n'y pensez plus jamais <span class="step-badge">En continu</span></h3><p>Hébergement, maintenance, mises à jour — nous gérons. Vous avez d'autres choses à faire.</p></div></div>
   </div>
 </section>
 
 <!-- CTA BAND 4 -->
 <div class="cta-band">
-  <div class="cta-band-text"><strong>Prêt à démarrer ?</strong> Votre site peut être en ligne dans 48h. Un appel suffit.</div>
-  <a href="tel:0745531434" class="cta-band-btn">📞 Démarrer mon site en 48h →</a>
-
+  <div class="cta-band-text"><strong>Des questions sur les tarifs ?</strong> Appelez, on discute de ce qui vous convient.</div>
+  <a href="https://wa.me/33745531434" class="cta-band-btn" target="_blank">💬 WhatsApp direct →</a>
 </div>
+
+<!-- MÉTIERS -->
+<section id="metiers">
+  <span class="s-tag rv">Votre métier</span>
+  <h2 class="rv">Un site conçu<br>pour ce que vous faites.</h2>
+  <p class="s-sub rv">Chaque site est adapté à votre secteur et optimisé pour votre région. Pas un template générique.</p>
+  <div class="metiers-grid">
+    <div class="metier-card rvs d1"><span class="metier-icon">🎨</span><h4>Peintre</h4><p>Avant/après, devis</p></div>
+    <div class="metier-card rvs d2"><span class="metier-icon">🔧</span><h4>Plombier</h4><p>Urgences, appel direct</p></div>
+    <div class="metier-card rvs d3"><span class="metier-icon">⚡</span><h4>Électricien</h4><p>Certifications, devis</p></div>
+    <div class="metier-card rvs d4"><span class="metier-icon">🧱</span><h4>Maçon</h4><p>Chantiers, réalisations</p></div>
+    <div class="metier-card rvs d1"><span class="metier-icon">🪚</span><h4>Menuisier</h4><p>Portfolio sur-mesure</p></div>
+    <div class="metier-card rvs d2"><span class="metier-icon">🌳</span><h4>Paysagiste</h4><p>Aménagements, photos</p></div>
+    <div class="metier-card rvs d3"><span class="metier-icon">🏠</span><h4>Couvreur</h4><p>Toiture, urgences</p></div>
+    <div class="metier-card rvs d4"><span class="metier-icon">💆</span><h4>Thérapeute</h4><p>Bien-être, réservation</p></div>
+    <div class="metier-card rvs d1"><span class="metier-icon">🔮</span><h4>Voyant</h4><p>Confiance, discrétion</p></div>
+    <div class="metier-card rvs d2"><span class="metier-icon">🍽️</span><h4>Restaurateur</h4><p>Menu, réservation</p></div>
+  </div>
+  <p class="metiers-sub rv">Vous êtes <strong>indépendant ou chef d'une petite structure</strong>. Vous n'avez pas envie de vous occuper d'internet. <strong>C'est exactement pour ça qu'on est là.</strong></p>
+</section>
 
 <!-- SERVICES -->
 <section id="services">
-  <span class="s-tag">Services &amp; tarifs</span>
+  <span class="s-tag rv">Services &amp; tarifs</span>
   <h2 class="rv">Tout ce dont vous<br>avez besoin.</h2>
   <p class="s-sub rv">Site web, supports print, réseaux sociaux, fiche Google — toute votre présence en ligne.</p>
-
-  <div class="billing-toggle rv" id="billingToggle">
+  <div class="billing-toggle rv">
     <span class="toggle-label active" id="label-mensuel">Mensuel</span>
-    <label class="toggle-switch">
-      <input type="checkbox" id="annuelSwitch">
-      <span class="toggle-slider"></span>
-    </label>
+    <label class="toggle-switch"><input type="checkbox" id="annuelSwitch"><span class="toggle-slider"></span></label>
     <span class="toggle-label" id="label-annuel">Annuel</span>
     <span class="toggle-badge" id="annuel-badge" style="display:none;">−10% 🎉</span>
   </div>
-
   <div class="srv-tabs rv">
     <button class="srv-tab active" data-panel="oneshot">Paiement unique</button>
     <button class="srv-tab" data-panel="recur">Abonnements</button>
@@ -602,39 +639,34 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
 
   <div class="srv-panel active" id="panel-oneshot">
     <div class="srv-oneshot-grid rv">
-      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">🌐 Site web vitrine</div><div class="srv-card-price free">Inclus*</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Page complète sur mesure, design adapté à votre activité, SEO local, formulaire contact, bouton WhatsApp, hébergé et maintenu.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Nom, activité, ville, services, téléphone, email, photos si dispo.</div></div>
-      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">🗺️ Fiche Google Maps</div><div class="srv-card-price">49€/mois</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Optimisation complète, catégories, horaires, photos, cohérence avec le site.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Accès gestionnaire à votre fiche Google Business.</div></div>
-      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">🖨️ Supports print</div><div class="srv-card-price">69€ / unité</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Carte de visite recto/verso, Flyer A5, ou Fiche PDF A4 — même charte graphique, prêts à imprimer.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Textes, coordonnées, logo si existant, photos si disponibles.</div></div>
-      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">📣 Bannière Facebook</div><div class="srv-card-price">69€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Visuel 820×312px prêt à uploader, cohérent avec votre identité.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Texte souhaité, logo si existant.</div></div>
-      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">🖼️ Pack 3 visuels réseaux</div><div class="srv-card-price">69€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>3 visuels 1080×1080 prêts à poster — présentation, service, accroche.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Texte de chaque post, ton souhaité.</div></div>
-      <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">⭐ QR Code avis Google</div><div class="srv-card-price">29€ / 59€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>QR code haute résolution qui redirige vers vos avis Google.<br><br><span style="color:rgba(255,255,255,.5);font-size:.72rem;">Noir &amp; blanc · 29€ &nbsp;·&nbsp; Couleur personnalisée · 59€</span></div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Lien vers votre fiche Google Business.</div></div>
-      <div class="srv-card pack-rouge"><div class="pack-badge-top">⚡ Pack Complet</div><div class="srv-card-head"><div class="srv-card-name">🎯 Pack Complet Print</div><div class="srv-card-price big">199€</div></div><div class="srv-card-apporte"><strong>Tout inclus dans ce pack</strong>Carte de visite + Flyer A5 + Fiche PDF + QR Code couleur (59€) — charte cohérente sur tous vos supports.<br><br><span style="color:rgba(255,255,255,.6);font-size:.72rem;">Au lieu de 266€ à l'unité → <strong style="color:#E8281E;">Économie de 67€</strong></span></div></div>
+      <div class="srv-card rvs d1"><div class="srv-card-head"><div class="srv-card-name">🌐 Site web vitrine</div><div class="srv-card-price free">Inclus*</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Page complète sur mesure, design adapté à votre activité, SEO local, formulaire contact, bouton WhatsApp, hébergé et maintenu.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Nom, activité, ville, services, téléphone, email, photos si dispo.</div></div>
+      <div class="srv-card rvs d2"><div class="srv-card-head"><div class="srv-card-name">🗺️ Fiche Google Maps</div><div class="srv-card-price">49€/mois</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Optimisation complète, catégories, horaires, photos, cohérence avec le site.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Accès gestionnaire à votre fiche Google Business.</div></div>
+      <div class="srv-card rvs d3"><div class="srv-card-head"><div class="srv-card-name">🖨️ Supports print</div><div class="srv-card-price">69€ / unité</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Carte de visite recto/verso, Flyer A5, ou Fiche PDF A4 — même charte graphique, prêts à imprimer.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Textes, coordonnées, logo si existant.</div></div>
+      <div class="srv-card rvs d1"><div class="srv-card-head"><div class="srv-card-name">📣 Bannière Facebook</div><div class="srv-card-price">69€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>Visuel 820×312px prêt à uploader, cohérent avec votre identité.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Texte souhaité, logo si existant.</div></div>
+      <div class="srv-card rvs d2"><div class="srv-card-head"><div class="srv-card-name">🖼️ Pack 3 visuels réseaux</div><div class="srv-card-price">69€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>3 visuels 1080×1080 prêts à poster — présentation, service, accroche.</div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Texte de chaque post, ton souhaité.</div></div>
+      <div class="srv-card rvs d3"><div class="srv-card-head"><div class="srv-card-name">⭐ QR Code avis Google</div><div class="srv-card-price">29€ / 59€</div></div><div class="srv-card-apporte"><strong>Ce qu'on vous apporte</strong>QR code haute résolution vers vos avis Google.<br><br><span style="color:rgba(255,255,255,.5);font-size:.72rem;">Noir &amp; blanc · 29€ &nbsp;·&nbsp; Couleur personnalisée · 59€</span></div><div class="srv-card-client"><strong>Ce que vous fournissez</strong>Lien vers votre fiche Google Business.</div></div>
+      <div class="srv-card pack-rouge rvs"><div class="pack-badge-top">⚡ Pack Complet</div><div class="srv-card-head"><div class="srv-card-name">🎯 Pack Complet Print</div><div class="srv-card-price big">199€</div></div><div class="srv-card-apporte"><strong>Tout inclus</strong>Carte de visite + Flyer A5 + Fiche PDF + QR Code couleur — charte cohérente sur tous vos supports.<br><br><span style="color:rgba(255,255,255,.6);font-size:.72rem;">Au lieu de 266€ → <strong style="color:#E8281E;">Économie de 67€</strong></span></div></div>
     </div>
     <p class="srv-price-note rv">* Le site web est offert avec la mise en service à <strong>50€</strong> + abonnement mensuel <strong>49€/mois</strong>. Tous les autres services sont des options à la carte, sans engagement.</p>
   </div>
 
   <div class="srv-panel" id="panel-recur">
     <div class="srv-recur-grid rv">
-      <div class="srv-recur-card featured"><div class="srv-recur-name">Site web + Hébergement</div><div class="srv-recur-head"><div class="srv-recur-price"><span class="cur">€</span><span id="price-site">49</span></div><div class="srv-recur-freq">/mois <span class="srv-recur-barre" id="barre-site" style="display:none;">49€</span></div></div><div class="annual-saving" id="saving-site" style="display:none;">Soit 528€/an — économie de 60€</div><ul class="srv-recur-list"><li>Hébergement haute disponibilité</li><li>Nom de domaine .fr ou .com inclus</li><li>Maintenance &amp; mises à jour</li><li>Modifications mineures incluses</li><li>Support direct par WhatsApp</li></ul></div>
-      <div class="srv-recur-card"><div class="srv-recur-name">Fiche Google Maps</div><div class="srv-recur-head"><div class="srv-recur-price"><span class="cur">€</span><span id="price-google">49</span></div><div class="srv-recur-freq">/mois <span class="srv-recur-barre" id="barre-google" style="display:none;">49€</span></div></div><div class="annual-saving" id="saving-google" style="display:none;">Soit 528€/an — économie de 60€</div><ul class="srv-recur-list"><li>Optimisation mensuelle de votre fiche</li><li>Mise à jour photos et horaires</li><li>Cohérence avec votre site web</li><li>Suivi des avis clients</li></ul></div>
-      <div class="srv-recur-card"><div class="srv-recur-name">Réseaux sociaux</div><div class="srv-recur-head"><div class="srv-recur-price"><span class="cur">€</span><span id="price-social">149</span></div><div class="srv-recur-freq">/mois <span class="srv-recur-barre" id="barre-social" style="display:none;">149€</span></div></div><div class="annual-saving" id="saving-social" style="display:none;">Soit 1 608€/an — économie de 180€</div><ul class="srv-recur-list"><li>10 posts par mois</li><li>Visuels 1080×1080 sur mesure</li><li>Textes rédigés et optimisés</li><li>Charte graphique cohérente</li><li>Programmation et publication</li></ul></div>
+      <div class="srv-recur-card featured rvs d1"><div class="srv-recur-name">Site web + Hébergement</div><div class="srv-recur-head"><div class="srv-recur-price"><span class="cur">€</span><span id="price-site">49</span></div><div class="srv-recur-freq">/mois <span class="srv-recur-barre" id="barre-site" style="display:none;">49€</span></div></div><div class="annual-saving" id="saving-site" style="display:none;">Soit 528€/an — économie de 60€</div><ul class="srv-recur-list"><li>Hébergement haute disponibilité</li><li>Nom de domaine .fr ou .com inclus</li><li>Maintenance &amp; mises à jour</li><li>Modifications mineures incluses</li><li>Support direct par WhatsApp</li></ul></div>
+      <div class="srv-recur-card rvs d2"><div class="srv-recur-name">Fiche Google Maps</div><div class="srv-recur-head"><div class="srv-recur-price"><span class="cur">€</span><span id="price-google">49</span></div><div class="srv-recur-freq">/mois <span class="srv-recur-barre" id="barre-google" style="display:none;">49€</span></div></div><div class="annual-saving" id="saving-google" style="display:none;">Soit 528€/an — économie de 60€</div><ul class="srv-recur-list"><li>Optimisation mensuelle de votre fiche</li><li>Mise à jour photos et horaires</li><li>Cohérence avec votre site web</li><li>Suivi des avis clients</li></ul></div>
+      <div class="srv-recur-card rvs d3"><div class="srv-recur-name">Réseaux sociaux</div><div class="srv-recur-head"><div class="srv-recur-price"><span class="cur">€</span><span id="price-social">149</span></div><div class="srv-recur-freq">/mois <span class="srv-recur-barre" id="barre-social" style="display:none;">149€</span></div></div><div class="annual-saving" id="saving-social" style="display:none;">Soit 1 608€/an — économie de 180€</div><ul class="srv-recur-list"><li>10 posts par mois</li><li>Visuels 1080×1080 sur mesure</li><li>Textes rédigés et optimisés</li><li>Charte graphique cohérente</li><li>Programmation et publication</li></ul></div>
     </div>
-    <div class="srv-pack-highlight rv" style="margin-top:20px;">
-      <div style="display:inline-block;background:#E8281E;color:white;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:12px;">🚀 Pack Complet+</div>
-      <h3>Site + Pack Print Complet</h3>
-      <p>Mise en service du site + Pack Complet Print (Carte + Flyer + Fiche PDF + QR Code couleur) — démarrez avec tout ce qu'il faut dès le premier jour.</p>
-      <div class="srv-pack-price-row"><div class="srv-pack-num"><span class="cur">€</span>249</div><div class="srv-pack-detail"><strong>Paiement unique · puis 49€/mois</strong>Disponible aussi en annuel : <span id="pack-annuel-price">528€/an</span></div></div>
-    </div>
+    <div class="srv-pack-highlight rv" style="margin-top:20px;"><div style="display:inline-block;background:#E8281E;color:white;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:12px;">🚀 Pack Complet+</div><h3>Site + Pack Print Complet</h3><p>Mise en service + Pack Complet Print (Carte + Flyer + Fiche PDF + QR Code couleur) — démarrez avec tout ce qu'il faut.</p><div class="srv-pack-price-row"><div class="srv-pack-num"><span class="cur">€</span>249</div><div class="srv-pack-detail"><strong>Paiement unique · puis 49€/mois</strong>Disponible aussi en annuel : <span id="pack-annuel-price">528€/an</span></div></div></div>
     <p class="srv-price-note rv">Tous les abonnements sont <strong>sans engagement</strong> et résiliables à tout moment. Paiement annuel disponible avec −10%.</p>
   </div>
 
   <div class="srv-panel" id="panel-packs">
     <div class="rv">
-      <div class="srv-pack-highlight"><div style="display:inline-block;background:#E8281E;color:white;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:12px;">⚡ Meilleure valeur</div><h3>Pack Complet Print — 199€</h3><p>Carte de visite + Flyer A5 + Fiche PDF + QR Code couleur — une charte graphique cohérente sur tous vos supports print.</p><div class="srv-pack-price-row"><div class="srv-pack-num"><span class="cur">€</span>199</div><div class="srv-pack-detail"><strong>QR Code couleur inclus (59€)</strong>Au lieu de 266€ · Économie de 67€</div></div></div>
-      <div class="srv-pack-highlight" style="margin-top:12px;background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.12);"><div style="display:inline-block;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:12px;">🚀 Tout-en-un</div><h3>Pack Démarrage Total — 249€</h3><p>Mise en service site + Pack Complet Print — démarrez avec tout ce qu'il faut. Puis 49€/mois seulement.</p><div class="srv-pack-price-row"><div class="srv-pack-num"><span class="cur">€</span>249</div><div class="srv-pack-detail"><strong>Mise en service + pack print complet</strong>+ abonnement 49€/mois — tout inclus dès le départ</div></div></div>
+      <div class="srv-pack-highlight rvs"><div style="display:inline-block;background:#E8281E;color:white;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:12px;">⚡ Meilleure valeur</div><h3>Pack Complet Print — 199€</h3><p>Carte de visite + Flyer A5 + Fiche PDF + QR Code couleur — charte cohérente sur tous vos supports.</p><div class="srv-pack-price-row"><div class="srv-pack-num"><span class="cur">€</span>199</div><div class="srv-pack-detail"><strong>QR Code couleur inclus (59€)</strong>Au lieu de 266€ · Économie de 67€</div></div></div>
+      <div class="srv-pack-highlight rvs" style="margin-top:12px;background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.12);"><div style="display:inline-block;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:12px;">🚀 Tout-en-un</div><h3>Pack Démarrage Total — 249€</h3><p>Mise en service site + Pack Complet Print — démarrez avec tout ce qu'il faut. Puis 49€/mois seulement.</p><div class="srv-pack-price-row"><div class="srv-pack-num"><span class="cur">€</span>249</div><div class="srv-pack-detail"><strong>Mise en service + pack print complet</strong>+ abonnement 49€/mois — tout inclus dès le départ</div></div></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
-        <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">Pack Carte + Flyer</div><div class="srv-card-price">119€</div></div><div class="srv-card-apporte" style="margin-top:8px;">Carte de visite recto/verso + flyer A5 — même charte graphique, prêts à imprimer.</div></div>
-        <div class="srv-card"><div class="srv-card-head"><div class="srv-card-name">Mise en service site</div><div class="srv-card-price">50€</div></div><div class="srv-card-apporte" style="margin-top:8px;">Création de votre site one-page sur mesure. Payé une seule fois. Prévisualisation avant paiement.</div></div>
+        <div class="srv-card rvs d1"><div class="srv-card-head"><div class="srv-card-name">Pack Carte + Flyer</div><div class="srv-card-price">119€</div></div><div class="srv-card-apporte" style="margin-top:8px;">Carte de visite recto/verso + flyer A5 — même charte graphique, prêts à imprimer.</div></div>
+        <div class="srv-card rvs d2"><div class="srv-card-head"><div class="srv-card-name">Mise en service site</div><div class="srv-card-price">50€</div></div><div class="srv-card-apporte" style="margin-top:8px;">Création de votre site one-page sur mesure. Payé une seule fois. Prévisualisation avant paiement.</div></div>
       </div>
     </div>
     <p class="srv-price-note rv">Contactez-nous pour discuter de la meilleure combinaison pour votre activité.</p>
@@ -643,47 +675,15 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
 
 <!-- CTA BAND 5 -->
 <div class="cta-band">
-  <div class="cta-band-text"><strong>Vous avez vu ce qu'on propose.</strong> Appelez-nous, on discute de ce qui vous convient.</div>
-  <a href="tel:0745531434" class="cta-band-btn">📞 Appeler — réponse immédiate →</a>
-</div>
-
-<!-- TÉMOIGNAGES -->
-<section id="temoignages">
-  <span class="s-tag">Ils nous font confiance</span>
-  <h2 class="rv">Ce qu'ils en disent</h2>
-  <div class="temo-list">
-    <div class="temo rv"><div class="temo-stars">★★★★★</div><p>J'avais honte de ne pas avoir de site depuis des années. En deux jours c'était réglé. Maintenant mes clients me retrouvent facilement.</p><div class="temo-who"><strong>Isabelle M.</strong><span>Voyante - Toulouse</span></div></div>
-    <div class="temo rv"><div class="temo-stars">★★★★★</div><p>Le premier client venu via ma page a largement couvert les 49€ du mois. Je n'ai rien eu à faire à part valider le design.</p><div class="temo-who"><strong>Karim B.</strong><span>Peintre - Lyon</span></div></div>
-    <div class="temo rv"><div class="temo-stars">★★★★★</div><p>Mes clients me disent qu'ils m'ont trouvée sur internet et que ma page les a rassurés. Avant ils ne trouvaient rien.</p><div class="temo-who"><strong>Sophie R.</strong><span>Naturopathe - Bordeaux</span></div></div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <span class="s-tag">Questions fréquentes</span>
-  <h2 class="rv">On répond à tout.</h2>
-  <div class="faq-list">
-    <div class="faq-item"><button class="faq-q">Est-ce qu'on peut arrêter quand on veut ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Oui, sans préavis. Si vous stoppez l'abonnement, votre page est mise hors ligne. Vous pouvez reprendre à tout moment.</p></div></div>
-    <div class="faq-item"><button class="faq-q">Le site nous appartient vraiment ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Le site est créé pour vous et reste en ligne tant que l'abonnement est actif. C'est ce modèle qui permet de vous l'offrir sans frais élevés.</p></div></div>
-    <div class="faq-item"><button class="faq-q">Combien de temps pour être en ligne ?<span class="faq-ico">+</span></button><div class="faq-a"><p>24 à 48h après notre échange. Vous voyez d'abord votre page sur un lien temporaire. Dès que vous validez et payez, tout est actif.</p></div></div>
-    <div class="faq-item"><button class="faq-q">Vous travaillez partout en France ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Oui, tout se passe à distance. WhatsApp ou téléphone, peu importe votre ville.</p></div></div>
-    <div class="faq-item"><button class="faq-q">Peut-on modifier la page après ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Les petites modifications — texte, horaires, photo, téléphone — sont incluses. Envoyez-nous un message et c'est réglé.</p></div></div>
-    <div class="faq-item"><button class="faq-q">Mon site sera vraiment visible sur Google ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Oui. Chaque site est optimisé SEO local dès la création — balises, contenu géolocalisé, Google Search Console. Les résultats arrivent progressivement selon la concurrence de votre secteur.</p></div></div>
-    <div class="faq-item"><button class="faq-q">Je ne sais pas exactement ce que je veux — vous pouvez nous aider ?<span class="faq-ico">+</span></button><div class="faq-a"><p>C'est exactement pour ça qu'on est là. Appelez-nous, on discute de votre activité et nous vous disons ce qui vous convient le mieux. Pas de pression, pas d'engagement.</p></div></div>
-  </div>
-</section>
-
-<!-- CTA BAND 6 -->
-<div class="cta-band">
-  <div class="cta-band-text"><strong>Vous aussi, soyez visible dès cette semaine.</strong> Un appel suffit pour démarrer.</div>
-  <a href="tel:0745531434" class="cta-band-btn">📞 Appeler maintenant →</a>
+  <div class="cta-band-text"><strong>Vous avez tout vu.</strong> Appelez-nous, on s'occupe du reste.</div>
+  <a href="tel:0745531434" class="cta-band-btn">📞 Démarrer mon site →</a>
 </div>
 
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-top rv">
     <span class="s-tag">Démarrer</span>
-    <h2>Dites-moi ce que vous faites.</h2>
+    <h2>Dites-nous ce que vous faites.</h2>
     <p>Nous créons votre page et vous la recevez avant même de payer. Aucun risque.</p>
   </div>
   <div class="perks rv">
@@ -728,6 +728,7 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
 </a>
 
 <script>
+/* SPLASH */
 (function(){
   const canvas=document.getElementById('splash-canvas');
   const ctx=canvas.getContext('2d');
@@ -765,6 +766,7 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
   resize();createLines(160);requestAnimationFrame(draw);window.addEventListener('resize',resize);
 })();
 
+/* BURGER */
 const burger=document.getElementById('burgerBtn');
 const drawer=document.getElementById('navDrawer');
 burger.addEventListener('click',()=>{
@@ -775,6 +777,7 @@ burger.addEventListener('click',()=>{
 });
 drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{burger.classList.remove('open');drawer.style.opacity='0';drawer.style.transform='translateY(-8px)';setTimeout(()=>drawer.classList.remove('open'),250);});});
 
+/* TABS */
 document.querySelectorAll('.srv-tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.srv-tab').forEach(t=>t.classList.remove('active'));
@@ -784,6 +787,7 @@ document.querySelectorAll('.srv-tab').forEach(tab=>{
   });
 });
 
+/* TOGGLE ANNUEL */
 const annuelSwitch=document.getElementById('annuelSwitch');
 annuelSwitch.addEventListener('change',()=>{
   const isAnnuel=annuelSwitch.checked;
@@ -791,12 +795,9 @@ annuelSwitch.addEventListener('change',()=>{
   document.getElementById('label-annuel').classList.toggle('active',isAnnuel);
   document.getElementById('annuel-badge').style.display=isAnnuel?'inline-block':'none';
   if(isAnnuel){
-    document.getElementById('price-site').textContent='44';
-    document.getElementById('barre-site').textContent='49€';document.getElementById('barre-site').style.display='inline';document.getElementById('saving-site').style.display='block';
-    document.getElementById('price-google').textContent='44';
-    document.getElementById('barre-google').textContent='49€';document.getElementById('barre-google').style.display='inline';document.getElementById('saving-google').style.display='block';
-    document.getElementById('price-social').textContent='134';
-    document.getElementById('barre-social').textContent='149€';document.getElementById('barre-social').style.display='inline';document.getElementById('saving-social').style.display='block';
+    document.getElementById('price-site').textContent='44';document.getElementById('barre-site').textContent='49€';document.getElementById('barre-site').style.display='inline';document.getElementById('saving-site').style.display='block';
+    document.getElementById('price-google').textContent='44';document.getElementById('barre-google').textContent='49€';document.getElementById('barre-google').style.display='inline';document.getElementById('saving-google').style.display='block';
+    document.getElementById('price-social').textContent='134';document.getElementById('barre-social').textContent='149€';document.getElementById('barre-social').style.display='inline';document.getElementById('saving-social').style.display='block';
     document.getElementById('pack-annuel-price').textContent='528€/an (−10%)';
   } else {
     document.getElementById('price-site').textContent='49';document.getElementById('barre-site').style.display='none';document.getElementById('saving-site').style.display='none';
@@ -806,19 +807,30 @@ annuelSwitch.addEventListener('change',()=>{
   }
 });
 
+/* ROI */
 function updateROI(){
   const prix=parseFloat(document.getElementById('roi-prix').value)||0;
   const clients=parseFloat(document.getElementById('roi-clients').value)||0;
-  document.getElementById('roi-val').textContent=(prix*clients).toLocaleString('fr-FR')+'€';
+  const monthly=prix*clients;
+  const annual=monthly*12;
+  document.getElementById('roi-val-month').textContent=monthly.toLocaleString('fr-FR')+'€';
+  document.getElementById('roi-val-year').textContent=annual.toLocaleString('fr-FR')+'€';
 }
 document.getElementById('roi-prix').addEventListener('input',updateROI);
 document.getElementById('roi-clients').addEventListener('input',updateROI);
 
+/* SCROLL REVEAL — smooth avec IntersectionObserver */
 const io=new IntersectionObserver((entries)=>{
-  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('on'),i*75);io.unobserve(e.target);}});
-},{threshold:0.08});
-document.querySelectorAll('.rv,.rvl').forEach(el=>io.observe(el));
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvs').forEach(el=>io.observe(el));
 
+/* FAQ */
 document.querySelectorAll('.faq-q').forEach(btn=>{
   btn.addEventListener('click',()=>{
     const item=btn.parentElement;
