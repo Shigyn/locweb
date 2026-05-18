@@ -577,11 +577,11 @@ footer{flex-direction:row;justify-content:space-between;text-align:left;}
       <div class="roi-results">
         <div class="roi-result monthly">
           <div><div class="roi-result-label">CA supplémentaire / mois</div><div class="roi-result-val" id="roi-val-month">1 600€</div></div>
-          <div style="text-align:right"><div class="roi-result-label">Votre investissement</div><div class="roi-result-val">49€</div></div>
+          <div><div class="roi-result-label">Abonnement mensuel</div><div class="roi-result-val">49€</div></div>
         </div>
         <div class="roi-result annual">
           <div><div class="roi-result-label">CA supplémentaire / an</div><div class="roi-result-val" id="roi-val-year">19 200€</div></div>
-          <div style="text-align:right"><div class="roi-result-label">Abonnement annuel</div><div class="roi-result-val">588€</div></div>
+          <div><div class="roi-result-label">Chaque euro investi vous rapporte</div><div class="roi-result-val" id="roi-multiplier">×32</div></div>
         </div>
       </div>
     </div>
@@ -813,8 +813,10 @@ function updateROI(){
   const clients=parseFloat(document.getElementById('roi-clients').value)||0;
   const monthly=prix*clients;
   const annual=monthly*12;
+  const multiplier=annual>0?Math.round(annual/588):0;
   document.getElementById('roi-val-month').textContent=monthly.toLocaleString('fr-FR')+'€';
   document.getElementById('roi-val-year').textContent=annual.toLocaleString('fr-FR')+'€';
+  document.getElementById('roi-multiplier').textContent=multiplier>0?'×'+multiplier:'—';
 }
 document.getElementById('roi-prix').addEventListener('input',updateROI);
 document.getElementById('roi-clients').addEventListener('input',updateROI);
