@@ -3,23 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LocWeb — Votre présence en ligne, on s'occupe de tout</title>
-<meta name="description" content="Site web, réseaux sociaux, fiche Google, supports print — LocWeb gère toute votre présence en ligne. Une seule équipe, un seul interlocuteur. Partout en France.">
+<meta name="theme-color" content="#E8281E">
+<title>Création Site Web Béziers — LocWeb | Agence Web & Présence en Ligne</title>
+<meta name="description" content="LocWeb, agence web à Béziers. Création de site internet offerte pour artisans et indépendants. Fiche Google, réseaux sociaux, supports print. 49€/mois tout inclus.">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://locweb.fr">
-<meta property="og:title" content="LocWeb — Votre présence en ligne, on s'occupe de tout">
-<meta property="og:description" content="Site web, réseaux sociaux, fiche Google, supports print. Une seule équipe, un seul interlocuteur.">
+<meta property="og:title" content="Création Site Web Béziers — LocWeb">
+<meta property="og:description" content="Votre image en ligne, on s'occupe de tout. Site web, fiche Google, réseaux sociaux, supports print. Création offerte, 49€/mois.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://locweb.fr">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"LocWeb","url":"https://locweb.fr","telephone":"+33745531434","priceRange":"€"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"LocWeb","description":"Agence web à Béziers — création de site internet, fiche Google Business, réseaux sociaux, supports print pour artisans et indépendants.","url":"https://locweb.fr","telephone":"+33745531434","address":{"@type":"PostalAddress","addressLocality":"Béziers","postalCode":"34500","addressCountry":"FR"},"areaServed":["Béziers","Hérault","Agde","Pézenas","Narbonne","Montpellier","Occitanie","France"],"priceRange":"€","sameAs":["https://locweb.fr"]}</script>
 <link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BVL1W908TT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-BVL1W908TT');
-</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-BVL1W908TT');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -27,6 +25,8 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{background:#fff;color:#111;font-family:'Plus Jakarta Sans',sans-serif;line-height:1.6;overflow-x:hidden;}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;height:58px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.07);}
@@ -71,6 +71,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:58px;padding:0 20px;d
 .form-reassurance{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
 .reassurance-item{display:flex;align-items:center;gap:6px;font-size:.72rem;color:#888;font-weight:500;}
 .reassurance-item::before{content:'✓';color:#16a34a;font-weight:800;font-size:.8rem;}
+
+/* RGPD */
+.rgpd-check{margin-top:10px;display:flex;align-items:flex-start;gap:8px;}
+.rgpd-check input{margin-top:3px;accent-color:#E8281E;flex-shrink:0;width:16px;height:16px;}
+.rgpd-check label{font-size:.7rem;color:#888;line-height:1.5;cursor:pointer;}
+.rgpd-check a{color:#E8281E;text-decoration:none;}
+.rgpd-check a:hover{text-decoration:underline;}
 
 /* ── SERVICES GRID ── */
 #services-liste{background:#f7f6f3;padding:48px 20px;}
@@ -192,9 +199,19 @@ h2 em{font-style:normal;color:#E8281E;}
 #contact-final .s-sub{margin:0 auto 32px;max-width:400px;}
 .contact-final-form{max-width:420px;margin:0 auto;}
 
+/* ── MENTIONS LÉGALES ── */
+#mentions-legales{background:#fff;border-top:1px solid rgba(0,0,0,.07);}
+#mentions-legales h2{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:24px;}
+#mentions-legales h3{font-size:.92rem;font-weight:700;margin:20px 0 8px;}
+#mentions-legales p{font-size:.8rem;color:#666;line-height:1.8;margin-bottom:8px;}
+#mentions-legales strong{color:#111;}
+
 /* ── FOOTER ── */
 footer{background:#111;padding:26px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
 footer p{font-size:.7rem;color:rgba(255,255,255,.3);}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+.footer-links a{font-size:.68rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:rgba(255,255,255,.7);}
 @media(min-width:768px){footer{flex-direction:row;justify-content:space-between;padding:26px 5vw;}}
 
 /* ── WA ── */
@@ -218,34 +235,39 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.3);}
 <body>
 
 <!-- NAV -->
-<nav>
-  <a href="#" class="logo-wrap">
-    <div class="logo-icon"><svg viewBox="0 0 64 64" fill="none"><polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text></svg></div>
+<nav role="navigation" aria-label="Navigation principale">
+  <a href="#" class="logo-wrap" aria-label="LocWeb — Accueil">
+    <div class="logo-icon"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text></svg></div>
     <span class="logo-text">Loc<span>Web</span></span>
   </a>
-  <a href="tel:0745531434" class="nav-tel">📞 07 45 53 14 34</a>
+  <a href="tel:0745531434" class="nav-tel" aria-label="Appeler LocWeb au 07 45 53 14 34">📞 07 45 53 14 34</a>
 </nav>
 
 <!-- HERO -->
+<main role="main">
 <section id="hero">
-  <div class="hero-bg"><div class="hero-bg-circle"></div><div class="hero-bg-line"></div></div>
+  <div class="hero-bg" aria-hidden="true"><div class="hero-bg-circle"></div><div class="hero-bg-line"></div></div>
   <div class="hero-inner">
-    <div class="hero-badge ha ha1"><div class="badge-dot"></div><span>Partout en France</span></div>
+    <div class="hero-badge ha ha1"><div class="badge-dot" aria-hidden="true"></div><span>Agence web — Béziers & toute la France</span></div>
     <h1 class="hero-title ha ha2">Votre image en ligne,<br><em>on s'occupe de tout.</em></h1>
     <p class="hero-sub ha ha3">Site web, réseaux sociaux, fiche Google, supports print — une seule équipe, un seul interlocuteur. Vous, vous faites votre métier.</p>
-    <a href="tel:0745531434" class="hero-tel ha ha3">📞 07 45 53 14 34 — on vous rappelle aussi</a>
+    <a href="tel:0745531434" class="hero-tel ha ha3" aria-label="Appeler maintenant">📞 07 45 53 14 34 — on vous rappelle aussi</a>
     <div class="hero-form ha ha4">
       <div class="form-title">Recevoir une proposition gratuite</div>
-      <form class="form-fields" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form class="form-fields" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Formulaire de contact">
         <input type="hidden" name="form-name" value="contact">
         <input type="hidden" name="bot-field">
         <div class="field">
-          <span class="field-icon">👤</span>
-          <input type="text" name="prenom" placeholder="Votre prénom" required>
+          <span class="field-icon" aria-hidden="true">👤</span>
+          <input type="text" name="prenom" placeholder="Votre prénom" required aria-label="Votre prénom">
         </div>
         <div class="field">
-          <span class="field-icon">📞</span>
-          <input type="tel" name="telephone" placeholder="Votre téléphone" required>
+          <span class="field-icon" aria-hidden="true">📞</span>
+          <input type="tel" name="telephone" placeholder="Votre téléphone" required aria-label="Votre numéro de téléphone">
+        </div>
+        <div class="rgpd-check">
+          <input type="checkbox" id="rgpd1" name="rgpd" required>
+          <label for="rgpd1">J'accepte que mes données soient utilisées uniquement pour être recontacté(e). Aucune donnée n'est revendue à des tiers. <a href="#mentions-legales">Mentions légales</a></label>
         </div>
         <button type="submit" class="btn-submit-hero">Je veux développer ma présence en ligne →</button>
       </form>
@@ -263,34 +285,34 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.3);}
   <div class="services-label rv">Ce qu'on fait pour vous</div>
   <div class="services-titre rv">Tout ce dont vous avez besoin,<br><em>au même endroit.</em></div>
   <div class="srv-grid">
-    <div class="srv-item rvs d1"><div class="srv-item-icon">🌐</div><div><div class="srv-item-name">Site web professionnel</div><div class="srv-item-desc">Livré en 48h, adapté à votre métier</div></div></div>
-    <div class="srv-item rvs d2"><div class="srv-item-icon">📍</div><div><div class="srv-item-name">Fiche Google Business</div><div class="srv-item-desc">Optimisée pour votre ville</div></div></div>
-    <div class="srv-item rvs d3"><div class="srv-item-icon">📱</div><div><div class="srv-item-name">Réseaux sociaux</div><div class="srv-item-desc">Posts, visuels, publication</div></div></div>
-    <div class="srv-item rvs d4"><div class="srv-item-icon">🖨️</div><div><div class="srv-item-name">Supports print</div><div class="srv-item-desc">Carte, flyer, fiche PDF</div></div></div>
-    <div class="srv-item rvs d5"><div class="srv-item-icon">🎨</div><div><div class="srv-item-name">Logo & identité</div><div class="srv-item-desc">Charte graphique cohérente</div></div></div>
-    <div class="srv-item rvs d6"><div class="srv-item-icon">⭐</div><div><div class="srv-item-name">Avis Google</div><div class="srv-item-desc">QR code & stratégie avis</div></div></div>
+    <div class="srv-item rvs d1"><div class="srv-item-icon" aria-hidden="true">🌐</div><div><div class="srv-item-name">Site web professionnel</div><div class="srv-item-desc">Livré en 48h, adapté à votre métier</div></div></div>
+    <div class="srv-item rvs d2"><div class="srv-item-icon" aria-hidden="true">📍</div><div><div class="srv-item-name">Fiche Google Business</div><div class="srv-item-desc">Optimisée pour votre ville</div></div></div>
+    <div class="srv-item rvs d3"><div class="srv-item-icon" aria-hidden="true">📱</div><div><div class="srv-item-name">Réseaux sociaux</div><div class="srv-item-desc">Posts, visuels, publication</div></div></div>
+    <div class="srv-item rvs d4"><div class="srv-item-icon" aria-hidden="true">🖨️</div><div><div class="srv-item-name">Supports print</div><div class="srv-item-desc">Carte, flyer, fiche PDF</div></div></div>
+    <div class="srv-item rvs d5"><div class="srv-item-icon" aria-hidden="true">🎨</div><div><div class="srv-item-name">Logo & identité</div><div class="srv-item-desc">Charte graphique cohérente</div></div></div>
+    <div class="srv-item rvs d6"><div class="srv-item-icon" aria-hidden="true">⭐</div><div><div class="srv-item-name">Avis Google</div><div class="srv-item-desc">QR code & stratégie avis</div></div></div>
   </div>
 </div>
 
 <!-- MARQUEE -->
-<div class="mq">
+<div class="mq" aria-hidden="true">
   <div class="mq-track">
-    <span class="mq-item">Site web professionnel<span class="dot">◆</span></span>
+    <span class="mq-item">Création site web Béziers<span class="dot">◆</span></span>
+    <span class="mq-item">Agence web Hérault<span class="dot">◆</span></span>
     <span class="mq-item">Fiche Google optimisée<span class="dot">◆</span></span>
     <span class="mq-item">Réseaux sociaux<span class="dot">◆</span></span>
     <span class="mq-item">Livraison 48h<span class="dot">◆</span></span>
     <span class="mq-item">Logo & identité visuelle<span class="dot">◆</span></span>
     <span class="mq-item">Supports print<span class="dot">◆</span></span>
     <span class="mq-item">Un seul interlocuteur<span class="dot">◆</span></span>
-    <span class="mq-item">Partout en France<span class="dot">◆</span></span>
-    <span class="mq-item">Site web professionnel<span class="dot">◆</span></span>
+    <span class="mq-item">Création site web Béziers<span class="dot">◆</span></span>
+    <span class="mq-item">Agence web Hérault<span class="dot">◆</span></span>
     <span class="mq-item">Fiche Google optimisée<span class="dot">◆</span></span>
     <span class="mq-item">Réseaux sociaux<span class="dot">◆</span></span>
     <span class="mq-item">Livraison 48h<span class="dot">◆</span></span>
     <span class="mq-item">Logo & identité visuelle<span class="dot">◆</span></span>
     <span class="mq-item">Supports print<span class="dot">◆</span></span>
     <span class="mq-item">Un seul interlocuteur<span class="dot">◆</span></span>
-    <span class="mq-item">Partout en France<span class="dot">◆</span></span>
   </div>
 </div>
 
@@ -305,16 +327,16 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.3);}
     <div class="stat-box rv d4"><span class="stat-num">49<span>€</span></span><span class="stat-lbl">Par mois tout inclus</span></div>
   </div>
   <div class="temo-list">
-    <div class="temo rvs d1"><div class="temo-stars">★★★★★</div><p>"J'avais honte de ne pas avoir de site depuis des années. En deux jours c'était réglé. Maintenant mes clients me retrouvent facilement."</p><div class="temo-who"><strong>Isabelle M.</strong><span>Voyante · Toulouse</span></div></div>
-    <div class="temo rvs d2"><div class="temo-stars">★★★★★</div><p>"Le premier client venu via ma page a largement couvert les 49€ du mois. Je n'ai rien eu à faire à part valider le design."</p><div class="temo-who"><strong>Karim B.</strong><span>Peintre · Lyon</span></div></div>
-    <div class="temo rvs d3"><div class="temo-stars">★★★★★</div><p>"Mes clients me disent qu'ils m'ont trouvée sur internet et que ma page les a rassurés. Avant ils ne trouvaient rien."</p><div class="temo-who"><strong>Sophie R.</strong><span>Naturopathe · Bordeaux</span></div></div>
+    <div class="temo rvs d1"><div class="temo-stars" aria-label="5 étoiles">★★★★★</div><p>"J'avais honte de ne pas avoir de site depuis des années. En deux jours c'était réglé. Maintenant mes clients me retrouvent facilement."</p><div class="temo-who"><strong>Isabelle M.</strong><span>Voyante · Toulouse</span></div></div>
+    <div class="temo rvs d2"><div class="temo-stars" aria-label="5 étoiles">★★★★★</div><p>"Le premier client venu via ma page a largement couvert les 49€ du mois. Je n'ai rien eu à faire à part valider le design."</p><div class="temo-who"><strong>Karim B.</strong><span>Peintre · Lyon</span></div></div>
+    <div class="temo rvs d3"><div class="temo-stars" aria-label="5 étoiles">★★★★★</div><p>"Mes clients me disent qu'ils m'ont trouvée sur internet et que ma page les a rassurés. Avant ils ne trouvaient rien."</p><div class="temo-who"><strong>Sophie R.</strong><span>Naturopathe · Bordeaux</span></div></div>
   </div>
 </section>
 
 <!-- CTA BAND 1 -->
 <div class="cta-band">
   <div class="cta-band-text"><strong>Une question ?</strong> On vous répond en quelques minutes.</div>
-  <a href="tel:0745531434" class="cta-band-btn">📞 Appeler maintenant →</a>
+  <a href="tel:0745531434" class="cta-band-btn" aria-label="Appeler LocWeb">📞 Appeler maintenant →</a>
 </div>
 
 <!-- COMMENT -->
@@ -323,10 +345,10 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.3);}
   <h2 class="rv">Simple comme<br><em>un coup de fil.</em></h2>
   <p class="s-sub rv">Pas besoin de tout décider avant d'appeler. On vous guide étape par étape.</p>
   <div class="steps-simple">
-    <div class="step-s rvl d1"><div class="step-num">01</div><div><h3>Vous nous appelez ou remplissez le formulaire <span class="step-badge">Jour 1</span></h3><p>Nous vous posons quelques questions sur votre activité. 10 minutes suffisent.</p></div></div>
-    <div class="step-s rvl d2"><div class="step-num">02</div><div><h3>Nous créons votre identité en ligne <span class="step-badge">48h</span></h3><p>Site, fiche Google, visuels — vous recevez un aperçu avant de payer quoi que ce soit.</p></div></div>
-    <div class="step-s rvl d3"><div class="step-num">03</div><div><h3>Vous validez, on met en ligne <span class="step-badge">Jour J</span></h3><p>Ça vous plaît ? On publie le jour même. Sinon, vous ne payez rien.</p></div></div>
-    <div class="step-s rvl d4"><div class="step-num">04</div><div><h3>On reste à vos côtés <span class="step-badge">En continu</span></h3><p>Modifications, mises à jour, nouveaux supports — on gère. Vous, vous faites votre métier.</p></div></div>
+    <div class="step-s rvl d1"><div class="step-num" aria-hidden="true">01</div><div><h3>Vous nous appelez ou remplissez le formulaire <span class="step-badge">Jour 1</span></h3><p>Nous vous posons quelques questions sur votre activité. 10 minutes suffisent.</p></div></div>
+    <div class="step-s rvl d2"><div class="step-num" aria-hidden="true">02</div><div><h3>Nous créons votre identité en ligne <span class="step-badge">48h</span></h3><p>Site, fiche Google, visuels — vous recevez un aperçu avant de payer quoi que ce soit.</p></div></div>
+    <div class="step-s rvl d3"><div class="step-num" aria-hidden="true">03</div><div><h3>Vous validez, on met en ligne <span class="step-badge">Jour J</span></h3><p>Ça vous plaît ? On publie le jour même. Sinon, vous ne payez rien.</p></div></div>
+    <div class="step-s rvl d4"><div class="step-num" aria-hidden="true">04</div><div><h3>On reste à vos côtés <span class="step-badge">En continu</span></h3><p>Modifications, mises à jour, nouveaux supports — on gère. Vous, vous faites votre métier.</p></div></div>
   </div>
 </section>
 
@@ -342,11 +364,11 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.3);}
   <h2 class="rv" style="margin-bottom:6px;font-size:clamp(1.6rem,4vw,2.4rem);">Un exemple de ce que<br><em>nous créons pour vous.</em></h2>
   <p style="font-size:.88rem;color:#888;margin-bottom:24px;line-height:1.7;" class="rv">Un vrai site professionnel, adapté au métier de votre client. Livré en 48h.</p>
   <div class="browser rv">
-    <div class="browser-bar">
+    <div class="browser-bar" aria-hidden="true">
       <div class="browser-dots"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div></div>
       <div class="browser-url">color-doc.fr — Peintre professionnel à Béziers</div>
     </div>
-    <iframe class="browser-iframe" src="https://color-doc.fr" title="Exemple site LocWeb — Color D'Oc Peintre Béziers" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
+    <iframe class="browser-iframe" src="https://color-doc.fr" title="Exemple de site réalisé par LocWeb — Color D'Oc, peintre à Béziers" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
   </div>
   <p class="mockup-cta rv">Site réalisé par LocWeb · <a href="https://color-doc.fr" target="_blank" rel="noopener">Voir en plein écran →</a></p>
 </div>
@@ -378,18 +400,18 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.3);}
   <span class="s-tag rv">Questions</span>
   <h2 class="rv">On répond à tout.</h2>
   <div class="faq-list">
-    <div class="faq-item rv d1"><button class="faq-q">Le site est vraiment gratuit ?<span class="faq-ico">+</span></button><div class="faq-a"><p>La création est 100% offerte. Vous ne payez que l'hébergement, le domaine et le support : 49€/mois. Et seulement si le résultat vous plaît.</p></div></div>
-    <div class="faq-item rv d2"><button class="faq-q">On peut arrêter quand on veut ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Oui, sans préavis, par simple message. Votre page est mise hors ligne. Vous pouvez reprendre à tout moment.</p></div></div>
-    <div class="faq-item rv d3"><button class="faq-q">Vous faites quoi exactement en dehors du site ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Réseaux sociaux, fiche Google Business, logo, carte de visite, flyer, QR code avis Google — tout ce qui vous rend visible en ligne. Contactez-nous pour un devis personnalisé.</p></div></div>
-    <div class="faq-item rv d4"><button class="faq-q">Vous travaillez partout en France ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Oui, tout se passe à distance. WhatsApp ou téléphone, peu importe votre ville.</p></div></div>
-    <div class="faq-item rv d5"><button class="faq-q">Je ne sais pas exactement ce que je veux ?<span class="faq-ico">+</span></button><div class="faq-a"><p>Appelez-nous, on discute de votre activité et on vous dit ce qui vous convient le mieux. Pas de pression, pas d'engagement.</p></div></div>
+    <div class="faq-item rv d1"><button class="faq-q" aria-expanded="false">Le site est vraiment gratuit ?<span class="faq-ico" aria-hidden="true">+</span></button><div class="faq-a"><p>La création est 100% offerte. Vous ne payez que l'hébergement, le domaine et le support : 49€/mois. Et seulement si le résultat vous plaît.</p></div></div>
+    <div class="faq-item rv d2"><button class="faq-q" aria-expanded="false">On peut arrêter quand on veut ?<span class="faq-ico" aria-hidden="true">+</span></button><div class="faq-a"><p>Oui, sans préavis, par simple message. Votre page est mise hors ligne. Vous pouvez reprendre à tout moment.</p></div></div>
+    <div class="faq-item rv d3"><button class="faq-q" aria-expanded="false">Vous faites quoi exactement en dehors du site ?<span class="faq-ico" aria-hidden="true">+</span></button><div class="faq-a"><p>Réseaux sociaux, fiche Google Business, logo, carte de visite, flyer, QR code avis Google — tout ce qui vous rend visible en ligne. Contactez-nous pour un devis personnalisé.</p></div></div>
+    <div class="faq-item rv d4"><button class="faq-q" aria-expanded="false">Vous travaillez partout en France ?<span class="faq-ico" aria-hidden="true">+</span></button><div class="faq-a"><p>Oui, tout se passe à distance. WhatsApp ou téléphone, peu importe votre ville.</p></div></div>
+    <div class="faq-item rv d5"><button class="faq-q" aria-expanded="false">Je ne sais pas exactement ce que je veux ?<span class="faq-ico" aria-hidden="true">+</span></button><div class="faq-a"><p>Appelez-nous, on discute de votre activité et on vous dit ce qui vous convient le mieux. Pas de pression, pas d'engagement.</p></div></div>
   </div>
 </section>
 
 <!-- CTA BAND 3 -->
 <div class="cta-band">
   <div class="cta-band-text"><strong>Vous aussi, soyez visible dès cette semaine.</strong></div>
-  <a href="tel:0745531434" class="cta-band-btn">📞 Appeler maintenant →</a>
+  <a href="tel:0745531434" class="cta-band-btn" aria-label="Appeler LocWeb maintenant">📞 Appeler maintenant →</a>
 </div>
 
 <!-- CONTACT FINAL -->
@@ -398,16 +420,20 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.3);}
   <h2 class="rv">Dites-nous ce que<br><em>vous faites.</em></h2>
   <p class="s-sub rv">Nous vous rappelons dans la journée avec une proposition adaptée.</p>
   <div class="contact-final-form rv">
-    <form class="form-fields" name="contact-final" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <form class="form-fields" name="contact-final" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Formulaire de contact">
       <input type="hidden" name="form-name" value="contact-final">
       <input type="hidden" name="bot-field">
       <div class="field">
-        <span class="field-icon">👤</span>
-        <input type="text" name="prenom" placeholder="Votre prénom" required>
+        <span class="field-icon" aria-hidden="true">👤</span>
+        <input type="text" name="prenom" placeholder="Votre prénom" required aria-label="Votre prénom">
       </div>
       <div class="field">
-        <span class="field-icon">📞</span>
-        <input type="tel" name="telephone" placeholder="Votre téléphone" required>
+        <span class="field-icon" aria-hidden="true">📞</span>
+        <input type="tel" name="telephone" placeholder="Votre téléphone" required aria-label="Votre numéro de téléphone">
+      </div>
+      <div class="rgpd-check">
+        <input type="checkbox" id="rgpd2" name="rgpd" required>
+        <label for="rgpd2">J'accepte que mes données soient utilisées uniquement pour être recontacté(e). <a href="#mentions-legales">Mentions légales</a></label>
       </div>
       <button type="submit" class="btn-submit-hero">Je veux développer ma présence en ligne →</button>
     </form>
@@ -419,27 +445,56 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.3);}
   </div>
 </section>
 
+<!-- MENTIONS LÉGALES -->
+<section id="mentions-legales">
+  <span class="s-tag rv">Légal</span>
+  <h2 class="rv">Mentions légales</h2>
+  <p><strong>Raison sociale :</strong> NICOSERVICES</p>
+  <p><strong>Marque commerciale :</strong> LocWeb</p>
+  <p><strong>Statut :</strong> Auto-entrepreneur</p>
+  <p><strong>SIRET :</strong> 909 584 138 00012</p>
+  <p><strong>Adresse :</strong> 34500 Béziers, France</p>
+  <p><strong>Téléphone :</strong> <a href="tel:0745531434" style="color:#E8281E;">07 45 53 14 34</a></p>
+  <p><strong>Responsable de publication :</strong> Nicolas — NICOSERVICES</p>
+  <p><strong>Hébergeur :</strong> Netlify, Inc. — 44 Montgomery Street, Suite 300, San Francisco, CA 94104, USA</p>
+  <h3>Données personnelles & RGPD</h3>
+  <p>Les données collectées via le formulaire de contact (prénom, téléphone) sont utilisées uniquement pour répondre à votre demande de contact. Elles sont conservées 12 mois maximum. Vous pouvez demander leur suppression en nous contactant au 07 45 53 14 34.</p>
+  <p>Aucune donnée n'est transmise à des tiers ni utilisée à des fins commerciales sans votre consentement explicite.</p>
+  <h3>Cookies</h3>
+  <p>Ce site utilise Google Analytics pour mesurer l'audience de manière anonyme. Aucun cookie publicitaire n'est déposé.</p>
+</section>
+
+</main>
+
 <footer>
-  <a href="#" class="logo-wrap">
-    <div class="logo-icon" style="width:30px;height:30px;"><svg viewBox="0 0 64 64" fill="none" style="width:30px;height:30px;"><polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text></svg></div>
+  <a href="#" class="logo-wrap" aria-label="LocWeb — Retour en haut">
+    <div class="logo-icon" style="width:30px;height:30px;"><svg viewBox="0 0 64 64" fill="none" style="width:30px;height:30px;" aria-hidden="true"><polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text></svg></div>
     <span class="logo-text" style="color:rgba(255,255,255,.8);">Loc<span>Web</span></span>
   </a>
-  <p>Votre image en ligne, on s'occupe de tout · Partout en France</p>
-  <p>© 2025 LocWeb</p>
+  <p>Agence web Béziers — Votre image en ligne, on s'occupe de tout · Partout en France</p>
+  <div class="footer-links">
+    <a href="#mentions-legales">Mentions légales</a>
+    <a href="#mentions-legales">Politique de confidentialité</a>
+    <a href="https://locweb.fr">© 2025 LocWeb</a>
+  </div>
 </footer>
 
-<a href="https://wa.me/33745531434" class="wa" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<a href="https://wa.me/33745531434" class="wa" target="_blank" rel="noopener" aria-label="Contacter LocWeb sur WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-const burger=document.getElementById('burgerBtn');
-if(burger){const drawer=document.getElementById('navDrawer');burger.addEventListener('click',()=>{const isOpen=drawer.classList.contains('open');burger.classList.toggle('open');if(isOpen){drawer.style.opacity='0';drawer.style.transform='translateY(-8px)';setTimeout(()=>drawer.classList.remove('open'),250);}else{drawer.classList.add('open');requestAnimationFrame(()=>{drawer.style.opacity='1';drawer.style.transform='translateY(0)';});}});}
-
 const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv,.rvl,.rvs').forEach(el=>io.observe(el));
 
-document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.parentElement;const isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open');});});
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-q').setAttribute('aria-expanded','false');});
+    if(!isOpen){item.classList.add('open');btn.setAttribute('aria-expanded','true');}
+  });
+});
 </script>
 </body>
 </html>
