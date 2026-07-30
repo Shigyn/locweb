@@ -197,19 +197,8 @@ section{padding:76px 20px;position:relative;}
 .tarif-badge-top.classique{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);}
 .tarif-badge-top.ultra{background:rgba(232,40,30,.18);color:#ff6b5f;}
 .tarif-badge-top.ecom{background:rgba(37,150,190,.18);color:#6bc4e8;}
-.tarif-card .prix-alt{font-size:.78rem;color:var(--red);margin:-4px 0 8px;font-weight:600;}
-.tarif-card .support-only{transition:opacity .2s;}
-#tarifs.mode-sans .tarif-card .prix-freq,
-#tarifs.mode-sans .tarif-card .prix-alt,
-#tarifs.mode-sans .support-only{display:none;}
-.tarif-toggle{display:inline-flex;background:var(--white);border:1px solid var(--line);border-radius:100px;padding:4px;gap:4px;margin-top:8px;}
-.toggle-opt{background:none;border:none;font-family:var(--sans);font-weight:700;font-size:.78rem;padding:10px 18px;border-radius:100px;cursor:pointer;color:#8a8780;transition:background .2s,color .2s;}
-.toggle-opt.active{background:var(--ink);color:#fff;}
-.tarif-addon{flex:0 0 min(58vw,240px);height:min(78vh,660px);background:linear-gradient(160deg,rgba(232,40,30,.08),rgba(232,40,30,.03));border:1px solid rgba(232,40,30,.18);border-radius:24px;padding:34px 24px;display:flex;flex-direction:column;justify-content:center;text-align:center;}
-.tarif-addon .addon-name{font-family:var(--disp);font-weight:600;font-size:1.05rem;color:var(--ink);margin-bottom:14px;}
-.tarif-addon .addon-price{font-family:var(--disp);font-weight:700;font-size:1.7rem;color:var(--red);margin-bottom:4px;}
-.tarif-addon .addon-freq{font-size:.7rem;color:#9a7a75;margin-bottom:14px;display:block;}
-.tarif-addon .addon-desc{font-size:.82rem;color:#7a6f6c;line-height:1.6;}
+.tarif-card .prix-alt{display:inline-flex;align-items:center;gap:6px;background:rgba(232,40,30,.15);border:1px solid rgba(232,40,30,.4);color:#ff8f85;font-size:.76rem;font-weight:700;padding:6px 12px;border-radius:100px;margin:2px 0 14px;}
+.tarif-card .prix-alt::before{content:'✓';color:#ff8f85;}
 
 /* ── CONTACT (sans formulaire) ── */
 #contact{background:var(--ink);text-align:center;}
@@ -221,12 +210,17 @@ section{padding:76px 20px;position:relative;}
 .contact-wa-big{display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:600;font-size:.95rem;padding:16px 30px;border-radius:100px;text-decoration:none;transition:border-color .2s;}
 .contact-wa-big:hover{border-color:#25D366;color:#25D366;}
 
-/* ── MENTIONS LÉGALES (minimisé, accessible mais discret) ── */
-#mentions-legales{background:var(--ink);padding:28px 20px;max-width:640px;margin:0 auto;}
-#mentions-legales p{font-size:.68rem;color:rgba(255,255,255,.35);line-height:1.7;margin-bottom:4px;}
-#mentions-legales strong{color:rgba(255,255,255,.5);}
-#mentions-legales a{color:rgba(255,255,255,.45);}
-@media(min-width:768px){#mentions-legales{padding:28px 5vw;}}
+/* ── MENTIONS LÉGALES EN POPUP ── */
+.footer-link-btn{background:none;border:none;font-family:inherit;font-size:.68rem;color:rgba(255,255,255,.32);text-decoration:underline;cursor:pointer;padding:0;transition:color .2s;}
+.footer-link-btn:hover{color:rgba(255,255,255,.75);}
+.legal-modal{position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s;}
+.legal-modal.open{opacity:1;pointer-events:auto;}
+.legal-modal-backdrop{position:absolute;inset:0;background:rgba(13,13,15,.7);backdrop-filter:blur(4px);}
+.legal-modal-box{position:relative;background:var(--paper);border-radius:20px;padding:36px;max-width:520px;max-height:80vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.4);}
+.legal-modal-box h3{font-family:var(--disp);font-size:1.2rem;font-weight:700;margin-bottom:16px;}
+.legal-modal-box p{font-size:.78rem;color:#7a7770;line-height:1.7;margin-bottom:10px;}
+.legal-modal-box strong{color:var(--ink);}
+.legal-modal-close{position:absolute;top:16px;right:16px;background:var(--paper2);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:.9rem;color:var(--ink);}
 
 /* ── FOOTER ── */
 footer{background:var(--ink);padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
@@ -427,10 +421,6 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     <div>
       <div class="s-tag rv">Nos tarifs</div>
       <h2 class="hsplit">Un site professionnel<br><em>à partir de 49€/mois.</em></h2>
-      <div class="tarif-toggle" role="group" aria-label="Choix du mode d'accompagnement">
-        <button type="button" class="toggle-opt active" data-mode="support">Avec support & éditeur</button>
-        <button type="button" class="toggle-opt" data-mode="sans">Sans support</button>
-      </div>
     </div>
   </div>
   <div class="galerie-horiz-wrap" style="height:260vh;">
@@ -447,8 +437,8 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             <li data-editable-zone="prix_classique_avantage_2">Nom de domaine (.fr / .com) inclus</li>
             <li data-editable-zone="prix_classique_avantage_3">Hébergement en ligne 24h/24</li>
             <li data-editable-zone="prix_classique_avantage_4">Optimisé mobile & référencement local</li>
-            <li class="support-only" data-editable-zone="prix_classique_avantage_5">Éditeur de contenu — modifications en autonomie</li>
-            <li class="support-only" data-editable-zone="prix_classique_avantage_6">Support direct</li>
+            <li data-editable-zone="prix_classique_avantage_5">Éditeur de contenu — modifications en autonomie</li>
+            <li data-editable-zone="prix_classique_avantage_6">Support direct</li>
           </ul>
           <a href="tel:0745531434" class="btn-prix">Appeler pour démarrer →</a>
           <p class="prix-note" data-editable-zone="prix_classique_note">Fond de hero animé inclus. Le reste du site reste sobre — pensé pour l'urgence et la clarté.</p>
@@ -465,7 +455,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             <li data-editable-zone="prix_ultra_avantage_3">Effets de scroll et transitions sur mesure</li>
             <li data-editable-zone="prix_ultra_avantage_4">Identité visuelle premium (typographie, palette)</li>
             <li data-editable-zone="prix_ultra_avantage_5">Pensé pour impressionner dès la première seconde</li>
-            <li class="support-only" data-editable-zone="prix_ultra_avantage_6">Support direct + éditeur de contenu inclus</li>
+            <li data-editable-zone="prix_ultra_avantage_6">Support direct + éditeur de contenu inclus</li>
           </ul>
           <a href="tel:0745531434" class="btn-prix">Appeler pour démarrer →</a>
           <p class="prix-note" data-editable-zone="prix_ultra_note">Le style que vous voyez sur ce site — adapté à votre univers.</p>
@@ -481,37 +471,25 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             <li data-editable-zone="prix_ecom_avantage_3">Gestion catalogue produits & stock en autonomie</li>
             <li data-editable-zone="prix_ecom_avantage_4">Suivi des commandes intégré</li>
             <li data-editable-zone="prix_ecom_avantage_5">Aucune commission cachée sur vos ventes</li>
-            <li class="support-only" data-editable-zone="prix_ecom_avantage_6">Support direct + éditeur de contenu inclus</li>
+            <li data-editable-zone="prix_ecom_avantage_6">Support direct + éditeur de contenu inclus</li>
           </ul>
           <a href="tel:0745531434" class="btn-prix">Appeler pour démarrer →</a>
         </div>
 
-        <div class="tarif-addon">
-          <div class="addon-name">Fiche Google Business</div>
-          <div class="addon-price" data-editable-zone="addon_google_prix">49€</div>
-          <span class="addon-freq">/mois</span>
-          <p class="addon-desc" data-editable-zone="addon_google_desc">Création, optimisation & suivi des avis</p>
-        </div>
-        <div class="tarif-addon">
-          <div class="addon-name">Réseaux sociaux</div>
-          <div class="addon-price" data-editable-zone="addon_reseaux_prix">Sur devis</div>
-          <span class="addon-freq">&nbsp;</span>
-          <p class="addon-desc" data-editable-zone="addon_reseaux_desc">Gestion & création de contenu</p>
-        </div>
-        <div class="tarif-addon">
-          <div class="addon-name">Publicité en ligne</div>
-          <div class="addon-price" data-editable-zone="addon_ads_prix">Sur devis</div>
-          <span class="addon-freq">Google Ads / Meta Ads</span>
-          <p class="addon-desc" data-editable-zone="addon_ads_desc">Gestion incluse</p>
-        </div>
-        <div class="tarif-addon">
-          <div class="addon-name">Pack print complet</div>
-          <div class="addon-price" data-editable-zone="addon_print_prix">149€</div>
-          <span class="addon-freq">une fois</span>
-          <p class="addon-desc" data-editable-zone="addon_print_desc">Logo, cartes de visite, flyers, QR code avis Google</p>
+        <div class="tarif-card">
+          <span class="tarif-badge-top ecom">Autres services</span>
+          <div class="prix-main" style="font-size:2.4rem;">Sur devis</div>
+          <span class="prix-freq">Selon vos besoins</span>
+          <ul class="prix-list">
+            <li data-editable-zone="addon_avantage_1">Fiche Google Business — création, optimisation & suivi des avis</li>
+            <li data-editable-zone="addon_avantage_2">Réseaux sociaux — gestion & création de contenu</li>
+            <li data-editable-zone="addon_avantage_3">Publicité en ligne — Google Ads / Meta Ads</li>
+            <li data-editable-zone="addon_avantage_4">Pack print complet — logo, cartes de visite, flyers, QR code avis Google</li>
+          </ul>
+          <a href="tel:0745531434" class="btn-prix">Demander un devis →</a>
         </div>
 
-        <!-- Prochaine offre : dupliquer .tarif-card ou .tarif-addon -->
+        <!-- Prochaine offre : dupliquer .tarif-card -->
       </div>
     </div>
   </div>
@@ -538,14 +516,6 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   </div>
 </section>
 
-<!-- MENTIONS LÉGALES (minimisé) -->
-<section id="mentions-legales">
-  <p><strong>NICOSERVICES</strong> (LocWeb) · Auto-entrepreneur · SIRET 909 584 138 00012 · 34500 Béziers, France</p>
-  <p>Responsable de publication : Nicolas — NICOSERVICES · <a href="tel:0745531434">07 45 53 14 34</a></p>
-  <p>Hébergeur : GitHub, Inc. — 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA</p>
-  <p>Aucune donnée personnelle collectée via un formulaire — contact uniquement par téléphone ou WhatsApp, à votre initiative. Google Analytics utilisé pour mesurer l'audience de manière anonyme, aucun cookie publicitaire.</p>
-</section>
-
 </main>
 
 <footer>
@@ -555,11 +525,23 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   </a>
   <p>Agence web Béziers — Votre image en ligne, on s'occupe de tout · Partout en France</p>
   <div class="footer-links">
-    <a href="#mentions-legales">Mentions légales</a>
+    <button type="button" id="mentionsLink" class="footer-link-btn">Mentions légales</button>
     <a href="https://locweb.fr">© 2025 LocWeb</a>
     <a href="https://admin.locweb.fr">🔒 Administration</a>
   </div>
 </footer>
+
+<div class="legal-modal" id="legalModal" aria-hidden="true">
+  <div class="legal-modal-backdrop" id="legalBackdrop"></div>
+  <div class="legal-modal-box" role="dialog" aria-modal="true" aria-label="Mentions légales">
+    <button type="button" class="legal-modal-close" id="legalClose" aria-label="Fermer">✕</button>
+    <h3>Mentions légales</h3>
+    <p><strong>NICOSERVICES</strong> (LocWeb) · Auto-entrepreneur · SIRET 909 584 138 00012 · 34500 Béziers, France</p>
+    <p>Responsable de publication : Nicolas — NICOSERVICES · <a href="tel:0745531434">07 45 53 14 34</a></p>
+    <p>Hébergeur : GitHub, Inc. — 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA</p>
+    <p>Aucune donnée personnelle collectée via un formulaire — contact uniquement par téléphone ou WhatsApp, à votre initiative. Google Analytics utilisé pour mesurer l'audience de manière anonyme, aucun cookie publicitaire.</p>
+  </div>
+</div>
 
 <a href="https://wa.me/33745531434" class="wa" target="_blank" rel="noopener" aria-label="Contacter LocWeb sur WhatsApp">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -594,16 +576,17 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
 })();
 
 (function(){
-  const toggle = document.querySelector('.tarif-toggle');
-  const tarifsSection = document.getElementById('tarifs');
-  if (!toggle || !tarifsSection) return;
-  toggle.querySelectorAll('.toggle-opt').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      toggle.querySelectorAll('.toggle-opt').forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      tarifsSection.classList.toggle('mode-sans', btn.getAttribute('data-mode') === 'sans');
-    });
-  });
+  const link = document.getElementById('mentionsLink');
+  const modal = document.getElementById('legalModal');
+  const closeBtn = document.getElementById('legalClose');
+  const backdrop = document.getElementById('legalBackdrop');
+  if (!link || !modal) return;
+  function open(){ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); }
+  function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+  link.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 })();
 
 (function(){

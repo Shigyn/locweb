@@ -13,6 +13,11 @@
 //   </div>
 // Usage : <script src="galerie-horizontale.js" defer></script>
 //   <script>GalerieHorizontale.init('.galerie-horiz-wrap');</script>
+//
+// Fluidité mobile : la mise à jour est cadencée par requestAnimationFrame (un seul
+// calcul par frame, jamais plusieurs par évènement scroll) et le déplacement utilise
+// translate3d (accélération GPU) — évite le saccadé observé avec translateX seul
+// sur mobile, notamment en scroll rapide au doigt.
 
 (function () {
   function init(selector) {
@@ -29,16 +34,27 @@
         return;
       }
 
+      track.style.backfaceVisibility = 'hidden';
+
+      let ticking = false;
       function update() {
         const rect = wrap.getBoundingClientRect();
         const scrollable = wrap.offsetHeight - window.innerHeight;
-        if (scrollable <= 0) return;
-        const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
-        const maxTranslate = track.scrollWidth - sticky.offsetWidth;
-        track.style.transform = `translateX(-${progress * maxTranslate}px)`;
+        if (scrollable > 0) {
+          const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
+          const maxTranslate = track.scrollWidth - sticky.offsetWidth;
+          track.style.transform = `translate3d(-${progress * maxTranslate}px,0,0)`;
+        }
+        ticking = false;
       }
-      window.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
+      function onScroll() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
       update();
     });
   }
