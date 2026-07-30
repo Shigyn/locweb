@@ -20,7 +20,7 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-BVL1W908TT');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -139,19 +139,43 @@ section{padding:76px 20px;position:relative;}
 .galerie-horiz-track{display:flex;gap:24px;will-change:transform;padding:0 20px;}
 @media(min-width:768px){.galerie-horiz-track{padding:0 5vw;}}
 
-.real-item{flex:0 0 min(88vw,880px);height:min(76vh,640px);position:relative;border-radius:22px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.4);}
+.real-item{flex:0 0 min(88vw,880px);height:min(76vh,640px);position:relative;border-radius:22px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.4);display:flex;flex-direction:column;}
+
+.mv-nav{flex-shrink:0;position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(247,244,238,.92);backdrop-filter:blur(10px);font-family:'Inter',sans-serif;}
+.mv-nav-logo{font-family:'Fraunces',serif;font-size:1rem;color:#14110d;}
+.mv-nav-logo em{font-style:italic;color:#d9822e;}
+.mv-nav-tel{background:#14110d;color:#f7f4ee;font-weight:600;font-size:.76rem;padding:8px 15px;border-radius:2px;white-space:nowrap;}
+
+.mv-hero-area{position:relative;flex:1;overflow:hidden;}
 .real-item-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 
-.mv-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:56px;font-family:'Inter',sans-serif;}
-.mv-preview .mv-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#c08552;margin-bottom:18px;}
+.mv-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:40px 56px;font-family:'Inter',sans-serif;}
+.mv-preview .mv-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#ffb24d;margin-bottom:18px;}
 .mv-preview .mv-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.05;color:#f3efe6;margin-bottom:20px;}
-.mv-preview .mv-cycle{font-style:italic;color:#c08552;display:inline-block;}
-.mv-preview .mv-sub{font-size:.94rem;line-height:1.7;color:#b8b0a0;max-width:420px;margin-bottom:26px;font-weight:300;}
+.mv-preview .mv-cycle{font-style:italic;color:#ffb24d;display:inline-block;}
+.mv-preview .mv-sub{font-size:.94rem;line-height:1.7;color:#c9b8a8;max-width:420px;margin-bottom:26px;font-weight:300;}
 .mv-preview .mv-badges{display:flex;flex-wrap:wrap;gap:10px;}
-.mv-preview .mv-badge{background:rgba(243,239,230,.06);border:1px solid rgba(243,239,230,.16);border-radius:100px;padding:8px 15px;font-size:.75rem;color:#e8e2d6;}
+.mv-preview .mv-badge{background:rgba(255,170,60,.1);border:1px solid rgba(255,170,60,.28);border-radius:100px;padding:8px 15px;font-size:.75rem;color:#ffd9a3;}
 
-.real-more{flex:0 0 min(50vw,340px);height:min(76vh,640px);border-radius:22px;border:1.5px dashed rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;text-align:center;padding:40px;}
-.real-more p{font-size:.85rem;color:rgba(255,255,255,.4);line-height:1.7;max-width:220px;}
+.amb-nav-logo{font-family:'Playfair Display',serif;font-size:1rem;color:#14110d;}
+.amb-nav-logo em{font-style:italic;color:#e0457a;}
+.amb-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:40px 56px;font-family:'Inter',sans-serif;}
+.amb-preview .amb-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#ff8fb0;margin-bottom:18px;}
+.amb-preview .amb-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.15;color:#f5ece9;margin-bottom:20px;}
+.amb-preview .amb-cycle{color:#ff8fb0;display:inline-block;}
+.amb-preview .amb-sub{font-size:.94rem;line-height:1.7;color:#d9c0c8;max-width:420px;margin-bottom:26px;font-weight:300;}
+.amb-preview .amb-badges{display:flex;flex-wrap:wrap;gap:10px;}
+.amb-preview .amb-badge{background:rgba(255,90,140,.1);border:1px solid rgba(255,90,140,.28);border-radius:100px;padding:8px 15px;font-size:.75rem;color:#ffc9d9;}
+
+.arc-nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:1rem;color:#14171a;letter-spacing:-.01em;}
+.arc-nav-logo em{font-style:normal;color:#2f8fff;}
+.arc-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:40px 56px;font-family:'Inter',sans-serif;}
+.arc-preview .arc-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#3fc8ff;margin-bottom:18px;}
+.arc-preview .arc-title{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.05;letter-spacing:-.02em;color:#eef3f6;margin-bottom:20px;}
+.arc-preview .arc-cycle{color:#3fc8ff;display:inline-block;}
+.arc-preview .arc-sub{font-size:.94rem;line-height:1.7;color:#b8cbd9;max-width:420px;margin-bottom:26px;font-weight:300;}
+.arc-preview .arc-badges{display:flex;flex-wrap:wrap;gap:10px;}
+.arc-preview .arc-badge{background:rgba(63,200,255,.1);border:1px solid rgba(63,200,255,.28);border-radius:100px;padding:8px 15px;font-size:.75rem;color:#a8e4ff;}
 
 .demo-disclaimer{font-style:italic;font-size:.78rem;color:rgba(255,255,255,.35);margin-top:24px;padding:0 20px;}
 @media(min-width:768px){.demo-disclaimer{padding:0 5vw;}}
@@ -169,8 +193,23 @@ section{padding:76px 20px;position:relative;}
 .tarif-card .btn-prix{display:block;text-align:center;background:var(--red);color:white;font-weight:800;font-size:.95rem;padding:17px;border-radius:100px;text-decoration:none;margin-top:24px;transition:opacity .2s;}
 .tarif-card .btn-prix:hover{opacity:.9;}
 .tarif-card .prix-note{font-size:.72rem;color:rgba(255,255,255,.4);margin-top:16px;text-align:center;line-height:1.6;}
-.tarif-more{flex:0 0 min(50vw,320px);height:min(78vh,660px);border-radius:24px;border:1.5px dashed var(--line);display:flex;align-items:center;justify-content:center;text-align:center;padding:40px;}
-.tarif-more p{font-size:.85rem;color:#9a9689;line-height:1.7;max-width:220px;}
+.tarif-badge-top{display:inline-block;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;padding:5px 12px;border-radius:100px;margin-bottom:18px;align-self:flex-start;}
+.tarif-badge-top.classique{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);}
+.tarif-badge-top.ultra{background:rgba(232,40,30,.18);color:#ff6b5f;}
+.tarif-badge-top.ecom{background:rgba(37,150,190,.18);color:#6bc4e8;}
+.tarif-card .prix-alt{font-size:.78rem;color:var(--red);margin:-4px 0 8px;font-weight:600;}
+.tarif-card .support-only{transition:opacity .2s;}
+#tarifs.mode-sans .tarif-card .prix-freq,
+#tarifs.mode-sans .tarif-card .prix-alt,
+#tarifs.mode-sans .support-only{display:none;}
+.tarif-toggle{display:inline-flex;background:var(--white);border:1px solid var(--line);border-radius:100px;padding:4px;gap:4px;margin-top:8px;}
+.toggle-opt{background:none;border:none;font-family:var(--sans);font-weight:700;font-size:.78rem;padding:10px 18px;border-radius:100px;cursor:pointer;color:#8a8780;transition:background .2s,color .2s;}
+.toggle-opt.active{background:var(--ink);color:#fff;}
+.tarif-addon{flex:0 0 min(58vw,240px);height:min(78vh,660px);background:linear-gradient(160deg,rgba(232,40,30,.08),rgba(232,40,30,.03));border:1px solid rgba(232,40,30,.18);border-radius:24px;padding:34px 24px;display:flex;flex-direction:column;justify-content:center;text-align:center;}
+.tarif-addon .addon-name{font-family:var(--disp);font-weight:600;font-size:1.05rem;color:var(--ink);margin-bottom:14px;}
+.tarif-addon .addon-price{font-family:var(--disp);font-weight:700;font-size:1.7rem;color:var(--red);margin-bottom:4px;}
+.tarif-addon .addon-freq{font-size:.7rem;color:#9a7a75;margin-bottom:14px;display:block;}
+.tarif-addon .addon-desc{font-size:.82rem;color:#7a6f6c;line-height:1.6;}
 
 /* ── CONTACT (sans formulaire) ── */
 #contact{background:var(--ink);text-align:center;}
@@ -182,12 +221,12 @@ section{padding:76px 20px;position:relative;}
 .contact-wa-big{display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:600;font-size:.95rem;padding:16px 30px;border-radius:100px;text-decoration:none;transition:border-color .2s;}
 .contact-wa-big:hover{border-color:#25D366;color:#25D366;}
 
-/* ── MENTIONS LÉGALES ── */
-#mentions-legales{background:var(--paper);border-top:1px solid var(--line);}
-#mentions-legales h2{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:24px;}
-#mentions-legales h3{font-family:var(--disp);font-size:.95rem;font-weight:700;margin:22px 0 8px;}
-#mentions-legales p{font-size:.8rem;color:#7a7770;line-height:1.8;margin-bottom:8px;}
-#mentions-legales strong{color:var(--ink);}
+/* ── MENTIONS LÉGALES (minimisé, accessible mais discret) ── */
+#mentions-legales{background:var(--ink);padding:28px 20px;max-width:640px;margin:0 auto;}
+#mentions-legales p{font-size:.68rem;color:rgba(255,255,255,.35);line-height:1.7;margin-bottom:4px;}
+#mentions-legales strong{color:rgba(255,255,255,.5);}
+#mentions-legales a{color:rgba(255,255,255,.45);}
+@media(min-width:768px){#mentions-legales{padding:28px 5vw;}}
 
 /* ── FOOTER ── */
 footer{background:var(--ink);padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
@@ -318,22 +357,63 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     <div class="galerie-horiz-sticky">
       <div class="galerie-horiz-track">
         <div class="real-item">
-          <canvas class="real-item-canvas" id="real-canvas-1" aria-hidden="true"></canvas>
-          <div class="mv-preview">
-            <span class="mv-tag">Béziers — trois générations d'artisans</span>
-            <div class="mv-title">La rénovation,<br><span class="titre-cyclique mv-cycle" data-mots="[&quot;sans compromis.&quot;,&quot;intemporelle.&quot;,&quot;sur mesure.&quot;]">sans compromis.</span></div>
-            <p class="mv-sub">Charpente et rénovation du bâti ancien à Béziers. Un savoir-faire artisanal porté par trois générations.</p>
-            <div class="mv-badges">
-              <span class="mv-badge">★ 4.9 sur Google</span>
-              <span class="mv-badge">27 ans d'expérience</span>
-              <span class="mv-badge">Devis gratuit</span>
+          <div class="mv-nav">
+            <span class="arc-nav-logo">Studio <em>Anthracite</em></span>
+            <span class="mv-nav-tel">04 68 00 00 00</span>
+          </div>
+          <div class="mv-hero-area">
+            <canvas class="real-item-canvas" id="real-canvas-1" aria-hidden="true"></canvas>
+            <div class="arc-preview">
+              <span class="arc-tag">Narbonne — architecture d'intérieur sur mesure</span>
+              <div class="arc-title">Des espaces qui<br>vous <span class="titre-cyclique arc-cycle" data-mots="[&quot;ressemblent.&quot;,&quot;inspirent.&quot;,&quot;durent.&quot;]">ressemblent.</span></div>
+              <p class="arc-sub">Conception et rénovation d'espaces intérieurs à Narbonne et alentours. Une approche architecturale, pensée pour durer.</p>
+              <div class="arc-badges">
+                <span class="arc-badge">★ 4.8 sur Google</span>
+                <span class="arc-badge">15 ans d'expérience</span>
+                <span class="arc-badge">Étude gratuite</span>
+              </div>
             </div>
           </div>
         </div>
-        <!-- Prochain exemple : dupliquer .real-item avec un nouveau canvas id (real-canvas-2, etc.) -->
-        <div class="real-more">
-          <p>D'autres univers arrivent bientôt.</p>
+        <div class="real-item">
+          <div class="mv-nav">
+            <span class="amb-nav-logo">Ambre <em>& Sens</em></span>
+            <span class="mv-nav-tel">04 99 00 00 00</span>
+          </div>
+          <div class="mv-hero-area">
+            <canvas class="real-item-canvas" id="real-canvas-2" aria-hidden="true"></canvas>
+            <div class="amb-preview">
+              <span class="amb-tag">Montpellier — approche naturelle & sur mesure</span>
+              <div class="amb-title">Retrouvez votre<br><span class="titre-cyclique amb-cycle" data-mots="[&quot;équilibre.&quot;,&quot;énergie.&quot;,&quot;harmonie.&quot;]">équilibre.</span></div>
+              <p class="amb-sub">Consultations en naturopathie à Montpellier. Une approche globale, à l'écoute de votre rythme de vie.</p>
+              <div class="amb-badges">
+                <span class="amb-badge">★ 5 sur Google</span>
+                <span class="amb-badge">10 ans d'expérience</span>
+                <span class="amb-badge">1ère séance offerte</span>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="real-item">
+          <div class="mv-nav">
+            <span class="mv-nav-logo">Maison <em>Verrier</em></span>
+            <span class="mv-nav-tel">04 67 00 00 00</span>
+          </div>
+          <div class="mv-hero-area">
+            <canvas class="real-item-canvas" id="real-canvas-3" aria-hidden="true"></canvas>
+            <div class="mv-preview">
+              <span class="mv-tag">Béziers — trois générations d'artisans</span>
+              <div class="mv-title">La rénovation,<br><span class="titre-cyclique mv-cycle" data-mots="[&quot;sans compromis.&quot;,&quot;intemporelle.&quot;,&quot;sur mesure.&quot;]">sans compromis.</span></div>
+              <p class="mv-sub">Charpente et rénovation du bâti ancien à Béziers. Un savoir-faire artisanal porté par trois générations.</p>
+              <div class="mv-badges">
+                <span class="mv-badge">★ 4.9 sur Google</span>
+                <span class="mv-badge">27 ans d'expérience</span>
+                <span class="mv-badge">Devis gratuit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Prochain exemple : dupliquer .real-item avec un nouveau canvas id (real-canvas-4, etc.) -->
       </div>
     </div>
   </div>
@@ -346,31 +426,92 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     <span class="sec-no" aria-hidden="true">02</span>
     <div>
       <div class="s-tag rv">Nos tarifs</div>
-      <h2 class="hsplit">Un site professionnel<br><em>pour 49€/mois.</em></h2>
+      <h2 class="hsplit">Un site professionnel<br><em>à partir de 49€/mois.</em></h2>
+      <div class="tarif-toggle" role="group" aria-label="Choix du mode d'accompagnement">
+        <button type="button" class="toggle-opt active" data-mode="support">Avec support & éditeur</button>
+        <button type="button" class="toggle-opt" data-mode="sans">Sans support</button>
+      </div>
     </div>
   </div>
-  <div class="galerie-horiz-wrap" style="height:220vh;">
+  <div class="galerie-horiz-wrap" style="height:260vh;">
     <div class="galerie-horiz-sticky">
       <div class="galerie-horiz-track">
+
         <div class="tarif-card">
-          <div class="prix-main"><span class="cur">€</span><span data-editable-zone="prix_valeur">49</span></div>
-          <span class="prix-freq" data-editable-zone="prix_frequence">/mois · résiliable à tout moment</span>
+          <span class="tarif-badge-top classique">Site vitrine</span>
+          <div class="prix-main"><span class="cur">€</span><span data-editable-zone="prix_classique_creation">290</span></div>
+          <span class="prix-alt">Ou création offerte avec engagement 1 an</span>
+          <span class="prix-freq">+ <span data-editable-zone="prix_classique_mensuel">49</span>€/mois · résiliable à tout moment</span>
           <ul class="prix-list">
-            <li data-editable-zone="prix_avantage_1">Création de votre site sur mesure offerte</li>
-            <li data-editable-zone="prix_avantage_2">Votre adresse internet (.fr ou .com) incluse</li>
-            <li data-editable-zone="prix_avantage_3">Site en ligne 24h/24, jamais en panne</li>
-            <li data-editable-zone="prix_avantage_4">S'affiche parfaitement sur téléphone</li>
-            <li data-editable-zone="prix_avantage_5">Modifications incluses — on s'en occupe</li>
-            <li data-editable-zone="prix_avantage_6">Support direct par WhatsApp</li>
-            <li data-editable-zone="prix_avantage_7">Vos clients vous trouvent sur Google</li>
+            <li data-editable-zone="prix_classique_avantage_1">Site sur mesure, création incluse</li>
+            <li data-editable-zone="prix_classique_avantage_2">Nom de domaine (.fr / .com) inclus</li>
+            <li data-editable-zone="prix_classique_avantage_3">Hébergement en ligne 24h/24</li>
+            <li data-editable-zone="prix_classique_avantage_4">Optimisé mobile & référencement local</li>
+            <li class="support-only" data-editable-zone="prix_classique_avantage_5">Éditeur de contenu — modifications en autonomie</li>
+            <li class="support-only" data-editable-zone="prix_classique_avantage_6">Support direct</li>
           </ul>
           <a href="tel:0745531434" class="btn-prix">Appeler pour démarrer →</a>
-          <p class="prix-note" data-editable-zone="prix_note">Pas de contrat. Résiliable à tout moment par simple message.</p>
+          <p class="prix-note" data-editable-zone="prix_classique_note">Fond de hero animé inclus. Le reste du site reste sobre — pensé pour l'urgence et la clarté.</p>
         </div>
-        <!-- Prochaine offre : dupliquer .tarif-card (ex : site premium, e-commerce...) -->
-        <div class="tarif-more">
-          <p>D'autres formules à venir.</p>
+
+        <div class="tarif-card">
+          <span class="tarif-badge-top ultra">Site vitrine ultra animé</span>
+          <div class="prix-main"><span class="cur">€</span><span data-editable-zone="prix_ultra_creation">490</span></div>
+          <span class="prix-alt">Ou <span data-editable-zone="prix_ultra_creation_engage">290</span>€ avec engagement 1 an</span>
+          <span class="prix-freq">+ <span data-editable-zone="prix_ultra_mensuel">49</span>€/mois · résiliable à tout moment</span>
+          <ul class="prix-list">
+            <li data-editable-zone="prix_ultra_avantage_1">Tout le contenu du site vitrine, inclus</li>
+            <li data-editable-zone="prix_ultra_avantage_2">Fonds animés, curseur personnalisé, galerie immersive</li>
+            <li data-editable-zone="prix_ultra_avantage_3">Effets de scroll et transitions sur mesure</li>
+            <li data-editable-zone="prix_ultra_avantage_4">Identité visuelle premium (typographie, palette)</li>
+            <li data-editable-zone="prix_ultra_avantage_5">Pensé pour impressionner dès la première seconde</li>
+            <li class="support-only" data-editable-zone="prix_ultra_avantage_6">Support direct + éditeur de contenu inclus</li>
+          </ul>
+          <a href="tel:0745531434" class="btn-prix">Appeler pour démarrer →</a>
+          <p class="prix-note" data-editable-zone="prix_ultra_note">Le style que vous voyez sur ce site — adapté à votre univers.</p>
         </div>
+
+        <div class="tarif-card">
+          <span class="tarif-badge-top ecom">Site e-commerce</span>
+          <div class="prix-main"><span class="cur">€</span><span data-editable-zone="prix_ecom_creation">490</span></div>
+          <span class="prix-freq">+ <span data-editable-zone="prix_ecom_mensuel">79</span>€/mois · résiliable à tout moment</span>
+          <ul class="prix-list">
+            <li data-editable-zone="prix_ecom_avantage_1">Tout le contenu du site vitrine, inclus</li>
+            <li data-editable-zone="prix_ecom_avantage_2">Paiement en ligne sécurisé (carte bancaire)</li>
+            <li data-editable-zone="prix_ecom_avantage_3">Gestion catalogue produits & stock en autonomie</li>
+            <li data-editable-zone="prix_ecom_avantage_4">Suivi des commandes intégré</li>
+            <li data-editable-zone="prix_ecom_avantage_5">Aucune commission cachée sur vos ventes</li>
+            <li class="support-only" data-editable-zone="prix_ecom_avantage_6">Support direct + éditeur de contenu inclus</li>
+          </ul>
+          <a href="tel:0745531434" class="btn-prix">Appeler pour démarrer →</a>
+        </div>
+
+        <div class="tarif-addon">
+          <div class="addon-name">Fiche Google Business</div>
+          <div class="addon-price" data-editable-zone="addon_google_prix">49€</div>
+          <span class="addon-freq">/mois</span>
+          <p class="addon-desc" data-editable-zone="addon_google_desc">Création, optimisation & suivi des avis</p>
+        </div>
+        <div class="tarif-addon">
+          <div class="addon-name">Réseaux sociaux</div>
+          <div class="addon-price" data-editable-zone="addon_reseaux_prix">Sur devis</div>
+          <span class="addon-freq">&nbsp;</span>
+          <p class="addon-desc" data-editable-zone="addon_reseaux_desc">Gestion & création de contenu</p>
+        </div>
+        <div class="tarif-addon">
+          <div class="addon-name">Publicité en ligne</div>
+          <div class="addon-price" data-editable-zone="addon_ads_prix">Sur devis</div>
+          <span class="addon-freq">Google Ads / Meta Ads</span>
+          <p class="addon-desc" data-editable-zone="addon_ads_desc">Gestion incluse</p>
+        </div>
+        <div class="tarif-addon">
+          <div class="addon-name">Pack print complet</div>
+          <div class="addon-price" data-editable-zone="addon_print_prix">149€</div>
+          <span class="addon-freq">une fois</span>
+          <p class="addon-desc" data-editable-zone="addon_print_desc">Logo, cartes de visite, flyers, QR code avis Google</p>
+        </div>
+
+        <!-- Prochaine offre : dupliquer .tarif-card ou .tarif-addon -->
       </div>
     </div>
   </div>
@@ -397,22 +538,12 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   </div>
 </section>
 
-<!-- MENTIONS LÉGALES -->
+<!-- MENTIONS LÉGALES (minimisé) -->
 <section id="mentions-legales">
-  <span class="s-tag rv">Légal</span>
-  <h2 class="rv">Mentions légales</h2>
-  <p><strong>Raison sociale :</strong> NICOSERVICES</p>
-  <p><strong>Marque commerciale :</strong> LocWeb</p>
-  <p><strong>Statut :</strong> Auto-entrepreneur</p>
-  <p><strong>SIRET :</strong> 909 584 138 00012</p>
-  <p><strong>Adresse :</strong> 34500 Béziers, France</p>
-  <p><strong>Téléphone :</strong> <a href="tel:0745531434" style="color:#E8281E;">07 45 53 14 34</a></p>
-  <p><strong>Responsable de publication :</strong> Nicolas — NICOSERVICES</p>
-  <p><strong>Hébergeur :</strong> Netlify, Inc. — 44 Montgomery Street, Suite 300, San Francisco, CA 94104, USA</p>
-  <h3>Données personnelles & RGPD</h3>
-  <p>Ce site ne collecte aucune donnée personnelle via un formulaire. Le contact se fait uniquement par téléphone ou WhatsApp, à votre initiative.</p>
-  <h3>Cookies</h3>
-  <p>Ce site utilise Google Analytics pour mesurer l'audience de manière anonyme. Aucun cookie publicitaire n'est déposé.</p>
+  <p><strong>NICOSERVICES</strong> (LocWeb) · Auto-entrepreneur · SIRET 909 584 138 00012 · 34500 Béziers, France</p>
+  <p>Responsable de publication : Nicolas — NICOSERVICES · <a href="tel:0745531434">07 45 53 14 34</a></p>
+  <p>Hébergeur : GitHub, Inc. — 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA</p>
+  <p>Aucune donnée personnelle collectée via un formulaire — contact uniquement par téléphone ou WhatsApp, à votre initiative. Google Analytics utilisé pour mesurer l'audience de manière anonyme, aucun cookie publicitaire.</p>
 </section>
 
 </main>
@@ -460,6 +591,19 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
   }
   window.addEventListener('scroll', update, { passive: true });
   update();
+})();
+
+(function(){
+  const toggle = document.querySelector('.tarif-toggle');
+  const tarifsSection = document.getElementById('tarifs');
+  if (!toggle || !tarifsSection) return;
+  toggle.querySelectorAll('.toggle-opt').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      toggle.querySelectorAll('.toggle-opt').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      tarifsSection.classList.toggle('mode-sans', btn.getAttribute('data-mode') === 'sans');
+    });
+  });
 })();
 
 (function(){
@@ -523,7 +667,9 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
 
   if (window.HeroBg) {
     HeroBg.initMetaballes('hero-canvas', { bg: '#0d0d0f', c: ['232,40,30','120,40,35','70,40,42'] });
-    HeroBg.initAurores('real-canvas-1', 'bronze-aurora');
+    HeroBg.initGrille('real-canvas-1', { bg: '#070b12', c: ['0,200,255','60,140,255','130,90,255'] });
+    HeroBg.initFumee('real-canvas-2', { bg: '#12060c', c: ['255,90,140','255,140,60','220,60,180'] });
+    HeroBg.initAurores('real-canvas-3', { bg: '#140d05', c: ['255,170,40','255,110,30','255,210,90'] });
   }
 
   if (window.TitreCyclique) {
