@@ -20,7 +20,7 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-BVL1W908TT');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -37,7 +37,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
 body::after{content:'';position:fixed;inset:0;z-index:9996;pointer-events:none;opacity:.035;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .scroll-bar{position:fixed;top:0;left:0;height:2.5px;background:var(--red);z-index:9995;width:0%;pointer-events:none;}
 
-/* ── CURTAIN (visible only si JS l'active — sinon jamais affiché) ── */
+/* ── CURTAIN ── */
 .curtain{position:fixed;inset:0;z-index:9997;background:var(--ink);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;}
 .curtain.show{opacity:1;pointer-events:auto;transition:opacity .5s ease;}
 .curtain.hide{opacity:0;transition:opacity .7s cubic-bezier(.6,0,.4,1);pointer-events:none;}
@@ -50,67 +50,62 @@ body.cursor-ready{cursor:none;}
 body.cursor-ready a,body.cursor-ready button,body.cursor-ready input{cursor:none;}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;height:60px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(247,245,240,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
-.logo-wrap{text-decoration:none;display:flex;align-items:center;gap:10px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(247,245,240,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
+.logo-wrap{text-decoration:none;display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .logo-icon{width:34px;height:34px;}
 .logo-icon svg{width:34px;height:34px;}
 .logo-text{font-family:var(--disp);font-weight:700;font-size:1.05rem;color:var(--ink);letter-spacing:-.02em;}
 .logo-text span{color:var(--red);}
-.nav-tel{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:white;font-weight:700;font-size:.76rem;padding:9px 16px;border-radius:100px;text-decoration:none;transition:background .2s;}
+.nav-right{display:flex;align-items:center;gap:26px;}
+.nav-links{display:flex;gap:26px;list-style:none;}
+.nav-links a{font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;position:relative;padding-bottom:2px;}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:var(--red);transition:width .25s cubic-bezier(.16,1,.3,1);}
+.nav-links a:hover::after{width:100%;}
+.nav-tel{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:white;font-weight:700;font-size:.76rem;padding:9px 16px;border-radius:100px;text-decoration:none;transition:background .2s;flex-shrink:0;}
 .nav-tel:hover{background:var(--red);}
+.nav-burger{display:none;background:none;border:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px 4px;}
+.nav-burger span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .25s;}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-burger.open span:nth-child(2){opacity:0;}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile-panel{position:fixed;top:64px;left:0;right:0;z-index:499;background:var(--paper);max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.16,1,.3,1);}
+.nav-mobile-panel.open{max-height:260px;border-bottom:1px solid var(--line);}
+.nav-mobile-panel-inner{display:flex;flex-direction:column;padding:8px 20px 20px;}
+.nav-mobile-panel a{font-family:var(--disp);font-size:1.1rem;font-weight:600;color:var(--ink);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--line);}
 @media(min-width:768px){nav{padding:0 5vw;}}
+@media(max-width:860px){.nav-links{display:none;}.nav-burger{display:flex;}}
+@media(min-width:861px){.nav-mobile-panel{display:none;}}
 
 /* ── HEADER DE SECTION ÉDITORIAL ── */
 .s-head{display:flex;gap:18px;align-items:flex-start;margin-bottom:32px;}
 .sec-no{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,6vw,3.6rem);line-height:.8;flex-shrink:0;color:transparent;-webkit-text-stroke:1.5px rgba(232,40,30,.4);letter-spacing:-.03em;}
-#preuve .sec-no,#hero .sec-no{-webkit-text-stroke-color:rgba(255,255,255,.3);}
+#preuve .sec-no,#realisations .sec-no,#contact .sec-no{-webkit-text-stroke-color:rgba(255,255,255,.3);}
 .s-tag{font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:var(--red);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-weight:700;}
 h2{font-family:var(--disp);font-size:clamp(1.9rem,5.2vw,3.4rem);font-weight:700;line-height:1.04;letter-spacing:-.03em;margin-bottom:8px;color:var(--ink);}
 h2 em{font-style:normal;color:var(--red);}
 .s-sub{font-size:.92rem;color:#7a7770;line-height:1.75;max-width:480px;}
 @media(max-width:600px){.s-head{gap:12px;}.sec-no{font-size:2rem;}}
 
-/* ── HERO ── */
+/* ── HERO (minimal) ── */
 #hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:84px 20px 40px;position:relative;overflow:hidden;background:var(--ink);}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 .hero-vignette{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 100%,rgba(13,13,15,.8) 0%,rgba(13,13,15,.2) 45%,transparent 70%);}
-.hero-inner{position:relative;z-index:1;max-width:600px;margin:0 auto;width:100%;}
+.hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;width:100%;}
 .hero-kicker{display:flex;align-items:center;gap:10px;margin-bottom:26px;}
 .hero-kicker .ln{width:26px;height:1px;background:var(--red);}
 .hero-kicker span{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.16em;}
-.hero-title{font-family:var(--disp);font-size:clamp(2.6rem,8.4vw,5.2rem);font-weight:700;line-height:.98;letter-spacing:-.04em;color:#fff;margin-bottom:18px;}
+.hero-title{font-family:var(--disp);font-size:clamp(2.8rem,9vw,5.6rem);font-weight:700;line-height:.98;letter-spacing:-.04em;color:#fff;margin-bottom:22px;}
 .hero-title em{font-style:normal;color:var(--red);}
-.hero-sub{font-size:clamp(.92rem,2vw,1rem);color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:16px;max-width:440px;}
-.hero-cycle{font-size:.86rem;color:rgba(255,255,255,.5);margin-bottom:26px;font-family:var(--sans);}
-.titre-cyclique{color:var(--red);font-weight:700;display:inline-block;}
-.hero-tel{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;font-weight:700;color:#fff;text-decoration:none;margin-bottom:26px;padding:11px 4px;border-bottom:1px solid rgba(255,255,255,.25);transition:border-color .2s,color .2s;}
-.hero-tel:hover{border-color:var(--red);color:var(--red);}
+.hero-sub{font-size:clamp(.92rem,2vw,1rem);color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:36px;max-width:440px;}
+.hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;}
+.btn-hero-primary{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:white;font-weight:700;font-size:.92rem;padding:16px 28px;border-radius:100px;text-decoration:none;box-shadow:0 8px 28px rgba(232,40,30,.3);transition:transform .2s;}
+.btn-hero-ghost{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25);font-weight:600;font-size:.92rem;padding:16px 28px;border-radius:100px;text-decoration:none;transition:border-color .2s,color .2s;}
+.btn-hero-ghost:hover{border-color:var(--red);color:var(--red);}
 .scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;}
 .scroll-cue span{font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.4);}
 .scroll-cue .bar{width:1px;height:34px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:cuepulse 1.8s ease-in-out infinite;}
 @keyframes cuepulse{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}50.01%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
 @media(max-width:600px){.scroll-cue{display:none;}}
-
-.hero-form{background:var(--white);border-radius:20px;padding:24px;box-shadow:0 30px 70px rgba(0,0,0,.45);margin-bottom:20px;}
-.form-title{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#8a8780;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-.form-title::before{content:'';width:12px;height:1px;background:var(--red);}
-.form-fields{display:flex;flex-direction:column;gap:10px;}
-.field{position:relative;}
-.field input{width:100%;background:var(--paper);border:1.5px solid transparent;color:var(--ink);font-family:var(--sans);font-size:.95rem;font-weight:500;padding:14px 16px 14px 46px;border-radius:12px;outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;}
-.field input::placeholder{color:rgba(13,13,15,.32);font-weight:400;}
-.field input:focus{border-color:var(--red);background:#fff;box-shadow:0 0 0 3px var(--red-soft);}
-.field-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1rem;pointer-events:none;}
-.btn-submit-hero{width:100%;background:var(--red);color:white;font-family:var(--sans);font-weight:800;font-size:1rem;padding:17px;border:none;cursor:pointer;border-radius:14px;box-shadow:0 6px 28px rgba(232,40,30,.35);transition:transform .2s,box-shadow .2s;margin-top:4px;letter-spacing:-.01em;}
-.btn-submit-hero:hover{box-shadow:0 10px 36px rgba(232,40,30,.45);}
-.form-reassurance{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
-.reassurance-item{display:flex;align-items:center;gap:6px;font-size:.72rem;color:#7a7770;font-weight:500;}
-.reassurance-item::before{content:'✓';color:#16a34a;font-weight:800;font-size:.8rem;}
-
-.rgpd-check{margin-top:10px;display:flex;align-items:flex-start;gap:8px;}
-.rgpd-check input{margin-top:3px;accent-color:var(--red);flex-shrink:0;width:16px;height:16px;}
-.rgpd-check label{font-size:.7rem;color:#8a8780;line-height:1.5;cursor:pointer;}
-.rgpd-check a{color:var(--red);text-decoration:none;}
-.rgpd-check a:hover{text-decoration:underline;}
 
 /* ── SERVICES : LISTE ÉDITORIALE ── */
 #services-liste{background:var(--paper);padding:64px 20px;}
@@ -180,34 +175,47 @@ section{padding:76px 20px;position:relative;}
 .step-s p{font-size:.82rem;color:#7a7770;line-height:1.7;}
 .step-badge{display:inline-block;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--red-soft);border:1px solid rgba(232,40,30,.2);color:var(--red);padding:2px 8px;border-radius:100px;margin-left:8px;vertical-align:middle;}
 
-/* ── RÉALISATIONS ── */
-.mockup-wrap{padding:64px 20px;background:var(--paper);}
-.browser{background:#efece4;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(13,13,15,.14);border:1px solid var(--line);transition:transform .15s linear,box-shadow .4s;transform-style:preserve-3d;perspective:1200px;will-change:transform;}
-.browser:hover{box-shadow:0 30px 80px rgba(13,13,15,.2);}
-.browser-bar{background:#e4e1d8;padding:11px 14px;display:flex;align-items:center;gap:8px;}
-.browser-dots{display:flex;gap:5px;}
-.browser-dot{width:10px;height:10px;border-radius:50%;}
-.browser-dot:nth-child(1){background:#ff5f57;}
-.browser-dot:nth-child(2){background:#febc2e;}
-.browser-dot:nth-child(3){background:#28c840;}
-.browser-url{flex:1;background:white;border-radius:6px;padding:4px 10px;font-size:.68rem;color:#8a8780;font-family:var(--sans);}
-.browser-iframe{width:100%;height:340px;border:none;display:block;pointer-events:none;}
-.mockup-cta{text-align:center;margin-top:14px;font-size:.75rem;color:#8a8780;}
-.mockup-cta a{color:var(--red);font-weight:600;text-decoration:none;}
-@media(min-width:768px){.mockup-wrap{padding:64px 5vw;}.browser-iframe{height:420px;}}
+/* ── RÉALISATIONS : GALERIE HORIZONTALE (hero-only, animée, native) ── */
+#realisations{background:var(--ink);}
+#realisations h2{color:#fff;}
+#realisations .s-sub{color:rgba(255,255,255,.5);}
+.galerie-horiz-wrap{height:280vh;position:relative;}
+.galerie-horiz-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;}
+.galerie-horiz-track{display:flex;gap:24px;will-change:transform;padding:0 20px;}
+@media(min-width:768px){.galerie-horiz-track{padding:0 5vw;}}
 
-/* ── OFFRE ── */
-#offre{background:var(--paper2);}
-.prix-card{background:var(--white);border-radius:24px;padding:36px 30px;max-width:440px;box-shadow:0 30px 70px rgba(13,13,15,.08);}
-.prix-main{font-family:var(--disp);font-size:4.4rem;font-weight:700;color:var(--ink);letter-spacing:-.04em;line-height:1;margin-bottom:6px;}
-.prix-main .cur{font-size:1.6rem;color:var(--red);vertical-align:super;}
-.prix-freq{font-size:.78rem;color:#8a8780;margin-bottom:26px;display:block;}
-.prix-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:30px;}
-.prix-list li{font-size:.85rem;display:flex;gap:10px;align-items:flex-start;line-height:1.4;color:#3a3834;}
-.prix-list li::before{content:'→';color:var(--red);flex-shrink:0;font-weight:700;}
-.btn-prix{display:block;text-align:center;background:var(--red);color:white;font-weight:800;font-size:.95rem;padding:17px;border-radius:100px;text-decoration:none;box-shadow:0 8px 28px rgba(232,40,30,.3);transition:opacity .2s,transform .2s;}
-.btn-prix:hover{opacity:.9;}
-.prix-note{font-size:.72rem;color:#8a8780;margin-top:16px;text-align:center;line-height:1.6;}
+.real-item{flex:0 0 min(88vw,880px);height:min(76vh,640px);position:relative;border-radius:22px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.4);}
+.real-item-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+.mv-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:56px;font-family:'Inter',sans-serif;}
+.mv-preview .mv-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#c08552;margin-bottom:18px;}
+.mv-preview .mv-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.05;color:#f3efe6;margin-bottom:20px;}
+.mv-preview .mv-cycle{font-style:italic;color:#c08552;display:inline-block;}
+.mv-preview .mv-sub{font-size:.94rem;line-height:1.7;color:#b8b0a0;max-width:420px;margin-bottom:26px;font-weight:300;}
+.mv-preview .mv-badges{display:flex;flex-wrap:wrap;gap:10px;}
+.mv-preview .mv-badge{background:rgba(243,239,230,.06);border:1px solid rgba(243,239,230,.16);border-radius:100px;padding:8px 15px;font-size:.75rem;color:#e8e2d6;}
+
+.real-more{flex:0 0 min(50vw,340px);height:min(76vh,640px);border-radius:22px;border:1.5px dashed rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;text-align:center;padding:40px;}
+.real-more p{font-size:.85rem;color:rgba(255,255,255,.4);line-height:1.7;max-width:220px;}
+
+.demo-disclaimer{font-style:italic;font-size:.78rem;color:rgba(255,255,255,.35);margin-top:24px;padding:0 20px;}
+@media(min-width:768px){.demo-disclaimer{padding:0 5vw;}}
+
+/* ── TARIFS : même traitement galerie que réalisations ── */
+#tarifs{background:var(--paper2);}
+#tarifs .galerie-horiz-sticky{background:transparent;}
+.tarif-card{flex:0 0 min(88vw,440px);height:min(78vh,660px);background:var(--ink);border-radius:24px;padding:44px 36px;box-shadow:0 30px 80px rgba(13,13,15,.25);display:flex;flex-direction:column;color:#fff;}
+.tarif-card .prix-main{font-family:var(--disp);font-size:4.6rem;font-weight:700;letter-spacing:-.04em;line-height:1;margin-bottom:6px;}
+.tarif-card .prix-main .cur{font-size:1.6rem;color:var(--red);vertical-align:super;}
+.tarif-card .prix-freq{font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:28px;display:block;}
+.tarif-card .prix-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:auto;flex:1;}
+.tarif-card .prix-list li{font-size:.85rem;display:flex;gap:10px;align-items:flex-start;line-height:1.4;color:rgba(255,255,255,.75);}
+.tarif-card .prix-list li::before{content:'→';color:var(--red);flex-shrink:0;font-weight:700;}
+.tarif-card .btn-prix{display:block;text-align:center;background:var(--red);color:white;font-weight:800;font-size:.95rem;padding:17px;border-radius:100px;text-decoration:none;margin-top:24px;transition:opacity .2s;}
+.tarif-card .btn-prix:hover{opacity:.9;}
+.tarif-card .prix-note{font-size:.72rem;color:rgba(255,255,255,.4);margin-top:16px;text-align:center;line-height:1.6;}
+.tarif-more{flex:0 0 min(50vw,320px);height:min(78vh,660px);border-radius:24px;border:1.5px dashed var(--line);display:flex;align-items:center;justify-content:center;text-align:center;padding:40px;}
+.tarif-more p{font-size:.85rem;color:#9a9689;line-height:1.7;max-width:220px;}
 
 /* ── FAQ ── */
 #faq{background:var(--paper);}
@@ -222,13 +230,16 @@ section{padding:76px 20px;position:relative;}
 .faq-item.open .faq-a{max-height:220px;}
 .faq-a p{padding:0 4px 22px;font-size:.84rem;color:#7a7770;line-height:1.8;}
 
-/* ── CONTACT FINAL ── */
-#contact-final{background:var(--ink);text-align:center;}
-#contact-final h2{color:#fff;}
-#contact-final .s-sub{color:rgba(255,255,255,.5);margin:0 auto 32px;max-width:420px;}
-#contact-final .s-head{flex-direction:column;align-items:center;}
-.contact-final-form{max-width:420px;margin:0 auto;}
-.contact-final-form .hero-form{background:var(--white);}
+/* ── CONTACT (sans formulaire) ── */
+#contact{background:var(--ink);text-align:center;}
+#contact h2{color:#fff;}
+#contact .s-sub{color:rgba(255,255,255,.5);margin:0 auto 32px;max-width:420px;}
+#contact .s-head{flex-direction:column;align-items:center;}
+.contact-block{display:flex;flex-direction:column;align-items:center;gap:16px;}
+.contact-tel-big{display:inline-flex;align-items:center;gap:14px;background:var(--red);color:white;font-family:var(--disp);font-weight:700;font-size:clamp(1.4rem,4vw,2rem);padding:22px 40px;border-radius:100px;text-decoration:none;box-shadow:0 12px 40px rgba(232,40,30,.35);transition:transform .2s;}
+.contact-tel-big:hover{transform:translateY(-3px);}
+.contact-wa-big{display:inline-flex;align-items:center;gap:10px;background:transparent;border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:600;font-size:.95rem;padding:16px 30px;border-radius:100px;text-decoration:none;transition:border-color .2s;}
+.contact-wa-big:hover{border-color:#25D366;color:#25D366;}
 
 /* ── MENTIONS LÉGALES ── */
 #mentions-legales{background:var(--paper);border-top:1px solid var(--line);}
@@ -260,7 +271,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 .d1{transition-delay:.06s;}.d2{transition-delay:.12s;}.d3{transition-delay:.18s;}.d4{transition-delay:.24s;}.d5{transition-delay:.3s;}.d6{transition-delay:.36s;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 .ha{opacity:0;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) forwards;}
-.ha1{animation-delay:.15s;}.ha2{animation-delay:.3s;}.ha3{animation-delay:.46s;}.ha4{animation-delay:.62s;}.ha5{animation-delay:.78s;}
+.ha1{animation-delay:.15s;}.ha2{animation-delay:.3s;}.ha3{animation-delay:.46s;}.ha4{animation-delay:.62s;}
 
 .hsplit{opacity:1;}
 .word-rv{display:inline-block;opacity:0;transform:translateY(24px) rotate(2deg);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);}
@@ -280,8 +291,23 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     <div class="logo-icon"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text></svg></div>
     <span class="logo-text">Loc<span>Web</span></span>
   </a>
-  <a href="tel:0745531434" class="nav-tel" aria-label="Appeler LocWeb au 07 45 53 14 34">📞 07 45 53 14 34</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#tarifs">Tarifs</a></li>
+      <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:0745531434" class="nav-tel" aria-label="Appeler LocWeb au 07 45 53 14 34">📞 07 45 53 14 34</a>
+    <button class="nav-burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
 </nav>
+<div class="nav-mobile-panel" id="navMobilePanel">
+  <div class="nav-mobile-panel-inner">
+    <a href="#tarifs">Tarifs</a>
+    <a href="#realisations">Réalisations</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <main role="main">
@@ -291,33 +317,10 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   <div class="hero-inner">
     <div class="hero-kicker ha ha1"><div class="ln" aria-hidden="true"></div><span>Agence web — Béziers & toute la France</span></div>
     <h1 class="hero-title ha ha2"><span data-editable-zone="hero_titre_ligne1">Votre image en ligne,</span><br><em data-editable-zone="hero_titre_accent">on s'occupe de tout.</em></h1>
-    <p class="hero-sub ha ha3" data-editable-zone="hero_sous_titre">Site web, réseaux sociaux, fiche Google, supports print — une seule équipe, un seul interlocuteur. Vous, vous faites votre métier.</p>
-    <p class="hero-cycle ha ha3">On s'occupe de <span class="titre-cyclique" data-mots="[&quot;votre site web.&quot;,&quot;votre fiche Google.&quot;,&quot;vos réseaux sociaux.&quot;,&quot;vos supports print.&quot;]">votre site web.</span></p>
-    <a href="tel:0745531434" class="hero-tel ha ha3" data-cursor-label="Appeler" aria-label="Appeler maintenant">📞 07 45 53 14 34 — on vous rappelle aussi</a>
-    <div class="hero-form ha ha4">
-      <div class="form-title" data-editable-zone="hero_form_titre">Recevoir une proposition gratuite</div>
-      <form class="form-fields" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Formulaire de contact">
-        <input type="hidden" name="form-name" value="contact">
-        <input type="hidden" name="bot-field">
-        <div class="field">
-          <span class="field-icon" aria-hidden="true">👤</span>
-          <input type="text" name="prenom" placeholder="Votre prénom" required aria-label="Votre prénom">
-        </div>
-        <div class="field">
-          <span class="field-icon" aria-hidden="true">📞</span>
-          <input type="tel" name="telephone" placeholder="Votre téléphone" required aria-label="Votre numéro de téléphone">
-        </div>
-        <div class="rgpd-check">
-          <input type="checkbox" id="rgpd1" name="rgpd" required>
-          <label for="rgpd1">J'accepte que mes données soient utilisées uniquement pour être recontacté(e). Aucune donnée n'est revendue à des tiers. <a href="#mentions-legales">Mentions légales</a></label>
-        </div>
-        <button type="submit" class="btn-submit-hero">Je veux développer ma présence en ligne →</button>
-      </form>
-    </div>
-    <div class="form-reassurance ha ha5">
-      <div class="reassurance-item">Aucune carte requise</div>
-      <div class="reassurance-item">Vous voyez avant de payer</div>
-      <div class="reassurance-item">Sans engagement</div>
+    <p class="hero-sub ha ha3" data-editable-zone="hero_sous_titre">Site web, réseaux sociaux, fiche Google, supports print — une seule équipe, un seul interlocuteur.</p>
+    <div class="hero-cta-row ha ha4">
+      <a href="#realisations" class="btn-hero-primary">Voir nos réalisations →</a>
+      <a href="tel:0745531434" class="btn-hero-ghost" data-cursor-label="Appeler">📞 Appeler maintenant</a>
     </div>
   </div>
   <div class="scroll-cue" aria-hidden="true"><span>Scroll</span><div class="bar"></div></div>
@@ -419,7 +422,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     </div>
   </div>
   <div class="steps-simple">
-    <div class="step-s rvl d1"><div class="step-num" aria-hidden="true">01</div><div><h3>Vous nous appelez ou remplissez le formulaire <span class="step-badge">Jour 1</span></h3><p data-editable-zone="etape_1_desc">Nous vous posons quelques questions sur votre activité. 10 minutes suffisent.</p></div></div>
+    <div class="step-s rvl d1"><div class="step-num" aria-hidden="true">01</div><div><h3>Vous nous appelez <span class="step-badge">Jour 1</span></h3><p data-editable-zone="etape_1_desc">Nous vous posons quelques questions sur votre activité. 10 minutes suffisent.</p></div></div>
     <div class="step-s rvl d2"><div class="step-num" aria-hidden="true">02</div><div><h3>Nous créons votre identité en ligne <span class="step-badge">48h</span></h3><p data-editable-zone="etape_2_desc">Site, fiche Google, visuels — vous recevez un aperçu avant de payer quoi que ce soit.</p></div></div>
     <div class="step-s rvl d3"><div class="step-num" aria-hidden="true">03</div><div><h3>Vous validez, on met en ligne <span class="step-badge">Jour J</span></h3><p data-editable-zone="etape_3_desc">Ça vous plaît ? On publie le jour même. Sinon, vous ne payez rien.</p></div></div>
     <div class="step-s rvl d4"><div class="step-num" aria-hidden="true">04</div><div><h3>On reste à vos côtés <span class="step-badge">En continu</span></h3><p data-editable-zone="etape_4_desc">Modifications, mises à jour, nouveaux supports — on gère. Vous, vous faites votre métier.</p></div></div>
@@ -429,53 +432,79 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 <!-- CTA BAND 2 -->
 <div class="cta-band">
   <div class="cta-band-text"><strong>Votre présence en ligne peut être prête en 48h.</strong></div>
-  <a href="#contact-final" class="cta-band-btn">Je démarre →</a>
+  <a href="#contact" class="cta-band-btn">Je démarre →</a>
 </div>
 
 <!-- RÉALISATIONS -->
-<div class="mockup-wrap">
+<section id="realisations">
   <div class="s-head">
     <span class="sec-no" aria-hidden="true">04</span>
     <div>
       <div class="s-tag rv">Nos réalisations</div>
-      <h2 class="hsplit" style="font-size:clamp(1.6rem,4.4vw,2.6rem);">Un exemple de ce que<br><em>nous créons pour vous.</em></h2>
-      <p class="s-sub rv">Un vrai site professionnel, adapté au métier de votre client. Livré en 48h.</p>
+      <h2 class="hsplit">Ce qu'on sait<br><em>construire pour vous.</em></h2>
+      <p class="s-sub rv">Chaque site a son propre univers visuel — voici quelques exemples, en mouvement.</p>
     </div>
   </div>
-  <div class="browser rv" data-cursor-label="Voir le site">
-    <div class="browser-bar" aria-hidden="true">
-      <div class="browser-dots"><div class="browser-dot"></div><div class="browser-dot"></div><div class="browser-dot"></div></div>
-      <div class="browser-url">color-doc.fr — Peintre professionnel à Béziers</div>
+  <div class="galerie-horiz-wrap">
+    <div class="galerie-horiz-sticky">
+      <div class="galerie-horiz-track">
+        <div class="real-item">
+          <canvas class="real-item-canvas" id="real-canvas-1" aria-hidden="true"></canvas>
+          <div class="mv-preview">
+            <span class="mv-tag">Béziers — trois générations d'artisans</span>
+            <div class="mv-title">La rénovation,<br><span class="titre-cyclique mv-cycle" data-mots="[&quot;sans compromis.&quot;,&quot;intemporelle.&quot;,&quot;sur mesure.&quot;]">sans compromis.</span></div>
+            <p class="mv-sub">Charpente et rénovation du bâti ancien à Béziers. Un savoir-faire artisanal porté par trois générations.</p>
+            <div class="mv-badges">
+              <span class="mv-badge">★ 4.9 sur Google</span>
+              <span class="mv-badge">27 ans d'expérience</span>
+              <span class="mv-badge">Devis gratuit</span>
+            </div>
+          </div>
+        </div>
+        <!-- Prochain exemple : dupliquer .real-item avec un nouveau canvas id (real-canvas-2, etc.) -->
+        <div class="real-more">
+          <p>D'autres univers arrivent bientôt.</p>
+        </div>
+      </div>
     </div>
-    <iframe class="browser-iframe" src="https://color-doc.fr" title="Exemple de site réalisé par LocWeb — Color D'Oc, peintre à Béziers" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
   </div>
-  <p class="mockup-cta rv">Site réalisé par LocWeb · <a href="https://color-doc.fr" target="_blank" rel="noopener">Voir en plein écran →</a></p>
-</div>
+  <p class="demo-disclaimer">Les sites présentés sont des démonstrations.</p>
+</section>
 
-<!-- OFFRE -->
-<section id="offre">
+<!-- TARIFS -->
+<section id="tarifs">
   <div class="s-head">
     <span class="sec-no" aria-hidden="true">05</span>
     <div>
-      <div class="s-tag rv">L'offre site web</div>
+      <div class="s-tag rv">Nos tarifs</div>
       <h2 class="hsplit">Un site professionnel<br><em>pour 49€/mois.</em></h2>
-      <p class="s-sub rv">Création offerte. Vous payez uniquement ce qui le fait tourner. Pour les autres services, contactez-nous — on établit un devis personnalisé.</p>
+      <p class="s-sub rv">Création offerte. Vous payez uniquement ce qui le fait tourner.</p>
     </div>
   </div>
-  <div class="prix-card rv">
-    <div class="prix-main"><span class="cur">€</span><span data-editable-zone="prix_valeur">49</span></div>
-    <span class="prix-freq" data-editable-zone="prix_frequence">/mois · résiliable à tout moment</span>
-    <ul class="prix-list">
-      <li data-editable-zone="prix_avantage_1">Création de votre site sur mesure offerte</li>
-      <li data-editable-zone="prix_avantage_2">Votre adresse internet (.fr ou .com) incluse</li>
-      <li data-editable-zone="prix_avantage_3">Site en ligne 24h/24, jamais en panne</li>
-      <li data-editable-zone="prix_avantage_4">S'affiche parfaitement sur téléphone</li>
-      <li data-editable-zone="prix_avantage_5">Modifications incluses — on s'en occupe</li>
-      <li data-editable-zone="prix_avantage_6">Support direct par WhatsApp</li>
-      <li data-editable-zone="prix_avantage_7">Vos clients vous trouvent sur Google</li>
-    </ul>
-    <a href="#contact-final" class="btn-prix">Obtenir mon site →</a>
-    <p class="prix-note" data-editable-zone="prix_note">Pas de contrat. Résiliable à tout moment par simple message.</p>
+  <div class="galerie-horiz-wrap" style="height:220vh;">
+    <div class="galerie-horiz-sticky">
+      <div class="galerie-horiz-track">
+        <div class="tarif-card">
+          <div class="prix-main"><span class="cur">€</span><span data-editable-zone="prix_valeur">49</span></div>
+          <span class="prix-freq" data-editable-zone="prix_frequence">/mois · résiliable à tout moment</span>
+          <ul class="prix-list">
+            <li data-editable-zone="prix_avantage_1">Création de votre site sur mesure offerte</li>
+            <li data-editable-zone="prix_avantage_2">Votre adresse internet (.fr ou .com) incluse</li>
+            <li data-editable-zone="prix_avantage_3">Site en ligne 24h/24, jamais en panne</li>
+            <li data-editable-zone="prix_avantage_4">S'affiche parfaitement sur téléphone</li>
+            <li data-editable-zone="prix_avantage_5">Modifications incluses — on s'en occupe</li>
+            <li data-editable-zone="prix_avantage_6">Support direct par WhatsApp</li>
+            <li data-editable-zone="prix_avantage_7">Vos clients vous trouvent sur Google</li>
+          </ul>
+          <a href="tel:0745531434" class="btn-prix">Appeler pour démarrer →</a>
+          <p class="prix-note" data-editable-zone="prix_note">Pas de contrat. Résiliable à tout moment par simple message.</p>
+        </div>
+        <!-- Prochaine offre : dupliquer .tarif-card (ex : site premium, e-commerce...) -->
+        <div class="tarif-more">
+          <p>D'autres formules à venir.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -503,41 +532,19 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   <a href="tel:0745531434" class="cta-band-btn" data-cursor-label="Appeler" aria-label="Appeler LocWeb maintenant">📞 Appeler maintenant →</a>
 </div>
 
-<!-- CONTACT FINAL -->
-<section id="contact-final">
+<!-- CONTACT -->
+<section id="contact">
   <div class="s-head">
     <span class="sec-no" aria-hidden="true">07</span>
     <div>
-      <div class="s-tag rv" style="justify-content:center;">Démarrer</div>
-      <h2 class="hsplit">Dites-nous ce que<br><em>vous faites.</em></h2>
-      <p class="s-sub rv">Nous vous rappelons dans la journée avec une proposition adaptée.</p>
+      <div class="s-tag rv" style="justify-content:center;">Discutons</div>
+      <h2 class="hsplit">Parlons de<br><em>votre projet.</em></h2>
+      <p class="s-sub rv">Un appel suffit. Pas de formulaire, pas d'attente.</p>
     </div>
   </div>
-  <div class="contact-final-form rv">
-    <div class="hero-form">
-      <form class="form-fields" name="contact-final" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Formulaire de contact">
-        <input type="hidden" name="form-name" value="contact-final">
-        <input type="hidden" name="bot-field">
-        <div class="field">
-          <span class="field-icon" aria-hidden="true">👤</span>
-          <input type="text" name="prenom" placeholder="Votre prénom" required aria-label="Votre prénom">
-        </div>
-        <div class="field">
-          <span class="field-icon" aria-hidden="true">📞</span>
-          <input type="tel" name="telephone" placeholder="Votre téléphone" required aria-label="Votre numéro de téléphone">
-        </div>
-        <div class="rgpd-check">
-          <input type="checkbox" id="rgpd2" name="rgpd" required>
-          <label for="rgpd2">J'accepte que mes données soient utilisées uniquement pour être recontacté(e). <a href="#mentions-legales">Mentions légales</a></label>
-        </div>
-        <button type="submit" class="btn-submit-hero">Je veux développer ma présence en ligne →</button>
-      </form>
-    </div>
-    <div class="form-reassurance">
-      <div class="reassurance-item">Aucune carte requise</div>
-      <div class="reassurance-item">Vous voyez avant de payer</div>
-      <div class="reassurance-item">Sans engagement</div>
-    </div>
+  <div class="contact-block rv">
+    <a href="tel:0745531434" class="contact-tel-big" data-cursor-label="Appeler">📞 07 45 53 14 34</a>
+    <a href="https://wa.me/33745531434" class="contact-wa-big" target="_blank" rel="noopener">💬 Discuter sur WhatsApp</a>
   </div>
 </section>
 
@@ -554,8 +561,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   <p><strong>Responsable de publication :</strong> Nicolas — NICOSERVICES</p>
   <p><strong>Hébergeur :</strong> Netlify, Inc. — 44 Montgomery Street, Suite 300, San Francisco, CA 94104, USA</p>
   <h3>Données personnelles & RGPD</h3>
-  <p>Les données collectées via le formulaire de contact (prénom, téléphone) sont utilisées uniquement pour répondre à votre demande de contact. Elles sont conservées 12 mois maximum. Vous pouvez demander leur suppression en nous contactant au 07 45 53 14 34.</p>
-  <p>Aucune donnée n'est transmise à des tiers ni utilisée à des fins commerciales sans votre consentement explicite.</p>
+  <p>Ce site ne collecte aucune donnée personnelle via un formulaire. Le contact se fait uniquement par téléphone ou WhatsApp, à votre initiative.</p>
   <h3>Cookies</h3>
   <p>Ce site utilise Google Analytics pour mesurer l'audience de manière anonyme. Aucun cookie publicitaire n'est déposé.</p>
 </section>
@@ -570,7 +576,6 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   <p>Agence web Béziers — Votre image en ligne, on s'occupe de tout · Partout en France</p>
   <div class="footer-links">
     <a href="#mentions-legales">Mentions légales</a>
-    <a href="#mentions-legales">Politique de confidentialité</a>
     <a href="https://locweb.fr">© 2025 LocWeb</a>
     <a href="https://admin.locweb.fr">🔒 Administration</a>
   </div>
@@ -583,8 +588,6 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 <script>
 const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Rideau d'intro : invisible par défaut (opacity:0;pointer-events:none en CSS) —
-// si ce script ne tourne jamais, le rideau ne s'affiche tout simplement pas.
 (function(){
   const curtain = document.getElementById('curtain');
   if (!curtain || reducedMotionMQ) { if(curtain) curtain.remove(); return; }
@@ -598,7 +601,6 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
   });
 })();
 
-// Barre de progression de scroll.
 (function(){
   const bar = document.getElementById('scroll-bar');
   if (!bar) return;
@@ -611,8 +613,19 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
   update();
 })();
 
-// Découpe un titre non-éditable en mots pour un reveal séquencé (n'affecte jamais
-// les zones data-editable-zone : ces titres sont du texte marketing fixe, jamais édité via Supabase).
+(function(){
+  const burger = document.getElementById('navBurger');
+  const panel = document.getElementById('navMobilePanel');
+  if (!burger || !panel) return;
+  function close(){ burger.classList.remove('open'); burger.setAttribute('aria-expanded','false'); panel.classList.remove('open'); }
+  burger.addEventListener('click', () => {
+    const open = burger.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.classList.toggle('open', open);
+  });
+  panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+})();
+
 function splitReveal(root){
   let i=0;
   function walk(node){
@@ -636,8 +649,6 @@ function splitReveal(root){
 }
 if(!reducedMotionMQ){ document.querySelectorAll('.hsplit').forEach(splitReveal); }
 
-// Anime un chiffre-clé de 0 à sa valeur actuelle (déjà à jour depuis Supabase à ce
-// stade : ce reveal ne se déclenche qu'au scroll, bien après le chargement du contenu).
 function animateCount(el){
   const textNode=Array.from(el.childNodes).find(n=>n.nodeType===3 && n.textContent.trim()!=='');
   if(!textNode) return;
@@ -685,10 +696,10 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
   };
 </script>
 <script src="contenu-loader.js"></script>
-<script src="contact-form.js"></script>
 <script src="hero-backgrounds.js"></script>
 <script src="cursor-premium.js"></script>
 <script src="titre-cyclique.js"></script>
+<script src="galerie-horizontale.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function(){
@@ -696,10 +707,15 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
 
   if (window.HeroBg) {
     HeroBg.initMetaballes('hero-canvas', { bg: '#0d0d0f', c: ['232,40,30','120,40,35','70,40,42'] });
+    HeroBg.initAurores('real-canvas-1', 'bronze-aurora');
   }
 
   if (window.TitreCyclique) {
-    TitreCyclique.init('.titre-cyclique', { intervalle: 2600 });
+    TitreCyclique.init('.titre-cyclique', { intervalle: 2800 });
+  }
+
+  if (window.GalerieHorizontale) {
+    GalerieHorizontale.init('.galerie-horiz-wrap');
   }
 
   if (window.CursorPremium && !(window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches)) {
@@ -716,7 +732,7 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
   const isTouch = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
   if (!reduced && !isTouch) {
-    document.querySelectorAll('.btn-submit-hero, .btn-prix, .cta-band-btn').forEach((el) => {
+    document.querySelectorAll('.btn-hero-primary, .btn-prix, .cta-band-btn, .contact-tel-big').forEach((el) => {
       el.addEventListener('mousemove', (e) => {
         const r = el.getBoundingClientRect();
         const x = e.clientX - r.left - r.width / 2;
@@ -727,7 +743,6 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
     });
   }
 
-  // Parallax léger du fond de hero (le canvas suit le scroll plus lentement que le contenu).
   if (!reduced) {
     const heroCanvas = document.getElementById('hero-canvas');
     const heroSection = document.getElementById('hero');
@@ -737,19 +752,6 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
         heroCanvas.style.transform = `translateY(${p * 60}px)`;
       }, { passive: true });
     }
-  }
-
-  // Tilt 3D léger sur la maquette de site (souris uniquement).
-  if (!reduced && !isTouch) {
-    document.querySelectorAll('.browser').forEach((el) => {
-      el.addEventListener('mousemove', (e) => {
-        const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top) / r.height - 0.5;
-        el.style.transform = `perspective(1200px) rotateX(${y * -6}deg) rotateY(${x * 8}deg) translateY(-6px)`;
-      });
-      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
-    });
   }
 })();
 </script>
