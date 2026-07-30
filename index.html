@@ -85,6 +85,11 @@ h2 em{font-style:normal;color:var(--red);}
 .titre-cyclique{color:var(--red);font-weight:700;display:inline-block;}
 .hero-tel{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;font-weight:700;color:#fff;text-decoration:none;margin-bottom:26px;padding:11px 4px;border-bottom:1px solid rgba(255,255,255,.25);transition:border-color .2s,color .2s;}
 .hero-tel:hover{border-color:var(--red);color:var(--red);}
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.scroll-cue span{font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.4);}
+.scroll-cue .bar{width:1px;height:34px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:cuepulse 1.8s ease-in-out infinite;}
+@keyframes cuepulse{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}50.01%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+@media(max-width:600px){.scroll-cue{display:none;}}
 
 .hero-form{background:var(--white);border-radius:20px;padding:24px;box-shadow:0 30px 70px rgba(0,0,0,.45);margin-bottom:20px;}
 .form-title{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#8a8780;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
@@ -154,15 +159,20 @@ section{padding:76px 20px;position:relative;}
 .stat-num{font-family:var(--disp);font-size:2.6rem;font-weight:700;color:white;letter-spacing:-.03em;line-height:1;display:block;margin-bottom:6px;}
 .stat-num span{color:var(--red);}
 .stat-lbl{font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);}
-.temo-list{display:flex;flex-direction:column;gap:1px;background:var(--line-dark);}
-.temo{background:var(--ink);padding:26px 22px;position:relative;transition:background .25s;}
-.temo:hover{background:rgba(255,255,255,.03);}
-.temo::before{content:'"';font-family:var(--disp);position:absolute;top:6px;right:20px;font-size:4.5rem;color:rgba(255,255,255,.06);line-height:1;}
-.temo-stars{color:var(--red);font-size:.85rem;margin-bottom:10px;letter-spacing:2px;}
-.temo p{font-size:.85rem;line-height:1.75;color:rgba(255,255,255,.72);margin-bottom:14px;position:relative;}
-.temo-who strong{font-size:.82rem;font-weight:700;color:white;display:block;margin-bottom:1px;}
+.galerie-horiz-wrap{height:260vh;position:relative;margin-top:44px;}
+.galerie-horiz-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;}
+.galerie-horiz-track{display:flex;gap:22px;will-change:transform;padding:0 20px;}
+@media(min-width:768px){.galerie-horiz-track{padding:0 5vw;}}
+.temo{background:var(--ink);border:1px solid var(--line-dark);border-radius:20px;padding:30px 26px;position:relative;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s;flex:0 0 min(84vw,420px);}
+.temo:hover{transform:translateY(-8px);border-color:rgba(232,40,30,.35);}
+.temo::before{content:'"';font-family:var(--disp);position:absolute;top:2px;right:22px;font-size:5rem;color:rgba(255,255,255,.07);line-height:1;}
+.temo-stars{color:var(--red);font-size:.9rem;margin-bottom:12px;letter-spacing:2px;}
+.temo p{font-size:.92rem;line-height:1.8;color:rgba(255,255,255,.78);margin-bottom:18px;position:relative;min-height:6.5em;}
+.temo-who strong{font-size:.85rem;font-weight:700;color:white;display:block;margin-bottom:1px;}
 .temo-who span{font-size:.68rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.06em;}
-@media(min-width:768px){.temo-list{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;}}
+.galerie-hint{display:flex;align-items:center;gap:8px;margin-top:18px;font-size:.68rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.1em;}
+.galerie-hint span{display:inline-block;animation:hintslide 1.6s ease-in-out infinite;}
+@keyframes hintslide{0%,100%{transform:translateX(0);}50%{transform:translateX(6px);}}
 
 /* ── COMMENT ── */
 #comment{background:var(--paper2);}
@@ -177,8 +187,8 @@ section{padding:76px 20px;position:relative;}
 
 /* ── RÉALISATIONS ── */
 .mockup-wrap{padding:64px 20px;background:var(--paper);}
-.browser{background:#efece4;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(13,13,15,.14);border:1px solid var(--line);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;}
-.browser:hover{transform:translateY(-8px);box-shadow:0 30px 80px rgba(13,13,15,.2);}
+.browser{background:#efece4;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(13,13,15,.14);border:1px solid var(--line);transition:transform .15s linear,box-shadow .4s;transform-style:preserve-3d;perspective:1200px;will-change:transform;}
+.browser:hover{box-shadow:0 30px 80px rgba(13,13,15,.2);}
 .browser-bar{background:#e4e1d8;padding:11px 14px;display:flex;align-items:center;gap:8px;}
 .browser-dots{display:flex;gap:5px;}
 .browser-dot{width:10px;height:10px;border-radius:50%;}
@@ -315,6 +325,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
       <div class="reassurance-item">Sans engagement</div>
     </div>
   </div>
+  <div class="scroll-cue" aria-hidden="true"><span>Scroll</span><div class="bar"></div></div>
 </section>
 
 <!-- SERVICES LISTE -->
@@ -389,11 +400,16 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     <div class="stat-box rv d3"><span class="stat-num" data-editable-zone="stat_3_valeur">0<span>€</span></span><span class="stat-lbl" data-editable-zone="stat_3_label">Création offerte</span></div>
     <div class="stat-box rv d4"><span class="stat-num" data-editable-zone="stat_4_valeur">49<span>€</span></span><span class="stat-lbl" data-editable-zone="stat_4_label">Par mois tout inclus</span></div>
   </div>
-  <div class="temo-list">
-    <div class="temo rvs d1"><div class="temo-stars" aria-label="5 étoiles">★★★★★</div><p data-editable-zone="temoin_1_texte">"J'avais honte de ne pas avoir de site depuis des années. En deux jours c'était réglé. Maintenant mes clients me retrouvent facilement."</p><div class="temo-who"><strong data-editable-zone="temoin_1_nom">Isabelle M.</strong><span data-editable-zone="temoin_1_role">Voyante · Toulouse</span></div></div>
-    <div class="temo rvs d2"><div class="temo-stars" aria-label="5 étoiles">★★★★★</div><p data-editable-zone="temoin_2_texte">"Le premier client venu via ma page a largement couvert les 49€ du mois. Je n'ai rien eu à faire à part valider le design."</p><div class="temo-who"><strong data-editable-zone="temoin_2_nom">Karim B.</strong><span data-editable-zone="temoin_2_role">Peintre · Lyon</span></div></div>
-    <div class="temo rvs d3"><div class="temo-stars" aria-label="5 étoiles">★★★★★</div><p data-editable-zone="temoin_3_texte">"Mes clients me disent qu'ils m'ont trouvée sur internet et que ma page les a rassurés. Avant ils ne trouvaient rien."</p><div class="temo-who"><strong data-editable-zone="temoin_3_nom">Sophie R.</strong><span data-editable-zone="temoin_3_role">Naturopathe · Bordeaux</span></div></div>
+  <div class="galerie-horiz-wrap">
+    <div class="galerie-horiz-sticky">
+      <div class="galerie-horiz-track">
+        <div class="temo galerie-horiz-item rvs d1"><div class="temo-stars" aria-label="5 étoiles">★★★★★</div><p data-editable-zone="temoin_1_texte">"J'avais honte de ne pas avoir de site depuis des années. En deux jours c'était réglé. Maintenant mes clients me retrouvent facilement."</p><div class="temo-who"><strong data-editable-zone="temoin_1_nom">Isabelle M.</strong><span data-editable-zone="temoin_1_role">Voyante · Toulouse</span></div></div>
+        <div class="temo galerie-horiz-item rvs d2"><div class="temo-stars" aria-label="5 étoiles">★★★★★</div><p data-editable-zone="temoin_2_texte">"Le premier client venu via ma page a largement couvert les 49€ du mois. Je n'ai rien eu à faire à part valider le design."</p><div class="temo-who"><strong data-editable-zone="temoin_2_nom">Karim B.</strong><span data-editable-zone="temoin_2_role">Peintre · Lyon</span></div></div>
+        <div class="temo galerie-horiz-item rvs d3"><div class="temo-stars" aria-label="5 étoiles">★★★★★</div><p data-editable-zone="temoin_3_texte">"Mes clients me disent qu'ils m'ont trouvée sur internet et que ma page les a rassurés. Avant ils ne trouvaient rien."</p><div class="temo-who"><strong data-editable-zone="temoin_3_nom">Sophie R.</strong><span data-editable-zone="temoin_3_role">Naturopathe · Bordeaux</span></div></div>
+      </div>
+    </div>
   </div>
+  <div class="galerie-hint rv" style="padding:0 20px;">Continuez à scroller <span aria-hidden="true">→</span></div>
 </section>
 
 <!-- CTA BAND 1 -->
@@ -651,9 +667,13 @@ function animateCount(el){
   requestAnimationFrame(step);
 }
 
+const statNums=Array.from(document.querySelectorAll('.stat-num'));
 const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){
   e.target.classList.add('on');
-  if(!reducedMotionMQ && e.target.classList.contains('stat-num')) animateCount(e.target);
+  if(!reducedMotionMQ && e.target.classList.contains('stat-num')){
+    const idx=statNums.indexOf(e.target);
+    setTimeout(()=>animateCount(e.target), Math.max(0,idx)*130);
+  }
   io.unobserve(e.target);
 }});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv,.rvl,.rvs,.hsplit,.stat-num').forEach(el=>io.observe(el));
@@ -679,6 +699,7 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
 <script src="hero-backgrounds.js"></script>
 <script src="cursor-premium.js"></script>
 <script src="titre-cyclique.js"></script>
+<script src="galerie-horizontale.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function(){
@@ -690,6 +711,10 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
 
   if (window.TitreCyclique) {
     TitreCyclique.init('.titre-cyclique', { intervalle: 2600 });
+  }
+
+  if (window.GalerieHorizontale) {
+    GalerieHorizontale.init('.galerie-horiz-wrap');
   }
 
   if (window.CursorPremium && !(window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches)) {
@@ -704,6 +729,7 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
   }
 
   const isTouch = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
   if (!reduced && !isTouch) {
     document.querySelectorAll('.btn-submit-hero, .btn-prix, .cta-band-btn').forEach((el) => {
       el.addEventListener('mousemove', (e) => {
@@ -711,6 +737,31 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
         const x = e.clientX - r.left - r.width / 2;
         const y = e.clientY - r.top - r.height / 2;
         el.style.transform = `translate(${x * 0.18}px, ${y * 0.35}px)`;
+      });
+      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+    });
+  }
+
+  // Parallax léger du fond de hero (le canvas suit le scroll plus lentement que le contenu).
+  if (!reduced) {
+    const heroCanvas = document.getElementById('hero-canvas');
+    const heroSection = document.getElementById('hero');
+    if (heroCanvas && heroSection) {
+      window.addEventListener('scroll', () => {
+        const p = Math.min(1, window.scrollY / (heroSection.offsetHeight || 1));
+        heroCanvas.style.transform = `translateY(${p * 60}px)`;
+      }, { passive: true });
+    }
+  }
+
+  // Tilt 3D léger sur la maquette de site (souris uniquement).
+  if (!reduced && !isTouch) {
+    document.querySelectorAll('.browser').forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = `perspective(1200px) rotateX(${y * -6}deg) rotateY(${x * 8}deg) translateY(-6px)`;
       });
       el.addEventListener('mouseleave', () => { el.style.transform = ''; });
     });
