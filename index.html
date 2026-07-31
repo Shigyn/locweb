@@ -37,12 +37,15 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-heigh
 body::after{content:'';position:fixed;inset:0;z-index:9996;pointer-events:none;opacity:.035;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .scroll-bar{position:fixed;top:0;left:0;height:2.5px;background:var(--red);z-index:9995;width:0%;pointer-events:none;}
 
-/* ── CURTAIN ── */
-.curtain{position:fixed;inset:0;z-index:9997;background:var(--ink);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;}
-.curtain.show{opacity:1;pointer-events:auto;transition:opacity .5s ease;}
-.curtain.hide{opacity:0;transition:opacity .7s cubic-bezier(.6,0,.4,1);pointer-events:none;}
-.curtain svg{width:44px;height:44px;opacity:0;transform:scale(.7);transition:opacity .45s ease .15s,transform .45s cubic-bezier(.16,1,.3,1) .15s;}
-.curtain.show svg{opacity:1;transform:scale(1);}
+/* ── CURTAIN (ouverture iris) ── */
+.curtain{position:fixed;inset:0;z-index:9997;background:var(--ink);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;clip-path:circle(150% at 50% 50%);}
+.curtain.show{opacity:1;pointer-events:auto;transition:opacity .3s ease;}
+.curtain.hide{opacity:1;clip-path:circle(0% at 50% 50%);transition:clip-path .9s cubic-bezier(.76,0,.24,1);pointer-events:none;}
+.curtain svg{width:44px;height:44px;opacity:0;transform:scale(.7) rotate(-12deg);transition:opacity .45s ease .15s,transform .45s cubic-bezier(.16,1,.3,1) .15s;}
+.curtain.show svg{opacity:1;transform:scale(1) rotate(0deg);}
+
+/* ── CURSEUR : TRAÎNÉE ── */
+.cursor-trail-dot{position:fixed;top:0;left:0;border-radius:50%;background:var(--red);pointer-events:none;z-index:9994;}
 
 /* ── CURSEUR ── */
 :root{--cursor-color:#E8281E;--cursor-text:#fff;}
@@ -90,6 +93,8 @@ h2 em{font-style:normal;color:var(--red);}
 #hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:84px 20px 40px;position:relative;overflow:hidden;background:var(--ink);}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 .hero-vignette{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 100%,rgba(13,13,15,.8) 0%,rgba(13,13,15,.2) 45%,transparent 70%);}
+.hero-glow{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .5s;background:radial-gradient(circle 420px at var(--gx,50%) var(--gy,40%),rgba(232,40,30,.35),transparent 70%);mix-blend-mode:screen;}
+#hero:hover .hero-glow{opacity:1;}
 .hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;width:100%;}
 .hero-kicker{display:flex;align-items:center;gap:10px;margin-bottom:26px;}
 .hero-kicker .ln{width:26px;height:1px;background:var(--red);}
@@ -139,7 +144,9 @@ section{padding:76px 20px;position:relative;}
 .galerie-horiz-track{display:flex;gap:24px;will-change:transform;padding:0 20px;}
 @media(min-width:768px){.galerie-horiz-track{padding:0 5vw;}}
 
-.real-item{flex:0 0 min(88vw,880px);height:min(76vh,640px);position:relative;border-radius:22px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.4);display:flex;flex-direction:column;}
+.real-item{flex:0 0 min(88vw,880px);height:min(76vh,640px);position:relative;border-radius:22px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.4);display:flex;flex-direction:column;will-change:transform;}
+.real-item::after{content:'';position:absolute;inset:0;z-index:6;border-radius:inherit;background:radial-gradient(circle 240px at var(--mx,50%) var(--my,50%),rgba(255,255,255,.18),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;}
+.real-item:hover::after{opacity:1;}
 
 .mv-nav{flex-shrink:0;position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(247,244,238,.92);backdrop-filter:blur(10px);font-family:'Inter',sans-serif;}
 .mv-nav-logo{font-family:'Fraunces',serif;font-size:1rem;color:#14110d;}
@@ -183,7 +190,9 @@ section{padding:76px 20px;position:relative;}
 /* ── TARIFS : même traitement galerie que réalisations ── */
 #tarifs{background:var(--paper2);}
 #tarifs .galerie-horiz-sticky{background:transparent;}
-.tarif-card{flex:0 0 min(88vw,440px);height:min(78vh,660px);background:var(--ink);border-radius:24px;padding:44px 36px;box-shadow:0 30px 80px rgba(13,13,15,.25);display:flex;flex-direction:column;color:#fff;}
+.tarif-card{flex:0 0 min(88vw,440px);height:min(78vh,660px);background:var(--ink);border-radius:24px;padding:44px 36px;box-shadow:0 30px 80px rgba(13,13,15,.25);display:flex;flex-direction:column;color:#fff;position:relative;will-change:transform;}
+.tarif-card::after{content:'';position:absolute;inset:0;z-index:6;border-radius:inherit;background:radial-gradient(circle 220px at var(--mx,50%) var(--my,50%),rgba(255,255,255,.12),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;}
+.tarif-card:hover::after{opacity:1;}
 .tarif-card .prix-main{font-family:var(--disp);font-size:4.6rem;font-weight:700;letter-spacing:-.04em;line-height:1;margin-bottom:6px;}
 .tarif-card .prix-main .cur{font-size:1.6rem;color:var(--red);vertical-align:super;}
 .tarif-card .prix-freq{font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:28px;display:block;}
@@ -288,6 +297,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 <section id="hero">
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-vignette" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="hero-kicker ha ha1"><div class="ln" aria-hidden="true"></div><span>Agence web — Béziers & toute la France</span></div>
     <h1 class="hero-title ha ha2"><span data-editable-zone="hero_titre_ligne1">Votre image en ligne,</span><br><em data-editable-zone="hero_titre_accent">on s'occupe de tout.</em></h1>
@@ -558,7 +568,7 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
     setTimeout(() => {
       curtain.classList.remove('show');
       curtain.classList.add('hide');
-      setTimeout(() => curtain.remove(), 750);
+      setTimeout(() => curtain.remove(), 950);
     }, 450);
   });
 })();
@@ -676,27 +686,113 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
 
   const isTouch = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
+  // Boutons magnétiques avec rebond élastique au relâchement.
   if (!reduced && !isTouch) {
     document.querySelectorAll('.btn-hero-primary, .btn-prix, .cta-band-btn, .contact-tel-big').forEach((el) => {
       el.addEventListener('mousemove', (e) => {
+        el.style.transition = 'transform 0s';
         const r = el.getBoundingClientRect();
         const x = e.clientX - r.left - r.width / 2;
         const y = e.clientY - r.top - r.height / 2;
         el.style.transform = `translate(${x * 0.18}px, ${y * 0.35}px)`;
       });
-      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+      el.addEventListener('mouseleave', () => {
+        el.style.transition = 'transform .6s cubic-bezier(.34,1.56,.64,1)';
+        el.style.transform = '';
+      });
     });
   }
 
+  // Hero : parallax multi-couches (canvas / vignette / contenu à des vitesses et
+  // angles différents) + distorsion selon la vélocité de scroll + fond réactif à la souris.
   if (!reduced) {
     const heroCanvas = document.getElementById('hero-canvas');
+    const heroVignette = document.querySelector('.hero-vignette');
+    const heroInner = document.querySelector('.hero-inner');
     const heroSection = document.getElementById('hero');
+    const heroGlow = document.querySelector('.hero-glow');
+
     if (heroCanvas && heroSection) {
-      window.addEventListener('scroll', () => {
-        const p = Math.min(1, window.scrollY / (heroSection.offsetHeight || 1));
-        heroCanvas.style.transform = `translateY(${p * 60}px)`;
-      }, { passive: true });
+      let lastY = window.scrollY, lastT = performance.now(), velocityBoost = 0;
+
+      function onHeroScroll() {
+        const now = performance.now();
+        const y = window.scrollY;
+        const dt = Math.max(now - lastT, 16);
+        const v = Math.min(Math.abs((y - lastY) / dt) * 12, 1);
+        velocityBoost = Math.max(velocityBoost, v);
+        lastY = y; lastT = now;
+
+        const p = Math.min(1, y / (heroSection.offsetHeight || 1));
+        heroCanvas.style.transform = `translate3d(${p * -18}px, ${p * 70}px, 0) scale(${1 + p * 0.06})`;
+        if (heroVignette) heroVignette.style.transform = `translate3d(${p * 24}px, ${p * -30}px, 0)`;
+        if (heroInner) heroInner.style.transform = `translate3d(0, ${p * -14}px, 0)`;
+      }
+      window.addEventListener('scroll', onHeroScroll, { passive: true });
+      onHeroScroll();
+
+      function decayLoop() {
+        if (velocityBoost > 0.001) {
+          velocityBoost *= 0.9;
+          heroCanvas.style.filter = `blur(${(velocityBoost * 3).toFixed(2)}px) saturate(${(1 + velocityBoost * 0.6).toFixed(2)})`;
+        } else if (heroCanvas.style.filter) {
+          heroCanvas.style.filter = '';
+        }
+        requestAnimationFrame(decayLoop);
+      }
+      requestAnimationFrame(decayLoop);
     }
+
+    if (heroGlow && heroSection && !isTouch) {
+      heroSection.addEventListener('mousemove', (e) => {
+        const r = heroSection.getBoundingClientRect();
+        heroSection.style.setProperty('--gx', ((e.clientX - r.left) / r.width * 100) + '%');
+        heroSection.style.setProperty('--gy', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+    }
+  }
+
+  // Tilt 3D + reflet lumineux sur les cartes tarifs et réalisations.
+  if (!reduced && !isTouch) {
+    document.querySelectorAll('.tarif-card, .real-item').forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        card.style.transform = `perspective(1000px) rotateX(${(0.5 - py) * 8}deg) rotateY(${(px - 0.5) * 8}deg)`;
+        card.style.setProperty('--mx', (px * 100) + '%');
+        card.style.setProperty('--my', (py * 100) + '%');
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+  }
+
+  // Traînée de curseur (quelques points qui suivent avec un léger décalage).
+  if (!reduced && !isTouch) {
+    const trailDots = [];
+    for (let i = 0; i < 5; i++) {
+      const d = document.createElement('div');
+      d.className = 'cursor-trail-dot';
+      const size = 7 - i;
+      d.style.width = size + 'px';
+      d.style.height = size + 'px';
+      d.style.opacity = (0.45 - i * 0.08).toFixed(2);
+      document.body.appendChild(d);
+      trailDots.push({ el: d, x: window.innerWidth / 2, y: window.innerHeight / 2 });
+    }
+    let trailMouseX = trailDots[0].x, trailMouseY = trailDots[0].y;
+    document.addEventListener('mousemove', (e) => { trailMouseX = e.clientX; trailMouseY = e.clientY; });
+    function trailLoop() {
+      let targetX = trailMouseX, targetY = trailMouseY;
+      trailDots.forEach((t) => {
+        t.x += (targetX - t.x) * 0.35;
+        t.y += (targetY - t.y) * 0.35;
+        t.el.style.transform = `translate(${t.x}px, ${t.y}px) translate(-50%,-50%)`;
+        targetX = t.x; targetY = t.y;
+      });
+      requestAnimationFrame(trailLoop);
+    }
+    requestAnimationFrame(trailLoop);
   }
 })();
 </script>

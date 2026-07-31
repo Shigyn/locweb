@@ -19,15 +19,15 @@
 
       let i = 0;
       el.style.display = 'inline-block';
-      el.style.transition = 'opacity .35s, transform .35s';
+      el.style.transition = 'opacity .4s, transform .4s, filter .4s';
 
       setInterval(() => {
-        el.style.opacity = '0'; el.style.transform = 'translateY(6px)';
+        el.style.opacity = '0'; el.style.transform = 'translateY(8px) scale(.92)'; el.style.filter = 'blur(6px)';
         setTimeout(() => {
           i = (i + 1) % mots.length;
           el.textContent = mots[i];
-          el.style.opacity = '1'; el.style.transform = 'translateY(0)';
-        }, 350);
+          el.style.opacity = '1'; el.style.transform = 'translateY(0) scale(1)'; el.style.filter = 'blur(0px)';
+        }, 380);
       }, opts.intervalle);
     });
   }
