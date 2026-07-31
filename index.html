@@ -159,43 +159,50 @@ section{padding:76px 20px;position:relative;}
 .mv-hero-area{position:relative;flex:1;overflow:hidden;}
 .real-item-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 
-.mv-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:40px 56px;font-family:'Inter',sans-serif;}
+/* Maison Verrier : contenu aligné en bas, typographie énorme, badges en ligne de texte */
+.mv-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;text-align:right;padding:40px 52px;font-family:'Inter',sans-serif;}
 .mv-preview .mv-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#ffb24d;margin-bottom:18px;}
-.mv-preview .mv-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.05;color:#f3efe6;margin-bottom:20px;}
+.mv-preview .mv-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.1;color:#f3efe6;margin-bottom:18px;max-width:420px;}
 .mv-preview .mv-cycle{font-style:italic;color:#ffb24d;display:inline-block;}
-.mv-preview .mv-sub{font-size:.94rem;line-height:1.7;color:#c9b8a8;max-width:420px;margin-bottom:26px;font-weight:300;}
-.mv-preview .mv-badges{display:flex;flex-wrap:wrap;gap:10px;}
-.mv-preview .mv-badge{background:rgba(255,170,60,.1);border:1px solid rgba(255,170,60,.28);border-radius:100px;padding:8px 15px;font-size:.75rem;color:#ffd9a3;}
+.mv-preview .mv-inline{font-size:.76rem;color:#c9b8a8;letter-spacing:.02em;}
+.mv-preview .mv-inline strong{color:#ffd9a3;font-weight:600;}
+.mv-preview .mv-inline span{margin:0 8px;color:rgba(255,178,77,.4);}
 
+/* Ambre & Sens : composition centrée, zen, sans badges */
 .amb-nav-logo{font-family:'Playfair Display',serif;font-size:1rem;color:#14110d;}
 .amb-nav-logo em{font-style:italic;color:#e0457a;}
-.amb-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:40px 56px;font-family:'Inter',sans-serif;}
-.amb-preview .amb-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#ff8fb0;margin-bottom:18px;}
-.amb-preview .amb-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.15;color:#f5ece9;margin-bottom:20px;}
+.amb-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:44px 40px;font-family:'Inter',sans-serif;}
+.amb-preview .amb-tag{font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:#ff8fb0;margin-bottom:24px;}
+.amb-preview .amb-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.3;color:#f5ece9;margin-bottom:22px;max-width:380px;}
 .amb-preview .amb-cycle{color:#ff8fb0;display:inline-block;}
-.amb-preview .amb-sub{font-size:.94rem;line-height:1.7;color:#d9c0c8;max-width:420px;margin-bottom:26px;font-weight:300;}
-.amb-preview .amb-badges{display:flex;flex-wrap:wrap;gap:10px;}
-.amb-preview .amb-badge{background:rgba(255,90,140,.1);border:1px solid rgba(255,90,140,.28);border-radius:100px;padding:8px 15px;font-size:.75rem;color:#ffc9d9;}
+.amb-preview .amb-sub{font-size:.86rem;line-height:1.8;color:#d9c0c8;max-width:340px;margin-bottom:24px;font-weight:300;}
+.amb-preview .amb-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:.84rem;color:#ff8fb0;opacity:.75;}
 
+/* Studio Anthracite : split texte / statistiques verticales avec séparateur */
 .arc-nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:1rem;color:#14171a;letter-spacing:-.01em;}
 .arc-nav-logo em{font-style:normal;color:#2f8fff;}
-.arc-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:40px 56px;font-family:'Inter',sans-serif;}
-.arc-preview .arc-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#3fc8ff;margin-bottom:18px;}
-.arc-preview .arc-title{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.05;letter-spacing:-.02em;color:#eef3f6;margin-bottom:20px;}
+.arc-preview{position:relative;z-index:1;height:100%;display:grid;grid-template-columns:1.3fr 1fr;align-items:center;gap:28px;padding:40px 48px;font-family:'Inter',sans-serif;}
+.arc-preview .arc-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#3fc8ff;margin-bottom:16px;}
+.arc-preview .arc-title{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(1.5rem,3.2vw,2.2rem);line-height:1.08;letter-spacing:-.02em;color:#eef3f6;margin-bottom:14px;}
 .arc-preview .arc-cycle{color:#3fc8ff;display:inline-block;}
-.arc-preview .arc-sub{font-size:.94rem;line-height:1.7;color:#b8cbd9;max-width:420px;margin-bottom:26px;font-weight:300;}
-.arc-preview .arc-badges{display:flex;flex-wrap:wrap;gap:10px;}
-.arc-preview .arc-badge{background:rgba(63,200,255,.1);border:1px solid rgba(63,200,255,.28);border-radius:100px;padding:8px 15px;font-size:.75rem;color:#a8e4ff;}
+.arc-preview .arc-sub{font-size:.84rem;line-height:1.65;color:#b8cbd9;font-weight:300;}
+.arc-stats{display:flex;flex-direction:column;gap:20px;border-left:1px solid rgba(63,200,255,.25);padding-left:24px;}
+.arc-stat-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;color:#3fc8ff;display:block;line-height:1;}
+.arc-stat-lbl{font-size:.64rem;color:#8fb4c9;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;display:block;}
+@media(max-width:700px){.arc-preview{grid-template-columns:1fr;}.arc-stats{flex-direction:row;border-left:none;border-top:1px solid rgba(63,200,255,.25);padding-left:0;padding-top:16px;gap:26px;}}
 
+/* Forme & Force : chiffre géant en fond, contenu ancré en bas */
 .ff-nav-logo{font-family:'Inter',sans-serif;font-weight:800;font-size:.95rem;color:#0d1a10;letter-spacing:.02em;text-transform:uppercase;}
 .ff-nav-logo em{font-style:normal;color:#3ee06e;}
-.ff-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:40px 56px;font-family:'Inter',sans-serif;}
-.ff-preview .ff-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#6bff9e;margin-bottom:18px;font-weight:700;}
-.ff-preview .ff-title{font-family:'Inter',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(1.7rem,3.8vw,2.7rem);line-height:1.08;letter-spacing:-.01em;color:#eafff0;margin-bottom:20px;}
+.ff-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:32px 48px 40px;font-family:'Inter',sans-serif;}
+.ff-giant{align-self:flex-end;text-align:right;}
+.ff-giant-num{font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(3.2rem,8vw,5.6rem);line-height:.85;color:rgba(255,255,255,.13);letter-spacing:-.02em;}
+.ff-giant-num span{color:rgba(62,224,110,.4);}
+.ff-giant-lbl{font-size:.64rem;text-transform:uppercase;letter-spacing:.15em;color:#3ee06e;font-weight:700;margin-top:2px;}
+.ff-preview .ff-tag{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:#6bff9e;margin-bottom:14px;font-weight:700;}
+.ff-preview .ff-title{font-family:'Inter',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(1.8rem,4.2vw,2.9rem);line-height:1.08;letter-spacing:-.01em;color:#eafff0;margin-bottom:16px;}
 .ff-preview .ff-cycle{color:#3ee06e;display:inline-block;}
-.ff-preview .ff-sub{font-size:.94rem;line-height:1.7;color:#a8c9b4;max-width:420px;margin-bottom:26px;font-weight:300;text-transform:none;}
-.ff-preview .ff-badges{display:flex;flex-wrap:wrap;gap:10px;}
-.ff-preview .ff-badge{background:rgba(62,224,110,.12);border:1px solid rgba(62,224,110,.3);border-radius:100px;padding:8px 15px;font-size:.75rem;color:#bdffd3;}
+.ff-preview .ff-sub{font-size:.96rem;line-height:1.6;color:#a8c9b4;font-weight:300;max-width:400px;}
 
 .demo-disclaimer{font-style:italic;font-size:.78rem;color:rgba(255,255,255,.35);margin-top:24px;padding:0 20px;}
 @media(min-width:768px){.demo-disclaimer{padding:0 5vw;}}
@@ -388,13 +395,14 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
           <div class="mv-hero-area">
             <canvas class="real-item-canvas" id="real-canvas-1" aria-hidden="true"></canvas>
             <div class="arc-preview">
-              <span class="arc-tag">Narbonne — architecture d'intérieur sur mesure</span>
-              <div class="arc-title">Des espaces qui<br>vous <span class="titre-cyclique arc-cycle" data-mots="[&quot;ressemblent.&quot;,&quot;inspirent.&quot;,&quot;durent.&quot;]">ressemblent.</span></div>
-              <p class="arc-sub">Conception et rénovation d'espaces intérieurs à Narbonne et alentours. Une approche architecturale, pensée pour durer.</p>
-              <div class="arc-badges">
-                <span class="arc-badge">★ 4.8 sur Google</span>
-                <span class="arc-badge">15 ans d'expérience</span>
-                <span class="arc-badge">Étude gratuite</span>
+              <div class="arc-main">
+                <span class="arc-tag">Narbonne — architecture d'intérieur sur mesure</span>
+                <div class="arc-title">Des espaces qui<br>vous <span class="titre-cyclique arc-cycle" data-mots="[&quot;ressemblent.&quot;,&quot;inspirent.&quot;,&quot;durent.&quot;]">ressemblent.</span></div>
+                <p class="arc-sub">Conception et rénovation d'espaces intérieurs à Narbonne et alentours.</p>
+              </div>
+              <div class="arc-stats">
+                <div><span class="arc-stat-num">15</span><span class="arc-stat-lbl">Ans d'expérience</span></div>
+                <div><span class="arc-stat-num">4.8</span><span class="arc-stat-lbl">Note Google</span></div>
               </div>
             </div>
           </div>
@@ -407,14 +415,10 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
           <div class="mv-hero-area">
             <canvas class="real-item-canvas" id="real-canvas-2" aria-hidden="true"></canvas>
             <div class="amb-preview">
-              <span class="amb-tag">Montpellier — approche naturelle & sur mesure</span>
+              <span class="amb-tag">Montpellier</span>
               <div class="amb-title">Retrouvez votre<br><span class="titre-cyclique amb-cycle" data-mots="[&quot;équilibre.&quot;,&quot;énergie.&quot;,&quot;harmonie.&quot;]">équilibre.</span></div>
               <p class="amb-sub">Consultations en naturopathie à Montpellier. Une approche globale, à l'écoute de votre rythme de vie.</p>
-              <div class="amb-badges">
-                <span class="amb-badge">★ 5 sur Google</span>
-                <span class="amb-badge">10 ans d'expérience</span>
-                <span class="amb-badge">1ère séance offerte</span>
-              </div>
+              <div class="amb-quote">"Enfin une approche qui m'écoute vraiment."</div>
             </div>
           </div>
         </div>
@@ -428,12 +432,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             <div class="mv-preview">
               <span class="mv-tag">Béziers — trois générations d'artisans</span>
               <div class="mv-title">La rénovation,<br><span class="titre-cyclique mv-cycle" data-mots="[&quot;sans compromis.&quot;,&quot;intemporelle.&quot;,&quot;sur mesure.&quot;]">sans compromis.</span></div>
-              <p class="mv-sub">Charpente et rénovation du bâti ancien à Béziers. Un savoir-faire artisanal porté par trois générations.</p>
-              <div class="mv-badges">
-                <span class="mv-badge">★ 4.9 sur Google</span>
-                <span class="mv-badge">27 ans d'expérience</span>
-                <span class="mv-badge">Devis gratuit</span>
-              </div>
+              <div class="mv-inline"><strong>★ 4.9</strong> sur Google<span>·</span><strong>27 ans</strong> d'expérience<span>·</span>Devis gratuit</div>
             </div>
           </div>
         </div>
@@ -445,13 +444,14 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
           <div class="mv-hero-area">
             <canvas class="real-item-canvas" id="real-canvas-4" aria-hidden="true"></canvas>
             <div class="ff-preview">
-              <span class="ff-tag">Perpignan — coaching sportif individuel</span>
-              <div class="ff-title">Votre meilleure version,<br><span class="titre-cyclique ff-cycle" data-mots="[&quot;dès maintenant.&quot;,&quot;chaque semaine.&quot;,&quot;pour la vie.&quot;]">dès maintenant.</span></div>
-              <p class="ff-sub">Coaching sportif individuel et programmes sur mesure à Perpignan. Résultats mesurables, suivi personnalisé.</p>
-              <div class="ff-badges">
-                <span class="ff-badge">★ 5 sur Google</span>
-                <span class="ff-badge">8 ans d'expérience</span>
-                <span class="ff-badge">1ère séance offerte</span>
+              <div class="ff-giant">
+                <div class="ff-giant-num">200<span>+</span></div>
+                <div class="ff-giant-lbl">Clients transformés</div>
+              </div>
+              <div>
+                <span class="ff-tag">Perpignan — coaching sportif individuel</span>
+                <div class="ff-title">Votre meilleure version,<br><span class="titre-cyclique ff-cycle" data-mots="[&quot;dès maintenant.&quot;,&quot;chaque semaine.&quot;,&quot;pour la vie.&quot;]">dès maintenant.</span></div>
+                <p class="ff-sub">Coaching sportif individuel et programmes sur mesure à Perpignan.</p>
               </div>
             </div>
           </div>
