@@ -28,7 +28,7 @@
   --red:#E8281E; --red-soft:rgba(232,40,30,.1); --line:rgba(13,13,15,.1); --line-dark:rgba(255,255,255,.12);
   --sans:'Plus Jakarta Sans',sans-serif; --disp:'Bricolage Grotesque',sans-serif;
 }
-html{scroll-behavior:smooth;}
+html{scroll-behavior:auto;}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;overflow-x:hidden;}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
@@ -91,11 +91,11 @@ h2 em{font-style:normal;color:var(--red);}
 
 /* ── HERO (minimal) ── */
 #hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:84px 20px 40px;position:relative;overflow:hidden;background:var(--ink);}
-#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
-.hero-vignette{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 100%,rgba(13,13,15,.8) 0%,rgba(13,13,15,.2) 45%,transparent 70%);}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;will-change:transform;}
+.hero-vignette{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 100%,rgba(13,13,15,.8) 0%,rgba(13,13,15,.2) 45%,transparent 70%);will-change:transform;}
 .hero-glow{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .5s;background:radial-gradient(circle 420px at var(--gx,50%) var(--gy,40%),rgba(232,40,30,.35),transparent 70%);mix-blend-mode:screen;}
 #hero:hover .hero-glow{opacity:1;}
-.hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;width:100%;}
+.hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;width:100%;will-change:transform;}
 .hero-kicker{display:flex;align-items:center;gap:10px;margin-bottom:26px;}
 .hero-kicker .ln{width:26px;height:1px;background:var(--red);}
 .hero-kicker span{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.16em;}
@@ -576,12 +576,16 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
 (function(){
   const bar = document.getElementById('scroll-bar');
   if (!bar) return;
+  let ticking = false;
   function update(){
     const h = document.documentElement;
     const max = h.scrollHeight - h.clientHeight;
     bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    ticking = false;
   }
-  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
   update();
 })();
 
@@ -704,7 +708,9 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
   }
 
   // Hero : parallax multi-couches (canvas / vignette / contenu à des vitesses et
-  // angles différents) + distorsion selon la vélocité de scroll + fond réactif à la souris.
+  // angles différents) + fond réactif à la souris. Pas de filtre CSS (blur/saturate)
+  // lié au scroll : plus cher à recalculer qu'un simple transform et source de
+  // saccades — priorité donnée à la fluidité plutôt qu'à cet effet.
   if (!reduced) {
     const heroCanvas = document.getElementById('hero-canvas');
     const heroVignette = document.querySelector('.hero-vignette');
@@ -713,34 +719,21 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
     const heroGlow = document.querySelector('.hero-glow');
 
     if (heroCanvas && heroSection) {
-      let lastY = window.scrollY, lastT = performance.now(), velocityBoost = 0;
+      let heroTicking = false;
 
-      function onHeroScroll() {
-        const now = performance.now();
+      function computeHeroScroll() {
         const y = window.scrollY;
-        const dt = Math.max(now - lastT, 16);
-        const v = Math.min(Math.abs((y - lastY) / dt) * 12, 1);
-        velocityBoost = Math.max(velocityBoost, v);
-        lastY = y; lastT = now;
-
         const p = Math.min(1, y / (heroSection.offsetHeight || 1));
         heroCanvas.style.transform = `translate3d(${p * -18}px, ${p * 70}px, 0) scale(${1 + p * 0.06})`;
         if (heroVignette) heroVignette.style.transform = `translate3d(${p * 24}px, ${p * -30}px, 0)`;
         if (heroInner) heroInner.style.transform = `translate3d(0, ${p * -14}px, 0)`;
+        heroTicking = false;
+      }
+      function onHeroScroll() {
+        if (!heroTicking) { heroTicking = true; requestAnimationFrame(computeHeroScroll); }
       }
       window.addEventListener('scroll', onHeroScroll, { passive: true });
-      onHeroScroll();
-
-      function decayLoop() {
-        if (velocityBoost > 0.001) {
-          velocityBoost *= 0.9;
-          heroCanvas.style.filter = `blur(${(velocityBoost * 3).toFixed(2)}px) saturate(${(1 + velocityBoost * 0.6).toFixed(2)})`;
-        } else if (heroCanvas.style.filter) {
-          heroCanvas.style.filter = '';
-        }
-        requestAnimationFrame(decayLoop);
-      }
-      requestAnimationFrame(decayLoop);
+      computeHeroScroll();
     }
 
     if (heroGlow && heroSection && !isTouch) {
