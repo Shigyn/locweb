@@ -41,8 +41,9 @@ body::after{content:'';position:fixed;inset:0;z-index:9996;pointer-events:none;o
 .curtain{position:fixed;inset:0;z-index:9997;background:var(--ink);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;clip-path:circle(150% at 50% 50%);}
 .curtain.show{opacity:1;pointer-events:auto;transition:opacity .3s ease;}
 .curtain.hide{opacity:1;clip-path:circle(0% at 50% 50%);transition:clip-path .9s cubic-bezier(.76,0,.24,1);pointer-events:none;}
-.curtain svg{width:44px;height:44px;opacity:0;transform:scale(.7) rotate(-12deg);transition:opacity .45s ease .15s,transform .45s cubic-bezier(.16,1,.3,1) .15s;}
-.curtain.show svg{opacity:1;transform:scale(1) rotate(0deg);}
+.curtain-inner{display:flex;flex-direction:column;align-items:center;gap:20px;}
+.curtain svg{width:52px;height:52px;overflow:visible;}
+.curtain-progress{font-family:var(--disp);font-weight:700;font-size:.82rem;color:rgba(255,255,255,.45);letter-spacing:.04em;font-variant-numeric:tabular-nums;}
 
 /* ── CURSEUR : TRAÎNÉE ── */
 .cursor-trail-dot{position:fixed;top:0;left:0;border-radius:50%;background:var(--red);pointer-events:none;z-index:9994;}
@@ -277,7 +278,13 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 
 <div class="scroll-bar" id="scroll-bar" aria-hidden="true"></div>
 <div class="curtain" id="curtain" aria-hidden="true">
-  <svg viewBox="0 0 64 64" fill="none"><polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text></svg>
+  <div class="curtain-inner">
+    <svg viewBox="0 0 64 64" fill="none">
+      <polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="none" stroke="#E8281E" stroke-width="2.5" id="curtainPolygon"/>
+      <text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white" opacity="0" id="curtainLetter">L</text>
+    </svg>
+    <div class="curtain-progress" id="curtainProgress">0%</div>
+  </div>
 </div>
 
 <!-- NAV -->
@@ -596,13 +603,55 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
   const curtain = document.getElementById('curtain');
   if (!curtain || reducedMotionMQ) { if(curtain) curtain.remove(); return; }
   requestAnimationFrame(() => curtain.classList.add('show'));
-  window.addEventListener('load', () => {
+
+  // Le logo se dessine au trait puis se remplit.
+  const poly = document.getElementById('curtainPolygon');
+  const letter = document.getElementById('curtainLetter');
+  if (poly && poly.getTotalLength) {
+    const len = poly.getTotalLength();
+    poly.style.strokeDasharray = len;
+    poly.style.strokeDashoffset = len;
+    requestAnimationFrame(() => {
+      poly.style.transition = 'stroke-dashoffset 1s cubic-bezier(.65,0,.35,1)';
+      poly.style.strokeDashoffset = '0';
+    });
     setTimeout(() => {
-      curtain.classList.remove('show');
-      curtain.classList.add('hide');
-      setTimeout(() => curtain.remove(), 950);
-    }, 450);
-  });
+      poly.style.transition = 'fill .4s ease';
+      poly.style.fill = '#E8281E';
+      if (letter) { letter.style.transition = 'opacity .3s ease'; letter.style.opacity = '1'; }
+    }, 950);
+  }
+
+  // Compteur de chargement calé sur les vraies ressources (polices + load), jamais
+  // un délai arbitraire — accélère jusqu'à 92% en attendant, termine dès que prêt.
+  const progressEl = document.getElementById('curtainProgress');
+  const minDuration = 1300;
+  const start = performance.now();
+  let ready = false;
+
+  Promise.all([
+    (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve(),
+    document.readyState === 'complete' ? Promise.resolve() : new Promise((r) => window.addEventListener('load', r))
+  ]).then(() => { ready = true; });
+
+  let progress = 0;
+  function tickProgress() {
+    const elapsed = performance.now() - start;
+    const target = (ready && elapsed >= minDuration) ? 100 : 92;
+    progress += (target - progress) * 0.09 + 0.2;
+    progress = Math.min(progress, 100);
+    if (progressEl) progressEl.textContent = Math.round(progress) + '%';
+    if (progress < 100) {
+      requestAnimationFrame(tickProgress);
+    } else {
+      setTimeout(() => {
+        curtain.classList.remove('show');
+        curtain.classList.add('hide');
+        setTimeout(() => curtain.remove(), 950);
+      }, 300);
+    }
+  }
+  requestAnimationFrame(tickProgress);
 })();
 
 (function(){
