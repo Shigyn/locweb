@@ -101,7 +101,9 @@ h2 em{font-style:normal;color:var(--red);}
 .hero-kicker span{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.16em;}
 .hero-title{font-family:var(--disp);font-size:clamp(2.8rem,9vw,5.6rem);font-weight:700;line-height:.98;letter-spacing:-.04em;color:#fff;margin-bottom:22px;}
 .hero-title em{font-style:normal;color:var(--red);}
-.hero-sub{font-size:clamp(.92rem,2vw,1rem);color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:36px;max-width:440px;}
+.hero-sub{font-size:clamp(.92rem,2vw,1rem);color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:14px;max-width:440px;}
+.hero-cycle-line{font-size:.9rem;color:rgba(255,255,255,.6);margin-bottom:30px;}
+.hero-cycle-word{color:var(--red);font-weight:700;display:inline-block;}
 .hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;}
 .btn-hero-primary{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:white;font-weight:700;font-size:.92rem;padding:16px 28px;border-radius:100px;text-decoration:none;box-shadow:0 8px 28px rgba(232,40,30,.3);transition:transform .2s;}
 .btn-hero-ghost{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25);font-weight:600;font-size:.92rem;padding:16px 28px;border-radius:100px;text-decoration:none;transition:border-color .2s,color .2s;}
@@ -183,6 +185,16 @@ section{padding:76px 20px;position:relative;}
 .arc-preview .arc-sub{font-size:.94rem;line-height:1.7;color:#b8cbd9;max-width:420px;margin-bottom:26px;font-weight:300;}
 .arc-preview .arc-badges{display:flex;flex-wrap:wrap;gap:10px;}
 .arc-preview .arc-badge{background:rgba(63,200,255,.1);border:1px solid rgba(63,200,255,.28);border-radius:100px;padding:8px 15px;font-size:.75rem;color:#a8e4ff;}
+
+.ff-nav-logo{font-family:'Inter',sans-serif;font-weight:800;font-size:.95rem;color:#0d1a10;letter-spacing:.02em;text-transform:uppercase;}
+.ff-nav-logo em{font-style:normal;color:#3ee06e;}
+.ff-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:40px 56px;font-family:'Inter',sans-serif;}
+.ff-preview .ff-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#6bff9e;margin-bottom:18px;font-weight:700;}
+.ff-preview .ff-title{font-family:'Inter',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(1.7rem,3.8vw,2.7rem);line-height:1.08;letter-spacing:-.01em;color:#eafff0;margin-bottom:20px;}
+.ff-preview .ff-cycle{color:#3ee06e;display:inline-block;}
+.ff-preview .ff-sub{font-size:.94rem;line-height:1.7;color:#a8c9b4;max-width:420px;margin-bottom:26px;font-weight:300;text-transform:none;}
+.ff-preview .ff-badges{display:flex;flex-wrap:wrap;gap:10px;}
+.ff-preview .ff-badge{background:rgba(62,224,110,.12);border:1px solid rgba(62,224,110,.3);border-radius:100px;padding:8px 15px;font-size:.75rem;color:#bdffd3;}
 
 .demo-disclaimer{font-style:italic;font-size:.78rem;color:rgba(255,255,255,.35);margin-top:24px;padding:0 20px;}
 @media(min-width:768px){.demo-disclaimer{padding:0 5vw;}}
@@ -302,6 +314,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     <div class="hero-kicker ha ha1"><div class="ln" aria-hidden="true"></div><span>Agence web — Béziers & toute la France</span></div>
     <h1 class="hero-title ha ha2"><span data-editable-zone="hero_titre_ligne1">Votre image en ligne,</span><br><em data-editable-zone="hero_titre_accent">on s'occupe de tout.</em></h1>
     <p class="hero-sub ha ha3" data-editable-zone="hero_sous_titre">Site web, réseaux sociaux, fiche Google, supports print — une seule équipe, un seul interlocuteur.</p>
+    <p class="hero-cycle-line ha ha3">On s'occupe de <span class="titre-cyclique hero-cycle-word" data-mots="[&quot;votre site web.&quot;,&quot;vos flyers.&quot;,&quot;vos réseaux sociaux.&quot;,&quot;votre fiche Google.&quot;]">votre site web.</span></p>
     <div class="hero-cta-row ha ha4">
       <a href="#realisations" class="btn-hero-primary">Voir nos réalisations →</a>
       <a href="tel:0745531434" class="btn-hero-ghost" data-cursor-label="Appeler">📞 Appeler maintenant</a>
@@ -417,7 +430,26 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             </div>
           </div>
         </div>
-        <!-- Prochain exemple : dupliquer .real-item avec un nouveau canvas id (real-canvas-4, etc.) -->
+        <div class="real-item">
+          <div class="mv-nav">
+            <span class="ff-nav-logo">Forme <em>& Force</em></span>
+            <span class="mv-nav-tel">04 68 99 00 00</span>
+          </div>
+          <div class="mv-hero-area">
+            <canvas class="real-item-canvas" id="real-canvas-4" aria-hidden="true"></canvas>
+            <div class="ff-preview">
+              <span class="ff-tag">Perpignan — coaching sportif individuel</span>
+              <div class="ff-title">Votre meilleure version,<br><span class="titre-cyclique ff-cycle" data-mots="[&quot;dès maintenant.&quot;,&quot;chaque semaine.&quot;,&quot;pour la vie.&quot;]">dès maintenant.</span></div>
+              <p class="ff-sub">Coaching sportif individuel et programmes sur mesure à Perpignan. Résultats mesurables, suivi personnalisé.</p>
+              <div class="ff-badges">
+                <span class="ff-badge">★ 5 sur Google</span>
+                <span class="ff-badge">8 ans d'expérience</span>
+                <span class="ff-badge">1ère séance offerte</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Prochain exemple : dupliquer .real-item avec un nouveau canvas id (real-canvas-5, etc.) -->
       </div>
     </div>
   </div>
@@ -667,6 +699,7 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
     HeroBg.initGrille('real-canvas-1', { bg: '#070b12', c: ['0,200,255','60,140,255','130,90,255'] });
     HeroBg.initFumee('real-canvas-2', { bg: '#12060c', c: ['255,90,140','255,140,60','220,60,180'] });
     HeroBg.initAurores('real-canvas-3', { bg: '#140d05', c: ['255,170,40','255,110,30','255,210,90'] });
+    HeroBg.initVagues('real-canvas-4', { bg: '#050f08', c: ['80,255,120','40,220,90','160,255,60'] });
   }
 
   if (window.TitreCyclique) {
