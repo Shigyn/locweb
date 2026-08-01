@@ -680,6 +680,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   <p>Agence web Béziers — Votre image en ligne, on s'occupe de tout · Partout en France</p>
   <div class="footer-links">
     <button type="button" id="mentionsLink" class="footer-link-btn">Mentions légales</button>
+    <button type="button" id="partnerLink" class="footer-link-btn">Devenir partenaire</button>
     <a href="https://locweb.fr">© 2025 LocWeb</a>
     <a href="https://admin.locweb.fr">🔒 Administration</a>
   </div>
@@ -694,6 +695,18 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     <p>Responsable de publication : Nicolas — NICOSERVICES · <a href="tel:0745531434">07 45 53 14 34</a></p>
     <p>Hébergeur : GitHub, Inc. — 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA</p>
     <p>Aucune donnée personnelle collectée via un formulaire — contact uniquement par téléphone ou WhatsApp, à votre initiative. Google Analytics utilisé pour mesurer l'audience de manière anonyme, aucun cookie publicitaire.</p>
+  </div>
+</div>
+
+<div class="legal-modal" id="partnerModal" aria-hidden="true">
+  <div class="legal-modal-backdrop" id="partnerBackdrop"></div>
+  <div class="legal-modal-box" role="dialog" aria-modal="true" aria-label="Devenir partenaire">
+    <button type="button" class="legal-modal-close" id="partnerClose" aria-label="Fermer">✕</button>
+    <h3>Devenez partenaire</h3>
+    <p>Vous connaissez un commerçant, un artisan ou une entreprise qui a besoin d'un site ? Mettez-nous en contact.</p>
+    <p>Si le projet se concrétise, vous touchez <strong>100€, une seule fois, par site livré</strong> — pas de pourcentage sur l'abonnement, juste un merci concret.</p>
+    <p>Le client que vous nous envoyez profite du tarif standard (290€ + 49€/mois) — l'offre à 0€ avec engagement ne s'applique pas dans ce cas.</p>
+    <p>Intéressé ? <a href="tel:0745531434">Appelez-nous</a> ou <a href="https://wa.me/33745531434" target="_blank" rel="noopener">écrivez sur WhatsApp</a> pour en discuter.</p>
   </div>
 </div>
 
@@ -780,6 +793,20 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
   const modal = document.getElementById('legalModal');
   const closeBtn = document.getElementById('legalClose');
   const backdrop = document.getElementById('legalBackdrop');
+  if (!link || !modal) return;
+  function open(){ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); }
+  function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+  link.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+})();
+
+(function(){
+  const link = document.getElementById('partnerLink');
+  const modal = document.getElementById('partnerModal');
+  const closeBtn = document.getElementById('partnerClose');
+  const backdrop = document.getElementById('partnerBackdrop');
   if (!link || !modal) return;
   function open(){ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); }
   function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
