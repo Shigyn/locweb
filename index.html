@@ -229,7 +229,7 @@ section{padding:76px 20px;position:relative;}
 .art-nav-logo{font-weight:800;font-size:.92rem;color:#16211a;letter-spacing:-.01em;}
 .art-nav-logo em{font-style:normal;color:var(--art-accent);}
 .art-nav-btn{background:var(--art-accent);color:#fff;font-size:.7rem;font-weight:700;padding:8px 15px;border-radius:8px;text-decoration:none;white-space:nowrap;}
-.art-banner{flex-shrink:0;background:var(--art-accent);color:#fff;font-size:.66rem;font-weight:600;padding:8px 26px;}
+.art-banner{flex-shrink:0;background:var(--art-accent);color:#fff;font-size:.66rem;font-weight:600;padding:8px 26px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .art-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:22px 28px 28px;gap:12px;}
 .art-tag{display:inline-block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#5b6660;background:#eef0ea;padding:6px 13px;border-radius:100px;width:fit-content;}
 .art-title{font-family:var(--disp);font-weight:800;font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.18;color:#16211a;letter-spacing:-.01em;margin:2px 0;}
@@ -256,6 +256,14 @@ section{padding:76px 20px;position:relative;}
 .art-flr .art-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;}
 
 .art-gar .art-sub{max-width:360px;}
+
+.art-divider{width:34px;height:2px;background:var(--art-accent);opacity:.55;}
+.art-bol .art-divider{margin-left:auto;}
+.art-flr .art-divider{margin:0 auto;}
+.art-quote{font-style:italic;font-size:.78rem;color:#6b756f;}
+.art-steps{display:flex;flex-direction:column;gap:7px;}
+.art-step{display:flex;gap:8px;align-items:baseline;font-size:.78rem;color:#3a423d;}
+.art-step b{color:var(--art-accent);font-family:var(--disp);font-weight:800;}
 
 /* SUPPORT INCLUS : bandeau compact avant les tarifs, mockup fidèle de l'éditeur réel */
 #support-inclus{background:var(--paper);padding:64px 0;}
@@ -512,14 +520,14 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
               <a class="art-nav-btn" href="#">Commander</a>
               <span class="art-nav-logo">Boulangerie <em>Ferrand</em></span>
             </div>
-            <div class="art-banner">🥖 Artisan boulanger indépendant — depuis 1987</div>
             <div class="art-body">
               <span class="art-tag">Béziers — pain au levain & pâtisserie</span>
               <h3 class="art-title">Le bon pain, <em>fait maison.</em></h3>
-              <p class="art-sub">Pain au levain, viennoiseries et pâtisserie artisanale, tous les jours.</p>
+              <div class="art-divider" aria-hidden="true"></div>
+              <p class="art-quote">"Le vrai goût du pain d'autrefois."</p>
+              <p class="art-sub">Pain au levain, viennoiseries et pâtisserie artisanale, tous les jours depuis 1987.</p>
               <div class="art-chips">
                 <span class="art-chip">🌾 Levain naturel</span>
-                <span class="art-chip">🕰️ Depuis 1987</span>
                 <span class="art-chip">⏰ Ouvert 6h – 19h30</span>
               </div>
               <div class="art-cta-row">
@@ -534,14 +542,15 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
               <span class="art-nav-logo">Garage <em>Solère</em></span>
               <a class="art-nav-btn" href="tel:0467220000">04 67 22 00 00</a>
             </div>
+            <div class="art-banner">🔩 Mécanique générale — toutes marques</div>
             <div class="art-body">
               <span class="art-tag">Béziers — mécanique toutes marques</span>
               <h3 class="art-title">Votre voiture, <em>entre de bonnes mains.</em></h3>
-              <p class="art-sub">Diagnostic gratuit, devis immédiat, réparation le jour même dans la majorité des cas.</p>
-              <div class="art-chips">
-                <span class="art-chip">🔍 Diagnostic gratuit</span>
-                <span class="art-chip">📋 Devis immédiat</span>
-                <span class="art-chip">⚡ Réparé le jour même</span>
+              <p class="art-sub">Le déroulé, sans surprise :</p>
+              <div class="art-steps">
+                <div class="art-step"><b>1.</b> Diagnostic gratuit</div>
+                <div class="art-step"><b>2.</b> Devis immédiat</div>
+                <div class="art-step"><b>3.</b> Réparation le jour même</div>
               </div>
               <div class="art-cta-row">
                 <a class="art-btn-solid" href="tel:0467220000">Prendre RDV →</a>
@@ -556,7 +565,6 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
               <span class="art-nav-logo">Fleurs <em>de Léa</em></span>
               <a class="art-nav-btn" href="#">Commander</a>
             </div>
-            <div class="art-banner">💐 Fleuriste artisanale — livraison le jour même</div>
             <div class="art-body">
               <span class="art-tag">Béziers — compositions & bouquets</span>
               <h3 class="art-title">Des fleurs pour <em>chaque instant.</em></h3>
@@ -565,6 +573,8 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
                 <span class="art-chip">🌸 Fait main</span>
                 <span class="art-chip">🚲 Livraison le jour même</span>
               </div>
+              <div class="art-divider" aria-hidden="true"></div>
+              <p class="art-quote">"Chaque bouquet raconte une histoire."</p>
               <div class="art-cta-row">
                 <a class="art-btn-solid" href="#">Voir les créations →</a>
               </div>
