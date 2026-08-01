@@ -214,6 +214,65 @@ section{padding:76px 20px;position:relative;}
 .demo-disclaimer{font-style:italic;font-size:.78rem;color:rgba(255,255,255,.35);margin-top:24px;padding:0 20px;}
 @media(min-width:768px){.demo-disclaimer{padding:0 5vw;}}
 
+/* Toggle Site vitrine / Site animé au-dessus de la galerie réalisations */
+.real-toggle{display:inline-flex;gap:4px;background:rgba(255,255,255,.06);padding:5px;border-radius:100px;margin:26px 20px 0;}
+@media(min-width:768px){.real-toggle{margin-left:5vw;}}
+.real-toggle-btn{background:none;border:none;font-family:var(--sans);font-size:.8rem;font-weight:700;color:rgba(255,255,255,.5);padding:9px 20px;border-radius:100px;cursor:pointer;transition:background .2s,color .2s;}
+.real-toggle-btn.active{background:var(--red);color:#fff;}
+.real-toggle-btn:not(.active):hover{color:rgba(255,255,255,.8);}
+.real-item[data-set]{display:none;}
+.real-item[data-set].set-active{display:flex;}
+
+/* ── Sites "vitrine" (tier sobre, sans canvas, fond CSS animé) ── */
+/* Plomberie : composition centrée, le téléphone géant est le sujet — fond "photo terrain" (gradient + grain, pas d'animation) */
+.plb-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;}
+.plb-photo-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(circle at 25% 20%,rgba(120,180,220,.35),transparent 55%),linear-gradient(160deg,#12222f,#0a1620,#060d13);}
+.plb-photo-bg::after{content:'';position:absolute;inset:0;opacity:.5;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.plb-nav{flex-shrink:0;position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(8,20,34,.55);backdrop-filter:blur(10px);font-family:'Inter',sans-serif;border-bottom:1px solid rgba(120,210,255,.15);}
+.plb-nav-logo{font-family:'Inter',sans-serif;font-weight:800;font-size:.92rem;color:#eaf6ff;letter-spacing:-.01em;}
+.plb-nav-logo em{font-style:normal;color:#78d2ff;}
+.plb-preview{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;font-family:'Inter',sans-serif;}
+.plb-preview .plb-tag{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:#78d2ff;margin-bottom:18px;font-weight:700;}
+.plb-preview .plb-phone{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,5.4vw,3.4rem);color:#fff;letter-spacing:-.02em;margin-bottom:14px;}
+.plb-preview .plb-line{font-size:.86rem;color:#a9cfe6;max-width:320px;}
+.plb-nav-tel{background:#78d2ff;color:#08243a;font-weight:700;font-size:.72rem;padding:7px 14px;border-radius:100px;white-space:nowrap;}
+.gar-nav-tel{background:#ff8c3c;color:#1c1006;}
+
+/* Boulangerie : badge coin haut-gauche + logo centré, pill horaires coin bas-droite — fond "photo terrain" */
+.bol-hero-area{position:relative;height:100%;overflow:hidden;}
+.bol-photo-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(circle at 80% 75%,rgba(255,210,140,.35),transparent 55%),linear-gradient(155deg,#3a2410,#1f1508,#140d05);}
+.bol-photo-bg::after{content:'';position:absolute;inset:0;opacity:.5;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.bol-nav{position:absolute;top:24px;left:28px;z-index:3;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#f0c988;font-weight:700;}
+.bol-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;font-family:'Fraunces',serif;}
+.bol-preview .bol-title{font-weight:400;font-size:clamp(2rem,4.6vw,3.1rem);color:#fbeedd;line-height:1.1;margin-bottom:16px;}
+.bol-preview .bol-title em{font-style:italic;color:#f0c988;}
+.bol-preview .bol-sub{font-family:'Inter',sans-serif;font-size:.86rem;color:#d6bd9e;max-width:320px;font-weight:300;}
+.bol-hours{position:absolute;bottom:22px;right:24px;z-index:3;background:rgba(240,201,136,.14);border:1px solid rgba(240,201,136,.3);color:#f0c988;font-size:.66rem;font-weight:700;padding:7px 14px;border-radius:100px;}
+
+/* Garage : split texte / étapes numérotées — fond "photo terrain" */
+.gar-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;}
+.gar-photo-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(circle at 85% 20%,rgba(255,140,60,.25),transparent 55%),linear-gradient(145deg,#1c1c1c,#111,#1c1c1c);}
+.gar-photo-bg::after{content:'';position:absolute;inset:0;opacity:.5;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.gar-nav{flex-shrink:0;position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(10,10,10,.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,140,60,.2);font-family:'Inter',sans-serif;}
+.gar-nav-logo{font-weight:800;font-size:.92rem;color:#f5f0ea;text-transform:uppercase;letter-spacing:.02em;}
+.gar-nav-logo em{font-style:normal;color:#ff8c3c;}
+.gar-preview{position:relative;z-index:1;flex:1;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:26px;padding:32px 40px;font-family:'Inter',sans-serif;}
+.gar-preview .gar-tag{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#ff8c3c;margin-bottom:14px;font-weight:700;}
+.gar-preview .gar-title{font-weight:800;font-size:clamp(1.4rem,3vw,2rem);line-height:1.1;color:#f5f0ea;text-transform:uppercase;}
+.gar-steps{display:flex;flex-direction:column;gap:14px;}
+.gar-step{display:flex;gap:10px;align-items:baseline;font-size:.8rem;color:#c9c2b8;}
+.gar-step b{color:#ff8c3c;font-family:var(--disp);font-size:1rem;}
+@media(max-width:700px){.gar-preview{grid-template-columns:1fr;}}
+
+/* Fleuriste : signature centrée en haut, citation ancrée en bas — fond "photo terrain" */
+.flr-hero-area{position:relative;height:100%;overflow:hidden;}
+.flr-photo-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(circle at 25% 80%,rgba(180,220,150,.3),transparent 55%),linear-gradient(150deg,#3a1f2c,#241220,#160b14);}
+.flr-photo-bg::after{content:'';position:absolute;inset:0;opacity:.5;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.flr-mark{position:absolute;top:26px;left:50%;transform:translateX(-50%);z-index:3;font-family:'Playfair Display',serif;font-style:italic;font-size:.82rem;color:rgba(255,232,240,.6);letter-spacing:.03em;}
+.flr-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:32px 40px 40px;font-family:'Inter',sans-serif;}
+.flr-preview .flr-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.3;color:#fbe8f0;margin-bottom:10px;max-width:380px;}
+.flr-preview .flr-sub{font-size:.82rem;color:#d9b8c8;max-width:320px;font-weight:300;}
+
 /* SUPPORT INCLUS : bandeau compact avant les tarifs, mockup fidèle de l'éditeur réel */
 #support-inclus{background:var(--paper);padding:64px 0;}
 .support-wrap{max-width:1180px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
@@ -433,10 +492,69 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
       <h2 class="hsplit">Ce qu'on sait<br><em>construire pour vous.</em></h2>
     </div>
   </div>
+  <div class="real-toggle" role="tablist" aria-label="Type de site à afficher">
+    <button type="button" class="real-toggle-btn" data-show="vitrine" role="tab" aria-selected="false">Site vitrine</button>
+    <button type="button" class="real-toggle-btn active" data-show="anime" role="tab" aria-selected="true">Site animé</button>
+  </div>
   <div class="galerie-horiz-wrap">
     <div class="galerie-horiz-sticky">
       <div class="galerie-horiz-track">
-        <div class="real-item">
+        <div class="real-item" data-set="vitrine">
+          <div class="plb-hero-area">
+            <div class="plb-photo-bg" aria-hidden="true"></div>
+            <div class="plb-nav">
+              <span class="plb-nav-logo">Rapid'Eau <em>Plomberie</em></span>
+              <span class="plb-nav-tel">04 67 11 00 00</span>
+            </div>
+            <div class="plb-preview">
+              <span class="plb-tag">Béziers — dépannage 7j/7</span>
+              <div class="plb-phone">04 67 11 00 00</div>
+              <p class="plb-line">Fuite, panne, urgence : intervention en moins de 30 minutes, devis gratuit.</p>
+            </div>
+          </div>
+        </div>
+        <div class="real-item" data-set="vitrine">
+          <div class="bol-hero-area">
+            <div class="bol-photo-bg" aria-hidden="true"></div>
+            <span class="bol-nav">Artisan boulanger · depuis 1987</span>
+            <div class="bol-preview">
+              <div class="bol-title">Boulangerie<br><em>Ferrand.</em></div>
+              <p class="bol-sub">Pain au levain, viennoiseries et pâtisserie maison, tous les jours à Béziers.</p>
+            </div>
+            <span class="bol-hours">Ouvert 6h – 19h30</span>
+          </div>
+        </div>
+        <div class="real-item" data-set="vitrine">
+          <div class="gar-hero-area">
+            <div class="gar-photo-bg" aria-hidden="true"></div>
+            <div class="gar-nav">
+              <span class="gar-nav-logo">Garage <em>Solère</em></span>
+              <span class="plb-nav-tel gar-nav-tel">04 67 22 00 00</span>
+            </div>
+            <div class="gar-preview">
+              <div>
+                <span class="gar-tag">Béziers — mécanique toutes marques</span>
+                <div class="gar-title">Votre voiture,<br>entre de bonnes mains.</div>
+              </div>
+              <div class="gar-steps">
+                <div class="gar-step"><b>1.</b> Diagnostic gratuit</div>
+                <div class="gar-step"><b>2.</b> Devis immédiat</div>
+                <div class="gar-step"><b>3.</b> Réparation le jour même</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="real-item" data-set="vitrine">
+          <div class="flr-hero-area">
+            <div class="flr-photo-bg" aria-hidden="true"></div>
+            <span class="flr-mark">Fleurs de Léa</span>
+            <div class="flr-preview">
+              <div class="flr-title">Des fleurs pour<br>chaque instant.</div>
+              <p class="flr-sub">Compositions florales, bouquets et livraison à Béziers et alentours.</p>
+            </div>
+          </div>
+        </div>
+        <div class="real-item set-active" data-set="anime">
           <div class="arc-hero-area">
             <canvas class="real-item-canvas" id="real-canvas-1" aria-hidden="true"></canvas>
             <div class="arc-nav">
@@ -456,7 +574,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             </div>
           </div>
         </div>
-        <div class="real-item">
+        <div class="real-item set-active" data-set="anime">
           <div class="amb-hero-area">
             <canvas class="real-item-canvas" id="real-canvas-2" aria-hidden="true"></canvas>
             <span class="amb-mark">Ambre &amp; Sens</span>
@@ -468,7 +586,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             </div>
           </div>
         </div>
-        <div class="real-item">
+        <div class="real-item set-active" data-set="anime">
           <div class="mv-hero-area">
             <div class="mv-photo-bg" aria-hidden="true"></div>
             <div class="mv-preview">
@@ -482,7 +600,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             </div>
           </div>
         </div>
-        <div class="real-item">
+        <div class="real-item set-active" data-set="anime">
           <div class="ff-hero-area">
             <canvas class="real-item-canvas" id="real-canvas-4" aria-hidden="true"></canvas>
             <div class="ff-nav">
@@ -827,6 +945,24 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
   closeBtn.addEventListener('click', close);
   backdrop.addEventListener('click', close);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+})();
+
+(function(){
+  const buttons = document.querySelectorAll('.real-toggle-btn');
+  const wrap = document.querySelector('#realisations .galerie-horiz-wrap');
+  if (!buttons.length || !wrap) return;
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('active')) return;
+      const show = btn.getAttribute('data-show');
+      buttons.forEach((b) => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+      document.querySelectorAll('.real-item[data-set]').forEach((item) => {
+        item.classList.toggle('set-active', item.getAttribute('data-set') === show);
+      });
+      window.dispatchEvent(new Event('resize'));
+    });
+  });
 })();
 
 (function(){
