@@ -214,6 +214,42 @@ section{padding:76px 20px;position:relative;}
 .demo-disclaimer{font-style:italic;font-size:.78rem;color:rgba(255,255,255,.35);margin-top:24px;padding:0 20px;}
 @media(min-width:768px){.demo-disclaimer{padding:0 5vw;}}
 
+/* SUPPORT INCLUS : bandeau compact avant les tarifs, mockup fidèle de l'éditeur réel */
+#support-inclus{background:var(--paper);padding:64px 0;}
+.support-wrap{max-width:1180px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
+@media(min-width:768px){.support-wrap{padding:0 5vw;}}
+@media(max-width:900px){.support-wrap{grid-template-columns:1fr;gap:36px;}}
+
+.support-tag{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:14px;}
+.support-title{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.15;margin:0 0 14px;}
+.support-title em{font-style:normal;color:var(--red);}
+.support-intro{font-size:.94rem;color:#6b6862;max-width:440px;margin-bottom:26px;line-height:1.6;}
+
+.support-points{display:flex;flex-direction:column;gap:20px;}
+.support-point{display:flex;gap:16px;align-items:flex-start;}
+.support-point-ico{font-size:1.2rem;flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:10px;border:1px solid rgba(0,0,0,.06);}
+.support-point strong{display:block;font-size:.92rem;font-weight:700;margin-bottom:3px;}
+.support-point p{font-size:.83rem;color:#6b6862;line-height:1.55;max-width:380px;margin:0;}
+
+.support-shot{position:relative;}
+.editor-mock{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.16);border:1px solid rgba(0,0,0,.06);background:#f7f6f3;font-family:'Inter',sans-serif;transform:rotate(-1.1deg);max-width:400px;margin:0 auto;}
+.editor-mock-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#eae7e0;}
+.editor-mock-dot{width:9px;height:9px;border-radius:50%;background:rgba(0,0,0,.15);flex-shrink:0;}
+.editor-mock-url{margin-left:8px;font-size:.66rem;color:#8a8780;background:#fff;padding:4px 12px;border-radius:6px;flex:1;}
+.editor-mock-body{padding:18px 18px 20px;}
+.editor-mock-brand{font-weight:800;font-size:.86rem;margin-bottom:12px;}
+.editor-mock-brand span{color:var(--red);}
+.editor-mock-nav{display:flex;gap:6px;margin-bottom:14px;}
+.editor-mock-nav span{font-size:.64rem;font-weight:700;padding:5px 10px;border-radius:6px;border:1px solid rgba(0,0,0,.08);color:#8a8780;}
+.editor-mock-nav span.on{background:var(--red);color:#fff;border-color:var(--red);}
+.editor-mock-group{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:10px;margin-bottom:9px;overflow:hidden;}
+.editor-mock-group-head{display:flex;justify-content:space-between;padding:9px 12px;font-size:.72rem;font-weight:700;}
+.editor-mock-group-head span:last-child{color:#8a8780;font-weight:400;}
+.editor-mock-row{padding:8px 12px 10px;border-top:1px solid rgba(0,0,0,.05);}
+.editor-mock-row label{display:block;font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:#8a8780;margin-bottom:4px;}
+.editor-mock-row .val{font-size:.7rem;padding:6px 9px;background:#fbfbfa;border:1px solid rgba(0,0,0,.08);border-radius:6px;color:#333;}
+@media(max-width:900px){.editor-mock{transform:none;}}
+
 /* ── TARIFS : même traitement galerie que réalisations ── */
 #tarifs{background:var(--paper2);}
 #tarifs .galerie-horiz-sticky{background:transparent;}
@@ -469,6 +505,60 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     </div>
   </div>
   <p class="demo-disclaimer">Les sites présentés sont des démonstrations.</p>
+</section>
+
+<!-- SUPPORT INCLUS -->
+<section id="support-inclus">
+  <div class="support-wrap">
+    <div class="support-text">
+      <div class="support-tag">Ce qui est inclus</div>
+      <h2 class="support-title">Ce qui est inclus<br><em>dans l'abonnement.</em></h2>
+      <p class="support-intro" data-editable-zone="support_intro">Un seul prix mensuel, trois choses concrètes derrière — pas de flou, pas de ligne cachée.</p>
+      <div class="support-points">
+        <div class="support-point">
+          <span class="support-point-ico" aria-hidden="true">🌐</span>
+          <div>
+            <strong data-editable-zone="support_point1_titre">Hébergement + nom de domaine</strong>
+            <p data-editable-zone="support_point1_desc">Votre site en ligne 24h/24, votre .fr ou .com inclus et renouvelé chaque année.</p>
+          </div>
+        </div>
+        <div class="support-point">
+          <span class="support-point-ico" aria-hidden="true">✏️</span>
+          <div>
+            <strong data-editable-zone="support_point2_titre">Éditeur de contenu</strong>
+            <p data-editable-zone="support_point2_desc">Modifiez vos textes, photos et tarifs vous-même, en autonomie, sans toucher au code.</p>
+          </div>
+        </div>
+        <div class="support-point">
+          <span class="support-point-ico" aria-hidden="true">🛠️</span>
+          <div>
+            <strong data-editable-zone="support_point3_titre">Support technique direct</strong>
+            <p data-editable-zone="support_point3_desc">Une question, un bug, une envie de changement ? Vous nous appelez, on s'en occupe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="support-shot">
+      <div class="editor-mock" aria-hidden="true">
+        <div class="editor-mock-bar">
+          <span class="editor-mock-dot"></span><span class="editor-mock-dot"></span><span class="editor-mock-dot"></span>
+          <span class="editor-mock-url">admin.locweb.fr</span>
+        </div>
+        <div class="editor-mock-body">
+          <div class="editor-mock-brand">Loc<span>Web</span> — Administration</div>
+          <div class="editor-mock-nav"><span class="on">Textes</span><span>Images</span><span>Produits / tarifs</span></div>
+          <div class="editor-mock-group">
+            <div class="editor-mock-group-head"><span>Hero</span><span>−</span></div>
+            <div class="editor-mock-row"><label>Titre principal</label><div class="val">Un site professionnel, sans mauvaise surprise.</div></div>
+            <div class="editor-mock-row"><label>Sous-titre</label><div class="val">Site web, réseaux sociaux, fiche Google…</div></div>
+          </div>
+          <div class="editor-mock-group">
+            <div class="editor-mock-group-head"><span>Offre</span><span>+</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- TARIFS -->
