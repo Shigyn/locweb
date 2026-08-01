@@ -256,12 +256,14 @@ section{padding:76px 20px;position:relative;}
 .tarif-card{flex:0 0 min(88vw,440px);height:min(78vh,660px);background:var(--ink);border-radius:24px;padding:44px 36px;box-shadow:0 30px 80px rgba(13,13,15,.25);display:flex;flex-direction:column;color:#fff;position:relative;will-change:transform;}
 .tarif-card::after{content:'';position:absolute;inset:0;z-index:6;border-radius:inherit;background:radial-gradient(circle 220px at var(--mx,50%) var(--my,50%),rgba(255,255,255,.12),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;}
 .tarif-card:hover::after{opacity:1;}
-.tarif-card .prix-main{font-family:var(--disp);font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:8px;display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;}
+.tarif-card .prix-main{font-family:var(--disp);display:flex;align-items:flex-end;gap:16px;margin-bottom:10px;flex-wrap:wrap;}
 .tarif-card .prix-main .cur{font-size:1.6rem;color:var(--red);vertical-align:super;}
-.tarif-card .prix-num{font-size:2.7rem;}
+.tarif-card .prix-opt{display:flex;flex-direction:column;gap:5px;}
+.tarif-card .prix-num{font-weight:700;letter-spacing:-.03em;line-height:1;font-size:2.5rem;}
 .tarif-card .prix-num-alt{color:var(--red);}
-.tarif-card .prix-slash{font-size:1.5rem;color:rgba(255,255,255,.3);font-weight:400;}
-.tarif-card .prix-star{font-size:1.1rem;color:var(--red);}
+.tarif-card .prix-opt-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.05em;font-weight:700;color:rgba(255,255,255,.4);}
+.tarif-card .prix-opt-label.alt{color:#ff6b5f;}
+.tarif-card .prix-sep{font-size:.78rem;color:rgba(255,255,255,.3);font-style:italic;padding-bottom:9px;}
 .tarif-card .prix-freq{font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:28px;display:block;}
 .tarif-card .prix-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:auto;flex:1;}
 .tarif-card .prix-list li{font-size:.85rem;display:flex;gap:10px;align-items:flex-start;line-height:1.4;color:rgba(255,255,255,.75);}
@@ -577,9 +579,15 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         <div class="tarif-card">
           <span class="tarif-badge-top classique">Site vitrine</span>
           <div class="prix-main">
-            <span class="prix-num"><span data-editable-zone="prix_classique_creation">290</span>€</span>
-            <span class="prix-slash">/</span>
-            <span class="prix-num prix-num-alt"><span data-editable-zone="prix_classique_creation_engage">0</span>€</span><span class="prix-star">*</span>
+            <div class="prix-opt">
+              <span class="prix-num"><span data-editable-zone="prix_classique_creation">290</span>€</span>
+              <span class="prix-opt-label">Sans engagement</span>
+            </div>
+            <span class="prix-sep">ou</span>
+            <div class="prix-opt">
+              <span class="prix-num prix-num-alt"><span data-editable-zone="prix_classique_creation_engage">90</span>€</span>
+              <span class="prix-opt-label alt">Avec engagement 1 an</span>
+            </div>
           </div>
           <span class="prix-freq">+ <span data-editable-zone="prix_classique_mensuel">49</span>€/mois · résiliable à tout moment</span>
           <ul class="prix-list">
@@ -597,9 +605,15 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         <div class="tarif-card">
           <span class="tarif-badge-top ultra">Site vitrine ultra animé</span>
           <div class="prix-main">
-            <span class="prix-num"><span data-editable-zone="prix_ultra_creation">490</span>€</span>
-            <span class="prix-slash">/</span>
-            <span class="prix-num prix-num-alt"><span data-editable-zone="prix_ultra_creation_engage">290</span>€</span><span class="prix-star">*</span>
+            <div class="prix-opt">
+              <span class="prix-num"><span data-editable-zone="prix_ultra_creation">490</span>€</span>
+              <span class="prix-opt-label">Sans engagement</span>
+            </div>
+            <span class="prix-sep">ou</span>
+            <div class="prix-opt">
+              <span class="prix-num prix-num-alt"><span data-editable-zone="prix_ultra_creation_engage">290</span>€</span>
+              <span class="prix-opt-label alt">Avec engagement 1 an</span>
+            </div>
           </div>
           <span class="prix-freq">+ <span data-editable-zone="prix_ultra_mensuel">49</span>€/mois · résiliable à tout moment</span>
           <ul class="prix-list">
@@ -646,7 +660,6 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
       </div>
     </div>
   </div>
-  <p class="prix-footnote" data-editable-zone="prix_engagement_note">* Avec un engagement d'1 an aux support technique, éditeur de contenu et hébergement + nom de domaine.</p>
 </section>
 
 <!-- CTA BAND -->
