@@ -151,37 +151,15 @@ section{padding:76px 20px;position:relative;}
 .real-item::after{content:'';position:absolute;inset:0;z-index:6;border-radius:inherit;background:radial-gradient(circle 240px at var(--mx,50%) var(--my,50%),rgba(255,255,255,.18),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;}
 .real-item:hover::after{opacity:1;}
 
-.mv-nav{flex-shrink:0;position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(247,244,238,.92);backdrop-filter:blur(10px);font-family:'Inter',sans-serif;}
-.mv-nav-logo{font-family:'Fraunces',serif;font-size:1rem;color:#14110d;}
-.mv-nav-logo em{font-style:italic;color:#d9822e;}
-.mv-nav-tel{background:#14110d;color:#f7f4ee;font-weight:600;font-size:.76rem;padding:8px 15px;border-radius:2px;white-space:nowrap;}
-
-.mv-hero-area{position:relative;flex:1;overflow:hidden;}
 .real-item-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 
-/* Maison Verrier : contenu aligné en bas, typographie énorme, badges en ligne de texte */
-.mv-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;text-align:right;padding:40px 52px;font-family:'Inter',sans-serif;}
-.mv-preview .mv-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#ffb24d;margin-bottom:18px;}
-.mv-preview .mv-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.1;color:#f3efe6;margin-bottom:18px;max-width:420px;}
-.mv-preview .mv-cycle{font-style:italic;color:#ffb24d;display:inline-block;}
-.mv-preview .mv-inline{font-size:.76rem;color:#c9b8a8;letter-spacing:.02em;}
-.mv-preview .mv-inline strong{color:#ffd9a3;font-weight:600;}
-.mv-preview .mv-inline span{margin:0 8px;color:rgba(255,178,77,.4);}
-
-/* Ambre & Sens : composition centrée, zen, sans badges */
-.amb-nav-logo{font-family:'Playfair Display',serif;font-size:1rem;color:#14110d;}
-.amb-nav-logo em{font-style:italic;color:#e0457a;}
-.amb-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:44px 40px;font-family:'Inter',sans-serif;}
-.amb-preview .amb-tag{font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:#ff8fb0;margin-bottom:24px;}
-.amb-preview .amb-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.3;color:#f5ece9;margin-bottom:22px;max-width:380px;}
-.amb-preview .amb-cycle{color:#ff8fb0;display:inline-block;}
-.amb-preview .amb-sub{font-size:.86rem;line-height:1.8;color:#d9c0c8;max-width:340px;margin-bottom:24px;font-weight:300;}
-.amb-preview .amb-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:.84rem;color:#ff8fb0;opacity:.75;}
-
-/* Studio Anthracite : split texte / statistiques verticales avec séparateur */
-.arc-nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:1rem;color:#14171a;letter-spacing:-.01em;}
-.arc-nav-logo em{font-style:normal;color:#2f8fff;}
-.arc-preview{position:relative;z-index:1;height:100%;display:grid;grid-template-columns:1.3fr 1fr;align-items:center;gap:28px;padding:40px 48px;font-family:'Inter',sans-serif;}
+/* Studio Anthracite : nav flottante transparente en surimpression sur le canvas, split texte / statistiques */
+.arc-hero-area{position:relative;height:100%;overflow:hidden;}
+.arc-nav{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:22px 30px;border-bottom:1px solid rgba(255,255,255,.1);}
+.arc-nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:1rem;color:#eef3f6;letter-spacing:-.01em;}
+.arc-nav-logo em{font-style:normal;color:#3fc8ff;}
+.arc-nav-cta{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#3fc8ff;border:1px solid rgba(63,200,255,.4);padding:7px 15px;border-radius:20px;white-space:nowrap;}
+.arc-preview{position:relative;z-index:1;height:100%;display:grid;grid-template-columns:1.3fr 1fr;align-items:center;gap:28px;padding:96px 48px 40px;font-family:'Inter',sans-serif;}
 .arc-preview .arc-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#3fc8ff;margin-bottom:16px;}
 .arc-preview .arc-title{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(1.5rem,3.2vw,2.2rem);line-height:1.08;letter-spacing:-.02em;color:#eef3f6;margin-bottom:14px;}
 .arc-preview .arc-cycle{color:#3fc8ff;display:inline-block;}
@@ -189,12 +167,41 @@ section{padding:76px 20px;position:relative;}
 .arc-stats{display:flex;flex-direction:column;gap:20px;border-left:1px solid rgba(63,200,255,.25);padding-left:24px;}
 .arc-stat-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:2rem;color:#3fc8ff;display:block;line-height:1;}
 .arc-stat-lbl{font-size:.64rem;color:#8fb4c9;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;display:block;}
-@media(max-width:700px){.arc-preview{grid-template-columns:1fr;}.arc-stats{flex-direction:row;border-left:none;border-top:1px solid rgba(63,200,255,.25);padding-left:0;padding-top:16px;gap:26px;}}
+@media(max-width:700px){.arc-nav{padding:16px 22px;}.arc-preview{grid-template-columns:1fr;padding-top:80px;}.arc-stats{flex-direction:row;border-left:none;border-top:1px solid rgba(63,200,255,.25);padding-left:0;padding-top:16px;gap:26px;}}
 
-/* Forme & Force : chiffre géant en fond, contenu ancré en bas */
-.ff-nav-logo{font-family:'Inter',sans-serif;font-weight:800;font-size:.95rem;color:#0d1a10;letter-spacing:.02em;text-transform:uppercase;}
+/* Ambre & Sens : aucune nav — juste une signature discrète en haut, composition centrée zen */
+.amb-hero-area{position:relative;height:100%;overflow:hidden;}
+.amb-mark{position:absolute;top:28px;left:50%;transform:translateX(-50%);z-index:3;font-family:'Playfair Display',serif;font-style:italic;font-size:.78rem;letter-spacing:.06em;color:rgba(245,236,233,.5);}
+.amb-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:44px 40px;font-family:'Inter',sans-serif;}
+.amb-preview .amb-tag{font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:#ff8fb0;margin-bottom:24px;}
+.amb-preview .amb-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.3;color:#f5ece9;margin-bottom:22px;max-width:380px;}
+.amb-preview .amb-cycle{color:#ff8fb0;display:inline-block;}
+.amb-preview .amb-sub{font-size:.86rem;line-height:1.8;color:#d9c0c8;max-width:340px;margin-bottom:24px;font-weight:300;}
+.amb-preview .amb-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:.84rem;color:#ff8fb0;opacity:.75;}
+
+/* Maison Verrier : fond "photo" texturé (pas d'animation, contraste volontaire avec les autres cartes), barre de contact ancrée en bas */
+.mv-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;}
+.mv-photo-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(circle at 78% 15%,rgba(255,197,120,.4),transparent 55%),linear-gradient(165deg,#2b1d12 0%,#171009 55%,#0c0704 100%);}
+.mv-photo-bg::after{content:'';position:absolute;inset:0;opacity:.5;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.mv-preview{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;text-align:right;padding:40px 52px 24px;font-family:'Inter',sans-serif;}
+.mv-preview .mv-tag{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#ffb24d;margin-bottom:18px;}
+.mv-preview .mv-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.1;color:#f3efe6;margin-bottom:18px;max-width:420px;}
+.mv-preview .mv-cycle{font-style:italic;color:#ffb24d;display:inline-block;}
+.mv-preview .mv-inline{font-size:.76rem;color:#c9b8a8;letter-spacing:.02em;}
+.mv-preview .mv-inline strong{color:#ffd9a3;font-weight:600;}
+.mv-preview .mv-inline span{margin:0 8px;color:rgba(255,178,77,.4);}
+.mv-nav{flex-shrink:0;position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(12,7,4,.88);backdrop-filter:blur(10px);font-family:'Inter',sans-serif;border-top:1px solid rgba(255,178,77,.15);}
+.mv-nav-logo{font-family:'Fraunces',serif;font-size:1rem;color:#f3efe6;}
+.mv-nav-logo em{font-style:italic;color:#ffb24d;}
+.mv-nav-tel{color:#ffb24d;font-weight:600;font-size:.76rem;white-space:nowrap;}
+
+/* Forme & Force : nav sombre à liseré néon, chiffre géant en fond, contenu ancré en bas */
+.ff-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;}
+.ff-nav{flex-shrink:0;position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#0a120c;border-bottom:2px solid #3ee06e;font-family:'Inter',sans-serif;}
+.ff-nav-logo{font-family:'Inter',sans-serif;font-weight:800;font-size:.95rem;color:#eafff0;letter-spacing:.02em;text-transform:uppercase;}
 .ff-nav-logo em{font-style:normal;color:#3ee06e;}
-.ff-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:32px 48px 40px;font-family:'Inter',sans-serif;}
+.ff-nav-tel{background:#3ee06e;color:#07130a;font-weight:700;font-size:.76rem;padding:8px 15px;border-radius:2px;white-space:nowrap;}
+.ff-preview{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:32px 48px 40px;font-family:'Inter',sans-serif;}
 .ff-giant{align-self:flex-end;text-align:right;}
 .ff-giant-num{font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(3.2rem,8vw,5.6rem);line-height:.85;color:rgba(255,255,255,.13);letter-spacing:-.02em;}
 .ff-giant-num span{color:rgba(62,224,110,.4);}
@@ -392,12 +399,12 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     <div class="galerie-horiz-sticky">
       <div class="galerie-horiz-track">
         <div class="real-item">
-          <div class="mv-nav">
-            <span class="arc-nav-logo">Studio <em>Anthracite</em></span>
-            <span class="mv-nav-tel">04 68 00 00 00</span>
-          </div>
-          <div class="mv-hero-area">
+          <div class="arc-hero-area">
             <canvas class="real-item-canvas" id="real-canvas-1" aria-hidden="true"></canvas>
+            <div class="arc-nav">
+              <span class="arc-nav-logo">Studio <em>Anthracite</em></span>
+              <span class="arc-nav-cta">Contact ↗</span>
+            </div>
             <div class="arc-preview">
               <div class="arc-main">
                 <span class="arc-tag">Narbonne — architecture d'intérieur sur mesure</span>
@@ -412,12 +419,9 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
           </div>
         </div>
         <div class="real-item">
-          <div class="mv-nav">
-            <span class="amb-nav-logo">Ambre <em>& Sens</em></span>
-            <span class="mv-nav-tel">04 99 00 00 00</span>
-          </div>
-          <div class="mv-hero-area">
+          <div class="amb-hero-area">
             <canvas class="real-item-canvas" id="real-canvas-2" aria-hidden="true"></canvas>
+            <span class="amb-mark">Ambre &amp; Sens</span>
             <div class="amb-preview">
               <span class="amb-tag">Montpellier</span>
               <div class="amb-title">Retrouvez votre<br><span class="titre-cyclique amb-cycle" data-mots="[&quot;équilibre.&quot;,&quot;énergie.&quot;,&quot;harmonie.&quot;]">équilibre.</span></div>
@@ -427,26 +431,26 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
           </div>
         </div>
         <div class="real-item">
-          <div class="mv-nav">
-            <span class="mv-nav-logo">Maison <em>Verrier</em></span>
-            <span class="mv-nav-tel">04 67 00 00 00</span>
-          </div>
           <div class="mv-hero-area">
-            <canvas class="real-item-canvas" id="real-canvas-3" aria-hidden="true"></canvas>
+            <div class="mv-photo-bg" aria-hidden="true"></div>
             <div class="mv-preview">
               <span class="mv-tag">Béziers — trois générations d'artisans</span>
               <div class="mv-title">La rénovation,<br><span class="titre-cyclique mv-cycle" data-mots="[&quot;sans compromis.&quot;,&quot;intemporelle.&quot;,&quot;sur mesure.&quot;]">sans compromis.</span></div>
               <div class="mv-inline"><strong>★ 4.9</strong> sur Google<span>·</span><strong>27 ans</strong> d'expérience<span>·</span>Devis gratuit</div>
             </div>
+            <div class="mv-nav">
+              <span class="mv-nav-logo">Maison <em>Verrier</em></span>
+              <span class="mv-nav-tel">04 67 00 00 00</span>
+            </div>
           </div>
         </div>
         <div class="real-item">
-          <div class="mv-nav">
-            <span class="ff-nav-logo">Forme <em>& Force</em></span>
-            <span class="mv-nav-tel">04 68 99 00 00</span>
-          </div>
-          <div class="mv-hero-area">
+          <div class="ff-hero-area">
             <canvas class="real-item-canvas" id="real-canvas-4" aria-hidden="true"></canvas>
+            <div class="ff-nav">
+              <span class="ff-nav-logo">Forme <em>& Force</em></span>
+              <span class="ff-nav-tel">04 68 99 00 00</span>
+            </div>
             <div class="ff-preview">
               <div class="ff-giant">
                 <div class="ff-giant-num">200<span>+</span></div>
@@ -758,7 +762,6 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
     HeroBg.initMetaballes('hero-canvas', { bg: '#0d0d0f', c: ['232,40,30','120,40,35','70,40,42'] });
     HeroBg.initGrille('real-canvas-1', { bg: '#070b12', c: ['0,200,255','60,140,255','130,90,255'] });
     HeroBg.initFumee('real-canvas-2', { bg: '#12060c', c: ['255,90,140','255,140,60','220,60,180'] });
-    HeroBg.initAurores('real-canvas-3', { bg: '#140d05', c: ['255,170,40','255,110,30','255,210,90'] });
     HeroBg.initVagues('real-canvas-4', { bg: '#050f08', c: ['80,255,120','40,220,90','160,255,60'] });
   }
 
