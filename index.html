@@ -215,7 +215,7 @@ section{padding:76px 20px;position:relative;}
 @media(min-width:768px){.demo-disclaimer{padding:0 5vw;}}
 
 /* Toggle Site vitrine / Site animé au-dessus de la galerie réalisations */
-.real-toggle{display:inline-flex;gap:4px;background:rgba(255,255,255,.06);padding:5px;border-radius:100px;margin:26px 20px 0;}
+.real-toggle{position:sticky;top:78px;z-index:50;display:inline-flex;gap:4px;background:rgba(20,20,22,.75);backdrop-filter:blur(10px);padding:5px;border-radius:100px;margin:26px 20px 0;box-shadow:0 10px 30px rgba(0,0,0,.3);}
 @media(min-width:768px){.real-toggle{margin-left:5vw;}}
 .real-toggle-btn{background:none;border:none;font-family:var(--sans);font-size:.8rem;font-weight:700;color:rgba(255,255,255,.5);padding:9px 20px;border-radius:100px;cursor:pointer;transition:background .2s,color .2s;}
 .real-toggle-btn.active{background:var(--red);color:#fff;}
