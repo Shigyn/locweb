@@ -223,47 +223,75 @@ section{padding:76px 20px;position:relative;}
 .real-item[data-set]{display:none;}
 .real-item[data-set].set-active{display:flex;}
 
-/* ── Sites "vitrine" (tier sobre) — fond clair, badges, boutons pleins/outline, façon site artisan réel (cf. AZROW) ── */
-.art-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;font-family:'Inter',sans-serif;background:#fbfaf7;}
-.art-nav{flex-shrink:0;display:flex;justify-content:space-between;align-items:center;padding:18px 26px;}
-.art-nav-logo{font-weight:800;font-size:.92rem;color:#16211a;letter-spacing:-.01em;}
-.art-nav-logo em{font-style:normal;color:var(--art-accent);}
-.art-nav-btn{background:var(--art-accent);color:#fff;font-size:.7rem;font-weight:700;padding:8px 15px;border-radius:8px;text-decoration:none;white-space:nowrap;}
-.art-banner{flex-shrink:0;background:var(--art-accent);color:#fff;font-size:.66rem;font-weight:600;padding:8px 26px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.art-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:22px 28px 28px;gap:12px;}
-.art-tag{display:inline-block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#5b6660;background:#eef0ea;padding:6px 13px;border-radius:100px;width:fit-content;}
-.art-title{font-family:var(--disp);font-weight:800;font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.18;color:#16211a;letter-spacing:-.01em;margin:2px 0;}
-.art-title em{font-style:normal;color:var(--art-accent);}
-.art-sub{font-size:.8rem;color:#6b756f;line-height:1.55;max-width:320px;}
-.art-chips{display:flex;flex-wrap:wrap;gap:8px;}
-.art-chip{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid #e4e6df;color:#3a423d;font-size:.66rem;font-weight:600;padding:6px 12px;border-radius:100px;}
-.art-cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
-.art-btn-solid{background:var(--art-accent);color:#fff;font-weight:700;font-size:.78rem;padding:11px 18px;border-radius:9px;text-decoration:none;white-space:nowrap;}
-.art-btn-outline{background:transparent;border:1px solid #d8dbd2;color:#16211a;font-weight:700;font-size:.78rem;padding:10px 18px;border-radius:9px;text-decoration:none;white-space:nowrap;}
+/* ── Sites "vitrine" (tier sobre) — 4 identités visuelles VRAIMENT différentes : couleur-bloc, illustration SVG, mise en page propre à chaque métier ── */
 
-.art-plb{--art-accent:#2f6fd6;}
-.art-bol{--art-accent:#c07a1f;}
-.art-gar{--art-accent:#d9601f;}
-.art-flr{--art-accent:#c94f80;}
+/* 1. Rapid'Eau Plomberie — bleu saturé, gouttes/ondes illustrées, ton urgent */
+.plb-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(135deg,#0b3d91,#083166 60%,#062247);font-family:'Inter',sans-serif;}
+.plb-wedge{position:absolute;inset:0;background:rgba(255,255,255,.04);clip-path:polygon(35% 0,100% 0,100% 100%,55% 100%);}
+.plb-illus{position:absolute;right:-30px;bottom:-30px;width:230px;height:230px;opacity:.9;pointer-events:none;}
+.plb-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;}
+.plb-nav-logo{font-weight:800;font-size:.92rem;color:#fff;}
+.plb-nav-logo em{font-style:normal;color:#7ec8ff;}
+.plb-nav-btn{background:#fff;color:#0b3d91;font-weight:800;font-size:.7rem;padding:9px 16px;border-radius:8px;text-decoration:none;white-space:nowrap;}
+.plb-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:6px 28px 30px;gap:13px;max-width:76%;}
+.plb-tag{display:inline-block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#bfe0ff;background:rgba(255,255,255,.12);padding:6px 13px;border-radius:100px;width:fit-content;}
+.plb-title{font-family:var(--disp);font-weight:800;font-size:clamp(1.35rem,3.2vw,1.85rem);line-height:1.15;color:#fff;margin:0;}
+.plb-title em{font-style:normal;color:#7ec8ff;}
+.plb-sub{font-size:.8rem;color:#c3dbf5;line-height:1.55;max-width:280px;}
+.plb-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.plb-chip{background:rgba(255,255,255,.14);color:#fff;font-size:.64rem;font-weight:700;padding:7px 12px;border-radius:100px;}
+.plb-cta{display:inline-flex;background:#fff;color:#0b3d91;font-weight:800;font-size:.78rem;padding:12px 19px;border-radius:9px;text-decoration:none;width:fit-content;margin-top:4px;}
 
-/* Placements variés : gauche (plomberie, défaut) / droite (boulangerie) / centré (fleuriste) / gauche sans bandeau (garage) */
-.art-bol .art-body{align-items:flex-end;text-align:right;}
-.art-bol .art-chips,.art-bol .art-cta-row{justify-content:flex-end;}
-.art-bol .art-title{font-family:'Fraunces',serif;font-weight:500;}
+/* 2. Boulangerie Ferrand — chaud terracotta, épi de blé illustré, étiquettes produits façon comptoir */
+.bol-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(circle at 12% 90%,#f4ddb0,transparent 55%),linear-gradient(155deg,#e8c07d,#d9954f 55%,#b9702f);font-family:'Inter',sans-serif;}
+.bol-illus{position:absolute;left:-15px;top:-15px;width:130px;height:300px;opacity:.4;pointer-events:none;}
+.bol-nav{position:relative;z-index:2;display:flex;justify-content:flex-end;padding:20px 26px;}
+.bol-nav-logo{font-family:'Fraunces',serif;font-weight:500;font-size:.96rem;color:#3a2410;}
+.bol-nav-logo em{font-style:italic;color:#fff;}
+.bol-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;text-align:right;padding:6px 28px 28px;gap:12px;}
+.bol-tag{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#5c3814;background:rgba(255,255,255,.4);padding:6px 13px;border-radius:100px;}
+.bol-title{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(1.5rem,3.4vw,2.1rem);color:#3a2410;line-height:1.18;max-width:300px;margin:2px 0;}
+.bol-title em{font-style:italic;color:#fff;}
+.bol-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;max-width:320px;}
+.bol-tag-item{background:#fffaf0;border:1px solid rgba(90,50,15,.25);color:#4a2c10;font-size:.66rem;font-weight:700;padding:8px 11px;border-radius:4px;box-shadow:2px 3px 0 rgba(90,50,15,.15);}
+.bol-tag-item:nth-child(2){transform:rotate(-2deg);}
+.bol-tag-item:nth-child(3){transform:rotate(1.5deg);}
+.bol-cta{background:#3a2410;color:#fce9c9;font-weight:800;font-size:.78rem;padding:12px 19px;border-radius:6px;text-decoration:none;margin-top:4px;}
 
-.art-flr .art-body{align-items:center;text-align:center;}
-.art-flr .art-chips,.art-flr .art-cta-row{justify-content:center;}
-.art-flr .art-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;}
+/* 3. Garage Solère — carte sombre, bandes diagonales façon signalétique, pictogramme engrenage */
+.gar-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:#111;font-family:'Inter',sans-serif;}
+.gar-stripes{position:absolute;top:0;left:0;right:0;height:12px;background:repeating-linear-gradient(45deg,#ff8c3c,#ff8c3c 14px,#161616 14px,#161616 28px);}
+.gar-stripes.bottom{top:auto;bottom:0;}
+.gar-illus{position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:200px;height:200px;opacity:.15;pointer-events:none;}
+.gar-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:26px 26px 16px;}
+.gar-nav-logo{font-weight:800;font-size:.92rem;color:#fff;text-transform:uppercase;letter-spacing:.02em;}
+.gar-nav-logo em{font-style:normal;color:#ff8c3c;}
+.gar-nav-btn{background:#ff8c3c;color:#1c1006;font-weight:800;font-size:.7rem;padding:9px 15px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.gar-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:6px 28px 28px;gap:12px;max-width:74%;}
+.gar-tag{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#ff8c3c;}
+.gar-title{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(1.35rem,3vw,1.8rem);line-height:1.12;color:#fff;letter-spacing:-.01em;margin:0;}
+.gar-title em{font-style:normal;color:#ff8c3c;}
+.gar-steps{display:flex;flex-direction:column;gap:7px;margin-top:2px;}
+.gar-step{display:flex;gap:8px;align-items:baseline;font-size:.78rem;color:#c9c2b8;}
+.gar-step b{color:#ff8c3c;font-family:var(--disp);font-weight:800;}
+.gar-cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+.gar-btn-solid{background:#ff8c3c;color:#1c1006;font-weight:800;font-size:.76rem;padding:11px 17px;border-radius:6px;text-decoration:none;white-space:nowrap;}
+.gar-btn-outline{border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:700;font-size:.76rem;padding:10px 17px;border-radius:6px;text-decoration:none;white-space:nowrap;}
 
-.art-gar .art-sub{max-width:360px;}
-
-.art-divider{width:34px;height:2px;background:var(--art-accent);opacity:.55;}
-.art-bol .art-divider{margin-left:auto;}
-.art-flr .art-divider{margin:0 auto;}
-.art-quote{font-style:italic;font-size:.78rem;color:#6b756f;}
-.art-steps{display:flex;flex-direction:column;gap:7px;}
-.art-step{display:flex;gap:8px;align-items:baseline;font-size:.78rem;color:#3a423d;}
-.art-step b{color:var(--art-accent);font-family:var(--disp);font-weight:800;}
+/* 4. Fleurs de Léa — pastel doux, motif floral en répétition + grande fleur illustrée, composition asymétrique */
+.flr-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(160deg,#fdf1f5,#fbe4ec 60%,#f7d5e3);font-family:'Inter',sans-serif;}
+.flr-pattern{position:absolute;inset:0;opacity:.6;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='18' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='18' cy='30' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='42' cy='30' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='30' cy='42' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='30' cy='30' r='5' fill='%23f4d35e'/%3E%3C/svg%3E");background-size:60px 60px;}
+.flr-illus{position:absolute;right:4%;top:50%;transform:translateY(-50%);width:190px;height:190px;opacity:.95;pointer-events:none;}
+.flr-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;}
+.flr-nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:.92rem;color:#7a2f4d;}
+.flr-nav-btn{background:#c94f80;color:#fff;font-weight:700;font-size:.7rem;padding:9px 16px;border-radius:100px;text-decoration:none;white-space:nowrap;}
+.flr-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:6px 28px 30px;gap:11px;max-width:58%;}
+.flr-tag{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#7a2f4d;background:rgba(255,255,255,.55);padding:6px 13px;border-radius:100px;width:fit-content;}
+.flr-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;font-size:clamp(1.4rem,3.2vw,2rem);color:#5c2340;line-height:1.25;margin:0;}
+.flr-title em{font-style:italic;color:#c94f80;}
+.flr-sub{font-size:.78rem;color:#8a5169;line-height:1.55;}
+.flr-cta{display:inline-flex;background:#c94f80;color:#fff;font-weight:700;font-size:.78rem;padding:12px 19px;border-radius:100px;text-decoration:none;width:fit-content;margin-top:4px;}
+@media(max-width:700px){.flr-body{max-width:70%;}.flr-illus{opacity:.5;}}
 
 /* SUPPORT INCLUS : bandeau compact avant les tarifs, mockup fidèle de l'éditeur réel */
 #support-inclus{background:var(--paper);padding:64px 0;}
@@ -492,92 +520,114 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     <div class="galerie-horiz-sticky">
       <div class="galerie-horiz-track">
         <div class="real-item" data-set="vitrine">
-          <div class="art-hero-area art-plb">
-            <div class="art-nav">
-              <span class="art-nav-logo">Rapid'Eau <em>Plomberie</em></span>
-              <a class="art-nav-btn" href="tel:0467110000">Devis gratuit</a>
+          <div class="plb-hero-area">
+            <div class="plb-wedge" aria-hidden="true"></div>
+            <svg class="plb-illus" viewBox="0 0 200 200" aria-hidden="true">
+              <circle cx="140" cy="70" r="20" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="2"/>
+              <circle cx="140" cy="70" r="40" fill="none" stroke="#fff" stroke-opacity=".14" stroke-width="2"/>
+              <circle cx="140" cy="70" r="60" fill="none" stroke="#fff" stroke-opacity=".1" stroke-width="2"/>
+              <circle cx="140" cy="70" r="80" fill="none" stroke="#fff" stroke-opacity=".06" stroke-width="2"/>
+              <path d="M140 30 C150 55 165 65 165 82 C165 95 154 105 140 105 C126 105 115 95 115 82 C115 65 130 55 140 30Z" fill="#7ec8ff" fill-opacity=".55"/>
+            </svg>
+            <div class="plb-nav">
+              <span class="plb-nav-logo">Rapid'Eau <em>Plomberie</em></span>
+              <a class="plb-nav-btn" href="tel:0467110000">Devis gratuit</a>
             </div>
-            <div class="art-banner">🔧 Dépannage rapide & garanti — Béziers et alentours</div>
-            <div class="art-body">
-              <span class="art-tag">Plomberie — dépannage 7j/7</span>
-              <h3 class="art-title">Une urgence ? <em>On arrive vite.</em></h3>
-              <p class="art-sub">Fuite, panne, installation : intervention en moins de 30 minutes, devis gratuit.</p>
-              <div class="art-chips">
-                <span class="art-chip">🔧 Intervention 30 min</span>
-                <span class="art-chip">✅ Devis gratuit</span>
-                <span class="art-chip">📞 7j/7</span>
+            <div class="plb-body">
+              <span class="plb-tag">Plomberie — dépannage 7j/7</span>
+              <h3 class="plb-title">Une urgence ? <em>On arrive vite.</em></h3>
+              <p class="plb-sub">Fuite, panne, installation : intervention en moins de 30 minutes, devis gratuit.</p>
+              <div class="plb-chips">
+                <span class="plb-chip">🔧 Intervention 30 min</span>
+                <span class="plb-chip">✅ Devis gratuit</span>
+                <span class="plb-chip">📞 7j/7</span>
               </div>
-              <div class="art-cta-row">
-                <a class="art-btn-solid" href="tel:0467110000">Appeler maintenant →</a>
-                <a class="art-btn-outline" href="#">Nos services</a>
+              <a class="plb-cta" href="tel:0467110000">Appeler maintenant →</a>
+            </div>
+          </div>
+        </div>
+        <div class="real-item" data-set="vitrine">
+          <div class="bol-hero-area">
+            <svg class="bol-illus" viewBox="0 0 100 260" aria-hidden="true">
+              <line x1="50" y1="30" x2="50" y2="240" stroke="#7a4a1a" stroke-width="3"/>
+              <g fill="#7a4a1a">
+                <ellipse cx="38" cy="50" rx="10" ry="18" transform="rotate(-25 38 50)"/>
+                <ellipse cx="62" cy="50" rx="10" ry="18" transform="rotate(25 62 50)"/>
+                <ellipse cx="35" cy="80" rx="10" ry="18" transform="rotate(-25 35 80)"/>
+                <ellipse cx="65" cy="80" rx="10" ry="18" transform="rotate(25 65 80)"/>
+                <ellipse cx="38" cy="110" rx="10" ry="18" transform="rotate(-25 38 110)"/>
+                <ellipse cx="62" cy="110" rx="10" ry="18" transform="rotate(25 62 110)"/>
+                <ellipse cx="35" cy="140" rx="10" ry="18" transform="rotate(-25 35 140)"/>
+                <ellipse cx="65" cy="140" rx="10" ry="18" transform="rotate(25 65 140)"/>
+              </g>
+            </svg>
+            <div class="bol-nav">
+              <span class="bol-nav-logo">Boulangerie <em>Ferrand</em></span>
+            </div>
+            <div class="bol-body">
+              <span class="bol-tag">Béziers — depuis 1987</span>
+              <h3 class="bol-title">Le bon pain, <em>fait maison.</em></h3>
+              <div class="bol-tags">
+                <span class="bol-tag-item">Pain de campagne — 3,50€</span>
+                <span class="bol-tag-item">Croissant — 1,20€</span>
+                <span class="bol-tag-item">Baguette tradition — 1,10€</span>
+              </div>
+              <a class="bol-cta" href="#">Nous trouver →</a>
+            </div>
+          </div>
+        </div>
+        <div class="real-item" data-set="vitrine">
+          <div class="gar-hero-area">
+            <div class="gar-stripes" aria-hidden="true"></div>
+            <div class="gar-stripes bottom" aria-hidden="true"></div>
+            <svg class="gar-illus" viewBox="0 0 200 200" aria-hidden="true">
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#ff8c3c" stroke-width="24" stroke-dasharray="14 12"/>
+              <circle cx="100" cy="100" r="40" fill="none" stroke="#ff8c3c" stroke-width="3"/>
+              <circle cx="100" cy="100" r="14" fill="#ff8c3c"/>
+            </svg>
+            <div class="gar-nav">
+              <span class="gar-nav-logo">Garage <em>Solère</em></span>
+              <a class="gar-nav-btn" href="tel:0467220000">04 67 22 00 00</a>
+            </div>
+            <div class="gar-body">
+              <span class="gar-tag">Béziers — mécanique toutes marques</span>
+              <h3 class="gar-title">Votre voiture, <em>entre de bonnes mains.</em></h3>
+              <div class="gar-steps">
+                <div class="gar-step"><b>1.</b> Diagnostic gratuit</div>
+                <div class="gar-step"><b>2.</b> Devis immédiat</div>
+                <div class="gar-step"><b>3.</b> Réparation le jour même</div>
+              </div>
+              <div class="gar-cta-row">
+                <a class="gar-btn-solid" href="tel:0467220000">Prendre RDV →</a>
+                <a class="gar-btn-outline" href="#">Nos prestations</a>
               </div>
             </div>
           </div>
         </div>
         <div class="real-item" data-set="vitrine">
-          <div class="art-hero-area art-bol">
-            <div class="art-nav">
-              <a class="art-nav-btn" href="#">Commander</a>
-              <span class="art-nav-logo">Boulangerie <em>Ferrand</em></span>
+          <div class="flr-hero-area">
+            <div class="flr-pattern" aria-hidden="true"></div>
+            <svg class="flr-illus" viewBox="0 0 200 200" aria-hidden="true">
+              <g fill="#c94f80" fill-opacity=".55">
+                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(0 100 100)"/>
+                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(60 100 100)"/>
+                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(120 100 100)"/>
+                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(180 100 100)"/>
+                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(240 100 100)"/>
+                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(300 100 100)"/>
+              </g>
+              <circle cx="100" cy="100" r="16" fill="#f4d35e"/>
+            </svg>
+            <div class="flr-nav">
+              <span class="flr-nav-logo">Fleurs <em>de Léa</em></span>
+              <a class="flr-nav-btn" href="#">Commander</a>
             </div>
-            <div class="art-body">
-              <span class="art-tag">Béziers — pain au levain & pâtisserie</span>
-              <h3 class="art-title">Le bon pain, <em>fait maison.</em></h3>
-              <div class="art-divider" aria-hidden="true"></div>
-              <p class="art-quote">"Le vrai goût du pain d'autrefois."</p>
-              <p class="art-sub">Pain au levain, viennoiseries et pâtisserie artisanale, tous les jours depuis 1987.</p>
-              <div class="art-chips">
-                <span class="art-chip">🌾 Levain naturel</span>
-                <span class="art-chip">⏰ Ouvert 6h – 19h30</span>
-              </div>
-              <div class="art-cta-row">
-                <a class="art-btn-solid" href="#">Nous trouver →</a>
-              </div>
+            <div class="flr-body">
+              <span class="flr-tag">Béziers — compositions & bouquets</span>
+              <h3 class="flr-title">Des fleurs pour <em>chaque instant.</em></h3>
+              <p class="flr-sub">Compositions florales, bouquets sur mesure, livraison le jour même.</p>
+              <a class="flr-cta" href="#">Voir les créations →</a>
             </div>
-          </div>
-        </div>
-        <div class="real-item" data-set="vitrine">
-          <div class="art-hero-area art-gar">
-            <div class="art-nav">
-              <span class="art-nav-logo">Garage <em>Solère</em></span>
-              <a class="art-nav-btn" href="tel:0467220000">04 67 22 00 00</a>
-            </div>
-            <div class="art-banner">🔩 Mécanique générale — toutes marques</div>
-            <div class="art-body">
-              <span class="art-tag">Béziers — mécanique toutes marques</span>
-              <h3 class="art-title">Votre voiture, <em>entre de bonnes mains.</em></h3>
-              <p class="art-sub">Le déroulé, sans surprise :</p>
-              <div class="art-steps">
-                <div class="art-step"><b>1.</b> Diagnostic gratuit</div>
-                <div class="art-step"><b>2.</b> Devis immédiat</div>
-                <div class="art-step"><b>3.</b> Réparation le jour même</div>
-              </div>
-              <div class="art-cta-row">
-                <a class="art-btn-solid" href="tel:0467220000">Prendre RDV →</a>
-                <a class="art-btn-outline" href="#">Nos prestations</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="real-item" data-set="vitrine">
-          <div class="art-hero-area art-flr">
-            <div class="art-nav">
-              <span class="art-nav-logo">Fleurs <em>de Léa</em></span>
-              <a class="art-nav-btn" href="#">Commander</a>
-            </div>
-            <div class="art-body">
-              <span class="art-tag">Béziers — compositions & bouquets</span>
-              <h3 class="art-title">Des fleurs pour <em>chaque instant.</em></h3>
-              <p class="art-sub">Compositions florales, bouquets sur mesure et livraison à Béziers et alentours.</p>
-              <div class="art-chips">
-                <span class="art-chip">🌸 Fait main</span>
-                <span class="art-chip">🚲 Livraison le jour même</span>
-              </div>
-              <div class="art-divider" aria-hidden="true"></div>
-              <p class="art-quote">"Chaque bouquet raconte une histoire."</p>
-              <div class="art-cta-row">
-                <a class="art-btn-solid" href="#">Voir les créations →</a>
-              </div>
             </div>
           </div>
         </div>
