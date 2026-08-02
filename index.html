@@ -225,98 +225,74 @@ section{padding:76px 20px;position:relative;}
 
 /* ── Sites "vitrine" (tier sobre) — 4 identités visuelles VRAIMENT différentes : couleur-bloc, illustration SVG, mise en page propre à chaque métier ── */
 
-/* 1. Rapid'Eau Plomberie — bleu saturé, gouttes/ondes illustrées, ton urgent */
+/* 1. Rapid'Eau Plomberie — LE NUMÉRO EST LE HÉROS : pas de titre, pas de bouton, juste un téléphone géant cliquable */
 .plb-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(135deg,#0b3d91,#083166 60%,#062247);font-family:'Inter',sans-serif;}
 .plb-wedge{position:absolute;inset:0;background:rgba(255,255,255,.04);clip-path:polygon(35% 0,100% 0,100% 100%,55% 100%);}
 .plb-dots{position:absolute;inset:0;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.09) 1.5px,transparent 1.5px);background-size:24px 24px;}
 .plb-illus{position:absolute;right:-40px;bottom:-60px;width:440px;height:440px;opacity:.95;pointer-events:none;}
 @media(max-width:700px){.plb-illus{width:260px;height:260px;bottom:-40px;right:-30px;}}
-.plb-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;}
-.plb-nav-logo{font-weight:800;font-size:.92rem;color:#fff;}
+.plb-nav{position:relative;z-index:2;padding:22px 26px;}
+.plb-nav-logo{font-weight:800;font-size:.86rem;color:rgba(255,255,255,.75);}
 .plb-nav-logo em{font-style:normal;color:#7ec8ff;}
-.plb-nav-btn{background:#fff;color:#0b3d91;font-weight:800;font-size:.7rem;padding:9px 16px;border-radius:8px;text-decoration:none;white-space:nowrap;}
-.plb-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:6px 28px 30px;gap:13px;max-width:76%;}
-.plb-top{display:flex;flex-direction:column;gap:13px;}
-.plb-tag{display:inline-block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#bfe0ff;background:rgba(255,255,255,.12);padding:6px 13px;border-radius:100px;width:fit-content;}
-.plb-title{font-family:var(--disp);font-weight:800;font-size:clamp(1.35rem,3.2vw,1.85rem);line-height:1.15;color:#fff;margin:0;}
-.plb-title em{font-style:normal;color:#7ec8ff;}
-.plb-sub{font-size:.8rem;color:#c3dbf5;line-height:1.55;max-width:280px;}
-.plb-chips{display:flex;flex-wrap:wrap;gap:8px;}
-.plb-chip{background:rgba(255,255,255,.14);color:#fff;font-size:.64rem;font-weight:700;padding:7px 12px;border-radius:100px;}
-.plb-bottom{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-.plb-stat{display:flex;align-items:center;gap:6px;color:#c3dbf5;font-size:.72rem;font-weight:600;}
-.plb-stat b{color:#fff;}
-.plb-cta{display:inline-flex;background:#fff;color:#0b3d91;font-weight:800;font-size:.78rem;padding:12px 19px;border-radius:9px;text-decoration:none;width:fit-content;}
+.plb-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 28px;gap:8px;max-width:80%;}
+.plb-tag{display:inline-block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:#7ec8ff;width:fit-content;margin-bottom:4px;}
+.plb-phone{font-family:var(--disp);font-weight:800;font-size:clamp(2.4rem,7vw,4rem);letter-spacing:-.03em;line-height:1;color:#fff;text-decoration:none;display:block;transition:color .2s;}
+.plb-phone:hover{color:#7ec8ff;}
+.plb-line{font-size:.85rem;color:#c3dbf5;max-width:260px;line-height:1.5;margin-top:6px;}
+.plb-barcode{position:relative;z-index:2;flex-shrink:0;display:flex;justify-content:space-around;background:rgba(255,255,255,.08);backdrop-filter:blur(6px);padding:13px 20px;border-top:1px solid rgba(255,255,255,.1);}
+.plb-barcode span{font-size:.64rem;font-weight:700;color:#fff;white-space:nowrap;}
 
-/* 2. Boulangerie Ferrand — chaud terracotta, épi de blé illustré, étiquettes produits façon comptoir */
+/* 2. Boulangerie Ferrand — LA CARTE EST LE HÉROS : liste-menu façon ardoise, pas de gros titre */
 .bol-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(circle at 12% 90%,#f4ddb0,transparent 55%),linear-gradient(155deg,#e8c07d,#d9954f 55%,#b9702f);font-family:'Inter',sans-serif;}
-.bol-illus{position:absolute;left:-25px;top:-25px;width:230px;height:520px;opacity:.45;pointer-events:none;}
-.bol-illus2{position:absolute;right:-15px;bottom:-30px;width:180px;height:400px;opacity:.35;pointer-events:none;transform:rotate(180deg);}
+.bol-illus{position:absolute;left:-25px;top:-25px;width:230px;height:520px;opacity:.35;pointer-events:none;}
+.bol-illus2{position:absolute;right:-15px;bottom:-30px;width:180px;height:400px;opacity:.28;pointer-events:none;transform:rotate(180deg);}
 @media(max-width:700px){.bol-illus{width:150px;height:340px;}.bol-illus2{width:120px;height:270px;}}
 .bol-grain{position:absolute;inset:0;opacity:.3;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-.bol-nav{position:relative;z-index:2;display:flex;justify-content:flex-end;padding:20px 26px;}
-.bol-nav-logo{font-family:'Fraunces',serif;font-weight:500;font-size:.96rem;color:#3a2410;}
+.bol-nav{position:relative;z-index:2;text-align:center;padding:22px 26px 8px;}
+.bol-nav-logo{font-family:'Fraunces',serif;font-weight:500;font-size:1.1rem;color:#3a2410;}
 .bol-nav-logo em{font-style:italic;color:#fff;}
-.bol-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;text-align:right;padding:6px 28px 28px;gap:12px;}
-.bol-top{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
-.bol-tag{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#5c3814;background:rgba(255,255,255,.4);padding:6px 13px;border-radius:100px;}
-.bol-title{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(1.5rem,3.4vw,2.1rem);color:#3a2410;line-height:1.18;max-width:300px;margin:2px 0;}
-.bol-title em{font-style:italic;color:#fff;}
-.bol-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;max-width:320px;}
-.bol-tag-item{background:#fffaf0;border:1px solid rgba(90,50,15,.25);color:#4a2c10;font-size:.66rem;font-weight:700;padding:8px 11px;border-radius:4px;box-shadow:2px 3px 0 rgba(90,50,15,.15);}
-.bol-tag-item:nth-child(2){transform:rotate(-2deg);}
-.bol-tag-item:nth-child(3){transform:rotate(1.5deg);}
-.bol-bottom{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:flex-end;}
-.bol-stat{display:flex;align-items:center;gap:6px;color:#4a2c10;font-size:.72rem;font-weight:600;}
-.bol-stat b{color:#3a2410;}
-.bol-cta{background:#3a2410;color:#fce9c9;font-weight:800;font-size:.78rem;padding:12px 19px;border-radius:6px;text-decoration:none;}
+.bol-caption{display:block;text-align:center;font-size:.6rem;text-transform:uppercase;letter-spacing:.16em;color:#5c3814;opacity:.75;margin-top:2px;}
+.bol-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 34px 24px;}
+.bol-menu{display:flex;flex-direction:column;gap:13px;}
+.bol-row{display:flex;align-items:baseline;gap:8px;}
+.bol-row .name{font-family:'Fraunces',serif;font-size:.98rem;color:#3a2410;white-space:nowrap;}
+.bol-row .name em{font-style:italic;font-weight:500;color:#fff;}
+.bol-row .dots{flex:1;border-bottom:1.5px dotted rgba(58,36,16,.4);height:0;transform:translateY(-4px);}
+.bol-row .price{font-family:'Fraunces',serif;font-weight:600;color:#3a2410;font-size:.98rem;white-space:nowrap;}
+.bol-sign{position:relative;z-index:2;text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:.76rem;color:#3a2410;opacity:.8;padding-bottom:20px;}
 
-/* 3. Garage Solère — carte sombre, bandes diagonales façon signalétique, pictogramme engrenage */
+/* 3. Garage Solère — LES CHIFFRES SONT LE HÉROS : dashboard de stats géantes */
 .gar-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:#111;font-family:'Inter',sans-serif;}
 .gar-stripes{position:absolute;top:0;left:0;right:0;height:12px;background:repeating-linear-gradient(45deg,#ff8c3c,#ff8c3c 14px,#161616 14px,#161616 28px);}
 .gar-stripes.bottom{top:auto;bottom:0;}
 .gar-diag{position:absolute;inset:0;opacity:.05;background-image:repeating-linear-gradient(45deg,#ff8c3c,#ff8c3c 2px,transparent 2px,transparent 22px);}
-.gar-illus{position:absolute;right:-40px;top:50%;transform:translateY(-50%);width:380px;height:380px;opacity:.18;pointer-events:none;}
-@media(max-width:700px){.gar-illus{width:220px;height:220px;}}
-.gar-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:26px 26px 16px;}
-.gar-nav-logo{font-weight:800;font-size:.92rem;color:#fff;text-transform:uppercase;letter-spacing:.02em;}
+.gar-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:26px 30px 0;}
+.gar-nav-logo{font-weight:800;font-size:.98rem;color:#fff;text-transform:uppercase;letter-spacing:.02em;}
 .gar-nav-logo em{font-style:normal;color:#ff8c3c;}
 .gar-nav-btn{background:#ff8c3c;color:#1c1006;font-weight:800;font-size:.7rem;padding:9px 15px;border-radius:6px;text-decoration:none;white-space:nowrap;}
-.gar-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:6px 28px 28px;gap:12px;max-width:74%;}
-.gar-top{display:flex;flex-direction:column;gap:12px;}
-.gar-tag{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#ff8c3c;}
-.gar-title{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(1.35rem,3vw,1.8rem);line-height:1.12;color:#fff;letter-spacing:-.01em;margin:0;}
+.gar-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:16px 30px 24px;gap:22px;}
+.gar-stats{display:flex;gap:34px;flex-wrap:wrap;}
+.gar-stat-big .num{font-family:var(--disp);font-weight:800;font-size:clamp(2rem,5.2vw,3.1rem);color:#ff8c3c;line-height:1;letter-spacing:-.02em;}
+.gar-stat-big .lbl{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:#8a8580;margin-top:6px;}
+.gar-title{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:clamp(1.05rem,2.2vw,1.35rem);line-height:1.2;color:#eee;letter-spacing:-.005em;margin:0;max-width:340px;}
 .gar-title em{font-style:normal;color:#ff8c3c;}
-.gar-steps{display:flex;flex-direction:column;gap:7px;margin-top:2px;}
-.gar-step{display:flex;gap:8px;align-items:baseline;font-size:.78rem;color:#c9c2b8;}
-.gar-step b{color:#ff8c3c;font-family:var(--disp);font-weight:800;}
-.gar-bottom{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-.gar-stat{display:flex;align-items:center;gap:6px;color:#c9c2b8;font-size:.72rem;font-weight:600;}
-.gar-stat b{color:#ff8c3c;}
 .gar-cta-row{display:flex;gap:10px;flex-wrap:wrap;}
 .gar-btn-solid{background:#ff8c3c;color:#1c1006;font-weight:800;font-size:.76rem;padding:11px 17px;border-radius:6px;text-decoration:none;white-space:nowrap;}
 .gar-btn-outline{border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:700;font-size:.76rem;padding:10px 17px;border-radius:6px;text-decoration:none;white-space:nowrap;}
 
-/* 4. Fleurs de Léa — pastel doux, motif floral en répétition + grande fleur illustrée, composition asymétrique */
-.flr-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(160deg,#fdf1f5,#fbe4ec 60%,#f7d5e3);font-family:'Inter',sans-serif;}
-.flr-pattern{position:absolute;inset:0;opacity:.6;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='18' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='18' cy='30' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='42' cy='30' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='30' cy='42' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='30' cy='30' r='5' fill='%23f4d35e'/%3E%3C/svg%3E");background-size:60px 60px;}
-.flr-illus{position:absolute;right:2%;top:50%;transform:translateY(-50%);width:320px;height:320px;opacity:.95;pointer-events:none;}
-.flr-illus2{position:absolute;right:32%;bottom:6%;width:120px;height:120px;opacity:.7;pointer-events:none;}
-@media(max-width:700px){.flr-illus{width:220px;height:220px;}.flr-illus2{display:none;}}
-.flr-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;}
-.flr-nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:.92rem;color:#7a2f4d;}
-.flr-nav-btn{background:#c94f80;color:#fff;font-weight:700;font-size:.7rem;padding:9px 16px;border-radius:100px;text-decoration:none;white-space:nowrap;}
-.flr-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:6px 28px 30px;gap:11px;max-width:58%;}
-.flr-top{display:flex;flex-direction:column;gap:11px;}
-.flr-tag{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#7a2f4d;background:rgba(255,255,255,.55);padding:6px 13px;border-radius:100px;width:fit-content;}
-.flr-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;font-size:clamp(1.4rem,3.2vw,2rem);color:#5c2340;line-height:1.25;margin:0;}
-.flr-title em{font-style:italic;color:#c94f80;}
-.flr-sub{font-size:.78rem;color:#8a5169;line-height:1.55;}
-.flr-bottom{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-.flr-stat{display:flex;align-items:center;gap:6px;color:#8a5169;font-size:.72rem;font-weight:600;}
-.flr-stat b{color:#5c2340;}
-.flr-cta{display:inline-flex;background:#c94f80;color:#fff;font-weight:700;font-size:.78rem;padding:12px 19px;border-radius:100px;text-decoration:none;width:fit-content;}
-@media(max-width:700px){.flr-body{max-width:70%;}.flr-illus{opacity:.5;}}
+/* 4. Fleurs de Léa — LA TYPO EST LE HÉROS : affiche/couverture magazine, pas de bloc de contenu classique */
+.flr-hero-area{position:relative;height:100%;overflow:hidden;background:linear-gradient(160deg,#fdf1f5,#fbe4ec 60%,#f7d5e3);font-family:'Inter',sans-serif;}
+.flr-pattern{position:absolute;inset:0;opacity:.45;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='18' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='18' cy='30' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='42' cy='30' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='30' cy='42' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='30' cy='30' r='5' fill='%23f4d35e'/%3E%3C/svg%3E");background-size:60px 60px;}
+.flr-illus{position:absolute;right:-4%;bottom:-6%;width:300px;height:300px;opacity:.85;pointer-events:none;}
+.flr-illus2{position:absolute;left:6%;top:10%;width:90px;height:90px;opacity:.6;pointer-events:none;}
+@media(max-width:700px){.flr-illus{width:200px;height:200px;}.flr-illus2{width:60px;height:60px;}}
+.flr-mark{position:absolute;top:24px;left:28px;z-index:3;font-family:'Playfair Display',serif;font-style:italic;font-size:.76rem;color:rgba(122,47,77,.7);letter-spacing:.04em;}
+.flr-nav-btn{position:absolute;top:20px;right:26px;z-index:3;background:#c94f80;color:#fff;font-weight:700;font-size:.68rem;padding:9px 15px;border-radius:100px;text-decoration:none;white-space:nowrap;}
+.flr-mega{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 28px;font-family:'Playfair Display',serif;line-height:.98;}
+.flr-mega .l1{display:block;font-style:italic;font-weight:400;font-size:clamp(1.3rem,3.4vw,1.9rem);color:#8a5169;}
+.flr-mega .l2{display:block;font-style:italic;font-weight:700;font-size:clamp(2.6rem,7.5vw,4.4rem);color:#c94f80;letter-spacing:-.02em;margin:2px 0 2px 3%;}
+.flr-mega .l3{display:block;font-style:normal;font-weight:500;font-size:clamp(1.1rem,2.6vw,1.4rem);color:#5c2340;margin-left:1%;}
+.flr-sign{position:absolute;bottom:22px;left:28px;z-index:3;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:#7a2f4d;}
 
 /* SUPPORT INCLUS : bandeau compact avant les tarifs, mockup fidèle de l'éditeur réel */
 #support-inclus{background:var(--paper);padding:64px 0;}
@@ -557,23 +533,16 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             </svg>
             <div class="plb-nav">
               <span class="plb-nav-logo">Rapid'Eau <em>Plomberie</em></span>
-              <a class="plb-nav-btn" href="tel:0467110000">Devis gratuit</a>
             </div>
             <div class="plb-body">
-              <div class="plb-top">
-                <span class="plb-tag">Plomberie — dépannage 7j/7</span>
-                <h3 class="plb-title">Une urgence ? <em>On arrive vite.</em></h3>
-                <p class="plb-sub">Fuite, panne, installation : intervention en moins de 30 minutes, devis gratuit.</p>
-                <div class="plb-chips">
-                  <span class="plb-chip">🔧 Intervention 30 min</span>
-                  <span class="plb-chip">✅ Devis gratuit</span>
-                  <span class="plb-chip">📞 7j/7</span>
-                </div>
-              </div>
-              <div class="plb-bottom">
-                <a class="plb-cta" href="tel:0467110000">Appeler maintenant →</a>
-                <span class="plb-stat">★ <b>4.9</b> sur Google · 12 ans d'expérience</span>
-              </div>
+              <span class="plb-tag">Une urgence ? Appelez.</span>
+              <a class="plb-phone" href="tel:0467110000">04 67 11 00 00</a>
+              <p class="plb-line">Intervention en moins de 30 minutes, 7j/7, devis gratuit.</p>
+            </div>
+            <div class="plb-barcode">
+              <span>🔧 Dépannage</span>
+              <span>✅ Devis gratuit</span>
+              <span>★ 4.9 Google</span>
             </div>
           </div>
         </div>
@@ -604,22 +573,18 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             </svg>
             <div class="bol-nav">
               <span class="bol-nav-logo">Boulangerie <em>Ferrand</em></span>
+              <span class="bol-caption">Béziers — artisan depuis 1987 — la carte du jour</span>
             </div>
             <div class="bol-body">
-              <div class="bol-top">
-                <span class="bol-tag">Béziers — depuis 1987</span>
-                <h3 class="bol-title">Le bon pain, <em>fait maison.</em></h3>
-                <div class="bol-tags">
-                  <span class="bol-tag-item">Pain de campagne — 3,50€</span>
-                  <span class="bol-tag-item">Croissant — 1,20€</span>
-                  <span class="bol-tag-item">Baguette tradition — 1,10€</span>
-                </div>
-              </div>
-              <div class="bol-bottom">
-                <span class="bol-stat">★ <b>4.8</b> sur Google · pain au levain naturel</span>
-                <a class="bol-cta" href="#">Nous trouver →</a>
+              <div class="bol-menu">
+                <div class="bol-row"><span class="name">Pain de campagne</span><span class="dots"></span><span class="price">3,50€</span></div>
+                <div class="bol-row"><span class="name">Baguette <em>tradition</em></span><span class="dots"></span><span class="price">1,10€</span></div>
+                <div class="bol-row"><span class="name">Croissant beurre</span><span class="dots"></span><span class="price">1,20€</span></div>
+                <div class="bol-row"><span class="name">Pain au levain</span><span class="dots"></span><span class="price">4,20€</span></div>
+                <div class="bol-row"><span class="name">Chausson aux <em>pommes</em></span><span class="dots"></span><span class="price">2,10€</span></div>
               </div>
             </div>
+            <p class="bol-sign">"Le vrai goût du pain d'autrefois." — ★ 4.8 sur Google</p>
           </div>
         </div>
         <div class="real-item" data-set="vitrine">
@@ -637,21 +602,15 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
               <a class="gar-nav-btn" href="tel:0467220000">04 67 22 00 00</a>
             </div>
             <div class="gar-body">
-              <div class="gar-top">
-                <span class="gar-tag">Béziers — mécanique toutes marques</span>
-                <h3 class="gar-title">Votre voiture, <em>entre de bonnes mains.</em></h3>
-                <div class="gar-steps">
-                  <div class="gar-step"><b>1.</b> Diagnostic gratuit</div>
-                  <div class="gar-step"><b>2.</b> Devis immédiat</div>
-                  <div class="gar-step"><b>3.</b> Réparation le jour même</div>
-                </div>
+              <div class="gar-stats">
+                <div class="gar-stat-big"><div class="num">300+</div><div class="lbl">Véhicules / an</div></div>
+                <div class="gar-stat-big"><div class="num">4.7★</div><div class="lbl">Note Google</div></div>
+                <div class="gar-stat-big"><div class="num">24h</div><div class="lbl">Délai moyen</div></div>
               </div>
-              <div class="gar-bottom">
-                <div class="gar-cta-row">
-                  <a class="gar-btn-solid" href="tel:0467220000">Prendre RDV →</a>
-                  <a class="gar-btn-outline" href="#">Nos prestations</a>
-                </div>
-                <span class="gar-stat">★ <b>4.7</b> sur Google · 300+ véhicules/an</span>
+              <h3 class="gar-title">Béziers — mécanique toutes marques, <em>devis immédiat.</em></h3>
+              <div class="gar-cta-row">
+                <a class="gar-btn-solid" href="tel:0467220000">Prendre RDV →</a>
+                <a class="gar-btn-outline" href="#">Nos prestations</a>
               </div>
             </div>
           </div>
@@ -680,21 +639,14 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
               </g>
               <circle cx="100" cy="100" r="14" fill="#c94f80"/>
             </svg>
-            <div class="flr-nav">
-              <span class="flr-nav-logo">Fleurs <em>de Léa</em></span>
-              <a class="flr-nav-btn" href="#">Commander</a>
+            <span class="flr-mark">Fleurs de Léa — Béziers</span>
+            <a class="flr-nav-btn" href="#">Commander</a>
+            <div class="flr-mega">
+              <span class="l1">des fleurs pour</span>
+              <span class="l2">chaque instant</span>
+              <span class="l3">— livrées le jour même.</span>
             </div>
-            <div class="flr-body">
-              <div class="flr-top">
-                <span class="flr-tag">Béziers — compositions & bouquets</span>
-                <h3 class="flr-title">Des fleurs pour <em>chaque instant.</em></h3>
-                <p class="flr-sub">Compositions florales, bouquets sur mesure, livraison le jour même.</p>
-              </div>
-              <div class="flr-bottom">
-                <a class="flr-cta" href="#">Voir les créations →</a>
-                <span class="flr-stat">★ <b>5.0</b> sur Google · fait main</span>
-              </div>
-            </div>
+            <p class="flr-sign">★ 5.0 sur Google — fait main</p>
           </div>
         </div>
         <div class="real-item set-active" data-set="anime">
