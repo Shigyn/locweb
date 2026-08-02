@@ -229,7 +229,8 @@ section{padding:76px 20px;position:relative;}
 .plb-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(135deg,#0b3d91,#083166 60%,#062247);font-family:'Inter',sans-serif;}
 .plb-wedge{position:absolute;inset:0;background:rgba(255,255,255,.04);clip-path:polygon(35% 0,100% 0,100% 100%,55% 100%);}
 .plb-dots{position:absolute;inset:0;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.09) 1.5px,transparent 1.5px);background-size:24px 24px;}
-.plb-illus{position:absolute;right:-30px;bottom:-30px;width:230px;height:230px;opacity:.9;pointer-events:none;}
+.plb-illus{position:absolute;right:-40px;bottom:-60px;width:440px;height:440px;opacity:.95;pointer-events:none;}
+@media(max-width:700px){.plb-illus{width:260px;height:260px;bottom:-40px;right:-30px;}}
 .plb-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;}
 .plb-nav-logo{font-weight:800;font-size:.92rem;color:#fff;}
 .plb-nav-logo em{font-style:normal;color:#7ec8ff;}
@@ -249,8 +250,9 @@ section{padding:76px 20px;position:relative;}
 
 /* 2. Boulangerie Ferrand — chaud terracotta, épi de blé illustré, étiquettes produits façon comptoir */
 .bol-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(circle at 12% 90%,#f4ddb0,transparent 55%),linear-gradient(155deg,#e8c07d,#d9954f 55%,#b9702f);font-family:'Inter',sans-serif;}
-.bol-illus{position:absolute;left:-15px;top:-15px;width:130px;height:300px;opacity:.4;pointer-events:none;}
-.bol-illus2{position:absolute;right:-10px;bottom:-20px;width:100px;height:230px;opacity:.3;pointer-events:none;transform:rotate(180deg);}
+.bol-illus{position:absolute;left:-25px;top:-25px;width:230px;height:520px;opacity:.45;pointer-events:none;}
+.bol-illus2{position:absolute;right:-15px;bottom:-30px;width:180px;height:400px;opacity:.35;pointer-events:none;transform:rotate(180deg);}
+@media(max-width:700px){.bol-illus{width:150px;height:340px;}.bol-illus2{width:120px;height:270px;}}
 .bol-grain{position:absolute;inset:0;opacity:.3;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .bol-nav{position:relative;z-index:2;display:flex;justify-content:flex-end;padding:20px 26px;}
 .bol-nav-logo{font-family:'Fraunces',serif;font-weight:500;font-size:.96rem;color:#3a2410;}
@@ -274,7 +276,8 @@ section{padding:76px 20px;position:relative;}
 .gar-stripes{position:absolute;top:0;left:0;right:0;height:12px;background:repeating-linear-gradient(45deg,#ff8c3c,#ff8c3c 14px,#161616 14px,#161616 28px);}
 .gar-stripes.bottom{top:auto;bottom:0;}
 .gar-diag{position:absolute;inset:0;opacity:.05;background-image:repeating-linear-gradient(45deg,#ff8c3c,#ff8c3c 2px,transparent 2px,transparent 22px);}
-.gar-illus{position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:200px;height:200px;opacity:.15;pointer-events:none;}
+.gar-illus{position:absolute;right:-40px;top:50%;transform:translateY(-50%);width:380px;height:380px;opacity:.18;pointer-events:none;}
+@media(max-width:700px){.gar-illus{width:220px;height:220px;}}
 .gar-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:26px 26px 16px;}
 .gar-nav-logo{font-weight:800;font-size:.92rem;color:#fff;text-transform:uppercase;letter-spacing:.02em;}
 .gar-nav-logo em{font-style:normal;color:#ff8c3c;}
@@ -297,7 +300,9 @@ section{padding:76px 20px;position:relative;}
 /* 4. Fleurs de Léa — pastel doux, motif floral en répétition + grande fleur illustrée, composition asymétrique */
 .flr-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(160deg,#fdf1f5,#fbe4ec 60%,#f7d5e3);font-family:'Inter',sans-serif;}
 .flr-pattern{position:absolute;inset:0;opacity:.6;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='18' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='18' cy='30' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='42' cy='30' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='30' cy='42' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='30' cy='30' r='5' fill='%23f4d35e'/%3E%3C/svg%3E");background-size:60px 60px;}
-.flr-illus{position:absolute;right:4%;top:50%;transform:translateY(-50%);width:190px;height:190px;opacity:.95;pointer-events:none;}
+.flr-illus{position:absolute;right:2%;top:50%;transform:translateY(-50%);width:320px;height:320px;opacity:.95;pointer-events:none;}
+.flr-illus2{position:absolute;right:32%;bottom:6%;width:120px;height:120px;opacity:.7;pointer-events:none;}
+@media(max-width:700px){.flr-illus{width:220px;height:220px;}.flr-illus2{display:none;}}
 .flr-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;}
 .flr-nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:.92rem;color:#7a2f4d;}
 .flr-nav-btn{background:#c94f80;color:#fff;font-weight:700;font-size:.7rem;padding:9px 16px;border-radius:100px;text-decoration:none;white-space:nowrap;}
@@ -664,6 +669,16 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
                 <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(300 100 100)"/>
               </g>
               <circle cx="100" cy="100" r="16" fill="#f4d35e"/>
+            </svg>
+            <svg class="flr-illus2" viewBox="0 0 200 200" aria-hidden="true">
+              <g fill="#f4d35e" fill-opacity=".55">
+                <ellipse cx="100" cy="60" rx="16" ry="30" transform="rotate(0 100 100)"/>
+                <ellipse cx="100" cy="60" rx="16" ry="30" transform="rotate(72 100 100)"/>
+                <ellipse cx="100" cy="60" rx="16" ry="30" transform="rotate(144 100 100)"/>
+                <ellipse cx="100" cy="60" rx="16" ry="30" transform="rotate(216 100 100)"/>
+                <ellipse cx="100" cy="60" rx="16" ry="30" transform="rotate(288 100 100)"/>
+              </g>
+              <circle cx="100" cy="100" r="14" fill="#c94f80"/>
             </svg>
             <div class="flr-nav">
               <span class="flr-nav-logo">Fleurs <em>de Léa</em></span>
