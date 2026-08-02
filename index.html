@@ -318,26 +318,21 @@ section{padding:76px 20px;position:relative;}
 .epi-price{font-family:var(--disp);font-weight:800;color:#fff;font-size:.9rem;}
 .epi-price-old{font-size:.66rem;color:rgba(255,255,255,.35);text-decoration:line-through;}
 
-/* B. Ambre (boutique mode) — PRODUIT VEDETTE unique en grand format, pas de grille */
+/* B. Ambre (boutique mode) — CATALOGUE de 8 articles en grille dense, pas un produit unique */
 .mod-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(160deg,#f3ded3,#e8c3ae 55%,#d9a688);font-family:'Inter',sans-serif;}
-.mod-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;}
+.mod-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:18px 24px 6px;}
 .mod-nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:#5c3524;}
-.mod-cart-btn{background:#5c3524;color:#f3ded3;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;flex-shrink:0;}
-.mod-spotlight{position:relative;z-index:2;flex:1;display:flex;align-items:center;gap:22px;padding:6px 28px 28px;}
-.mod-photo{position:relative;width:140px;height:190px;flex-shrink:0;border-radius:14px;overflow:hidden;background:radial-gradient(circle at 35% 20%,rgba(255,255,255,.5),transparent 60%),linear-gradient(165deg,#e8c3ae,#c98f6b);box-shadow:0 14px 30px rgba(60,30,15,.25);display:flex;align-items:center;justify-content:center;}
-.mod-illus{width:70%;height:80%;}
-.mod-photo-badge{position:absolute;top:8px;left:8px;background:#5c3524;color:#f3ded3;font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:4px 9px;border-radius:100px;}
-.mod-info{display:flex;flex-direction:column;gap:7px;}
-.mod-info .name{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,2.4vw,1.45rem);color:#3d2317;line-height:1.25;max-width:210px;}
-.mod-rating{font-size:.66rem;color:#8a5a3c;}
-.mod-rating span{color:rgba(61,35,23,.4);}
-.mod-price-row{display:flex;align-items:baseline;gap:8px;}
-.mod-info .price{font-family:var(--disp);font-weight:800;font-size:1.4rem;color:#5c3524;}
-.mod-price-old{font-size:.8rem;color:rgba(61,35,23,.4);text-decoration:line-through;}
-.mod-sizes{display:flex;gap:6px;}
-.mod-size{width:26px;height:26px;border-radius:50%;border:1px solid rgba(92,53,36,.35);color:#5c3524;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;}
-.mod-size.on{background:#5c3524;color:#f3ded3;border-color:#5c3524;}
-.mod-cta{background:#5c3524;color:#f3ded3;font-weight:800;font-size:.76rem;padding:12px 18px;border-radius:9px;text-decoration:none;width:fit-content;margin-top:4px;white-space:nowrap;}
+.mod-cart-btn{position:relative;background:#5c3524;color:#f3ded3;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;text-decoration:none;flex-shrink:0;}
+.mod-cart-btn .n{position:absolute;top:-3px;right:-3px;background:#e8c3ae;color:#3d2317;font-size:.54rem;font-weight:800;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid #5c3524;}
+.mod-tag{position:relative;z-index:2;display:block;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#5c3524;opacity:.75;padding:0 24px 10px;}
+.mod-grid{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:0 20px 18px;}
+.mod-item{display:flex;flex-direction:column;gap:5px;}
+.mod-item-img{position:relative;aspect-ratio:3/4;border-radius:9px;overflow:hidden;background:radial-gradient(circle at 32% 20%,rgba(255,255,255,.55),transparent 60%),linear-gradient(165deg,var(--mc1),var(--mc2));box-shadow:0 6px 14px rgba(60,30,15,.18);display:flex;align-items:center;justify-content:center;}
+.mod-item-img svg{width:62%;height:62%;}
+.mod-item-badge{position:absolute;top:5px;left:5px;background:#5c3524;color:#f3ded3;font-size:.5rem;font-weight:800;padding:2px 5px;border-radius:4px;text-transform:uppercase;}
+.mod-item-name{font-size:.66rem;font-weight:700;color:#3d2317;line-height:1.2;}
+.mod-item-price{font-family:var(--disp);font-weight:800;font-size:.72rem;color:#5c3524;}
+@media(max-width:700px){.mod-grid{grid-template-columns:repeat(3,1fr);}}
 
 /* C. Maison Lune (concept store déco) — BANDEAU COLLECTION, strip horizontal de produits */
 .dec-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:#1a1712;font-family:'Inter',sans-serif;}
@@ -785,25 +780,67 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
           <div class="mod-hero-area">
             <div class="mod-nav">
               <span class="mod-nav-logo">Ambre</span>
-              <a class="mod-cart-btn" href="#">🛒</a>
+              <a class="mod-cart-btn" href="#">🛒<span class="n">2</span></a>
             </div>
-            <div class="mod-spotlight">
-              <div class="mod-photo">
-                <span class="mod-photo-badge">Nouveauté</span>
-                <svg class="mod-illus" viewBox="0 0 100 160" aria-hidden="true">
-                  <path d="M35 10 L28 28 L20 40 L20 150 L80 150 L80 40 L72 28 L65 10 Z" fill="#5c3524" fill-opacity=".22"/>
-                  <path d="M35 10 Q50 22 65 10 L72 28 Q50 38 28 28 Z" fill="#5c3524" fill-opacity=".4"/>
-                  <line x1="50" y1="38" x2="50" y2="150" stroke="#5c3524" stroke-opacity=".22" stroke-width="1.5"/>
-                </svg>
-              </div>
-              <div class="mod-info">
-                <div class="name">Robe Lin — collection été</div>
-                <span class="mod-rating">★★★★★ <span>(42 avis)</span></span>
-                <div class="mod-price-row"><span class="price">89€</span><span class="mod-price-old">119€</span></div>
-                <div class="mod-sizes">
-                  <span class="mod-size">S</span><span class="mod-size on">M</span><span class="mod-size">L</span>
+            <span class="mod-tag">Nouvelle collection — été</span>
+            <div class="mod-grid">
+              <div class="mod-item">
+                <div class="mod-item-img" style="--mc1:#e8c3ae;--mc2:#c98f6b;">
+                  <span class="mod-item-badge">Nouveau</span>
+                  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M40 8 L34 22 L28 32 L28 92 L72 92 L72 32 L66 22 L60 8 Z" fill="#fff" fill-opacity=".55"/></svg>
                 </div>
-                <a class="mod-cta" href="#">Ajouter au panier →</a>
+                <span class="mod-item-name">Robe Lin</span>
+                <span class="mod-item-price">89€</span>
+              </div>
+              <div class="mod-item">
+                <div class="mod-item-img" style="--mc1:#f0e4d4;--mc2:#d9c4a8;">
+                  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 20 L14 30 L20 42 L30 36 L30 90 L70 90 L70 36 L80 42 L86 30 L70 20 Q60 28 50 28 Q40 28 30 20 Z" fill="#fff" fill-opacity=".6"/></svg>
+                </div>
+                <span class="mod-item-name">Chemise Coton</span>
+                <span class="mod-item-price">59€</span>
+              </div>
+              <div class="mod-item">
+                <div class="mod-item-img" style="--mc1:#c9a58a;--mc2:#9c7256;">
+                  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M25 40 Q25 22 50 22 Q75 22 75 40 L80 90 L20 90 Z" fill="#fff" fill-opacity=".55"/><path d="M35 40 Q35 28 50 28 Q65 28 65 40" fill="none" stroke="#fff" stroke-opacity=".65" stroke-width="4"/></svg>
+                </div>
+                <span class="mod-item-name">Sac Cabas</span>
+                <span class="mod-item-price">75€</span>
+              </div>
+              <div class="mod-item">
+                <div class="mod-item-img" style="--mc1:#b98a6a;--mc2:#8a5c3c;">
+                  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M15 70 Q15 55 30 52 L55 45 Q65 40 75 45 L85 55 Q90 60 88 68 L85 75 L15 75 Z" fill="#fff" fill-opacity=".6"/></svg>
+                </div>
+                <span class="mod-item-name">Sandales Cuir</span>
+                <span class="mod-item-price">68€</span>
+              </div>
+              <div class="mod-item">
+                <div class="mod-item-img" style="--mc1:#e0b8b0;--mc2:#c98a80;">
+                  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M20 30 Q50 15 80 30 Q65 50 80 70 Q50 85 20 70 Q35 50 20 30 Z" fill="#fff" fill-opacity=".55"/></svg>
+                </div>
+                <span class="mod-item-name">Écharpe Soie</span>
+                <span class="mod-item-price">45€</span>
+              </div>
+              <div class="mod-item">
+                <div class="mod-item-img" style="--mc1:#8fa3b0;--mc2:#5c7080;">
+                  <span class="mod-item-badge">Promo</span>
+                  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 20 L14 30 L20 42 L30 36 L30 90 L70 90 L70 36 L80 42 L86 30 L70 20 Q60 28 50 28 Q40 28 30 20 Z" fill="#fff" fill-opacity=".55"/></svg>
+                </div>
+                <span class="mod-item-name">Veste Denim</span>
+                <span class="mod-item-price">99€</span>
+              </div>
+              <div class="mod-item">
+                <div class="mod-item-img" style="--mc1:#ead9c0;--mc2:#c9ac82;">
+                  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M35 20 L30 30 L20 85 L80 85 L70 30 L65 20 Z" fill="#fff" fill-opacity=".55"/></svg>
+                </div>
+                <span class="mod-item-name">Jupe Plissée</span>
+                <span class="mod-item-price">65€</span>
+              </div>
+              <div class="mod-item">
+                <div class="mod-item-img" style="--mc1:#d4b48c;--mc2:#a8825c;">
+                  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 20 L14 30 L20 42 L30 36 L30 90 L70 90 L70 36 L80 42 L86 30 L70 20 Q60 28 50 28 Q40 28 30 20 Z" fill="#fff" fill-opacity=".55"/></svg>
+                </div>
+                <span class="mod-item-name">Pull Maille</span>
+                <span class="mod-item-price">72€</span>
               </div>
             </div>
           </div>
