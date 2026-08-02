@@ -305,25 +305,38 @@ section{padding:76px 20px;position:relative;}
 .epi-cart-btn{position:relative;background:rgba(255,255,255,.1);color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;flex-shrink:0;}
 .epi-cart-btn .n{position:absolute;top:-3px;right:-3px;background:#8fd99a;color:#0a2015;font-size:.56rem;font-weight:800;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
 .epi-tag{position:relative;z-index:2;display:block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:#8fd99a;padding:6px 26px 12px;}
-.epi-grid{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 22px 22px;}
-.epi-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px;display:flex;flex-direction:column;gap:8px;}
-.epi-card .ico{font-size:1.6rem;}
-.epi-card .name{font-size:.78rem;font-weight:700;color:#fff;line-height:1.25;}
-.epi-card-row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;}
-.epi-card .price{font-family:var(--disp);font-weight:800;color:#8fd99a;font-size:.92rem;}
-.epi-add{width:24px;height:24px;border-radius:50%;background:#8fd99a;color:#0a2015;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;text-decoration:none;flex-shrink:0;}
+.epi-grid{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:0 22px 22px;}
+.epi-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:13px;padding:9px;display:flex;flex-direction:column;gap:7px;}
+.epi-img{position:relative;aspect-ratio:1/1;border-radius:9px;overflow:hidden;background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.16),transparent 60%),linear-gradient(160deg,#1c4430,#0c2417);display:flex;align-items:center;justify-content:center;}
+.epi-img svg{width:56%;height:56%;}
+.epi-badge{position:absolute;top:6px;left:6px;background:#e2574a;color:#fff;font-size:.54rem;font-weight:800;padding:3px 6px;border-radius:5px;text-transform:uppercase;letter-spacing:.02em;}
+.epi-quickadd{position:absolute;bottom:6px;right:6px;width:25px;height:25px;border-radius:50%;background:#8fd99a;color:#0a2015;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;text-decoration:none;box-shadow:0 3px 8px rgba(0,0,0,.35);}
+.epi-card .name{font-size:.76rem;font-weight:700;color:#fff;line-height:1.25;margin-top:1px;}
+.epi-rating{font-size:.6rem;color:#8fd99a;letter-spacing:.02em;}
+.epi-rating span{color:rgba(255,255,255,.4);}
+.epi-price-row{display:flex;align-items:baseline;gap:6px;margin-top:auto;}
+.epi-price{font-family:var(--disp);font-weight:800;color:#fff;font-size:.9rem;}
+.epi-price-old{font-size:.66rem;color:rgba(255,255,255,.35);text-decoration:line-through;}
 
 /* B. Ambre (boutique mode) — PRODUIT VEDETTE unique en grand format, pas de grille */
 .mod-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(160deg,#f3ded3,#e8c3ae 55%,#d9a688);font-family:'Inter',sans-serif;}
 .mod-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;}
 .mod-nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:#5c3524;}
 .mod-cart-btn{background:#5c3524;color:#f3ded3;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;flex-shrink:0;}
-.mod-spotlight{position:relative;z-index:2;flex:1;display:flex;align-items:center;gap:20px;padding:6px 28px 28px;}
-.mod-illus{width:130px;height:200px;flex-shrink:0;}
-.mod-info{display:flex;flex-direction:column;gap:8px;}
-.mod-badge{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#fff;background:#5c3524;padding:5px 11px;border-radius:100px;width:fit-content;}
-.mod-info .name{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.6vw,1.6rem);color:#3d2317;line-height:1.25;max-width:210px;}
-.mod-info .price{font-family:var(--disp);font-weight:800;font-size:1.5rem;color:#5c3524;}
+.mod-spotlight{position:relative;z-index:2;flex:1;display:flex;align-items:center;gap:22px;padding:6px 28px 28px;}
+.mod-photo{position:relative;width:140px;height:190px;flex-shrink:0;border-radius:14px;overflow:hidden;background:radial-gradient(circle at 35% 20%,rgba(255,255,255,.5),transparent 60%),linear-gradient(165deg,#e8c3ae,#c98f6b);box-shadow:0 14px 30px rgba(60,30,15,.25);display:flex;align-items:center;justify-content:center;}
+.mod-illus{width:70%;height:80%;}
+.mod-photo-badge{position:absolute;top:8px;left:8px;background:#5c3524;color:#f3ded3;font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:4px 9px;border-radius:100px;}
+.mod-info{display:flex;flex-direction:column;gap:7px;}
+.mod-info .name{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,2.4vw,1.45rem);color:#3d2317;line-height:1.25;max-width:210px;}
+.mod-rating{font-size:.66rem;color:#8a5a3c;}
+.mod-rating span{color:rgba(61,35,23,.4);}
+.mod-price-row{display:flex;align-items:baseline;gap:8px;}
+.mod-info .price{font-family:var(--disp);font-weight:800;font-size:1.4rem;color:#5c3524;}
+.mod-price-old{font-size:.8rem;color:rgba(61,35,23,.4);text-decoration:line-through;}
+.mod-sizes{display:flex;gap:6px;}
+.mod-size{width:26px;height:26px;border-radius:50%;border:1px solid rgba(92,53,36,.35);color:#5c3524;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.mod-size.on{background:#5c3524;color:#f3ded3;border-color:#5c3524;}
 .mod-cta{background:#5c3524;color:#f3ded3;font-weight:800;font-size:.76rem;padding:12px 18px;border-radius:9px;text-decoration:none;width:fit-content;margin-top:4px;white-space:nowrap;}
 
 /* C. Maison Lune (concept store déco) — BANDEAU COLLECTION, strip horizontal de produits */
@@ -336,9 +349,10 @@ section{padding:76px 20px;position:relative;}
 .dec-head{position:relative;z-index:2;padding:4px 28px 18px;}
 .dec-tag{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#d4af6a;margin-bottom:8px;display:block;}
 .dec-title{font-family:var(--disp);font-weight:700;font-size:clamp(1.25rem,2.8vw,1.7rem);color:#fff;line-height:1.15;}
-.dec-strip{position:relative;z-index:2;flex:1;display:flex;align-items:center;gap:12px;padding:0 28px 28px;overflow:hidden;}
-.dec-chip{flex-shrink:0;background:rgba(255,255,255,.05);border:1px solid rgba(212,175,106,.25);border-radius:10px;padding:12px 15px;display:flex;flex-direction:column;gap:6px;min-width:104px;}
-.dec-chip .ico{font-size:1.3rem;}
+.dec-strip{position:relative;z-index:2;flex:1;display:flex;align-items:flex-start;gap:13px;padding:0 28px 28px;overflow:hidden;}
+.dec-chip{flex-shrink:0;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,106,.2);border-radius:12px;padding:9px;display:flex;flex-direction:column;gap:7px;width:112px;}
+.dec-img{position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:radial-gradient(circle at 32% 24%,rgba(212,175,106,.3),transparent 60%),linear-gradient(160deg,#2b261c,#171410);display:flex;align-items:center;justify-content:center;}
+.dec-img svg{width:54%;height:54%;}
 .dec-chip .name{font-size:.68rem;color:#e8e2d5;font-weight:600;line-height:1.3;}
 .dec-chip .price{font-family:var(--disp);font-weight:800;color:#d4af6a;font-size:.82rem;}
 
@@ -352,7 +366,9 @@ section{padding:76px 20px;position:relative;}
 .vin-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:6px 26px 26px;align-items:flex-end;}
 .vin-tag{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#e2a04a;margin-bottom:12px;}
 .vin-cart{background:rgba(255,255,255,.05);border:1px solid rgba(226,160,74,.2);border-radius:14px;padding:16px;width:100%;max-width:280px;}
-.vin-cart-row{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:#f0dcc4;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);gap:8px;}
+.vin-cart-row{display:flex;align-items:center;font-size:.76rem;color:#f0dcc4;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08);gap:10px;}
+.vin-swatch{flex-shrink:0;width:26px;height:34px;border-radius:3px;background:linear-gradient(160deg,#7a2035,#3a0f1a);position:relative;}
+.vin-swatch::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:8px;height:8px;background:#7a2035;border-radius:1px;}
 .vin-cart-row .qty{color:#e2a04a;font-weight:700;margin-right:6px;}
 .vin-cart-row .n{flex:1;}
 .vin-cart-total{display:flex;justify-content:space-between;align-items:center;padding-top:12px;font-weight:800;color:#fff;font-size:.82rem;}
@@ -725,24 +741,42 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             <span class="epi-tag">Épicerie fine — Béziers</span>
             <div class="epi-grid">
               <div class="epi-card">
-                <span class="ico">🍯</span>
+                <div class="epi-img">
+                  <svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="30,8 46,17 46,43 30,52 14,43 14,17" fill="#f0b429" fill-opacity=".85"/><rect x="22" y="4" width="16" height="8" rx="2" fill="#7a5a1a"/></svg>
+                  <a class="epi-quickadd" href="#">+</a>
+                </div>
                 <span class="name">Miel artisanal</span>
-                <div class="epi-card-row"><span class="price">7,50€</span><a class="epi-add" href="#">+</a></div>
+                <span class="epi-rating">★★★★★ <span>(24)</span></span>
+                <div class="epi-price-row"><span class="epi-price">7,50€</span></div>
               </div>
               <div class="epi-card">
-                <span class="ico">🫒</span>
+                <div class="epi-img">
+                  <span class="epi-badge">−15%</span>
+                  <svg viewBox="0 0 60 60" aria-hidden="true"><rect x="20" y="10" width="8" height="10" fill="#6b7a3a"/><path d="M16 20 Q16 16 20 16 L28 16 Q32 16 32 20 L34 50 Q34 54 30 54 L18 54 Q14 54 14 50 Z" fill="#a8bb5a"/></svg>
+                  <a class="epi-quickadd" href="#">+</a>
+                </div>
                 <span class="name">Huile d'olive</span>
-                <div class="epi-card-row"><span class="price">12€</span><a class="epi-add" href="#">+</a></div>
+                <span class="epi-rating">★★★★☆ <span>(18)</span></span>
+                <div class="epi-price-row"><span class="epi-price">10,20€</span><span class="epi-price-old">12€</span></div>
               </div>
               <div class="epi-card">
-                <span class="ico">🍓</span>
+                <div class="epi-img">
+                  <svg viewBox="0 0 60 60" aria-hidden="true"><rect x="16" y="20" width="28" height="30" rx="4" fill="#d1503f"/><ellipse cx="30" cy="18" rx="16" ry="5" fill="#f0e4c8"/></svg>
+                  <a class="epi-quickadd" href="#">+</a>
+                </div>
                 <span class="name">Confiture maison</span>
-                <div class="epi-card-row"><span class="price">6€</span><a class="epi-add" href="#">+</a></div>
+                <span class="epi-rating">★★★★★ <span>(31)</span></span>
+                <div class="epi-price-row"><span class="epi-price">6€</span></div>
               </div>
               <div class="epi-card">
-                <span class="ico">☕</span>
+                <div class="epi-img">
+                  <span class="epi-badge" style="background:#8fd99a;color:#0a2015;">Nouveau</span>
+                  <svg viewBox="0 0 60 60" aria-hidden="true"><path d="M18 18 L42 18 L44 50 Q44 54 40 54 L20 54 Q16 54 16 50 Z" fill="#6f4d38"/><rect x="22" y="10" width="16" height="10" rx="2" fill="#3a2820"/></svg>
+                  <a class="epi-quickadd" href="#">+</a>
+                </div>
                 <span class="name">Café en grains</span>
-                <div class="epi-card-row"><span class="price">9€</span><a class="epi-add" href="#">+</a></div>
+                <span class="epi-rating">★★★★☆ <span>(9)</span></span>
+                <div class="epi-price-row"><span class="epi-price">9€</span></div>
               </div>
             </div>
           </div>
@@ -754,15 +788,21 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
               <a class="mod-cart-btn" href="#">🛒</a>
             </div>
             <div class="mod-spotlight">
-              <svg class="mod-illus" viewBox="0 0 100 160" aria-hidden="true">
-                <path d="M35 10 L28 28 L20 40 L20 150 L80 150 L80 40 L72 28 L65 10 Z" fill="#5c3524" fill-opacity=".18"/>
-                <path d="M35 10 Q50 22 65 10 L72 28 Q50 38 28 28 Z" fill="#5c3524" fill-opacity=".35"/>
-                <line x1="50" y1="38" x2="50" y2="150" stroke="#5c3524" stroke-opacity=".2" stroke-width="1.5"/>
-              </svg>
+              <div class="mod-photo">
+                <span class="mod-photo-badge">Nouveauté</span>
+                <svg class="mod-illus" viewBox="0 0 100 160" aria-hidden="true">
+                  <path d="M35 10 L28 28 L20 40 L20 150 L80 150 L80 40 L72 28 L65 10 Z" fill="#5c3524" fill-opacity=".22"/>
+                  <path d="M35 10 Q50 22 65 10 L72 28 Q50 38 28 28 Z" fill="#5c3524" fill-opacity=".4"/>
+                  <line x1="50" y1="38" x2="50" y2="150" stroke="#5c3524" stroke-opacity=".22" stroke-width="1.5"/>
+                </svg>
+              </div>
               <div class="mod-info">
-                <span class="mod-badge">Nouveauté</span>
                 <div class="name">Robe Lin — collection été</div>
-                <div class="price">89€</div>
+                <span class="mod-rating">★★★★★ <span>(42 avis)</span></span>
+                <div class="mod-price-row"><span class="price">89€</span><span class="mod-price-old">119€</span></div>
+                <div class="mod-sizes">
+                  <span class="mod-size">S</span><span class="mod-size on">M</span><span class="mod-size">L</span>
+                </div>
                 <a class="mod-cta" href="#">Ajouter au panier →</a>
               </div>
             </div>
@@ -780,10 +820,26 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
               <div class="dec-title">Nouvelle collection, <em style="color:#d4af6a;font-style:normal;">automne.</em></div>
             </div>
             <div class="dec-strip">
-              <div class="dec-chip"><span class="ico">🪔</span><span class="name">Lampe Ambre</span><span class="price">68€</span></div>
-              <div class="dec-chip"><span class="ico">🏺</span><span class="name">Vase Terracotta</span><span class="price">34€</span></div>
-              <div class="dec-chip"><span class="ico">🪞</span><span class="name">Miroir Soleil</span><span class="price">89€</span></div>
-              <div class="dec-chip"><span class="ico">🧶</span><span class="name">Coussin Lin</span><span class="price">24€</span></div>
+              <div class="dec-chip">
+                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M30 8 L44 34 L16 34 Z" fill="#d4af6a" fill-opacity=".8"/><rect x="27" y="34" width="6" height="16" fill="#8a7350"/><rect x="20" y="50" width="20" height="4" rx="2" fill="#8a7350"/></svg></div>
+                <span class="name">Lampe Ambre</span>
+                <span class="price">68€</span>
+              </div>
+              <div class="dec-chip">
+                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M22 12 Q18 12 18 20 Q18 30 24 34 L24 48 Q24 52 28 52 L32 52 Q36 52 36 48 L36 34 Q42 30 42 20 Q42 12 38 12 Z" fill="#c56a3f" fill-opacity=".85"/></svg></div>
+                <span class="name">Vase Terracotta</span>
+                <span class="price">34€</span>
+              </div>
+              <div class="dec-chip">
+                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="28" r="18" fill="none" stroke="#d4af6a" stroke-width="3"/><rect x="27" y="45" width="6" height="10" fill="#8a7350"/></svg></div>
+                <span class="name">Miroir Soleil</span>
+                <span class="price">89€</span>
+              </div>
+              <div class="dec-chip">
+                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><rect x="14" y="18" width="32" height="26" rx="5" fill="#b8a888" fill-opacity=".8"/></svg></div>
+                <span class="name">Coussin Lin</span>
+                <span class="price">24€</span>
+              </div>
             </div>
           </div>
         </div>
@@ -799,8 +855,8 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             <div class="vin-body">
               <span class="vin-tag">Cave à vins — Béziers</span>
               <div class="vin-cart">
-                <div class="vin-cart-row"><span class="n"><span class="qty">1×</span>Côtes du Rhône 2021</span><span>18€</span></div>
-                <div class="vin-cart-row"><span class="n"><span class="qty">2×</span>Rosé de Provence</span><span>24€</span></div>
+                <div class="vin-cart-row"><span class="vin-swatch" aria-hidden="true"></span><span class="n"><span class="qty">1×</span>Côtes du Rhône 2021</span><span>18€</span></div>
+                <div class="vin-cart-row"><span class="vin-swatch" aria-hidden="true" style="background:linear-gradient(160deg,#e2a04a,#a86a2a);"></span><span class="n"><span class="qty">2×</span>Rosé de Provence</span><span>24€</span></div>
                 <div class="vin-cart-total"><span>Total</span><b>42€</b></div>
                 <a class="vin-cta" href="#">Commander →</a>
               </div>
