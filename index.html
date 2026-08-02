@@ -335,21 +335,21 @@ section{padding:76px 20px;position:relative;}
 @media(max-width:700px){.mod-grid{grid-template-columns:repeat(3,1fr);}}
 
 /* C. Maison Lune (concept store déco) — BANDEAU COLLECTION, strip horizontal de produits */
-.dec-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:#1a1712;font-family:'Inter',sans-serif;}
-.dec-gold-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#d4af6a,transparent);}
-.dec-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;}
-.dec-nav-logo{font-weight:700;font-size:.9rem;color:#fff;letter-spacing:.02em;}
-.dec-nav-logo em{font-style:normal;color:#d4af6a;}
-.dec-cart-btn{background:rgba(212,175,106,.15);border:1px solid rgba(212,175,106,.3);color:#d4af6a;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;flex-shrink:0;}
-.dec-head{position:relative;z-index:2;padding:4px 28px 18px;}
-.dec-tag{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#d4af6a;margin-bottom:8px;display:block;}
-.dec-title{font-family:var(--disp);font-weight:700;font-size:clamp(1.25rem,2.8vw,1.7rem);color:#fff;line-height:1.15;}
+.dec-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:#ffffff;font-family:'Inter',sans-serif;border-bottom:1px solid #eee;}
+.dec-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;border-bottom:1px solid #eee;}
+.dec-nav-logo{font-weight:800;font-size:.9rem;color:#111;letter-spacing:.02em;}
+.dec-nav-logo em{font-style:normal;color:#111;}
+.dec-cart-btn{position:relative;background:#111;color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;flex-shrink:0;}
+.dec-cart-btn .n{position:absolute;top:-3px;right:-3px;background:#fff;color:#111;font-size:.56rem;font-weight:800;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid #111;}
+.dec-head{position:relative;z-index:2;padding:18px 28px 16px;}
+.dec-tag{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#8a8580;margin-bottom:8px;display:block;}
+.dec-title{font-family:var(--disp);font-weight:700;font-size:clamp(1.25rem,2.8vw,1.7rem);color:#111;line-height:1.15;}
 .dec-strip{position:relative;z-index:2;flex:1;display:flex;align-items:flex-start;gap:13px;padding:0 28px 28px;overflow:hidden;}
-.dec-chip{flex-shrink:0;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,106,.2);border-radius:12px;padding:9px;display:flex;flex-direction:column;gap:7px;width:112px;}
-.dec-img{position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:radial-gradient(circle at 32% 24%,rgba(212,175,106,.3),transparent 60%),linear-gradient(160deg,#2b261c,#171410);display:flex;align-items:center;justify-content:center;}
+.dec-chip{flex-shrink:0;background:#fff;border:1px solid #ececec;border-radius:12px;padding:9px;display:flex;flex-direction:column;gap:7px;width:112px;box-shadow:0 4px 14px rgba(0,0,0,.04);}
+.dec-img{position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:#f4f3f1;display:flex;align-items:center;justify-content:center;}
 .dec-img svg{width:54%;height:54%;}
-.dec-chip .name{font-size:.68rem;color:#e8e2d5;font-weight:600;line-height:1.3;}
-.dec-chip .price{font-family:var(--disp);font-weight:800;color:#d4af6a;font-size:.82rem;}
+.dec-chip .name{font-size:.68rem;color:#333;font-weight:600;line-height:1.3;}
+.dec-chip .price{font-family:var(--disp);font-weight:800;color:#111;font-size:.82rem;}
 
 /* D. Le Cep (cave à vins) — PANIER LIVE, prouve le checkout plutôt que le catalogue */
 .vin-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(160deg,#3a0f1a,#22070e 60%,#160408);font-family:'Inter',sans-serif;}
@@ -847,33 +847,32 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         </div>
         <div class="real-item" data-set="ecommerce">
           <div class="dec-hero-area">
-            <div class="dec-gold-line" aria-hidden="true"></div>
             <div class="dec-nav">
               <span class="dec-nav-logo">Maison <em>Lune</em></span>
-              <a class="dec-cart-btn" href="#">🛒</a>
+              <a class="dec-cart-btn" href="#">🛒<span class="n">4</span></a>
             </div>
             <div class="dec-head">
               <span class="dec-tag">Concept store déco — Béziers</span>
-              <div class="dec-title">Nouvelle collection, <em style="color:#d4af6a;font-style:normal;">automne.</em></div>
+              <div class="dec-title">Nouvelle collection, <em style="font-style:normal;">automne.</em></div>
             </div>
             <div class="dec-strip">
               <div class="dec-chip">
-                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M30 8 L44 34 L16 34 Z" fill="#d4af6a" fill-opacity=".8"/><rect x="27" y="34" width="6" height="16" fill="#8a7350"/><rect x="20" y="50" width="20" height="4" rx="2" fill="#8a7350"/></svg></div>
+                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M30 8 L44 34 L16 34 Z" fill="#555" fill-opacity=".8"/><rect x="27" y="34" width="6" height="16" fill="#888"/><rect x="20" y="50" width="20" height="4" rx="2" fill="#888"/></svg></div>
                 <span class="name">Lampe Ambre</span>
                 <span class="price">68€</span>
               </div>
               <div class="dec-chip">
-                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M22 12 Q18 12 18 20 Q18 30 24 34 L24 48 Q24 52 28 52 L32 52 Q36 52 36 48 L36 34 Q42 30 42 20 Q42 12 38 12 Z" fill="#c56a3f" fill-opacity=".85"/></svg></div>
+                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><path d="M22 12 Q18 12 18 20 Q18 30 24 34 L24 48 Q24 52 28 52 L32 52 Q36 52 36 48 L36 34 Q42 30 42 20 Q42 12 38 12 Z" fill="#666" fill-opacity=".85"/></svg></div>
                 <span class="name">Vase Terracotta</span>
                 <span class="price">34€</span>
               </div>
               <div class="dec-chip">
-                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="28" r="18" fill="none" stroke="#d4af6a" stroke-width="3"/><rect x="27" y="45" width="6" height="10" fill="#8a7350"/></svg></div>
+                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="28" r="18" fill="none" stroke="#555" stroke-width="3"/><rect x="27" y="45" width="6" height="10" fill="#888"/></svg></div>
                 <span class="name">Miroir Soleil</span>
                 <span class="price">89€</span>
               </div>
               <div class="dec-chip">
-                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><rect x="14" y="18" width="32" height="26" rx="5" fill="#b8a888" fill-opacity=".8"/></svg></div>
+                <div class="dec-img"><svg viewBox="0 0 60 60" aria-hidden="true"><rect x="14" y="18" width="32" height="26" rx="5" fill="#999" fill-opacity=".8"/></svg></div>
                 <span class="name">Coussin Lin</span>
                 <span class="price">24€</span>
               </div>
