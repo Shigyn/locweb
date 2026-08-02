@@ -215,7 +215,7 @@ section{padding:76px 20px;position:relative;}
 @media(min-width:768px){.demo-disclaimer{padding:0 5vw;}}
 
 /* Toggle Site vitrine / Site animé au-dessus de la galerie réalisations */
-.real-toggle{position:sticky;top:78px;z-index:50;display:inline-flex;gap:4px;background:rgba(20,20,22,.75);backdrop-filter:blur(10px);padding:5px;border-radius:100px;margin:26px 20px 0;box-shadow:0 10px 30px rgba(0,0,0,.3);}
+.real-toggle{position:sticky;top:78px;z-index:50;display:inline-flex;flex-wrap:wrap;gap:4px;background:rgba(20,20,22,.75);backdrop-filter:blur(10px);padding:5px;border-radius:100px;margin:26px 20px 0;box-shadow:0 10px 30px rgba(0,0,0,.3);}
 @media(min-width:768px){.real-toggle{margin-left:5vw;}}
 .real-toggle-btn{background:none;border:none;font-family:var(--sans);font-size:.8rem;font-weight:700;color:rgba(255,255,255,.5);padding:9px 20px;border-radius:100px;cursor:pointer;transition:background .2s,color .2s;}
 .real-toggle-btn.active{background:var(--red);color:#fff;}
@@ -293,6 +293,71 @@ section{padding:76px 20px;position:relative;}
 .flr-mega .l2{display:block;font-style:italic;font-weight:700;font-size:clamp(2.6rem,7.5vw,4.4rem);color:#c94f80;letter-spacing:-.02em;margin:2px 0 2px 3%;}
 .flr-mega .l3{display:block;font-style:normal;font-weight:500;font-size:clamp(1.1rem,2.6vw,1.4rem);color:#5c2340;margin-left:1%;}
 .flr-sign{position:absolute;bottom:22px;left:28px;z-index:3;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:#7a2f4d;}
+
+/* ── Sites "e-commerce" — le MODULE PRODUIT est le sujet de chaque carte, pas un hero marketing ── */
+
+/* A. Grain & Co (épicerie fine) — GRILLE CATALOGUE 2x2, la grille est le héros */
+.epi-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(150deg,#123524,#0a2015 60%,#061209);font-family:'Inter',sans-serif;}
+.epi-texture{position:absolute;inset:0;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.5px);background-size:26px 26px;}
+.epi-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 26px 4px;}
+.epi-nav-logo{font-weight:800;font-size:.92rem;color:#fff;}
+.epi-nav-logo em{font-style:normal;color:#8fd99a;}
+.epi-cart-btn{position:relative;background:rgba(255,255,255,.1);color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;flex-shrink:0;}
+.epi-cart-btn .n{position:absolute;top:-3px;right:-3px;background:#8fd99a;color:#0a2015;font-size:.56rem;font-weight:800;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.epi-tag{position:relative;z-index:2;display:block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:#8fd99a;padding:6px 26px 12px;}
+.epi-grid{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 22px 22px;}
+.epi-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px;display:flex;flex-direction:column;gap:8px;}
+.epi-card .ico{font-size:1.6rem;}
+.epi-card .name{font-size:.78rem;font-weight:700;color:#fff;line-height:1.25;}
+.epi-card-row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;}
+.epi-card .price{font-family:var(--disp);font-weight:800;color:#8fd99a;font-size:.92rem;}
+.epi-add{width:24px;height:24px;border-radius:50%;background:#8fd99a;color:#0a2015;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;text-decoration:none;flex-shrink:0;}
+
+/* B. Ambre (boutique mode) — PRODUIT VEDETTE unique en grand format, pas de grille */
+.mod-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(160deg,#f3ded3,#e8c3ae 55%,#d9a688);font-family:'Inter',sans-serif;}
+.mod-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;}
+.mod-nav-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:#5c3524;}
+.mod-cart-btn{background:#5c3524;color:#f3ded3;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;flex-shrink:0;}
+.mod-spotlight{position:relative;z-index:2;flex:1;display:flex;align-items:center;gap:20px;padding:6px 28px 28px;}
+.mod-illus{width:130px;height:200px;flex-shrink:0;}
+.mod-info{display:flex;flex-direction:column;gap:8px;}
+.mod-badge{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#fff;background:#5c3524;padding:5px 11px;border-radius:100px;width:fit-content;}
+.mod-info .name{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.6vw,1.6rem);color:#3d2317;line-height:1.25;max-width:210px;}
+.mod-info .price{font-family:var(--disp);font-weight:800;font-size:1.5rem;color:#5c3524;}
+.mod-cta{background:#5c3524;color:#f3ded3;font-weight:800;font-size:.76rem;padding:12px 18px;border-radius:9px;text-decoration:none;width:fit-content;margin-top:4px;white-space:nowrap;}
+
+/* C. Maison Lune (concept store déco) — BANDEAU COLLECTION, strip horizontal de produits */
+.dec-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:#1a1712;font-family:'Inter',sans-serif;}
+.dec-gold-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#d4af6a,transparent);}
+.dec-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;}
+.dec-nav-logo{font-weight:700;font-size:.9rem;color:#fff;letter-spacing:.02em;}
+.dec-nav-logo em{font-style:normal;color:#d4af6a;}
+.dec-cart-btn{background:rgba(212,175,106,.15);border:1px solid rgba(212,175,106,.3);color:#d4af6a;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none;flex-shrink:0;}
+.dec-head{position:relative;z-index:2;padding:4px 28px 18px;}
+.dec-tag{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#d4af6a;margin-bottom:8px;display:block;}
+.dec-title{font-family:var(--disp);font-weight:700;font-size:clamp(1.25rem,2.8vw,1.7rem);color:#fff;line-height:1.15;}
+.dec-strip{position:relative;z-index:2;flex:1;display:flex;align-items:center;gap:12px;padding:0 28px 28px;overflow:hidden;}
+.dec-chip{flex-shrink:0;background:rgba(255,255,255,.05);border:1px solid rgba(212,175,106,.25);border-radius:10px;padding:12px 15px;display:flex;flex-direction:column;gap:6px;min-width:104px;}
+.dec-chip .ico{font-size:1.3rem;}
+.dec-chip .name{font-size:.68rem;color:#e8e2d5;font-weight:600;line-height:1.3;}
+.dec-chip .price{font-family:var(--disp);font-weight:800;color:#d4af6a;font-size:.82rem;}
+
+/* D. Le Cep (cave à vins) — PANIER LIVE, prouve le checkout plutôt que le catalogue */
+.vin-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(160deg,#3a0f1a,#22070e 60%,#160408);font-family:'Inter',sans-serif;}
+.vin-illus{position:absolute;left:-30px;bottom:-20px;width:200px;height:260px;opacity:.35;pointer-events:none;}
+@media(max-width:700px){.vin-illus{width:140px;height:180px;}}
+.vin-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:20px 26px;}
+.vin-nav-logo{font-family:'Fraunces',serif;font-weight:500;font-size:1rem;color:#fff;}
+.vin-nav-logo em{font-style:italic;color:#e2a04a;}
+.vin-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:6px 26px 26px;align-items:flex-end;}
+.vin-tag{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#e2a04a;margin-bottom:12px;}
+.vin-cart{background:rgba(255,255,255,.05);border:1px solid rgba(226,160,74,.2);border-radius:14px;padding:16px;width:100%;max-width:280px;}
+.vin-cart-row{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:#f0dcc4;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);gap:8px;}
+.vin-cart-row .qty{color:#e2a04a;font-weight:700;margin-right:6px;}
+.vin-cart-row .n{flex:1;}
+.vin-cart-total{display:flex;justify-content:space-between;align-items:center;padding-top:12px;font-weight:800;color:#fff;font-size:.82rem;}
+.vin-cart-total b{color:#e2a04a;font-family:var(--disp);font-size:1.15rem;}
+.vin-cta{display:block;text-align:center;background:#e2a04a;color:#22070e;font-weight:800;font-size:.78rem;padding:12px;border-radius:9px;text-decoration:none;margin-top:14px;}
 
 /* SUPPORT INCLUS : bandeau compact avant les tarifs, mockup fidèle de l'éditeur réel */
 #support-inclus{background:var(--paper);padding:64px 0;}
@@ -516,6 +581,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   <div class="real-toggle" role="tablist" aria-label="Type de site à afficher">
     <button type="button" class="real-toggle-btn" data-show="vitrine" role="tab" aria-selected="false">Site vitrine</button>
     <button type="button" class="real-toggle-btn active" data-show="anime" role="tab" aria-selected="true">Site animé</button>
+    <button type="button" class="real-toggle-btn" data-show="ecommerce" role="tab" aria-selected="false">Site e-commerce</button>
   </div>
   <div class="galerie-horiz-wrap">
     <div class="galerie-horiz-sticky">
@@ -647,6 +713,98 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
               <span class="l3">— livrées le jour même.</span>
             </div>
             <p class="flr-sign">★ 5.0 sur Google — fait main</p>
+          </div>
+        </div>
+        <div class="real-item" data-set="ecommerce">
+          <div class="epi-hero-area">
+            <div class="epi-texture" aria-hidden="true"></div>
+            <div class="epi-nav">
+              <span class="epi-nav-logo">Grain <em>& Co</em></span>
+              <a class="epi-cart-btn" href="#">🛒<span class="n">3</span></a>
+            </div>
+            <span class="epi-tag">Épicerie fine — Béziers</span>
+            <div class="epi-grid">
+              <div class="epi-card">
+                <span class="ico">🍯</span>
+                <span class="name">Miel artisanal</span>
+                <div class="epi-card-row"><span class="price">7,50€</span><a class="epi-add" href="#">+</a></div>
+              </div>
+              <div class="epi-card">
+                <span class="ico">🫒</span>
+                <span class="name">Huile d'olive</span>
+                <div class="epi-card-row"><span class="price">12€</span><a class="epi-add" href="#">+</a></div>
+              </div>
+              <div class="epi-card">
+                <span class="ico">🍓</span>
+                <span class="name">Confiture maison</span>
+                <div class="epi-card-row"><span class="price">6€</span><a class="epi-add" href="#">+</a></div>
+              </div>
+              <div class="epi-card">
+                <span class="ico">☕</span>
+                <span class="name">Café en grains</span>
+                <div class="epi-card-row"><span class="price">9€</span><a class="epi-add" href="#">+</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="real-item" data-set="ecommerce">
+          <div class="mod-hero-area">
+            <div class="mod-nav">
+              <span class="mod-nav-logo">Ambre</span>
+              <a class="mod-cart-btn" href="#">🛒</a>
+            </div>
+            <div class="mod-spotlight">
+              <svg class="mod-illus" viewBox="0 0 100 160" aria-hidden="true">
+                <path d="M35 10 L28 28 L20 40 L20 150 L80 150 L80 40 L72 28 L65 10 Z" fill="#5c3524" fill-opacity=".18"/>
+                <path d="M35 10 Q50 22 65 10 L72 28 Q50 38 28 28 Z" fill="#5c3524" fill-opacity=".35"/>
+                <line x1="50" y1="38" x2="50" y2="150" stroke="#5c3524" stroke-opacity=".2" stroke-width="1.5"/>
+              </svg>
+              <div class="mod-info">
+                <span class="mod-badge">Nouveauté</span>
+                <div class="name">Robe Lin — collection été</div>
+                <div class="price">89€</div>
+                <a class="mod-cta" href="#">Ajouter au panier →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="real-item" data-set="ecommerce">
+          <div class="dec-hero-area">
+            <div class="dec-gold-line" aria-hidden="true"></div>
+            <div class="dec-nav">
+              <span class="dec-nav-logo">Maison <em>Lune</em></span>
+              <a class="dec-cart-btn" href="#">🛒</a>
+            </div>
+            <div class="dec-head">
+              <span class="dec-tag">Concept store déco — Béziers</span>
+              <div class="dec-title">Nouvelle collection, <em style="color:#d4af6a;font-style:normal;">automne.</em></div>
+            </div>
+            <div class="dec-strip">
+              <div class="dec-chip"><span class="ico">🪔</span><span class="name">Lampe Ambre</span><span class="price">68€</span></div>
+              <div class="dec-chip"><span class="ico">🏺</span><span class="name">Vase Terracotta</span><span class="price">34€</span></div>
+              <div class="dec-chip"><span class="ico">🪞</span><span class="name">Miroir Soleil</span><span class="price">89€</span></div>
+              <div class="dec-chip"><span class="ico">🧶</span><span class="name">Coussin Lin</span><span class="price">24€</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="real-item" data-set="ecommerce">
+          <div class="vin-hero-area">
+            <svg class="vin-illus" viewBox="0 0 100 200" aria-hidden="true">
+              <path d="M42 10 L58 10 L58 30 L66 50 L66 180 Q66 190 56 190 L44 190 Q34 190 34 180 L34 50 L42 30 Z" fill="#e2a04a"/>
+              <rect x="42" y="10" width="16" height="14" fill="#e2a04a"/>
+            </svg>
+            <div class="vin-nav">
+              <span class="vin-nav-logo">Le <em>Cep</em></span>
+            </div>
+            <div class="vin-body">
+              <span class="vin-tag">Cave à vins — Béziers</span>
+              <div class="vin-cart">
+                <div class="vin-cart-row"><span class="n"><span class="qty">1×</span>Côtes du Rhône 2021</span><span>18€</span></div>
+                <div class="vin-cart-row"><span class="n"><span class="qty">2×</span>Rosé de Provence</span><span>24€</span></div>
+                <div class="vin-cart-total"><span>Total</span><b>42€</b></div>
+                <a class="vin-cta" href="#">Commander →</a>
+              </div>
+            </div>
           </div>
         </div>
         <div class="real-item set-active" data-set="anime">
