@@ -223,76 +223,13 @@ section{padding:76px 20px;position:relative;}
 .real-item[data-set]{display:none;}
 .real-item[data-set].set-active{display:flex;}
 
-/* ── Sites "vitrine" (tier sobre) — 4 identités visuelles VRAIMENT différentes : couleur-bloc, illustration SVG, mise en page propre à chaque métier ── */
-
-/* 1. Rapid'Eau Plomberie — LE NUMÉRO EST LE HÉROS : pas de titre, pas de bouton, juste un téléphone géant cliquable */
-.plb-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:linear-gradient(135deg,#0b3d91,#083166 60%,#062247);font-family:'Inter',sans-serif;}
-.plb-wedge{position:absolute;inset:0;background:rgba(255,255,255,.04);clip-path:polygon(35% 0,100% 0,100% 100%,55% 100%);}
-.plb-dots{position:absolute;inset:0;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.09) 1.5px,transparent 1.5px);background-size:24px 24px;}
-.plb-illus{position:absolute;right:-40px;bottom:-60px;width:440px;height:440px;opacity:.95;pointer-events:none;}
-@media(max-width:700px){.plb-illus{width:260px;height:260px;bottom:-40px;right:-30px;}}
-.plb-nav{position:relative;z-index:2;padding:22px 26px;}
-.plb-nav-logo{font-weight:800;font-size:.86rem;color:rgba(255,255,255,.75);}
-.plb-nav-logo em{font-style:normal;color:#7ec8ff;}
-.plb-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 28px;gap:8px;max-width:80%;}
-.plb-tag{display:inline-block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:#7ec8ff;width:fit-content;margin-bottom:4px;}
-.plb-phone{font-family:var(--disp);font-weight:800;font-size:clamp(2.4rem,7vw,4rem);letter-spacing:-.03em;line-height:1;color:#fff;text-decoration:none;display:block;transition:color .2s;}
-.plb-phone:hover{color:#7ec8ff;}
-.plb-line{font-size:.85rem;color:#c3dbf5;max-width:260px;line-height:1.5;margin-top:6px;}
-.plb-barcode{position:relative;z-index:2;flex-shrink:0;display:flex;justify-content:space-around;background:rgba(255,255,255,.08);backdrop-filter:blur(6px);padding:13px 20px;border-top:1px solid rgba(255,255,255,.1);}
-.plb-barcode span{font-size:.64rem;font-weight:700;color:#fff;white-space:nowrap;}
-
-/* 2. Boulangerie Ferrand — LA CARTE EST LE HÉROS : liste-menu façon ardoise, pas de gros titre */
-.bol-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(circle at 12% 90%,#f4ddb0,transparent 55%),linear-gradient(155deg,#e8c07d,#d9954f 55%,#b9702f);font-family:'Inter',sans-serif;}
-.bol-illus{position:absolute;left:-25px;top:-25px;width:230px;height:520px;opacity:.35;pointer-events:none;}
-.bol-illus2{position:absolute;right:-15px;bottom:-30px;width:180px;height:400px;opacity:.28;pointer-events:none;transform:rotate(180deg);}
-@media(max-width:700px){.bol-illus{width:150px;height:340px;}.bol-illus2{width:120px;height:270px;}}
-.bol-grain{position:absolute;inset:0;opacity:.3;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-.bol-nav{position:relative;z-index:2;text-align:center;padding:22px 26px 8px;}
-.bol-nav-logo{font-family:'Fraunces',serif;font-weight:500;font-size:1.1rem;color:#3a2410;}
-.bol-nav-logo em{font-style:italic;color:#fff;}
-.bol-caption{display:block;text-align:center;font-size:.6rem;text-transform:uppercase;letter-spacing:.16em;color:#5c3814;opacity:.75;margin-top:2px;}
-.bol-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 34px 24px;}
-.bol-menu{display:flex;flex-direction:column;gap:13px;}
-.bol-row{display:flex;align-items:baseline;gap:8px;}
-.bol-row .name{font-family:'Fraunces',serif;font-size:.98rem;color:#3a2410;white-space:nowrap;}
-.bol-row .name em{font-style:italic;font-weight:500;color:#fff;}
-.bol-row .dots{flex:1;border-bottom:1.5px dotted rgba(58,36,16,.4);height:0;transform:translateY(-4px);}
-.bol-row .price{font-family:'Fraunces',serif;font-weight:600;color:#3a2410;font-size:.98rem;white-space:nowrap;}
-.bol-sign{position:relative;z-index:2;text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:.76rem;color:#3a2410;opacity:.8;padding-bottom:20px;}
-
-/* 3. Garage Solère — LES CHIFFRES SONT LE HÉROS : dashboard de stats géantes */
-.gar-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:#111;font-family:'Inter',sans-serif;}
-.gar-stripes{position:absolute;top:0;left:0;right:0;height:12px;background:repeating-linear-gradient(45deg,#ff8c3c,#ff8c3c 14px,#161616 14px,#161616 28px);}
-.gar-stripes.bottom{top:auto;bottom:0;}
-.gar-diag{position:absolute;inset:0;opacity:.05;background-image:repeating-linear-gradient(45deg,#ff8c3c,#ff8c3c 2px,transparent 2px,transparent 22px);}
-.gar-nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:26px 30px 0;}
-.gar-nav-logo{font-weight:800;font-size:.98rem;color:#fff;text-transform:uppercase;letter-spacing:.02em;}
-.gar-nav-logo em{font-style:normal;color:#ff8c3c;}
-.gar-nav-btn{background:#ff8c3c;color:#1c1006;font-weight:800;font-size:.7rem;padding:9px 15px;border-radius:6px;text-decoration:none;white-space:nowrap;}
-.gar-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:16px 30px 24px;gap:22px;}
-.gar-stats{display:flex;gap:34px;flex-wrap:wrap;}
-.gar-stat-big .num{font-family:var(--disp);font-weight:800;font-size:clamp(2rem,5.2vw,3.1rem);color:#ff8c3c;line-height:1;letter-spacing:-.02em;}
-.gar-stat-big .lbl{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:#8a8580;margin-top:6px;}
-.gar-title{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:clamp(1.05rem,2.2vw,1.35rem);line-height:1.2;color:#eee;letter-spacing:-.005em;margin:0;max-width:340px;}
-.gar-title em{font-style:normal;color:#ff8c3c;}
-.gar-cta-row{display:flex;gap:10px;flex-wrap:wrap;}
-.gar-btn-solid{background:#ff8c3c;color:#1c1006;font-weight:800;font-size:.76rem;padding:11px 17px;border-radius:6px;text-decoration:none;white-space:nowrap;}
-.gar-btn-outline{border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:700;font-size:.76rem;padding:10px 17px;border-radius:6px;text-decoration:none;white-space:nowrap;}
-
-/* 4. Fleurs de Léa — LA TYPO EST LE HÉROS : affiche/couverture magazine, pas de bloc de contenu classique */
-.flr-hero-area{position:relative;height:100%;overflow:hidden;background:linear-gradient(160deg,#fdf1f5,#fbe4ec 60%,#f7d5e3);font-family:'Inter',sans-serif;}
-.flr-pattern{position:absolute;inset:0;opacity:.45;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='18' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='18' cy='30' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='42' cy='30' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='30' cy='42' r='6' fill='%23e8b7cd'/%3E%3Ccircle cx='30' cy='30' r='5' fill='%23f4d35e'/%3E%3C/svg%3E");background-size:60px 60px;}
-.flr-illus{position:absolute;right:-4%;bottom:-6%;width:300px;height:300px;opacity:.85;pointer-events:none;}
-.flr-illus2{position:absolute;left:6%;top:10%;width:90px;height:90px;opacity:.6;pointer-events:none;}
-@media(max-width:700px){.flr-illus{width:200px;height:200px;}.flr-illus2{width:60px;height:60px;}}
-.flr-mark{position:absolute;top:24px;left:28px;z-index:3;font-family:'Playfair Display',serif;font-style:italic;font-size:.76rem;color:rgba(122,47,77,.7);letter-spacing:.04em;}
-.flr-nav-btn{position:absolute;top:20px;right:26px;z-index:3;background:#c94f80;color:#fff;font-weight:700;font-size:.68rem;padding:9px 15px;border-radius:100px;text-decoration:none;white-space:nowrap;}
-.flr-mega{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 28px;font-family:'Playfair Display',serif;line-height:.98;}
-.flr-mega .l1{display:block;font-style:italic;font-weight:400;font-size:clamp(1.3rem,3.4vw,1.9rem);color:#8a5169;}
-.flr-mega .l2{display:block;font-style:italic;font-weight:700;font-size:clamp(2.6rem,7.5vw,4.4rem);color:#c94f80;letter-spacing:-.02em;margin:2px 0 2px 3%;}
-.flr-mega .l3{display:block;font-style:normal;font-weight:500;font-size:clamp(1.1rem,2.6vw,1.4rem);color:#5c2340;margin-left:1%;}
-.flr-sign{position:absolute;bottom:22px;left:28px;z-index:3;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:#7a2f4d;}
+/* ── Sites "vitrine" (tier sobre) — 4 vrais sites déployés, montrés en aperçu live figé sur le haut de page (non scrollable) ── */
+.site-preview{position:relative;height:100%;overflow:hidden;background:#111;}
+.site-preview iframe{position:absolute;top:0;left:0;width:1440px;border:0;pointer-events:none;transform-origin:top left;}
+.site-preview-label{position:absolute;bottom:0;left:0;right:0;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;padding:34px 20px 16px;}
+.site-preview-label strong{display:block;font-size:.92rem;font-weight:800;}
+.site-preview-label span{display:block;font-size:.74rem;color:rgba(255,255,255,.7);margin-top:2px;}
+.site-preview-label .spl-tag{flex-shrink:0;font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.14);padding:6px 11px;border-radius:100px;white-space:nowrap;}
 
 /* ── Sites "e-commerce" — le MODULE PRODUIT est le sujet de chaque carte, pas un hero marketing ── */
 
@@ -598,132 +535,39 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
     <div class="galerie-horiz-sticky">
       <div class="galerie-horiz-track">
         <div class="real-item" data-set="vitrine">
-          <div class="plb-hero-area">
-            <div class="plb-wedge" aria-hidden="true"></div>
-            <div class="plb-dots" aria-hidden="true"></div>
-            <svg class="plb-illus" viewBox="0 0 200 200" aria-hidden="true">
-              <circle cx="140" cy="70" r="20" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="2"/>
-              <circle cx="140" cy="70" r="40" fill="none" stroke="#fff" stroke-opacity=".14" stroke-width="2"/>
-              <circle cx="140" cy="70" r="60" fill="none" stroke="#fff" stroke-opacity=".1" stroke-width="2"/>
-              <circle cx="140" cy="70" r="80" fill="none" stroke="#fff" stroke-opacity=".06" stroke-width="2"/>
-              <path d="M140 30 C150 55 165 65 165 82 C165 95 154 105 140 105 C126 105 115 95 115 82 C115 65 130 55 140 30Z" fill="#7ec8ff" fill-opacity=".55"/>
-            </svg>
-            <div class="plb-nav">
-              <span class="plb-nav-logo">Rapid'Eau <em>Plomberie</em></span>
-            </div>
-            <div class="plb-body">
-              <span class="plb-tag">Une urgence ? Appelez.</span>
-              <a class="plb-phone" href="tel:0467110000">04 67 11 00 00</a>
-              <p class="plb-line">Intervention en moins de 30 minutes, 7j/7, devis gratuit.</p>
-            </div>
-            <div class="plb-barcode">
-              <span>🔧 Dépannage</span>
-              <span>✅ Devis gratuit</span>
-              <span>★ 4.9 Google</span>
+          <div class="site-preview">
+            <iframe src="https://shigyn.github.io/rapideau-plomberie/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Rapid'Eau Plomberie"></iframe>
+            <div class="site-preview-label">
+              <div><strong>Rapid'Eau Plomberie</strong><span>Plombier — devis en 2 min, urgence 30 min</span></div>
+              <span class="spl-tag">Site vitrine</span>
             </div>
           </div>
         </div>
         <div class="real-item" data-set="vitrine">
-          <div class="bol-hero-area">
-            <div class="bol-grain" aria-hidden="true"></div>
-            <svg class="bol-illus" viewBox="0 0 100 260" aria-hidden="true">
-              <line x1="50" y1="30" x2="50" y2="240" stroke="#7a4a1a" stroke-width="3"/>
-              <g fill="#7a4a1a">
-                <ellipse cx="38" cy="50" rx="10" ry="18" transform="rotate(-25 38 50)"/>
-                <ellipse cx="62" cy="50" rx="10" ry="18" transform="rotate(25 62 50)"/>
-                <ellipse cx="35" cy="80" rx="10" ry="18" transform="rotate(-25 35 80)"/>
-                <ellipse cx="65" cy="80" rx="10" ry="18" transform="rotate(25 65 80)"/>
-                <ellipse cx="38" cy="110" rx="10" ry="18" transform="rotate(-25 38 110)"/>
-                <ellipse cx="62" cy="110" rx="10" ry="18" transform="rotate(25 62 110)"/>
-                <ellipse cx="35" cy="140" rx="10" ry="18" transform="rotate(-25 35 140)"/>
-                <ellipse cx="65" cy="140" rx="10" ry="18" transform="rotate(25 65 140)"/>
-              </g>
-            </svg>
-            <svg class="bol-illus2" viewBox="0 0 100 260" aria-hidden="true">
-              <line x1="50" y1="30" x2="50" y2="240" stroke="#7a4a1a" stroke-width="3"/>
-              <g fill="#7a4a1a">
-                <ellipse cx="38" cy="50" rx="10" ry="18" transform="rotate(-25 38 50)"/>
-                <ellipse cx="62" cy="50" rx="10" ry="18" transform="rotate(25 62 50)"/>
-                <ellipse cx="35" cy="80" rx="10" ry="18" transform="rotate(-25 35 80)"/>
-                <ellipse cx="65" cy="80" rx="10" ry="18" transform="rotate(25 65 80)"/>
-              </g>
-            </svg>
-            <div class="bol-nav">
-              <span class="bol-nav-logo">Boulangerie <em>Ferrand</em></span>
-              <span class="bol-caption">Béziers — artisan depuis 1987 — la carte du jour</span>
-            </div>
-            <div class="bol-body">
-              <div class="bol-menu">
-                <div class="bol-row"><span class="name">Pain de campagne</span><span class="dots"></span><span class="price">3,50€</span></div>
-                <div class="bol-row"><span class="name">Baguette <em>tradition</em></span><span class="dots"></span><span class="price">1,10€</span></div>
-                <div class="bol-row"><span class="name">Croissant beurre</span><span class="dots"></span><span class="price">1,20€</span></div>
-                <div class="bol-row"><span class="name">Pain au levain</span><span class="dots"></span><span class="price">4,20€</span></div>
-                <div class="bol-row"><span class="name">Chausson aux <em>pommes</em></span><span class="dots"></span><span class="price">2,10€</span></div>
-              </div>
-            </div>
-            <p class="bol-sign">"Le vrai goût du pain d'autrefois." — ★ 4.8 sur Google</p>
-          </div>
-        </div>
-        <div class="real-item" data-set="vitrine">
-          <div class="gar-hero-area">
-            <div class="gar-stripes" aria-hidden="true"></div>
-            <div class="gar-stripes bottom" aria-hidden="true"></div>
-            <div class="gar-diag" aria-hidden="true"></div>
-            <svg class="gar-illus" viewBox="0 0 200 200" aria-hidden="true">
-              <circle cx="100" cy="100" r="70" fill="none" stroke="#ff8c3c" stroke-width="24" stroke-dasharray="14 12"/>
-              <circle cx="100" cy="100" r="40" fill="none" stroke="#ff8c3c" stroke-width="3"/>
-              <circle cx="100" cy="100" r="14" fill="#ff8c3c"/>
-            </svg>
-            <div class="gar-nav">
-              <span class="gar-nav-logo">Garage <em>Solère</em></span>
-              <a class="gar-nav-btn" href="tel:0467220000">04 67 22 00 00</a>
-            </div>
-            <div class="gar-body">
-              <div class="gar-stats">
-                <div class="gar-stat-big"><div class="num">300+</div><div class="lbl">Véhicules / an</div></div>
-                <div class="gar-stat-big"><div class="num">4.7★</div><div class="lbl">Note Google</div></div>
-                <div class="gar-stat-big"><div class="num">24h</div><div class="lbl">Délai moyen</div></div>
-              </div>
-              <h3 class="gar-title">Béziers — mécanique toutes marques, <em>devis immédiat.</em></h3>
-              <div class="gar-cta-row">
-                <a class="gar-btn-solid" href="tel:0467220000">Prendre RDV →</a>
-                <a class="gar-btn-outline" href="#">Nos prestations</a>
-              </div>
+          <div class="site-preview">
+            <iframe src="https://shigyn.github.io/rapideau-plomberie/electricien/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Voltz Électricité"></iframe>
+            <div class="site-preview-label">
+              <div><strong>Voltz Électricité</strong><span>Électricien — mise aux normes & dépannage</span></div>
+              <span class="spl-tag">Site vitrine</span>
             </div>
           </div>
         </div>
         <div class="real-item" data-set="vitrine">
-          <div class="flr-hero-area">
-            <div class="flr-pattern" aria-hidden="true"></div>
-            <svg class="flr-illus" viewBox="0 0 200 200" aria-hidden="true">
-              <g fill="#c94f80" fill-opacity=".55">
-                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(0 100 100)"/>
-                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(60 100 100)"/>
-                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(120 100 100)"/>
-                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(180 100 100)"/>
-                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(240 100 100)"/>
-                <ellipse cx="100" cy="60" rx="18" ry="34" transform="rotate(300 100 100)"/>
-              </g>
-              <circle cx="100" cy="100" r="16" fill="#f4d35e"/>
-            </svg>
-            <svg class="flr-illus2" viewBox="0 0 200 200" aria-hidden="true">
-              <g fill="#f4d35e" fill-opacity=".55">
-                <ellipse cx="100" cy="60" rx="16" ry="30" transform="rotate(0 100 100)"/>
-                <ellipse cx="100" cy="60" rx="16" ry="30" transform="rotate(72 100 100)"/>
-                <ellipse cx="100" cy="60" rx="16" ry="30" transform="rotate(144 100 100)"/>
-                <ellipse cx="100" cy="60" rx="16" ry="30" transform="rotate(216 100 100)"/>
-                <ellipse cx="100" cy="60" rx="16" ry="30" transform="rotate(288 100 100)"/>
-              </g>
-              <circle cx="100" cy="100" r="14" fill="#c94f80"/>
-            </svg>
-            <span class="flr-mark">Fleurs de Léa — Béziers</span>
-            <a class="flr-nav-btn" href="#">Commander</a>
-            <div class="flr-mega">
-              <span class="l1">des fleurs pour</span>
-              <span class="l2">chaque instant</span>
-              <span class="l3">— livrées le jour même.</span>
+          <div class="site-preview">
+            <iframe src="https://shigyn.github.io/rapideau-plomberie/paysagiste/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Verdura Paysage"></iframe>
+            <div class="site-preview-label">
+              <div><strong>Verdura Paysage</strong><span>Paysagiste — entretien & création de jardins</span></div>
+              <span class="spl-tag">Site vitrine</span>
             </div>
-            <p class="flr-sign">★ 5.0 sur Google — fait main</p>
+          </div>
+        </div>
+        <div class="real-item" data-set="vitrine">
+          <div class="site-preview">
+            <iframe src="https://shigyn.github.io/rapideau-plomberie/coiffeuse/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Rosalie Coiffure & Beauté"></iframe>
+            <div class="site-preview-label">
+              <div><strong>Rosalie Coiffure & Beauté</strong><span>Salon de coiffure — sur rendez-vous</span></div>
+              <span class="spl-tag">Site vitrine</span>
+            </div>
           </div>
         </div>
         <div class="real-item" data-set="ecommerce">
@@ -1308,6 +1152,26 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
       window.dispatchEvent(new Event('resize'));
     });
   });
+})();
+
+/* Aperçus live des sites vitrine : iframe réelle mise à l'échelle et rognée sur le haut de page (fixe, non scrollable) */
+(function(){
+  const previews = document.querySelectorAll('.site-preview');
+  if (!previews.length) return;
+  function fit(){
+    previews.forEach((el) => {
+      const iframe = el.querySelector('iframe');
+      if (!iframe || !el.clientWidth) return;
+      const w = 1440;
+      const scale = el.clientWidth / w;
+      iframe.style.height = Math.ceil(el.clientHeight / scale) + 'px';
+      iframe.style.transform = 'scale(' + scale + ')';
+    });
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+  setTimeout(fit, 300);
 })();
 
 (function(){
