@@ -775,7 +775,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         </div>
         <div class="real-item" data-set="anime">
           <div class="mv-hero-area">
-            <canvas class="real-item-canvas" id="real-canvas-3" aria-hidden="true"></canvas>
+            <div class="real-item-canvas" id="real-canvas-3" aria-hidden="true"></div>
             <div class="mv-preview">
               <span class="mv-tag">Béziers — trois générations d'artisans</span>
               <div class="mv-title">La rénovation,<br><span class="titre-cyclique mv-cycle" data-mots="[&quot;sans compromis.&quot;,&quot;intemporelle.&quot;,&quot;sur mesure.&quot;]">sans compromis.</span></div>
@@ -1223,6 +1223,8 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
 </script>
 <script src="contenu-loader.js"></script>
 <script src="hero-backgrounds.js"></script>
+<script src="three.min.js"></script>
+<script src="vanta.net.min.js"></script>
 <script src="cursor-premium.js"></script>
 <script src="titre-cyclique.js"></script>
 <script src="galerie-horizontale.js"></script>
@@ -1235,8 +1237,26 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
     HeroBg.initMetaballes('hero-canvas', { bg: '#0d0d0f', c: ['232,40,30','120,40,35','70,40,42'] });
     HeroBg.initGrille('real-canvas-1', { bg: '#070b12', c: ['0,200,255','60,140,255','130,90,255'] });
     HeroBg.initFumee('real-canvas-2', { bg: '#12060c', c: ['255,90,140','255,140,60','220,60,180'] });
-    HeroBg.initAurores('real-canvas-3', { bg: '#171009', c: ['255,178,77','255,217,163','139,74,59'] });
     HeroBg.initVagues('real-canvas-4', { bg: '#050f08', c: ['80,255,120','40,220,90','160,255,60'] });
+  }
+
+  if (window.VANTA && !reduced) {
+    VANTA.NET({
+      el: '#real-canvas-3',
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200,
+      minWidth: 200,
+      scale: 1,
+      scaleMobile: 1,
+      color: 0xffb24d,
+      backgroundColor: 0x171009,
+      points: 14,
+      maxDistance: 22,
+      spacing: 17,
+      showDots: true,
+    });
   }
 
   if (window.TitreCyclique) {
