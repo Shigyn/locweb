@@ -154,7 +154,7 @@ section{padding:76px 20px;position:relative;}
 .real-item-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 
 /* Studio Anthracite : nav flottante transparente en surimpression sur le canvas, split texte / statistiques */
-.arc-hero-area{position:relative;height:100%;overflow:hidden;}
+.arc-hero-area{position:relative;height:100%;overflow:hidden;background:#070b12;}
 .arc-nav{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:22px 30px;border-bottom:1px solid rgba(255,255,255,.1);}
 .arc-nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:1rem;color:#eef3f6;letter-spacing:-.01em;}
 .arc-nav-logo em{font-style:normal;color:#3fc8ff;}
@@ -170,7 +170,7 @@ section{padding:76px 20px;position:relative;}
 @media(max-width:700px){.arc-nav{padding:16px 22px;}.arc-preview{grid-template-columns:1fr;padding-top:80px;}.arc-stats{flex-direction:row;border-left:none;border-top:1px solid rgba(63,200,255,.25);padding-left:0;padding-top:16px;gap:26px;}}
 
 /* Ambre & Sens : aucune nav — juste une signature discrète en haut, composition centrée zen */
-.amb-hero-area{position:relative;height:100%;overflow:hidden;}
+.amb-hero-area{position:relative;height:100%;overflow:hidden;background:#12060c;}
 .amb-mark{position:absolute;top:28px;left:50%;transform:translateX(-50%);z-index:3;font-family:'Playfair Display',serif;font-style:italic;font-size:.78rem;letter-spacing:.06em;color:rgba(245,236,233,.5);}
 .amb-preview{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:44px 40px;font-family:'Inter',sans-serif;}
 .amb-preview .amb-tag{font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:#ff8fb0;margin-bottom:24px;}
@@ -194,7 +194,7 @@ section{padding:76px 20px;position:relative;}
 .mv-nav-tel{color:#ffb24d;font-weight:600;font-size:.76rem;white-space:nowrap;}
 
 /* Forme & Force : nav sombre à liseré néon, chiffre géant en fond, contenu ancré en bas */
-.ff-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;}
+.ff-hero-area{position:relative;height:100%;overflow:hidden;display:flex;flex-direction:column;background:#050f08;}
 .ff-nav{flex-shrink:0;position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#0a120c;border-bottom:2px solid #3ee06e;font-family:'Inter',sans-serif;}
 .ff-nav-logo{font-family:'Inter',sans-serif;font-weight:800;font-size:.95rem;color:#eafff0;letter-spacing:.02em;text-transform:uppercase;}
 .ff-nav-logo em{font-style:normal;color:#3ee06e;}
@@ -743,7 +743,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         </div>
         <div class="real-item" data-set="anime">
           <div class="arc-hero-area">
-            <canvas class="real-item-canvas" id="real-canvas-1" aria-hidden="true"></canvas>
+            <div class="real-item-canvas" id="real-canvas-1" aria-hidden="true"></div>
             <div class="arc-nav">
               <span class="arc-nav-logo">Studio <em>Anthracite</em></span>
               <span class="arc-nav-cta">Contact ↗</span>
@@ -763,7 +763,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         </div>
         <div class="real-item" data-set="anime">
           <div class="amb-hero-area">
-            <canvas class="real-item-canvas" id="real-canvas-2" aria-hidden="true"></canvas>
+            <div class="real-item-canvas" id="real-canvas-2" aria-hidden="true"></div>
             <span class="amb-mark">Ambre &amp; Sens</span>
             <div class="amb-preview">
               <span class="amb-tag">Montpellier</span>
@@ -789,7 +789,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         </div>
         <div class="real-item" data-set="anime">
           <div class="ff-hero-area">
-            <canvas class="real-item-canvas" id="real-canvas-4" aria-hidden="true"></canvas>
+            <div class="real-item-canvas" id="real-canvas-4" aria-hidden="true"></div>
             <div class="ff-nav">
               <span class="ff-nav-logo">Forme <em>& Force</em></span>
               <span class="ff-nav-tel">04 68 99 00 00</span>
@@ -1225,6 +1225,9 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
 <script src="hero-backgrounds.js"></script>
 <script src="three.min.js"></script>
 <script src="vanta.net.min.js"></script>
+<script src="vanta.rings.min.js"></script>
+<script src="vanta.fog.min.js"></script>
+<script src="vanta.birds.min.js"></script>
 <script src="cursor-premium.js"></script>
 <script src="titre-cyclique.js"></script>
 <script src="galerie-horizontale.js"></script>
@@ -1235,28 +1238,58 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
 
   if (window.HeroBg) {
     HeroBg.initMetaballes('hero-canvas', { bg: '#0d0d0f', c: ['232,40,30','120,40,35','70,40,42'] });
-    HeroBg.initGrille('real-canvas-1', { bg: '#070b12', c: ['0,200,255','60,140,255','130,90,255'] });
-    HeroBg.initFumee('real-canvas-2', { bg: '#12060c', c: ['255,90,140','255,140,60','220,60,180'] });
-    HeroBg.initVagues('real-canvas-4', { bg: '#050f08', c: ['80,255,120','40,220,90','160,255,60'] });
   }
 
+  // Les 4 cartes "site animé" utilisent chacune un effet Vanta.js (WebGL/Three.js)
+  // génétiquement différent — même librairie, mécaniques visuelles distinctes.
   if (window.VANTA && !reduced) {
-    VANTA.NET({
+    const vantaCommon = { mouseControls: true, touchControls: true, gyroControls: false, minHeight: 200, minWidth: 200, scale: 1, scaleMobile: 1 };
+
+    // 1. Studio Anthracite (architecte) — anneaux concentriques, géométrique et épuré
+    VANTA.RINGS(Object.assign({}, vantaCommon, {
+      el: '#real-canvas-1',
+      backgroundColor: 0x070b12,
+      colors: [0x00c8ff, 0x3c7cff, 0x7ec8ff],
+    }));
+
+    // 2. Ambre & Sens (naturopathie) — brume colorée douce
+    VANTA.FOG(Object.assign({}, vantaCommon, {
+      el: '#real-canvas-2',
+      highlightColor: 0xff5a8c,
+      midtoneColor: 0xff8c3c,
+      lowlightColor: 0x12060c,
+      baseColor: 0x12060c,
+      blurFactor: 0.6,
+      speed: 1.2,
+      zoom: 0.8,
+    }));
+
+    // 3. Maison Verrier (rénovation) — réseau de points doré en volume
+    VANTA.NET(Object.assign({}, vantaCommon, {
       el: '#real-canvas-3',
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200,
-      minWidth: 200,
-      scale: 1,
-      scaleMobile: 1,
       color: 0xffb24d,
       backgroundColor: 0x171009,
       points: 14,
       maxDistance: 22,
       spacing: 17,
       showDots: true,
-    });
+    }));
+
+    // 4. Forme & Force (coaching sportif) — nuée d'oiseaux, énergie et mouvement
+    VANTA.BIRDS(Object.assign({}, vantaCommon, {
+      el: '#real-canvas-4',
+      backgroundColor: 0x050f08,
+      color1: 0x50ff78,
+      color2: 0x3ee06e,
+      colorMode: 'varianceGradient',
+      birdSize: 1.1,
+      wingSpan: 24,
+      speedLimit: 4,
+      separation: 60,
+      alignment: 40,
+      cohesion: 40,
+      quantity: 3,
+    }));
   }
 
   if (window.TitreCyclique) {
