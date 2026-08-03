@@ -81,16 +81,16 @@
     const { ctx } = s;
     const p = resolvePalette(palette);
     let t = 0;
-    const bands = [{ c: p.c[0], ph: 0 }, { c: p.c[1], ph: 2.1 }, { c: p.c[2], ph: 4.2 }, { c: p.c[0], ph: 1.3 }];
+    const bands = [{ c: p.c[0], ph: 0 }, { c: p.c[1], ph: 2.1 }, { c: p.c[2], ph: 4.2 }, { c: p.c[0], ph: 1.3 }, { c: p.c[1], ph: 3.4 }];
     function draw() {
       const w = s.w, h = s.h;
       ctx.fillStyle = p.bg; ctx.fillRect(0, 0, w, h);
-      ctx.filter = 'blur(46px)';
+      ctx.filter = 'blur(40px)';
       bands.forEach((b) => {
         const cx = (0.2 + 0.6 * ((Math.sin(t * 0.00015 + b.ph) + 1) / 2)) * w;
         const width = w * 0.26;
         const grad = ctx.createLinearGradient(cx - width, 0, cx + width, 0);
-        grad.addColorStop(0, `rgba(${b.c},0)`); grad.addColorStop(.5, `rgba(${b.c},.18)`); grad.addColorStop(1, `rgba(${b.c},0)`);
+        grad.addColorStop(0, `rgba(${b.c},0)`); grad.addColorStop(.5, `rgba(${b.c},.3)`); grad.addColorStop(1, `rgba(${b.c},0)`);
         ctx.fillStyle = grad; ctx.fillRect(cx - width, 0, width * 2, h);
       });
       ctx.filter = 'none';
