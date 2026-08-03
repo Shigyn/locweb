@@ -224,6 +224,7 @@ section{padding:76px 20px;position:relative;}
 /* ── Sites "vitrine" (tier sobre) — 4 vrais sites déployés, montrés en aperçu live figé sur le haut de page (non scrollable) ── */
 .site-preview{position:relative;height:100%;overflow:hidden;background:#111;touch-action:none;}
 .site-preview iframe{position:absolute;top:0;left:0;width:1440px;border:0;pointer-events:none;touch-action:none;transform-origin:top left;}
+.site-preview-shield{position:absolute;inset:0;z-index:1;background:transparent;touch-action:none;}
 .site-preview-label{position:absolute;bottom:0;left:0;right:0;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;padding:34px 20px 16px;}
 .site-preview-label strong{display:block;font-size:.92rem;font-weight:800;}
 .site-preview-label span{display:block;font-size:.74rem;color:rgba(255,255,255,.7);margin-top:2px;}
@@ -268,7 +269,7 @@ section{padding:76px 20px;position:relative;}
 /* ── TARIFS : même traitement galerie que réalisations ── */
 #tarifs{background:var(--paper2);}
 #tarifs .galerie-horiz-sticky{background:transparent;}
-.tarif-card{flex:0 0 min(88vw,440px);height:min(78vh,660px);background:var(--ink);border-radius:24px;padding:44px 36px;box-shadow:0 30px 80px rgba(13,13,15,.25);display:flex;flex-direction:column;color:#fff;position:relative;will-change:transform;}
+.tarif-card{flex:0 0 min(88vw,440px);height:min(78vh,660px);background:var(--ink);border-radius:24px;padding:44px 36px;box-shadow:0 30px 80px rgba(13,13,15,.25);display:flex;flex-direction:column;color:#fff;position:relative;will-change:transform;overflow:hidden;}
 .tarif-card::after{content:'';position:absolute;inset:0;z-index:6;border-radius:inherit;background:radial-gradient(circle 220px at var(--mx,50%) var(--my,50%),rgba(255,255,255,.12),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;}
 .tarif-card:hover::after{opacity:1;}
 .tarif-card .prix-main{font-family:var(--disp);display:flex;align-items:flex-end;gap:16px;margin-bottom:10px;flex-wrap:wrap;}
@@ -280,12 +281,23 @@ section{padding:76px 20px;position:relative;}
 .tarif-card .prix-opt-label.alt{color:#ff6b5f;}
 .tarif-card .prix-sep{font-size:.78rem;color:rgba(255,255,255,.3);font-style:italic;padding-bottom:9px;}
 .tarif-card .prix-freq{font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:28px;display:block;}
-.tarif-card .prix-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:auto;flex:1;}
+.tarif-card .prix-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:auto;flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-right:4px;}
 .tarif-card .prix-list li{font-size:.85rem;display:flex;gap:10px;align-items:flex-start;line-height:1.4;color:rgba(255,255,255,.75);}
 .tarif-card .prix-list li::before{content:'→';color:var(--red);flex-shrink:0;font-weight:700;}
-.tarif-card .btn-prix{display:block;text-align:center;background:var(--red);color:white;font-weight:800;font-size:.95rem;padding:17px;border-radius:100px;text-decoration:none;margin-top:24px;transition:opacity .2s;}
+.tarif-card .btn-prix{display:block;flex-shrink:0;text-align:center;background:var(--red);color:white;font-weight:800;font-size:.95rem;padding:17px;border-radius:100px;text-decoration:none;margin-top:24px;transition:opacity .2s;}
 .tarif-card .btn-prix:hover{opacity:.9;}
-.tarif-card .prix-note{font-size:.72rem;color:rgba(255,255,255,.4);margin-top:16px;text-align:center;line-height:1.6;}
+.tarif-card .prix-note{flex-shrink:0;font-size:.72rem;color:rgba(255,255,255,.4);margin-top:16px;text-align:center;line-height:1.6;}
+@media(max-width:700px){
+  .tarif-card{height:min(84vh,660px);padding:32px 26px;}
+  .tarif-card .prix-main{flex-direction:column;align-items:flex-start;gap:2px;}
+  .tarif-card .prix-sep{padding-bottom:0;}
+  .tarif-card .prix-num{font-size:2.1rem;}
+  .tarif-card .prix-freq{margin-bottom:18px;}
+  .tarif-card .prix-list{gap:9px;}
+  .tarif-card .prix-list li{font-size:.8rem;}
+  .tarif-card .btn-prix{padding:15px;margin-top:16px;}
+  .tarif-card .prix-note{margin-top:10px;font-size:.68rem;}
+}
 .tarif-badge-top{display:inline-block;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;padding:5px 12px;border-radius:100px;margin-bottom:18px;align-self:flex-start;}
 .tarif-badge-top.classique{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);}
 .tarif-badge-top.ultra{background:rgba(232,40,30,.18);color:#ff6b5f;}
@@ -459,6 +471,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         <div class="real-item set-active" data-set="vitrine">
           <div class="site-preview">
             <iframe src="https://shigyn.github.io/rapideau-plomberie/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Rapid'Eau Plomberie"></iframe>
+            <div class="site-preview-shield" aria-hidden="true"></div>
             <div class="site-preview-label">
               <div><strong>Rapid'Eau Plomberie</strong><span>Plombier — devis en 2 min, urgence 30 min</span></div>
               <span class="spl-tag">Site vitrine</span>
@@ -468,6 +481,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         <div class="real-item set-active" data-set="vitrine">
           <div class="site-preview">
             <iframe src="https://shigyn.github.io/rapideau-plomberie/electricien/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Voltz Électricité"></iframe>
+            <div class="site-preview-shield" aria-hidden="true"></div>
             <div class="site-preview-label">
               <div><strong>Voltz Électricité</strong><span>Électricien — mise aux normes & dépannage</span></div>
               <span class="spl-tag">Site vitrine</span>
@@ -477,6 +491,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         <div class="real-item set-active" data-set="vitrine">
           <div class="site-preview">
             <iframe src="https://shigyn.github.io/rapideau-plomberie/paysagiste/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Verdura Paysage"></iframe>
+            <div class="site-preview-shield" aria-hidden="true"></div>
             <div class="site-preview-label">
               <div><strong>Verdura Paysage</strong><span>Paysagiste — entretien & création de jardins</span></div>
               <span class="spl-tag">Site vitrine</span>
@@ -486,6 +501,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         <div class="real-item set-active" data-set="vitrine">
           <div class="site-preview">
             <iframe src="https://shigyn.github.io/rapideau-plomberie/coiffeuse/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Rosalie Coiffure & Beauté"></iframe>
+            <div class="site-preview-shield" aria-hidden="true"></div>
             <div class="site-preview-label">
               <div><strong>Rosalie Coiffure & Beauté</strong><span>Salon de coiffure — sur rendez-vous</span></div>
               <span class="spl-tag">Site vitrine</span>
@@ -495,6 +511,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         <div class="real-item" data-set="ecommerce">
           <div class="site-preview">
             <iframe src="https://shigyn.github.io/rapideau-plomberie/boutique-demo/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Cire Douce — accueil"></iframe>
+            <div class="site-preview-shield" aria-hidden="true"></div>
             <div class="site-preview-label">
               <div><strong>Cire Douce</strong><span>Bougies artisanales — page d'accueil</span></div>
               <span class="spl-tag">Site e-commerce</span>
@@ -504,6 +521,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         <div class="real-item" data-set="ecommerce">
           <div class="site-preview">
             <iframe src="https://shigyn.github.io/rapideau-plomberie/boutique-demo/boutique/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Cire Douce — catalogue"></iframe>
+            <div class="site-preview-shield" aria-hidden="true"></div>
             <div class="site-preview-label">
               <div><strong>Cire Douce</strong><span>Catalogue — 6 produits</span></div>
               <span class="spl-tag">Site e-commerce</span>
@@ -513,6 +531,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         <div class="real-item" data-set="ecommerce">
           <div class="site-preview">
             <iframe src="https://shigyn.github.io/rapideau-plomberie/boutique-demo/panier/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Cire Douce — panier"></iframe>
+            <div class="site-preview-shield" aria-hidden="true"></div>
             <div class="site-preview-label">
               <div><strong>Cire Douce</strong><span>Panier — récapitulatif de commande</span></div>
               <span class="spl-tag">Site e-commerce</span>
@@ -522,6 +541,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         <div class="real-item" data-set="ecommerce">
           <div class="site-preview">
             <iframe src="https://shigyn.github.io/rapideau-plomberie/boutique-demo/confirmation/" loading="lazy" tabindex="-1" aria-hidden="true" title="Aperçu Cire Douce — confirmation"></iframe>
+            <div class="site-preview-shield" aria-hidden="true"></div>
             <div class="site-preview-label">
               <div><strong>Cire Douce</strong><span>Paiement confirmé — suivi de commande</span></div>
               <span class="spl-tag">Site e-commerce</span>
