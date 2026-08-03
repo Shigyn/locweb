@@ -222,8 +222,8 @@ section{padding:76px 20px;position:relative;}
 .real-item[data-set].set-active{display:flex;}
 
 /* ── Sites "vitrine" (tier sobre) — 4 vrais sites déployés, montrés en aperçu live figé sur le haut de page (non scrollable) ── */
-.site-preview{position:relative;height:100%;overflow:hidden;background:#111;}
-.site-preview iframe{position:absolute;top:0;left:0;width:1440px;border:0;pointer-events:none;transform-origin:top left;}
+.site-preview{position:relative;height:100%;overflow:hidden;background:#111;touch-action:none;}
+.site-preview iframe{position:absolute;top:0;left:0;width:1440px;border:0;pointer-events:none;touch-action:none;transform-origin:top left;}
 .site-preview-label{position:absolute;bottom:0;left:0;right:0;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;padding:34px 20px 16px;}
 .site-preview-label strong{display:block;font-size:.92rem;font-weight:800;}
 .site-preview-label span{display:block;font-size:.74rem;color:rgba(255,255,255,.7);margin-top:2px;}
