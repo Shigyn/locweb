@@ -222,9 +222,9 @@ section{padding:76px 20px;position:relative;}
 .real-item[data-set].set-active{display:flex;}
 
 /* ── Sites "vitrine" (tier sobre) — 4 vrais sites déployés, montrés en aperçu live figé sur le haut de page (non scrollable) ── */
-.site-preview{position:relative;height:100%;overflow:hidden;background:#111;touch-action:none;}
-.site-preview iframe{position:absolute;top:0;left:0;width:1440px;border:0;pointer-events:none;touch-action:none;transform-origin:top left;}
-.site-preview-shield{position:absolute;inset:0;z-index:1;background:transparent;touch-action:none;}
+.site-preview{position:relative;height:100%;overflow:hidden;background:#111;touch-action:pan-y;}
+.site-preview iframe{position:absolute;top:0;left:0;width:1440px;border:0;pointer-events:none;touch-action:pan-y;transform-origin:top left;}
+.site-preview-shield{position:absolute;inset:0;z-index:1;background:transparent;touch-action:pan-y;}
 .site-preview-label{position:absolute;bottom:0;left:0;right:0;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;padding:34px 20px 16px;}
 .site-preview-label strong{display:block;font-size:.92rem;font-weight:800;}
 .site-preview-label span{display:block;font-size:.74rem;color:rgba(255,255,255,.7);margin-top:2px;}
@@ -1030,73 +1030,84 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
 </script>
 <script src="contenu-loader.js"></script>
 <script src="hero-backgrounds.js"></script>
-<script src="three.min.js"></script>
-<script src="vanta.net.min.js"></script>
-<script src="vanta.rings.min.js"></script>
-<script src="vanta.fog.min.js"></script>
-<script src="vanta.birds.min.js"></script>
 <script src="cursor-premium.js"></script>
 <script src="titre-cyclique.js"></script>
 <script src="galerie-horizontale.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function(){
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  const isMobile = isTouch || window.innerWidth < 860;
+
+  function loadScript(src){
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src; s.onload = resolve; s.onerror = reject;
+      document.body.appendChild(s);
+    });
+  }
 
   if (window.HeroBg) {
     HeroBg.initMetaballes('hero-canvas', { bg: '#0d0d0f', c: ['232,40,30','120,40,35','70,40,42'] });
   }
 
-  // Les 4 cartes "site animé" utilisent chacune un effet Vanta.js (WebGL/Three.js)
-  // génétiquement différent — même librairie, mécaniques visuelles distinctes.
-  if (window.VANTA && !reduced) {
-    const vantaCommon = { mouseControls: true, touchControls: true, gyroControls: false, minHeight: 200, minWidth: 200, scale: 1, scaleMobile: 1 };
+  // Les 4 cartes "site animé" utilisent Vanta.js (WebGL/Three.js) — ~660 Ko de JS à eux
+  // quatre. Chargés uniquement sur desktop : sur mobile, on garde le fond sombre uni déjà
+  // en place en CSS (léger, pas de GPU/scroll-jank, chargement bien plus rapide).
+  if (!reduced && !isMobile) {
+    loadScript('three.min.js')
+      .then(() => Promise.all(['vanta.net.min.js','vanta.rings.min.js','vanta.fog.min.js','vanta.birds.min.js'].map(loadScript)))
+      .then(() => {
+        if (!window.VANTA) return;
+        const vantaCommon = { mouseControls: true, touchControls: true, gyroControls: false, minHeight: 200, minWidth: 200, scale: 1, scaleMobile: 1 };
 
-    // 1. Studio Anthracite (architecte) — anneaux concentriques, géométrique et épuré
-    VANTA.RINGS(Object.assign({}, vantaCommon, {
-      el: '#real-canvas-1',
-      backgroundColor: 0x070b12,
-      colors: [0x00c8ff, 0x3c7cff, 0x7ec8ff],
-    }));
+        // 1. Studio Anthracite (architecte) — anneaux concentriques, géométrique et épuré
+        VANTA.RINGS(Object.assign({}, vantaCommon, {
+          el: '#real-canvas-1',
+          backgroundColor: 0x070b12,
+          colors: [0x00c8ff, 0x3c7cff, 0x7ec8ff],
+        }));
 
-    // 2. Ambre & Sens (naturopathie) — brume colorée douce
-    VANTA.FOG(Object.assign({}, vantaCommon, {
-      el: '#real-canvas-2',
-      highlightColor: 0xff5a8c,
-      midtoneColor: 0xff8c3c,
-      lowlightColor: 0x12060c,
-      baseColor: 0x12060c,
-      blurFactor: 0.6,
-      speed: 1.2,
-      zoom: 0.8,
-    }));
+        // 2. Ambre & Sens (naturopathie) — brume colorée douce
+        VANTA.FOG(Object.assign({}, vantaCommon, {
+          el: '#real-canvas-2',
+          highlightColor: 0xff5a8c,
+          midtoneColor: 0xff8c3c,
+          lowlightColor: 0x12060c,
+          baseColor: 0x12060c,
+          blurFactor: 0.6,
+          speed: 1.2,
+          zoom: 0.8,
+        }));
 
-    // 3. Maison Verrier (rénovation) — réseau de points doré en volume
-    VANTA.NET(Object.assign({}, vantaCommon, {
-      el: '#real-canvas-3',
-      color: 0xffb24d,
-      backgroundColor: 0x171009,
-      points: 14,
-      maxDistance: 22,
-      spacing: 17,
-      showDots: true,
-    }));
+        // 3. Maison Verrier (rénovation) — réseau de points doré en volume
+        VANTA.NET(Object.assign({}, vantaCommon, {
+          el: '#real-canvas-3',
+          color: 0xffb24d,
+          backgroundColor: 0x171009,
+          points: 14,
+          maxDistance: 22,
+          spacing: 17,
+          showDots: true,
+        }));
 
-    // 4. Forme & Force (coaching sportif) — nuée d'oiseaux, énergie et mouvement
-    VANTA.BIRDS(Object.assign({}, vantaCommon, {
-      el: '#real-canvas-4',
-      backgroundColor: 0x050f08,
-      color1: 0x50ff78,
-      color2: 0x3ee06e,
-      colorMode: 'varianceGradient',
-      birdSize: 1.1,
-      wingSpan: 24,
-      speedLimit: 4,
-      separation: 60,
-      alignment: 40,
-      cohesion: 40,
-      quantity: 3,
-    }));
+        // 4. Forme & Force (coaching sportif) — nuée d'oiseaux, énergie et mouvement
+        VANTA.BIRDS(Object.assign({}, vantaCommon, {
+          el: '#real-canvas-4',
+          backgroundColor: 0x050f08,
+          color1: 0x50ff78,
+          color2: 0x3ee06e,
+          colorMode: 'varianceGradient',
+          birdSize: 1.1,
+          wingSpan: 24,
+          speedLimit: 4,
+          separation: 60,
+          alignment: 40,
+          cohesion: 40,
+          quantity: 3,
+        }));
+      })
+      .catch(() => {});
   }
 
   if (window.TitreCyclique) {
@@ -1107,18 +1118,20 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
     GalerieHorizontale.init('.galerie-horiz-wrap');
   }
 
-  if (window.CursorPremium && !(window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches)) {
+  if (window.CursorPremium && !isTouch) {
     document.body.classList.add('cursor-ready');
     CursorPremium.init({ mode: 'full' });
   }
 
-  if (window.Lenis && !reduced) {
-    const lenis = new Lenis();
-    function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
+  // Lenis (scroll fluide JS) uniquement sur souris/trackpad — sur tactile le scroll natif
+  // est déjà fluide et plus réactif ; superposer Lenis dessus ajoute de la latence perçue.
+  if (!reduced && !isMobile) {
+    loadScript('https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js').then(() => {
+      const lenis = new Lenis();
+      function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+    }).catch(() => {});
   }
-
-  const isTouch = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
   // Boutons magnétiques avec rebond élastique au relâchement.
   if (!reduced && !isTouch) {
