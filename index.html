@@ -273,13 +273,7 @@ section{padding:76px 20px;position:relative;}
 .tarif-card::after{content:'';position:absolute;inset:0;z-index:6;border-radius:inherit;background:radial-gradient(circle 220px at var(--mx,50%) var(--my,50%),rgba(255,255,255,.12),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;}
 .tarif-card:hover::after{opacity:1;}
 .tarif-card .prix-main{font-family:var(--disp);display:flex;align-items:flex-end;gap:16px;margin-bottom:10px;flex-wrap:wrap;}
-.tarif-card .prix-main .cur{font-size:1.6rem;color:var(--red);vertical-align:super;}
-.tarif-card .prix-opt{display:flex;flex-direction:column;gap:5px;}
 .tarif-card .prix-num{font-weight:700;letter-spacing:-.03em;line-height:1;font-size:2.5rem;}
-.tarif-card .prix-num-alt{color:var(--red);}
-.tarif-card .prix-opt-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.05em;font-weight:700;color:rgba(255,255,255,.4);}
-.tarif-card .prix-opt-label.alt{color:#ff6b5f;}
-.tarif-card .prix-sep{font-size:.78rem;color:rgba(255,255,255,.3);font-style:italic;padding-bottom:9px;}
 .tarif-card .prix-freq{font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:28px;display:block;}
 .tarif-card .prix-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:auto;flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-right:4px;}
 .tarif-card .prix-list li{font-size:.85rem;display:flex;gap:10px;align-items:flex-start;line-height:1.4;color:rgba(255,255,255,.75);}
@@ -290,7 +284,6 @@ section{padding:76px 20px;position:relative;}
 @media(max-width:700px){
   .tarif-card{height:min(84vh,660px);padding:32px 26px;}
   .tarif-card .prix-main{flex-direction:column;align-items:flex-start;gap:2px;}
-  .tarif-card .prix-sep{padding-bottom:0;}
   .tarif-card .prix-num{font-size:2.1rem;}
   .tarif-card .prix-freq{margin-bottom:18px;}
   .tarif-card .prix-list{gap:9px;}
@@ -302,6 +295,7 @@ section{padding:76px 20px;position:relative;}
 .tarif-badge-top.classique{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);}
 .tarif-badge-top.ultra{background:rgba(232,40,30,.18);color:#ff6b5f;}
 .tarif-badge-top.ecom{background:rgba(37,150,190,.18);color:#6bc4e8;}
+.tarif-badge-top.premium{background:rgba(242,201,76,.16);color:#f2c94c;}
 .prix-footnote{font-style:italic;font-size:.78rem;color:#8a8780;margin-top:22px;padding:0 20px;}
 @media(min-width:768px){.prix-footnote{padding:0 5vw;}}
 
@@ -690,17 +684,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 
         <div class="tarif-card">
           <span class="tarif-badge-top classique">Site vitrine</span>
-          <div class="prix-main">
-            <div class="prix-opt">
-              <span class="prix-num"><span data-editable-zone="prix_classique_creation">290</span>€</span>
-              <span class="prix-opt-label">Sans engagement</span>
-            </div>
-            <span class="prix-sep">ou</span>
-            <div class="prix-opt">
-              <span class="prix-num prix-num-alt"><span data-editable-zone="prix_classique_creation_engage">90</span>€</span>
-              <span class="prix-opt-label alt">Avec engagement 1 an</span>
-            </div>
-          </div>
+          <div class="prix-main"><span class="prix-num"><span data-editable-zone="prix_classique_creation">90</span>€</span></div>
           <span class="prix-freq">+ <span data-editable-zone="prix_classique_mensuel">49</span>€/mois · résiliable à tout moment</span>
           <ul class="prix-list">
             <li data-editable-zone="prix_classique_avantage_1">Site sur mesure, création incluse</li>
@@ -715,18 +699,8 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         </div>
 
         <div class="tarif-card">
-          <span class="tarif-badge-top ultra">Site vitrine ultra animé</span>
-          <div class="prix-main">
-            <div class="prix-opt">
-              <span class="prix-num"><span data-editable-zone="prix_ultra_creation">490</span>€</span>
-              <span class="prix-opt-label">Sans engagement</span>
-            </div>
-            <span class="prix-sep">ou</span>
-            <div class="prix-opt">
-              <span class="prix-num prix-num-alt"><span data-editable-zone="prix_ultra_creation_engage">290</span>€</span>
-              <span class="prix-opt-label alt">Avec engagement 1 an</span>
-            </div>
-          </div>
+          <span class="tarif-badge-top ultra">Site animé</span>
+          <div class="prix-main"><span class="prix-num"><span data-editable-zone="prix_ultra_creation">290</span>€</span></div>
           <span class="prix-freq">+ <span data-editable-zone="prix_ultra_mensuel">49</span>€/mois · résiliable à tout moment</span>
           <ul class="prix-list">
             <li data-editable-zone="prix_ultra_avantage_1">Tout le contenu du site vitrine, inclus</li>
@@ -742,7 +716,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 
         <div class="tarif-card">
           <span class="tarif-badge-top ecom">Site e-commerce</span>
-          <div class="prix-main"><span class="prix-num"><span class="cur">€</span><span data-editable-zone="prix_ecom_creation">490</span></span></div>
+          <div class="prix-main"><span class="prix-num"><span data-editable-zone="prix_ecom_creation">290</span>€</span></div>
           <span class="prix-freq">+ <span data-editable-zone="prix_ecom_mensuel">79</span>€/mois · résiliable à tout moment</span>
           <ul class="prix-list">
             <li data-editable-zone="prix_ecom_avantage_1">Tout le contenu du site vitrine, inclus</li>
@@ -756,6 +730,59 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         </div>
 
         <div class="tarif-card">
+          <span class="tarif-badge-top premium">Site ultra premium</span>
+          <div class="prix-main" style="font-size:2.4rem;">Sur devis</div>
+          <span class="prix-freq">Selon votre projet</span>
+          <ul class="prix-list">
+            <li data-editable-zone="prix_premium_avantage_1">Direction artistique 100% sur mesure</li>
+            <li data-editable-zone="prix_premium_avantage_2">Toutes les techniques premium (curseur personnalisé, galerie horizontale, titre qui cycle)</li>
+            <li data-editable-zone="prix_premium_avantage_3">Accompagnement dédié, du brief à la mise en ligne</li>
+            <li data-editable-zone="prix_premium_avantage_4">Pensé pour les positionnements haut de gamme</li>
+            <li data-editable-zone="prix_premium_avantage_5">Devis établi après échange, sans engagement</li>
+          </ul>
+          <a href="tel:0745531434" class="btn-prix">Demander un devis →</a>
+        </div>
+
+        <div class="tarif-card">
+          <span class="tarif-badge-top classique">Option — Assistant IA</span>
+          <div class="prix-main"><span class="prix-num"><span data-editable-zone="prix_chatbot_creation">490</span>€</span></div>
+          <span class="prix-freq">+ <span data-editable-zone="prix_chatbot_mensuel">29</span>€/mois · résiliable à tout moment</span>
+          <ul class="prix-list">
+            <li data-editable-zone="prix_chatbot_avantage_1">Qualifie vos prospects automatiquement, 24h/24</li>
+            <li data-editable-zone="prix_chatbot_avantage_2">Vous prévient immédiatement par SMS</li>
+            <li data-editable-zone="prix_chatbot_avantage_3">Propose un rappel ou une visio directement au prospect</li>
+            <li data-editable-zone="prix_chatbot_avantage_4">Intégré à votre site, sans nouvel outil à apprendre</li>
+          </ul>
+          <a href="tel:0745531434" class="btn-prix">Appeler pour démarrer →</a>
+        </div>
+
+        <div class="tarif-card">
+          <span class="tarif-badge-top classique">Option — SMS appel manqué</span>
+          <div class="prix-main"><span class="prix-num"><span data-editable-zone="prix_smsauto_creation">190</span>€</span></div>
+          <span class="prix-freq">+ <span data-editable-zone="prix_smsauto_mensuel">19</span>€/mois · résiliable à tout moment</span>
+          <ul class="prix-list">
+            <li data-editable-zone="prix_smsauto_avantage_1">SMS automatique envoyé si vous ratez un appel</li>
+            <li data-editable-zone="prix_smsauto_avantage_2">Récupère les prospects qui appelleraient sinon un concurrent</li>
+            <li data-editable-zone="prix_smsauto_avantage_3">Numéro dédié inclus</li>
+            <li data-editable-zone="prix_smsauto_avantage_4">Message personnalisable selon votre activité</li>
+          </ul>
+          <a href="tel:0745531434" class="btn-prix">Appeler pour démarrer →</a>
+        </div>
+
+        <div class="tarif-card">
+          <span class="tarif-badge-top classique">Option — Pack print</span>
+          <div class="prix-main"><span class="prix-num"><span data-editable-zone="prix_packprint_creation">149</span>€</span></div>
+          <span class="prix-freq">Paiement unique, sans mensualité</span>
+          <ul class="prix-list">
+            <li data-editable-zone="prix_packprint_avantage_1">Cartes de visite prêtes à imprimer</li>
+            <li data-editable-zone="prix_packprint_avantage_2">Flyer assorti à l'identité de votre site</li>
+            <li data-editable-zone="prix_packprint_avantage_3">Sticker QR code vers vos avis Google</li>
+            <li data-editable-zone="prix_packprint_avantage_4">Fichiers haute définition, à imprimer où vous voulez</li>
+          </ul>
+          <a href="tel:0745531434" class="btn-prix">Appeler pour démarrer →</a>
+        </div>
+
+        <div class="tarif-card">
           <span class="tarif-badge-top ecom">Autres services</span>
           <div class="prix-main" style="font-size:2.4rem;">Sur devis</div>
           <span class="prix-freq">Selon vos besoins</span>
@@ -763,7 +790,6 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
             <li data-editable-zone="addon_avantage_1">Fiche Google Business — création, optimisation & suivi des avis</li>
             <li data-editable-zone="addon_avantage_2">Réseaux sociaux — gestion & création de contenu</li>
             <li data-editable-zone="addon_avantage_3">Publicité en ligne — campagnes Google Ads / Meta Ads</li>
-            <li data-editable-zone="addon_avantage_4">Pack print complet — logo, cartes de visite, flyers, QR code avis Google</li>
           </ul>
           <a href="tel:0745531434" class="btn-prix">Demander un devis →</a>
         </div>
