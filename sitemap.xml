@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap locweb.fr.
+  Une seule URL aujourd'hui : le site est en page unique à ancres. Les ancres
+  (#tarifs, #realisations…) ne sont PAS listées ici — Google ne les traite pas
+  comme des pages distinctes, elles n'apporteraient rien. C'est précisément ce
+  que corrige la priorité 2 (découper en URLs réelles) : chaque page créée
+  devra être ajoutée ici.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://locweb.fr/</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
