@@ -175,6 +175,30 @@ h2 em{font-style:normal;color:var(--red);}
 section{padding:76px 20px;position:relative;}
 @media(min-width:768px){section{padding:96px 5vw;}}
 
+/* ── LE PROBLÈME ── Trois scènes, pas de pin : la page compte déjà trois sections
+   épinglées (galerie, tiers, contact) et en empiler une quatrième se battrait avec
+   le scroll natif. Ici c'est du reveal scrubbé, qui anime sans confisquer. */
+#probleme{background:transparent;}
+.pb-scenes{display:flex;flex-direction:column;gap:clamp(56px,9vw,120px);max-width:900px;margin:clamp(40px,6vw,80px) auto 0;}
+.pb-scene{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3vw,44px);align-items:start;}
+.pb-heure{font-family:var(--disp);font-weight:800;font-size:clamp(1.1rem,2.4vw,1.7rem);
+          color:transparent;-webkit-text-stroke:1.2px rgba(255,255,255,.28);
+          font-variant-numeric:tabular-nums;letter-spacing:-.02em;white-space:nowrap;padding-top:.15em;}
+.pb-txt{font-family:var(--disp);font-weight:600;font-size:clamp(1.15rem,2.9vw,2.05rem);
+        line-height:1.28;letter-spacing:-.02em;color:rgba(255,255,255,.92);text-wrap:balance;}
+.pb-txt em{font-style:normal;color:var(--red-texte);}
+.pb-chute{max-width:900px;margin:clamp(56px,8vw,100px) auto 0;font-size:clamp(1rem,2vw,1.25rem);
+          color:rgba(255,255,255,.6);text-align:center;line-height:1.6;}
+.pb-chute strong{display:block;margin-top:6px;color:var(--white);font-weight:700;}
+.pb-cta{display:block;width:max-content;margin:32px auto 0;font-weight:700;font-size:.92rem;
+        color:var(--white);text-decoration:none;border-bottom:1px solid var(--red-texte);
+        padding-bottom:4px;transition:color .25s,border-color .25s;}
+.pb-cta:hover{color:var(--red-texte);}
+@media(max-width:640px){
+  .pb-scene{grid-template-columns:1fr;gap:10px;}
+  .pb-heure{font-size:1rem;}
+}
+
 /* ── RÉALISATIONS : GALERIE HORIZONTALE (hero-only, animée, native) ── */
 #realisations{background:transparent;}
 .galerie-horiz-wrap{height:280vh;position:relative;}
@@ -651,10 +675,42 @@ html.anim-js .hero-title{opacity:0;}
   </div>
 </div>
 
+<!-- LE PROBLÈME — première marche de l'entonnoir : avant de montrer ce qu'on sait
+     faire, nommer la situation que vit le visiteur. Des scènes concrètes, jamais
+     des statistiques : inventer un chiffre de marché serait plus convaincant et
+     complètement malhonnête. -->
+<section id="probleme">
+  <div class="s-head">
+    <span class="sec-no" aria-hidden="true">01</span>
+    <div>
+      <div class="s-tag rv">Le vrai sujet</div>
+      <h2 class="hsplit">On ne vous trouve pas.<br><em>C'est tout le problème.</em></h2>
+    </div>
+  </div>
+
+  <div class="pb-scenes">
+    <article class="pb-scene">
+      <span class="pb-heure" aria-hidden="true">22:14</span>
+      <p class="pb-txt">Une fuite. Le client attrape son téléphone et tape <em>« plombier Béziers »</em>. Trois entreprises apparaissent. Vous n'en faites pas partie.</p>
+    </article>
+    <article class="pb-scene">
+      <span class="pb-heure" aria-hidden="true">09:02</span>
+      <p class="pb-txt">On vous a recommandé. La personne cherche votre nom, tombe sur une page Facebook abandonnée depuis deux ans. <em>Elle hésite, puis rappelle son cousin.</em></p>
+    </article>
+    <article class="pb-scene">
+      <span class="pb-heure" aria-hidden="true">14:37</span>
+      <p class="pb-txt">Votre devis est le meilleur des trois. Mais les deux autres ont un site qui inspire confiance. <em>Le chantier vous passe sous le nez.</em></p>
+    </article>
+  </div>
+
+  <p class="pb-chute">Vous faites très bien votre métier. <strong>Le problème n'a jamais été là.</strong></p>
+  <a href="#realisations" class="pb-cta">Voir ce qu'on met en place →</a>
+</section>
+
 <!-- RÉALISATIONS -->
 <section id="realisations">
   <div class="s-head">
-    <span class="sec-no" aria-hidden="true">01</span>
+    <span class="sec-no" aria-hidden="true">02</span>
     <div>
       <div class="s-tag rv">Nos réalisations</div>
       <h2 class="hsplit">Ce qu'on sait<br><em>construire pour vous.</em></h2>
@@ -824,7 +880,7 @@ html.anim-js .hero-title{opacity:0;}
 <!-- ÉCHELLE DES TIERS -->
 <section id="tiers-demo" data-backdrop-dodge>
   <div class="s-head">
-    <span class="sec-no" aria-hidden="true">02</span>
+    <span class="sec-no" aria-hidden="true">03</span>
     <div>
       <div class="s-tag rv">Un seul système, cinq niveaux</div>
       <h2 class="hsplit">On dose le mouvement,<br><em>jamais la qualité.</em></h2>
@@ -931,7 +987,7 @@ html.anim-js .hero-title{opacity:0;}
 <!-- TARIFS -->
 <section id="tarifs">
   <div class="s-head">
-    <span class="sec-no" aria-hidden="true">03</span>
+    <span class="sec-no" aria-hidden="true">04</span>
     <div>
       <div class="s-tag rv">Nos tarifs</div>
       <h2 class="hsplit">Un site professionnel,<br><em>sans mauvaise surprise.</em></h2>
@@ -1085,7 +1141,7 @@ html.anim-js .hero-title{opacity:0;}
   <div class="contact-pin">
     <div class="contact-pin-inner">
       <div class="s-head" style="margin-bottom:0;">
-        <span class="sec-no" id="contactSecNo" aria-hidden="true">04</span>
+        <span class="sec-no" id="contactSecNo" aria-hidden="true">05</span>
         <div>
           <div class="s-tag rv" id="contactTag" style="justify-content:center;">Discutons</div>
           <h2 class="hsplit" id="contactTitle">Parlons de<br><em>votre projet.</em></h2>
@@ -1321,6 +1377,34 @@ function forceRevealEnBasDePage() {
 window.addEventListener('scroll', () => {
   if (!boTicking) { boTicking = true; requestAnimationFrame(forceRevealEnBasDePage); }
 }, { passive: true });
+
+// Les scènes de #probleme sont mises à opacity:0 par GSAP puis révélées par
+// ScrollTrigger. Si ScrollTrigger échoue après que GSAP a déjà masqué (chargement
+// partiel, erreur de plugin), toute la section resterait invisible — et c'est la
+// première marche de l'argumentaire. On la rétablit alors sans condition.
+// Uniquement pour une scène DÉJÀ entrée dans l'écran : sinon on révélerait par
+// avance des scènes que le visiteur n'a pas encore atteintes, ce qui supprimerait
+// l'animation pour quiconque lit le hero plus de quelques secondes.
+(function(){
+  let secours = false;
+  function rattraperScenesVisibles(){
+    document.querySelectorAll('.pb-scene').forEach(function(s){
+      const r = s.getBoundingClientRect();
+      const entree = r.top < window.innerHeight * 0.8 && r.bottom > 0;
+      if (!entree) return;
+      s.querySelectorAll('.pb-heure,.pb-txt').forEach(function(el){
+        if (parseFloat(getComputedStyle(el).opacity) === 0) {
+          el.style.transition = 'opacity .5s ease';
+          el.style.opacity = '1'; el.style.transform = 'none';
+        }
+      });
+    });
+    secours = false;
+  }
+  window.addEventListener('scroll', function(){
+    if (!secours) { secours = true; setTimeout(rattraperScenesVisibles, 900); }
+  }, { passive: true });
+})();
 forceRevealEnBasDePage();
 </script>
 <script>
@@ -1429,6 +1513,27 @@ forceRevealEnBasDePage();
           if (window.__locwebIntroReady) gsap.delayedCall(0.3, ouvrirHero);
           else document.addEventListener('locweb:intro', () => gsap.delayedCall(0.3, ouvrirHero), { once: true });
         }
+
+        // Les scènes du problème : chacune se lève à son entrée, avec l'heure qui
+        // arrive légèrement avant le texte — c'est ce décalage qui donne l'impression
+        // d'un plan qui s'installe plutôt que d'un bloc qui apparaît.
+        gsap.utils.toArray('.pb-scene').forEach((scene) => {
+          const heure = scene.querySelector('.pb-heure');
+          const txt = scene.querySelector('.pb-txt');
+          gsap.set([heure, txt], { opacity: 0 });
+          gsap.set(heure, { x: -18 });
+          gsap.set(txt, { y: 30 });
+          ScrollTrigger.create({
+            trigger: scene,
+            start: 'top 82%',
+            once: true,
+            onEnter: () => {
+              gsap.timeline({ defaults: { ease: 'expo.out', force3D: true } })
+                .to(heure, { opacity: 1, x: 0, duration: .7 })
+                .to(txt, { opacity: 1, y: 0, duration: .9 }, 0.12);
+            }
+          });
+        });
 
         // Galerie des réalisations : la piste est tirée par ScrollTrigger (pin + scrub)
         // au lieu du rAF+lerp maison. Le scrub cale le déplacement sur la barre de
