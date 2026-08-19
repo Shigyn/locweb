@@ -518,6 +518,27 @@ section{padding:76px 20px;position:relative;}
 .prix-footnote{font-style:italic;font-size:.78rem;color:rgba(255,255,255,.42);margin-top:22px;padding:0 20px;}
 @media(min-width:768px){.prix-footnote{padding:0 5vw;}}
 
+/* ── ZONE D'INTERVENTION ── Carte vectorielle en 4 plans de profondeur. Quatre et
+   pas davantage : au-delà le gain visuel est nul et le coût de scroll se multiplie. */
+#zone{background:transparent;}
+.zone-wrap{display:grid;grid-template-columns:1.35fr .8fr;gap:clamp(28px,4vw,64px);align-items:center;max-width:1300px;margin:0 auto;}
+@media(max-width:900px){.zone-wrap{grid-template-columns:1fr;}}
+.zone-carte{position:relative;overflow:hidden;border-radius:18px;border:1px solid var(--line-dark);background:rgba(255,255,255,.02);}
+.zone-carte svg{display:block;width:100%;height:auto;}
+/* Le parallax ne s'applique qu'aux plans décoratifs, jamais au texte à côté. */
+.zn-plan{will-change:transform;}
+/* Masquées uniquement là où la chorégraphie JS va les rallumer : sans cette garde,
+   sur mobile et en reduced-motion (où GSAP n'est pas chargé) les villes resteraient
+   invisibles et la carte perdrait tout son sens. */
+html.anim-js .zn-ville .zn-pt,html.anim-js .zn-ville .zn-halo{opacity:0;}
+.zone-texte .zone-intro{font-size:clamp(.95rem,1.9vw,1.08rem);color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:24px;}
+.zone-texte .zone-intro strong{color:var(--white);}
+.zone-villes{list-style:none;display:flex;flex-direction:column;gap:0;}
+.zone-villes li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px solid var(--line-dark);}
+.zone-villes li:last-child{border-bottom:none;}
+.zone-villes strong{font-family:var(--disp);font-weight:700;font-size:.98rem;color:var(--white);}
+.zone-villes span{font-size:.78rem;color:rgba(255,255,255,.45);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
 /* ── CONTACT (sans formulaire) ── */
 #contact{background:transparent;text-align:center;}
 #contact h2{margin-bottom:32px;}
@@ -1147,6 +1168,85 @@ html.anim-js .hero-title{opacity:0;}
   </div>
 </section>
 
+<!-- ZONE D'INTERVENTION — comble deux manques d'un coup : l'absence de carte (que
+     la revue UX signalait comme anti-pattern pour une activité locale) et le SEO
+     local, en nommant les villes en texte lisible par Google et pas seulement dans
+     un graphique. Les villes sont placées depuis leurs coordonnées réelles, projetées
+     en équirectangulaire — le tracé du littoral, lui, est stylisé. -->
+<section id="zone">
+  <div class="s-head">
+    <span class="sec-no" aria-hidden="true">05</span>
+    <div>
+      <div class="s-tag rv">Zone d'intervention</div>
+      <h2 class="hsplit">On travaille ici,<br><em>et bien au-delà.</em></h2>
+    </div>
+  </div>
+
+  <div class="zone-wrap">
+    <div class="zone-carte" aria-hidden="true">
+      <svg viewBox="0 0 1000 667" preserveAspectRatio="xMidYMid meet" focusable="false">
+        <!-- Plan 1 — le plus lent : mer et trame -->
+        <g class="zn-plan" data-plan="1">
+          <defs>
+            <linearGradient id="znMer" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#12202b" stop-opacity=".85"/>
+              <stop offset="100%" stop-color="#0d0d0f" stop-opacity="0"/>
+            </linearGradient>
+            <radialGradient id="znHalo">
+              <stop offset="0%" stop-color="#E8281E" stop-opacity=".5"/>
+              <stop offset="100%" stop-color="#E8281E" stop-opacity="0"/>
+            </radialGradient>
+            <pattern id="znTrame" width="50" height="50" patternUnits="userSpaceOnUse">
+              <path d="M50 0 L0 0 0 50" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="1000" height="667" fill="url(#znTrame)"/>
+          <path d="M40 667 L1000 667 L1000 180 C 900 230, 760 300, 600 400 C 470 480, 260 590, 40 667 Z" fill="url(#znMer)"/>
+        </g>
+
+        <!-- Plan 2 — littoral et axes routiers -->
+        <g class="zn-plan" data-plan="2">
+          <path d="M40 667 C 260 590, 470 480, 600 400 C 760 300, 900 230, 1000 180"
+                fill="none" stroke="rgba(255,255,255,.22)" stroke-width="2"/>
+          <g stroke="rgba(255,255,255,.1)" stroke-width="1.5" fill="none" stroke-dasharray="7 9">
+            <path d="M120 587 L308 397 L487 259 L880 80"/>
+            <path d="M308 397 L532 437"/>
+          </g>
+        </g>
+
+        <!-- Plan 3 — les villes, allumées en séquence -->
+        <g class="zn-plan" data-plan="3">
+          <g class="zn-ville" transform="translate(120,587)"><circle class="zn-halo" r="26" fill="url(#znHalo)"/><circle class="zn-pt" r="4.5" fill="#fff"/></g>
+          <g class="zn-ville" transform="translate(532,437)"><circle class="zn-halo" r="26" fill="url(#znHalo)"/><circle class="zn-pt" r="4.5" fill="#fff"/></g>
+          <g class="zn-ville" transform="translate(487,259)"><circle class="zn-halo" r="26" fill="url(#znHalo)"/><circle class="zn-pt" r="4.5" fill="#fff"/></g>
+          <g class="zn-ville" transform="translate(880,80)"><circle class="zn-halo" r="26" fill="url(#znHalo)"/><circle class="zn-pt" r="4.5" fill="#fff"/></g>
+        </g>
+
+        <!-- Plan 4 — le plus rapide : la base, Béziers -->
+        <g class="zn-plan" data-plan="4">
+          <g class="zn-base" transform="translate(308,397)">
+            <circle class="zn-onde" r="16" fill="none" stroke="#E8281E" stroke-width="1.5"/>
+            <circle r="46" fill="url(#znHalo)"/>
+            <circle r="7" fill="#E8281E"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <div class="zone-texte">
+      <p class="zone-intro">Notre base est à <strong>Béziers</strong>. On intervient dans tout l'Hérault et l'Aude — et le reste se fait très bien à distance, partout en France.</p>
+      <ul class="zone-villes">
+        <li><strong>Béziers</strong><span>base</span></li>
+        <li><strong>Agde</strong><span>25 min</span></li>
+        <li><strong>Pézenas</strong><span>25 min</span></li>
+        <li><strong>Narbonne</strong><span>30 min</span></li>
+        <li><strong>Montpellier</strong><span>50 min</span></li>
+        <li><strong>Toute la France</strong><span>à distance</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- CTA BAND -->
 <div class="cta-band">
   <div class="cta-band-text"><strong>Vous aussi, soyez visible dès cette semaine.</strong></div>
@@ -1158,7 +1258,7 @@ html.anim-js .hero-title{opacity:0;}
   <div class="contact-pin">
     <div class="contact-pin-inner">
       <div class="s-head" style="margin-bottom:0;">
-        <span class="sec-no" id="contactSecNo" aria-hidden="true">05</span>
+        <span class="sec-no" id="contactSecNo" aria-hidden="true">06</span>
         <div>
           <div class="s-tag rv" id="contactTag" style="justify-content:center;">Discutons</div>
           <h2 class="hsplit" id="contactTitle">Parlons de<br><em>votre projet.</em></h2>
@@ -1529,6 +1629,44 @@ forceRevealEnBasDePage();
 
           if (window.__locwebIntroReady) gsap.delayedCall(0.3, ouvrirHero);
           else document.addEventListener('locweb:intro', () => gsap.delayedCall(0.3, ouvrirHero), { once: true });
+        }
+
+        // Carte de la zone : parallax par plan de profondeur, du plus lent au plus
+        // rapide — c'est la différence de vitesse qui crée l'illusion, pas le
+        // déplacement lui-même. Amplitudes volontairement faibles (max 14%) : au-delà
+        // les plans se désynchronisent visiblement et le dessin se disloque.
+        const carte = document.querySelector('.zone-carte');
+        if (carte) {
+          gsap.utils.toArray('.zn-plan').forEach((plan) => {
+            const rang = parseInt(plan.dataset.plan, 10) || 1;
+            gsap.to(plan, {
+              yPercent: -3.5 * rang,
+              ease: 'none',
+              scrollTrigger: { trigger: carte, start: 'top bottom', end: 'bottom top', scrub: 0.5 }
+            });
+          });
+
+          // Les villes s'allument l'une après l'autre, puis la base de Béziers émet
+          // une onde. L'ordre suit la lecture de la carte, pas l'ordre du DOM.
+          const villes = carte.querySelectorAll('.zn-ville');
+          const base = carte.querySelector('.zn-base');
+          ScrollTrigger.create({
+            trigger: carte,
+            start: 'top 72%',
+            once: true,
+            onEnter: () => {
+              const tl = gsap.timeline();
+              tl.to(carte.querySelectorAll('.zn-ville .zn-pt'), { opacity: 1, duration: .35, stagger: .16, ease: 'power2.out' })
+                .to(carte.querySelectorAll('.zn-ville .zn-halo'), { opacity: 1, duration: .8, stagger: .16, ease: 'power2.out' }, 0.1);
+              if (base) {
+                const onde = base.querySelector('.zn-onde');
+                tl.fromTo(onde,
+                  { attr: { r: 16 }, opacity: .9 },
+                  { attr: { r: 74 }, opacity: 0, duration: 2.2, ease: 'power2.out', repeat: -1, repeatDelay: .5 },
+                  0.4);
+              }
+            }
+          });
         }
 
         // Le fil conducteur se dessine au rythme du scroll. stroke-dashoffset animé
