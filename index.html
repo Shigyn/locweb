@@ -46,6 +46,24 @@ body::after{content:'';position:fixed;inset:0;z-index:9996;pointer-events:none;o
 .curtain svg{width:52px;height:52px;overflow:visible;}
 .curtain-progress{font-family:var(--disp);font-weight:700;font-size:.82rem;color:rgba(255,255,255,.45);letter-spacing:.04em;font-variant-numeric:tabular-nums;}
 
+/* Séquence d'ouverture : zoom dans l'écran d'un ordinateur, qui devient le site. */
+.zoomintro{position:fixed;inset:0;z-index:9996;background:var(--ink);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;}
+.zoomintro.play{opacity:1;visibility:visible;animation:ziFade 2.4s ease-out .1s forwards;}
+.zoomintro-monitor{position:relative;width:min(30vw,320px);aspect-ratio:16/10;background:#1c1c1e;border-radius:14px;padding:3.2%;box-shadow:0 30px 90px rgba(0,0,0,.55);will-change:transform;}
+.zoomintro.play .zoomintro-monitor{animation:ziZoom 2.4s cubic-bezier(.76,0,.24,1) .1s forwards;}
+.zoomintro-screen{width:100%;height:100%;border-radius:4px;background:radial-gradient(circle at 30% 20%,#1a1a1a,#0a0a0b 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;overflow:hidden;}
+.zoomintro-word{font-family:var(--disp);font-weight:700;font-size:1.5rem;letter-spacing:-.02em;color:#fff;}
+.zoomintro-word em{color:var(--red);font-style:normal;}
+.zoomintro-line{font-size:.5rem;color:rgba(255,255,255,.5);max-width:70%;text-align:center;line-height:1.4;}
+.zoomintro-stand{position:absolute;bottom:calc(50% - min(15vw,160px) - 22px);left:50%;width:56px;height:22px;background:linear-gradient(#26262a,#1c1c1e);clip-path:polygon(28% 0,72% 0,100% 100%,0 100%);transform:translateX(-50%);opacity:.9;}
+.zoomintro.play .zoomintro-stand{animation:ziStandOut .9s ease-out .1s forwards;}
+
+@keyframes ziZoom{0%{transform:scale(1);}55%{transform:scale(1);}100%{transform:scale(34);}}
+@keyframes ziFade{0%,78%{opacity:1;}100%{opacity:0;}}
+@keyframes ziStandOut{0%{opacity:.9;}100%{opacity:0;}}
+
+@media(prefers-reduced-motion: reduce){.zoomintro{display:none;}}
+
 /* ── CURSEUR : TRAÎNÉE ── */
 .cursor-trail-dot{position:fixed;top:0;left:0;border-radius:50%;background:var(--red);pointer-events:none;z-index:9994;}
 
@@ -273,35 +291,42 @@ section{padding:76px 20px;position:relative;}
 .td-content{position:relative;height:100%;padding:5% 6%;display:flex;flex-direction:column;gap:4%;}
 
 .td-nav{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;}
-.td-logo{font-weight:800;color:#111;}
-.td-tel{font-weight:700;color:#111;background:#eee;padding:5px 10px;border-radius:100px;}
+.td-logo{font-weight:800;color:#5b3323;}
+.td-tel{font-weight:700;color:#8a3b1f;background:#f4e3d6;padding:5px 10px;border-radius:100px;}
 
 .td-hero{position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:4% 0;}
-.td-title{font-family:var(--disp);font-weight:800;font-size:clamp(1.1rem,3.4vw,1.8rem);line-height:1.05;color:#111;}
-.td-sub{font-size:.72rem;color:#555;max-width:280px;}
-.td-cta{align-self:flex-start;margin-top:6px;font-size:.68rem;font-weight:700;background:#111;color:#fff;border:none;padding:9px 16px;border-radius:4px;cursor:default;}
+.td-title{font-family:var(--disp);font-weight:800;font-size:clamp(1.1rem,3.4vw,1.8rem);line-height:1.05;color:#3a2118;}
+.td-sub{font-size:.72rem;color:#7a6a5f;max-width:280px;}
+.td-cta{align-self:flex-start;margin-top:6px;font-size:.68rem;font-weight:700;background:#a8563d;color:#fff;border:none;padding:9px 16px;border-radius:4px;cursor:default;transition:box-shadow .4s ease;}
 
 .td-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;}
-.td-card{background:#f3f1ec;border-radius:6px;height:34px;}
+.td-card{background:linear-gradient(135deg,#f5ece2,#efe0d2);border-radius:6px;height:34px;}
 
 .td-gallery{display:none;gap:6px;}
-.td-gitem{width:44px;height:26px;border-radius:4px;background:#f3f1ec;flex-shrink:0;}
+.td-gitem{width:44px;height:26px;border-radius:4px;background:#f5ece2;flex-shrink:0;}
 
 .td-caption{max-width:480px;text-align:center;margin-top:26px;color:rgba(255,255,255,.65);font-size:.9rem;min-height:2.6em;}
 .td-dots{display:flex;gap:8px;margin-top:18px;}
 .td-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s,transform .3s;}
 .td-dots span.on{background:var(--red);transform:scale(1.3);}
 
-.td-frame.t1 .td-cta,.td-frame.t2 .td-cta,.td-frame.t3 .td-cta,.td-frame.t4 .td-cta{border-radius:100px;box-shadow:0 6px 16px -4px rgba(0,0,0,.25);}
+.td-frame.t1 .td-cta,.td-frame.t2 .td-cta,.td-frame.t3 .td-cta,.td-frame.t4 .td-cta{border-radius:100px;box-shadow:0 6px 16px -4px rgba(168,86,61,.4);}
 .td-frame.t1 .td-cards,.td-frame.t2 .td-cards,.td-frame.t3 .td-cards,.td-frame.t4 .td-cards{opacity:1;transform:none;}
 .td-frame.t1 .td-card,.td-frame.t2 .td-card,.td-frame.t3 .td-card,.td-frame.t4 .td-card{box-shadow:0 4px 14px -6px rgba(0,0,0,.15);}
 
 .td-frame.t2 .td-canvas,.td-frame.t3 .td-canvas,.td-frame.t4 .td-canvas{opacity:1;}
-.td-frame.t2 .td-canvas{background:radial-gradient(circle at 30% 30%, rgba(232,40,30,.28), transparent 55%),radial-gradient(circle at 75% 65%, rgba(60,130,255,.22), transparent 55%);animation:tdDrift 7s ease-in-out infinite;}
+.td-frame.t2 .td-canvas{background:radial-gradient(circle at 30% 30%, rgba(232,40,30,.32), transparent 55%),radial-gradient(circle at 75% 65%, rgba(255,178,60,.26), transparent 55%);animation:tdDrift 6s ease-in-out infinite;}
+.td-frame.t2 .td-cta{animation:tdPulse 2.4s ease-in-out infinite;}
 
-.td-frame.t3 .td-canvas{background:radial-gradient(circle at 25% 30%, rgba(232,40,30,.4), transparent 50%),radial-gradient(circle at 70% 30%, rgba(255,178,60,.32), transparent 50%),radial-gradient(circle at 50% 80%, rgba(120,60,255,.3), transparent 55%);animation:tdDrift 4.5s ease-in-out infinite;}
+.td-frame.t3 .td-canvas{background:radial-gradient(circle at 25% 30%, rgba(232,40,30,.45), transparent 50%),radial-gradient(circle at 70% 30%, rgba(255,178,60,.38), transparent 50%),radial-gradient(circle at 50% 80%, rgba(201,169,97,.32), transparent 55%);animation:tdDrift 4s ease-in-out infinite;}
 .td-frame.t3 .td-cursor,.td-frame.t4 .td-cursor{opacity:1;}
 .td-frame.t3 .td-gallery,.td-frame.t4 .td-gallery{display:flex;}
+.td-frame.t3 .td-card,.td-frame.t4 .td-card{animation:tdCardGlow 3s ease-in-out infinite;}
+.td-frame.t3 .td-card:nth-child(2),.td-frame.t4 .td-card:nth-child(2){animation-delay:.3s;}
+.td-frame.t3 .td-card:nth-child(3),.td-frame.t4 .td-card:nth-child(3){animation-delay:.6s;}
+
+@keyframes tdPulse{0%,100%{box-shadow:0 6px 16px -4px rgba(168,86,61,.4);}50%{box-shadow:0 6px 24px -2px rgba(232,40,30,.55);}}
+@keyframes tdCardGlow{0%,100%{box-shadow:0 4px 14px -6px rgba(0,0,0,.15);}50%{box-shadow:0 6px 18px -4px rgba(201,169,97,.5);}}
 
 .td-frame.t4 .td-canvas{background:conic-gradient(from 0deg at 50% 50%, rgba(232,40,30,.35), rgba(201,169,97,.3), rgba(120,60,255,.28), rgba(255,178,60,.3), rgba(232,40,30,.35));animation:tdSpin 8s linear infinite;}
 .td-frame.t4{box-shadow:0 50px 120px -30px rgba(201,169,97,.45),0 0 0 1px rgba(201,169,97,.3),0 0 60px -10px rgba(232,40,30,.3);}
@@ -451,6 +476,19 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   </div>
 </div>
 
+<!-- Séquence d'ouverture : la caméra "entre" dans l'écran d'un ordinateur, qui
+     devient le site lui-même — se déclenche au moment précis où le rideau
+     ci-dessus s'efface, voir le JS de #curtain. -->
+<div class="zoomintro" id="zoomintro" aria-hidden="true">
+  <div class="zoomintro-monitor">
+    <div class="zoomintro-screen">
+      <span class="zoomintro-word">Loc<em>Web</em></span>
+      <span class="zoomintro-line">Votre image en ligne, on s'occupe de tout.</span>
+    </div>
+  </div>
+  <div class="zoomintro-stand"></div>
+</div>
+
 <!-- NAV -->
 <nav role="navigation" aria-label="Navigation principale">
   <a href="#" class="logo-wrap" aria-label="LocWeb — Accueil">
@@ -483,7 +521,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="hero-kicker ha ha1"><div class="ln" aria-hidden="true"></div><span>Agence web — Béziers & toute la France</span></div>
-    <h1 class="hero-title ha ha2"><span data-editable-zone="hero_titre_ligne1">Votre image en ligne,</span><br><em data-editable-zone="hero_titre_accent">on s'occupe de tout.</em></h1>
+    <h1 class="hero-title ha ha2"><span id="heroLigne1" data-editable-zone="hero_titre_ligne1">Votre image en ligne,</span><br><em id="heroAccent" data-editable-zone="hero_titre_accent">on s'occupe de tout.</em></h1>
     <p class="hero-sub ha ha3" data-editable-zone="hero_sous_titre">Site web, réseaux sociaux, fiche Google, supports print — une seule équipe, un seul interlocuteur.</p>
     <p class="hero-cycle-line ha ha3">On s'occupe de <span class="titre-cyclique hero-cycle-word" data-mots="[&quot;votre site web.&quot;,&quot;vos flyers.&quot;,&quot;vos réseaux sociaux.&quot;,&quot;votre fiche Google.&quot;]">votre site web.</span></p>
     <div class="hero-cta-row ha ha4">
@@ -726,11 +764,11 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
         <canvas class="td-canvas" aria-hidden="true"></canvas>
         <div class="td-cursor" aria-hidden="true"></div>
         <div class="td-content">
-          <div class="td-nav"><span class="td-logo">Martin&nbsp;&amp;&nbsp;Fils</span><span class="td-tel">04 67 00 00 00</span></div>
+          <div class="td-nav"><span class="td-logo">Chez&nbsp;Camille</span><span class="td-tel">04 67 00 00 00</span></div>
           <div class="td-hero">
-            <h3 class="td-title" data-text="Plombier de confiance">Plombier de confiance</h3>
-            <p class="td-sub">Dépannage 7j/7 — intervention en 30 min</p>
-            <button class="td-cta" type="button" tabindex="-1">Appeler maintenant</button>
+            <h3 class="td-title" data-text="Cuisine du marché, faite maison">Cuisine du marché, faite maison</h3>
+            <p class="td-sub">Bistrot de quartier — ouvert du mardi au samedi</p>
+            <button class="td-cta" type="button" tabindex="-1">Réserver une table</button>
           </div>
           <div class="td-cards">
             <div class="td-card"><span></span></div>
@@ -1010,7 +1048,12 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
 
 (function(){
   const curtain = document.getElementById('curtain');
-  if (!curtain || reducedMotionMQ) { if(curtain) curtain.remove(); return; }
+  const zoomintro = document.getElementById('zoomintro');
+  if (!curtain || reducedMotionMQ) {
+    if (curtain) curtain.remove();
+    if (zoomintro) zoomintro.remove();
+    return;
+  }
   requestAnimationFrame(() => curtain.classList.add('show'));
 
   // Le logo se dessine au trait puis se remplit.
@@ -1056,7 +1099,9 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
       setTimeout(() => {
         curtain.classList.remove('show');
         curtain.classList.add('hide');
+        if (zoomintro) zoomintro.classList.add('play');
         setTimeout(() => curtain.remove(), 950);
+        setTimeout(() => { if (zoomintro) zoomintro.remove(); }, 2500);
       }, 300);
     }
   }
@@ -1240,6 +1285,22 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
       .then(() => {
         if (!window.gsap || !window.ScrollTrigger) return;
         gsap.registerPlugin(ScrollTrigger, window.ScrambleTextPlugin);
+
+        // "Le hero du futur" : une fois le rideau + le zoom dans l'écran terminés (~2.6s),
+        // le titre se décode brièvement avec ScrambleTextPlugin puis se stabilise sur son
+        // texte réel — jamais un texte différent, juste l'effet visuel de décodage. Lit
+        // .textContent au moment du déclenchement (pas une chaîne figée dans le JS) pour
+        // rester synchro avec contenu-loader.js si le texte Supabase a déjà remplacé le
+        // texte par défaut entre-temps. N'agit qu'une fois, jamais en boucle.
+        if (window.ScrambleTextPlugin) {
+          [document.getElementById('heroLigne1'), document.getElementById('heroAccent')].forEach((el, i) => {
+            if (!el) return;
+            const texteFinal = el.textContent;
+            gsap.delayedCall(2.5 + i * 0.12, () => {
+              gsap.to(el, { duration: .9, scrambleText: { text: texteFinal, chars: 'upperCase', speed: .32, revealDelay: .1 } });
+            });
+          });
+        }
 
         // Choré­graphie de grille : remplace le simple fade+translateY de .rv par un vrai
         // stagger GSAP (échelle + légère rotation + flou d'entrée). Volontairement PAS
