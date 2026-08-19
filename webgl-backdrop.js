@@ -3,11 +3,13 @@
 // espace traversé" plutôt qu'une pile de sections empilées.
 //
 // États successifs, pilotés par la progression de scroll dans le document :
-//   0. dispersé/éteint  — avant que quoi que ce soit n'existe en ligne
-//   1. sphère rouge     — "le signal" : la présence en ligne se forme (hero)
-//   2. anneau           — les réalisations qui gravitent (réalisations)
-//   3. grille           — l'échelle des tiers, ordonnée (tiers / support)
-//   4. colonne montante — l'élan final (tarifs / contact)
+//   0. sphère rouge     — "le signal" : la présence en ligne, dès le hero
+//   1. anneau           — les réalisations qui gravitent
+//   2. grille           — l'échelle des tiers, ordonnée
+//   3. colonne montante — l'élan final (tarifs / contact)
+//
+// La sphère est l'état à scroll 0 (et non un état intermédiaire) : sinon le hero,
+// qui est le premier écran, n'afficherait qu'un nuage informe.
 //
 // Three.js pur, géométrie procédurale : aucun modèle .glb, donc aucun décodeur
 // Draco/KTX2 à héberger. Nécessite three.min.js chargé avant.
@@ -107,26 +109,28 @@
     return a;
   }
 
-  const SHAPES = [shapeScatter(), shapeSphere(), shapeRing(), shapeGrid(), shapeColumn()];
-
-  // Animation d'entrée du site : les points arrivent de très loin et s'allument.
-  // C'est la métaphore du site (une présence en ligne qui se forme) jouée comme
-  // ouverture, plutôt qu'une séquence décorative plaquée devant la page.
-  const FAR = new Float32Array(NB * 3);
-  for (let i = 0; i < NB * 3; i++) FAR[i] = SHAPES[0][i] * 4.5;
+  const SHAPES = [shapeSphere(), shapeRing(), shapeGrid(), shapeColumn()];
   const TINTS = [
-    new THREE.Color(0x3a3a42), // éteint
-    new THREE.Color(0xE8281E), // rouge LocWeb — le signal
+    new THREE.Color(0xE8281E), // rouge LocWeb — le signal (hero)
     new THREE.Color(0xE8281E),
     new THREE.Color(0xC9A961), // or — l'échelle des tiers
     new THREE.Color(0xE8281E)
   ];
 
+  // Animation d'entrée du site : les points arrivent de très loin, éteints, et
+  // s'allument en se rassemblant sur la sphère. C'est la métaphore du site (une
+  // présence en ligne qui se forme) jouée comme ouverture, plutôt qu'un écran de
+  // chargement plaqué devant la page.
+  const SCATTER = shapeScatter();
+  const FAR = new Float32Array(NB * 3);
+  for (let i = 0; i < NB * 3; i++) FAR[i] = SCATTER[i] * 3.2;
+  const COL_OFF = new THREE.Color(0x2e2e36);
+
   const positions = new Float32Array(NB * 3);
   const colors = new Float32Array(NB * 3);
-  positions.set(SHAPES[0]);
+  positions.set(FAR);
   for (let i = 0; i < NB; i++) {
-    colors[i * 3] = TINTS[0].r; colors[i * 3 + 1] = TINTS[0].g; colors[i * 3 + 2] = TINTS[0].b;
+    colors[i * 3] = COL_OFF.r; colors[i * 3 + 1] = COL_OFF.g; colors[i * 3 + 2] = COL_OFF.b;
   }
 
   const geo = new THREE.BufferGeometry();
@@ -162,6 +166,23 @@
     progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
   }
 
+  // Esquive : quand une section porteuse d'un gros module opaque (marquée
+  // data-backdrop-dodge dans le HTML) occupe l'écran, le décor glisse sur le côté
+  // au lieu de rester caché derrière, puis revient au centre. Déclaratif pour
+  // pouvoir l'appliquer à d'autres sections sans retoucher ce fichier.
+  const esquiveurs = Array.from(document.querySelectorAll('[data-backdrop-dodge]'));
+  let esquiveCible = 0, esquiveAffichee = 0;
+  function updateEsquive() {
+    const vh = window.innerHeight || 1;
+    let d = 0;
+    for (const el of esquiveurs) {
+      const r = el.getBoundingClientRect();
+      const recouvrement = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+      if (recouvrement > 0) d = Math.max(d, Math.min(1, recouvrement / vh));
+    }
+    esquiveCible = d;
+  }
+
   const mouse = { x: 0, y: 0 };
   if (!isTouch) {
     window.addEventListener('mousemove', (e) => {
@@ -173,6 +194,7 @@
   const posAttr = geo.getAttribute('position');
   const colAttr = geo.getAttribute('color');
   const tmp = new THREE.Color();
+  const tmpTeinte = new THREE.Color();
   const smooth = (t) => t * t * (3 - 2 * t);
 
   // L'entrée démarre quand le rideau de chargement s'efface (évènement émis par
@@ -199,12 +221,14 @@
     const idx = Math.min(SHAPES.length - 2, Math.floor(seg));
     const blend = smooth(Math.min(1, Math.max(0, seg - idx)));
     const from = SHAPES[idx], to = SHAPES[idx + 1];
-    tmp.copy(TINTS[idx]).lerp(TINTS[idx + 1], blend);
+    tmpTeinte.copy(TINTS[idx]).lerp(TINTS[idx + 1], blend);
 
     // Entrée : 0 = points très loin et invisibles, 1 = position pilotée par le scroll.
     const rawIntro = introStart === null ? 0 : Math.min(1, (performance.now() - introStart) / INTRO_MS);
     const intro = 1 - Math.pow(1 - rawIntro, 3); // ease-out cubique : arrivée qui décélère
     mat.opacity = intro;
+    // Les points s'allument en arrivant : gris éteint -> teinte de la section.
+    tmp.copy(COL_OFF).lerp(tmpTeinte, intro);
 
     const t = performance.now() * 0.0004;
     for (let i = 0; i < NB; i++) {
@@ -220,6 +244,13 @@
     posAttr.needsUpdate = true;
     colAttr.needsUpdate = true;
 
+    // Glissement latéral progressif (jamais un saut) vers le côté puis retour.
+    esquiveAffichee += (esquiveCible - esquiveAffichee) * 0.05;
+    const large = window.innerWidth > 1000;
+    points.position.x = esquiveAffichee * (large ? 4.6 : 0);
+    // Écran étroit : pas la place de glisser sur le côté, on s'efface en opacité.
+    if (!large) mat.opacity = intro * (1 - esquiveAffichee * 0.75);
+
     camera.position.x += (mouse.x * 0.7 - camera.position.x) * 0.04;
     camera.position.y += (-mouse.y * 0.45 - camera.position.y) * 0.04;
     camera.lookAt(0, 0, 0);
@@ -230,7 +261,9 @@
 
   resize();
   updateProgress();
-  window.addEventListener('resize', resize, { passive: true });
-  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateEsquive();
+  esquiveAffichee = esquiveCible; // pas de glissement au premier rendu
+  window.addEventListener('resize', () => { resize(); updateEsquive(); }, { passive: true });
+  window.addEventListener('scroll', () => { updateProgress(); updateEsquive(); }, { passive: true });
   requestAnimationFrame(tick);
 })();
