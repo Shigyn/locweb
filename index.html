@@ -99,14 +99,19 @@ h2 em{font-style:normal;color:var(--red);}
 
 /* ── HERO (minimal) ── */
 #hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:84px 20px 40px;position:relative;background:transparent;}
-.hero-vignette{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(140% 100% at 25% 50%,rgba(13,13,15,.92) 0%,rgba(13,13,15,.55) 40%,transparent 72%);will-change:transform;}
+/* Volontairement légère et concentrée derrière le texte (à gauche) : une vignette
+   large et opaque noyait complètement la sphère du décor dans le hero. */
+.hero-vignette{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(75% 85% at 18% 50%,rgba(13,13,15,.85) 0%,rgba(13,13,15,.35) 45%,transparent 75%);will-change:transform;}
 .hero-glow{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .5s;background:radial-gradient(circle 420px at var(--gx,50%) var(--gy,40%),rgba(232,40,30,.35),transparent 70%);mix-blend-mode:screen;}
 #hero:hover .hero-glow{opacity:1;}
 .hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;width:100%;will-change:transform;}
 .hero-kicker{display:flex;align-items:center;gap:10px;margin-bottom:26px;}
 .hero-kicker .ln{width:26px;height:1px;background:var(--red);}
 .hero-kicker span{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.16em;}
-.hero-title{font-family:var(--disp);font-size:clamp(2.8rem,9vw,5.6rem);font-weight:700;line-height:.98;letter-spacing:-.04em;color:#fff;margin-bottom:22px;}
+/* Masqué au départ : révélé par SplitText, ou par le filet de sécurité JS si GSAP
+   n'a pas pu charger. Jamais laissé invisible. */
+.hero-title{font-family:var(--disp);font-size:clamp(2.8rem,9vw,5.6rem);font-weight:700;line-height:.98;letter-spacing:-.04em;color:#fff;margin-bottom:22px;opacity:0;}
+@media(prefers-reduced-motion:reduce){.hero-title{opacity:1;}}
 .hero-title em{font-style:normal;color:var(--red);}
 .hero-sub{font-size:clamp(.92rem,2vw,1rem);color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:14px;max-width:440px;}
 .hero-cycle-line{font-size:.9rem;color:rgba(255,255,255,.6);margin-bottom:30px;}
@@ -519,7 +524,11 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="hero-kicker ha ha1"><div class="ln" aria-hidden="true"></div><span>Agence web — Béziers & toute la France</span></div>
-    <h1 class="hero-title ha ha2"><span id="heroLigne1" data-editable-zone="hero_titre_ligne1">Votre image en ligne,</span><br><em id="heroAccent" data-editable-zone="hero_titre_accent">on s'occupe de tout.</em></h1>
+    <!-- Pas de classe .ha ici : le titre est animé UNIQUEMENT par SplitText (voir le
+         JS). Cumuler le fadeUp CSS et le reveal GSAP faisait apparaître le titre une
+         première fois, puis SplitText le renvoyait en bas pour le rejouer — c'était
+         ça, le à-coup. -->
+    <h1 class="hero-title"><span id="heroLigne1" data-editable-zone="hero_titre_ligne1">Votre image en ligne,</span><br><em id="heroAccent" data-editable-zone="hero_titre_accent">on s'occupe de tout.</em></h1>
     <p class="hero-sub ha ha3" data-editable-zone="hero_sous_titre">Site web, réseaux sociaux, fiche Google, supports print — une seule équipe, un seul interlocuteur.</p>
     <p class="hero-cycle-line ha ha3">On s'occupe de <span class="titre-cyclique hero-cycle-word" data-mots="[&quot;votre site web.&quot;,&quot;vos flyers.&quot;,&quot;vos réseaux sociaux.&quot;,&quot;votre fiche Google.&quot;]">votre site web.</span></p>
     <div class="hero-cta-row ha ha4">
@@ -1059,6 +1068,20 @@ function annoncerIntro(){
   document.dispatchEvent(new CustomEvent('locweb:intro'));
 }
 
+// .hero-title part de opacity:0 et c'est SplitText qui le révèle. Or GSAP n'est
+// chargé que sur desktop : sur mobile et en reduced-motion, personne ne le
+// révélerait et le message principal du site resterait invisible. On l'affiche donc
+// tout de suite dans ces cas-là, et on ne garde un délai que là où GSAP va
+// effectivement prendre le relais (filet en cas d'échec de chargement).
+(function(){
+  const tactile = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  const gsapPrevu = !reducedMotionMQ && !tactile && window.innerWidth >= 860;
+  setTimeout(function(){
+    const t = document.querySelector('.hero-title');
+    if (t && parseFloat(getComputedStyle(t).opacity) === 0) t.style.opacity = '1';
+  }, gsapPrevu ? 2000 : 0);
+})();
+
 (function(){
   if (reducedMotionMQ) { annoncerIntro(); return; }
   const polices = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
@@ -1276,15 +1299,15 @@ forceRevealEnBasDePage();
         gsap.registerPlugin(ScrollTrigger, window.SplitText);
 
         // Titre du hero : révélation caractère par caractère derrière un masque (les
-        // lettres montent depuis sous leur propre ligne de base). Déclenché après le
-        // rideau + le zoom dans l'écran (~2.5s). Split au moment du déclenchement, pas
-        // au chargement, pour rester synchro avec contenu-loader.js si le texte Supabase
-        // a remplacé le texte par défaut entre-temps.
+        // lettres montent depuis sous leur propre ligne de base). Le titre part de
+        // opacity:0 en CSS et c'est CE code qui le révèle — il est donc le seul à
+        // l'animer (cumuler avec le fadeUp .ha le faisait apparaître puis rejouer).
+        // Split au déclenchement et pas au chargement, pour rester synchro avec
+        // contenu-loader.js si le texte Supabase a remplacé le texte par défaut.
         if (window.SplitText) {
-          // Calé sur la fin du rideau (évènement) plutôt que sur un délai fixe : si le
-          // chargement est plus lent ou plus rapide, le titre arrive toujours juste
-          // après l'ouverture, jamais dans le vide ni derrière le rideau.
+          const titre = document.querySelector('.hero-title');
           const lancerTitre = () => {
+            if (titre) gsap.set(titre, { opacity: 1 });
             [document.getElementById('heroLigne1'), document.getElementById('heroAccent')].forEach((el, i) => {
               if (!el) return;
               // 'words,chars' et pas 'chars' seul : sans conteneur de mot, chaque
@@ -1293,7 +1316,6 @@ forceRevealEnBasDePage();
               const split = new SplitText(el, { type: 'words,chars', wordsClass: 'hero-word', charsClass: 'hero-char' });
               gsap.from(split.chars, {
                 yPercent: 115,
-                opacity: 0,
                 duration: .9,
                 ease: 'expo.out',
                 stagger: .022,
@@ -1302,10 +1324,10 @@ forceRevealEnBasDePage();
               });
             });
           };
-          // Décalé de 0.9s : l'arrivée des points (webgl-backdrop.js) monopolise le
-          // thread principal sur sa première seconde. Lancer le titre dedans le
-          // faisait saccader — et les deux animations se marchaient dessus.
-          const RETARD_TITRE = 0.9;
+          // Décalé de 0.35s après l'ouverture : assez pour ne pas démarrer dans le pic
+          // de charge de l'arrivée des points, assez tôt pour que le premier écran ne
+          // reste pas vide.
+          const RETARD_TITRE = 0.35;
           if (window.__locwebIntroReady) gsap.delayedCall(RETARD_TITRE, lancerTitre);
           else document.addEventListener('locweb:intro', () => gsap.delayedCall(RETARD_TITRE, lancerTitre), { once: true });
         }

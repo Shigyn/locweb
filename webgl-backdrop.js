@@ -137,7 +137,7 @@
   // ré-uploaderait NB*3 flottants au GPU à chaque frame pour rien, ce qui bloque le
   // thread principal et fait saccader les animations DOM (titre du hero).
   const mat = new THREE.PointsMaterial({
-    size: isTouch ? 0.15 : 0.1,
+    size: isTouch ? 0.17 : 0.13,
     map: makeDotTexture(),
     color: COL_OFF.clone(),
     transparent: true,
