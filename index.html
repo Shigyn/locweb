@@ -44,6 +44,15 @@ nav,.nav-mobile-panel{z-index:500;}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 
+/* Focus clavier. Indispensable ici : le curseur natif est masqué (body.cursor-ready
+   pour le curseur personnalisé), donc sans ça un visiteur au clavier n'a aucun
+   repère de position. :focus-visible et non :focus, pour ne pas afficher le contour
+   au clic souris. */
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:3px;}
+.btn-hero-primary:focus-visible,.btn-hero-ghost:focus-visible,.btn-prix:focus-visible,
+.nav-tel:focus-visible,.contact-tel-big:focus-visible,.contact-wa-big:focus-visible,
+.cta-band-btn:focus-visible,.wa:focus-visible{outline-offset:4px;border-radius:100px;}
+
 /* ── GRAIN + PROGRESS ── */
 body::after{content:'';position:fixed;inset:0;z-index:9996;pointer-events:none;opacity:.035;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .scroll-bar{position:fixed;top:0;left:0;height:2.5px;background:var(--red);z-index:9995;width:0%;pointer-events:none;}
