@@ -1297,12 +1297,17 @@ forceRevealEnBasDePage();
                 duration: .9,
                 ease: 'expo.out',
                 stagger: .022,
-                delay: i * 0.18
+                delay: i * 0.18,
+                force3D: true // couche compositeur dédiée : l'anim ne repasse pas par le layout
               });
             });
           };
-          if (window.__locwebIntroReady) gsap.delayedCall(0.25, lancerTitre);
-          else document.addEventListener('locweb:intro', () => gsap.delayedCall(0.25, lancerTitre), { once: true });
+          // Décalé de 0.9s : l'arrivée des points (webgl-backdrop.js) monopolise le
+          // thread principal sur sa première seconde. Lancer le titre dedans le
+          // faisait saccader — et les deux animations se marchaient dessus.
+          const RETARD_TITRE = 0.9;
+          if (window.__locwebIntroReady) gsap.delayedCall(RETARD_TITRE, lancerTitre);
+          else document.addEventListener('locweb:intro', () => gsap.delayedCall(RETARD_TITRE, lancerTitre), { once: true });
         }
 
         // Choré­graphie de grille : remplace le simple fade+translateY de .rv par un vrai

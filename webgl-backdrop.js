@@ -127,20 +127,19 @@
   const COL_OFF = new THREE.Color(0x2e2e36);
 
   const positions = new Float32Array(NB * 3);
-  const colors = new Float32Array(NB * 3);
   positions.set(FAR);
-  for (let i = 0; i < NB; i++) {
-    colors[i * 3] = COL_OFF.r; colors[i * 3 + 1] = COL_OFF.g; colors[i * 3 + 2] = COL_OFF.b;
-  }
 
   const geo = new THREE.BufferGeometry();
   geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
+  // Tous les points partagent la même couleur à un instant donné : elle passe par
+  // la couleur du matériau (3 flottants), pas par un attribut par sommet — sinon on
+  // ré-uploaderait NB*3 flottants au GPU à chaque frame pour rien, ce qui bloque le
+  // thread principal et fait saccader les animations DOM (titre du hero).
   const mat = new THREE.PointsMaterial({
     size: isTouch ? 0.15 : 0.1,
     map: makeDotTexture(),
-    vertexColors: true,
+    color: COL_OFF.clone(),
     transparent: true,
     depthWrite: false,
     blending: THREE.AdditiveBlending,
@@ -192,10 +191,14 @@
   }
 
   const posAttr = geo.getAttribute('position');
-  const colAttr = geo.getAttribute('color');
-  const tmp = new THREE.Color();
   const tmpTeinte = new THREE.Color();
   const smooth = (t) => t * t * (3 - 2 * t);
+
+  // Retard propre à chaque point : les points n'arrivent pas tous en même temps
+  // mais par vagues, ce qui rend l'entrée lisible comme une arrivée plutôt que
+  // comme un simple fondu global.
+  const RETARD = new Float32Array(NB);
+  for (let i = 0; i < NB; i++) RETARD[i] = Math.random() * 0.5;
 
   // L'entrée démarre quand le rideau de chargement s'efface (évènement émis par
   // index.html), pas au chargement du script — sinon elle se jouerait cachée
@@ -225,31 +228,38 @@
 
     // Entrée : 0 = points très loin et invisibles, 1 = position pilotée par le scroll.
     const rawIntro = introStart === null ? 0 : Math.min(1, (performance.now() - introStart) / INTRO_MS);
-    const intro = 1 - Math.pow(1 - rawIntro, 3); // ease-out cubique : arrivée qui décélère
-    mat.opacity = intro;
+    const introFini = rawIntro >= 1;
+    mat.opacity = 1 - Math.pow(1 - rawIntro, 3);
     // Les points s'allument en arrivant : gris éteint -> teinte de la section.
-    tmp.copy(COL_OFF).lerp(tmpTeinte, intro);
+    mat.color.copy(COL_OFF).lerp(tmpTeinte, mat.opacity);
 
     const t = performance.now() * 0.0004;
+    const arr = posAttr.array;
     for (let i = 0; i < NB; i++) {
       const ix = i * 3;
       const sx = from[ix] + (to[ix] - from[ix]) * blend + Math.sin(t + i) * 0.035;
       const sy = from[ix + 1] + (to[ix + 1] - from[ix + 1]) * blend + Math.cos(t * 1.3 + i) * 0.035;
       const sz = from[ix + 2] + (to[ix + 2] - from[ix + 2]) * blend;
-      posAttr.array[ix] = FAR[ix] + (sx - FAR[ix]) * intro;
-      posAttr.array[ix + 1] = FAR[ix + 1] + (sy - FAR[ix + 1]) * intro;
-      posAttr.array[ix + 2] = FAR[ix + 2] + (sz - FAR[ix + 2]) * intro;
-      colAttr.array[ix] = tmp.r; colAttr.array[ix + 1] = tmp.g; colAttr.array[ix + 2] = tmp.b;
+      if (introFini) {
+        arr[ix] = sx; arr[ix + 1] = sy; arr[ix + 2] = sz;
+      } else {
+        // Chaque point démarre à son propre retard, puis rattrape en décélérant.
+        const d = RETARD[i];
+        const p = Math.min(1, Math.max(0, (rawIntro - d) / (1 - d)));
+        const e = 1 - Math.pow(1 - p, 3);
+        arr[ix] = FAR[ix] + (sx - FAR[ix]) * e;
+        arr[ix + 1] = FAR[ix + 1] + (sy - FAR[ix + 1]) * e;
+        arr[ix + 2] = FAR[ix + 2] + (sz - FAR[ix + 2]) * e;
+      }
     }
     posAttr.needsUpdate = true;
-    colAttr.needsUpdate = true;
 
     // Glissement latéral progressif (jamais un saut) vers le côté puis retour.
     esquiveAffichee += (esquiveCible - esquiveAffichee) * 0.05;
     const large = window.innerWidth > 1000;
     points.position.x = esquiveAffichee * (large ? 4.6 : 0);
     // Écran étroit : pas la place de glisser sur le côté, on s'efface en opacité.
-    if (!large) mat.opacity = intro * (1 - esquiveAffichee * 0.75);
+    if (!large) mat.opacity *= (1 - esquiveAffichee * 0.75);
 
     camera.position.x += (mouse.x * 0.7 - camera.position.x) * 0.04;
     camera.position.y += (-mouse.y * 0.45 - camera.position.y) * 0.04;
