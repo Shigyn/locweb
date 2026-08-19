@@ -268,34 +268,50 @@ section{padding:76px 20px;position:relative;}
 .td-sparkles span:nth-child(5){top:50%;left:-2%;animation-delay:1.6s;}
 .td-sparkles span:nth-child(6){top:44%;right:-2%;animation-delay:2s;}
 @keyframes tdSparkle{0%,100%{opacity:0;transform:scale(.4);}50%{opacity:1;transform:scale(1.3);}}
-.td-chrome{display:flex;gap:6px;padding:11px 14px;background:#e9e7e2;}
-.td-chrome span{width:9px;height:9px;border-radius:50%;background:#d3d0c8;}
-.td-viewport{position:relative;height:calc(100% - 33px);overflow:hidden;background:#fff;}
+/* Le mini-site de démo a une VRAIE identité visuelle dès le tier 0 : la grille des
+   tiers dose l'animation, jamais la qualité du design (voir GRILLE-TIERS-ANIMATION.md).
+   Un tier 0 blanc et fade contredirait l'argumentaire. Palette bistrot assumée :
+   crème chaude, terracotta, olive. */
+.td-frame{--td-creme:#FBF3E7; --td-terre:#C0522F; --td-terre-fonce:#8E3A1E;
+          --td-olive:#5F6B43; --td-encre:#33221A; --td-sable:#F0DFC8;}
+.td-chrome{display:flex;gap:6px;padding:11px 14px;background:#EADBC4;}
+.td-chrome span{width:9px;height:9px;border-radius:50%;background:#D2BC9E;}
+.td-viewport{position:relative;height:calc(100% - 33px);overflow:hidden;background:var(--td-creme);}
 .td-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .6s ease;}
 .td-cursor{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--red);opacity:0;pointer-events:none;transform:translate(-50%,-50%);transition:opacity .3s;z-index:5;mix-blend-mode:difference;}
 .td-content{position:relative;height:100%;padding:5% 6%;display:flex;flex-direction:column;gap:4%;}
 
-.td-nav{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;}
-.td-logo{font-weight:800;color:#5b3323;}
-.td-tel{font-weight:700;color:#8a3b1f;background:#f4e3d6;padding:5px 10px;border-radius:100px;}
+/* Bandeau de navigation plein, pas une ligne de texte flottante : c'est ce qui fait
+   qu'un site "sans animation" a quand même l'air construit. */
+.td-nav{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;
+        background:var(--td-encre);margin:-5% -6% 0;padding:3.5% 6%;}
+.td-logo{font-weight:800;color:var(--td-creme);letter-spacing:.01em;}
+.td-tel{font-weight:700;color:var(--td-encre);background:var(--td-creme);padding:5px 10px;border-radius:100px;}
 
-.td-hero{position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:4% 0;}
-.td-title{font-family:var(--disp);font-weight:800;font-size:clamp(1.1rem,3.4vw,1.8rem);line-height:1.05;color:#3a2118;}
-.td-sub{font-size:.72rem;color:#7a6a5f;max-width:280px;}
-.td-cta{align-self:flex-start;margin-top:6px;font-size:.68rem;font-weight:700;background:#a8563d;color:#fff;border:none;padding:9px 16px;border-radius:4px;cursor:default;transition:box-shadow .4s ease;}
+/* Le hero du mini-site pose un aplat terracotta et déborde en pleine largeur du
+   cadre — de la couleur franche, zéro animation : exactement la promesse du tier 0. */
+.td-hero{position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;
+         background:linear-gradient(135deg,var(--td-terre),var(--td-terre-fonce));
+         margin:0 -6%;padding:5% 6%;}
+.td-title{font-family:var(--disp);font-weight:800;font-size:clamp(1.1rem,3.4vw,1.8rem);line-height:1.05;color:var(--td-creme);}
+.td-sub{font-size:.72rem;color:rgba(251,243,231,.82);max-width:280px;}
+.td-cta{align-self:flex-start;margin-top:6px;font-size:.68rem;font-weight:700;background:var(--td-creme);color:var(--td-terre-fonce);border:none;padding:9px 16px;border-radius:4px;cursor:default;transition:box-shadow .4s ease;}
 
 .td-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;}
-.td-card{background:linear-gradient(135deg,#f5ece2,#efe0d2);border-radius:6px;height:34px;}
+.td-card{background:var(--td-sable);border-top:3px solid var(--td-olive);border-radius:6px;height:34px;}
+.td-card:nth-child(2){border-top-color:var(--td-terre);}
+.td-card:nth-child(3){border-top-color:var(--td-encre);}
 
 .td-gallery{display:none;gap:6px;}
-.td-gitem{width:44px;height:26px;border-radius:4px;background:#f5ece2;flex-shrink:0;}
+.td-gitem{width:44px;height:26px;border-radius:4px;background:var(--td-olive);flex-shrink:0;}
+.td-gitem:nth-child(even){background:var(--td-terre);}
 
 .td-caption{max-width:480px;text-align:center;margin-top:26px;color:rgba(255,255,255,.65);font-size:.9rem;min-height:2.6em;}
 .td-dots{display:flex;gap:8px;margin-top:18px;}
 .td-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s,transform .3s;}
 .td-dots span.on{background:var(--red);transform:scale(1.3);}
 
-.td-frame.t1 .td-cta,.td-frame.t2 .td-cta,.td-frame.t3 .td-cta,.td-frame.t4 .td-cta{border-radius:100px;box-shadow:0 6px 16px -4px rgba(168,86,61,.4);}
+.td-frame.t1 .td-cta,.td-frame.t2 .td-cta,.td-frame.t3 .td-cta,.td-frame.t4 .td-cta{border-radius:100px;box-shadow:0 6px 16px -4px rgba(51,34,26,.45);}
 .td-frame.t1 .td-cards,.td-frame.t2 .td-cards,.td-frame.t3 .td-cards,.td-frame.t4 .td-cards{opacity:1;transform:none;}
 .td-frame.t1 .td-card,.td-frame.t2 .td-card,.td-frame.t3 .td-card,.td-frame.t4 .td-card{box-shadow:0 4px 14px -6px rgba(0,0,0,.15);}
 
@@ -310,13 +326,15 @@ section{padding:76px 20px;position:relative;}
 .td-frame.t3 .td-card:nth-child(2),.td-frame.t4 .td-card:nth-child(2){animation-delay:.3s;}
 .td-frame.t3 .td-card:nth-child(3),.td-frame.t4 .td-card:nth-child(3){animation-delay:.6s;}
 
-@keyframes tdPulse{0%,100%{box-shadow:0 6px 16px -4px rgba(168,86,61,.4);}50%{box-shadow:0 6px 24px -2px rgba(232,40,30,.55);}}
+@keyframes tdPulse{0%,100%{box-shadow:0 6px 16px -4px rgba(51,34,26,.45);}50%{box-shadow:0 6px 26px -2px rgba(251,243,231,.75);}}
 @keyframes tdCardGlow{0%,100%{box-shadow:0 4px 14px -6px rgba(0,0,0,.15);}50%{box-shadow:0 6px 18px -4px rgba(201,169,97,.5);}}
 
 .td-frame.t4 .td-canvas{background:conic-gradient(from 0deg at 50% 50%, rgba(232,40,30,.35), rgba(201,169,97,.3), rgba(120,60,255,.28), rgba(255,178,60,.3), rgba(232,40,30,.35));animation:tdSpin 8s linear infinite;}
 .td-frame.t4{box-shadow:0 50px 120px -30px rgba(201,169,97,.45),0 0 0 1px rgba(201,169,97,.3),0 0 60px -10px rgba(232,40,30,.3);}
-.td-frame.t4 .td-title{background:linear-gradient(90deg,#111,var(--red),var(--gold),#111);background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:tdShine 2.4s linear infinite;}
-.td-frame.t4 .td-card{background:linear-gradient(135deg,#f7f1ea,#f0e6da);box-shadow:0 8px 20px -8px rgba(201,169,97,.4);}
+/* Le titre est sur l'aplat terracotta : le dégradé part du crème, pas du noir,
+   sinon les extrémités disparaissent dans le fond. */
+.td-frame.t4 .td-title{background:linear-gradient(90deg,var(--td-creme),var(--gold),#fff,var(--td-creme));background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:tdShine 2.4s linear infinite;}
+.td-frame.t4 .td-card{background:linear-gradient(135deg,#FBF3E7,#F0DFC8);box-shadow:0 8px 20px -8px rgba(201,169,97,.5);}
 
 @keyframes tdDrift{0%,100%{transform:scale(1) translate(0,0) rotate(0deg);}50%{transform:scale(1.12) translate(-2%,1%) rotate(4deg);}}
 @keyframes tdSpin{to{transform:rotate(360deg) scale(1.3);}}
