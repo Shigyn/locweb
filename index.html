@@ -178,8 +178,15 @@ section{padding:76px 20px;position:relative;}
 /* ── LE PROBLÈME ── Trois scènes, pas de pin : la page compte déjà trois sections
    épinglées (galerie, tiers, contact) et en empiler une quatrième se battrait avec
    le scroll natif. Ici c'est du reveal scrubbé, qui anime sans confisquer. */
-#probleme{background:transparent;}
-.pb-scenes{display:flex;flex-direction:column;gap:clamp(56px,9vw,120px);max-width:900px;margin:clamp(40px,6vw,80px) auto 0;}
+#probleme{background:transparent;position:relative;}
+/* Le fil est décoratif : il vit derrière le contenu et ne capte jamais le pointeur.
+   Caché sous 900px — à cette largeur les scènes se tassent et il croiserait le
+   texte au lieu de le longer. */
+.pb-fil{position:absolute;left:50%;transform:translateX(-50%);top:clamp(150px,20vw,240px);
+        width:min(1100px,92vw);height:calc(100% - clamp(230px,26vw,330px));
+        z-index:0;pointer-events:none;color:rgba(232,40,30,.42);overflow:visible;}
+@media(max-width:900px){.pb-fil{display:none;}}
+.pb-scenes{position:relative;z-index:1;display:flex;flex-direction:column;gap:clamp(56px,9vw,120px);max-width:900px;margin:clamp(40px,6vw,80px) auto 0;}
 .pb-scene{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3vw,44px);align-items:start;}
 .pb-heure{font-family:var(--disp);font-weight:800;font-size:clamp(1.1rem,2.4vw,1.7rem);
           color:transparent;-webkit-text-stroke:1.2px rgba(255,255,255,.28);
@@ -187,7 +194,7 @@ section{padding:76px 20px;position:relative;}
 .pb-txt{font-family:var(--disp);font-weight:600;font-size:clamp(1.15rem,2.9vw,2.05rem);
         line-height:1.28;letter-spacing:-.02em;color:rgba(255,255,255,.92);text-wrap:balance;}
 .pb-txt em{font-style:normal;color:var(--red-texte);}
-.pb-chute{max-width:900px;margin:clamp(56px,8vw,100px) auto 0;font-size:clamp(1rem,2vw,1.25rem);
+.pb-chute{position:relative;z-index:1;max-width:900px;margin:clamp(56px,8vw,100px) auto 0;font-size:clamp(1rem,2vw,1.25rem);
           color:rgba(255,255,255,.6);text-align:center;line-height:1.6;}
 .pb-chute strong{display:block;margin-top:6px;color:var(--white);font-weight:700;}
 .pb-cta{display:block;width:max-content;margin:32px auto 0;font-weight:700;font-size:.92rem;
@@ -687,6 +694,16 @@ html.anim-js .hero-title{opacity:0;}
       <h2 class="hsplit">On ne vous trouve pas.<br><em>C'est tout le problème.</em></h2>
     </div>
   </div>
+
+  <!-- Fil conducteur dessiné au scroll : il relie les trois scènes et finit en
+       flèche vers le CTA. SVG inline plutôt qu'une image ou de la 3D — quelques Ko,
+       net à toutes les résolutions, et il reste un dessin statique cohérent si le JS
+       ne s'exécute pas. preserveAspectRatio="none" pour qu'il s'étire sur la hauteur
+       réelle des scènes, quelle que soit la longueur du texte. -->
+  <svg class="pb-fil" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path class="pb-fil-trace" d="M50 0 C 50 90, 12 130, 12 210 C 12 300, 88 330, 88 420 C 88 520, 14 545, 14 640 C 14 740, 50 760, 50 860 L50 962" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"/>
+    <path class="pb-fil-pointe" d="M50 962 L43 946 M50 962 L57 946" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linecap="round"/>
+  </svg>
 
   <div class="pb-scenes">
     <article class="pb-scene">
@@ -1512,6 +1529,31 @@ forceRevealEnBasDePage();
 
           if (window.__locwebIntroReady) gsap.delayedCall(0.3, ouvrirHero);
           else document.addEventListener('locweb:intro', () => gsap.delayedCall(0.3, ouvrirHero), { once: true });
+        }
+
+        // Le fil conducteur se dessine au rythme du scroll. stroke-dashoffset animé
+        // depuis la longueur totale du tracé : c'est la seule façon d'obtenir un vrai
+        // dessin progressif, un simple masque produirait un balayage rectiligne.
+        // getTotalLength() est mesuré ici plutôt qu'en dur — le tracé peut être
+        // retouché sans devoir recalculer la constante à la main.
+        const fil = document.querySelector('.pb-fil');
+        if (fil) {
+          const traces = fil.querySelectorAll('.pb-fil-trace, .pb-fil-pointe');
+          traces.forEach((t) => {
+            const L = t.getTotalLength();
+            gsap.set(t, { strokeDasharray: L, strokeDashoffset: L });
+          });
+          gsap.to(traces, {
+            strokeDashoffset: 0,
+            ease: 'none',
+            stagger: 0.25,
+            scrollTrigger: {
+              trigger: document.getElementById('probleme'),
+              start: 'top 62%',
+              end: 'bottom 78%',
+              scrub: 0.6
+            }
+          });
         }
 
         // Les scènes du problème : chacune se lève à son entrée, avec l'heure qui
