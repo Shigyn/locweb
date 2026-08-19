@@ -215,6 +215,14 @@
   const RETARD = new Float32Array(NB);
   for (let i = 0; i < NB; i++) RETARD[i] = Math.random() * 0.5;
 
+  // Côté d'écartement, tiré une seule fois. Les points posés sur l'axe vertical de
+  // la sphère ont un x quasi nul : sans côté assigné ils ne partiraient d'aucun
+  // bord et resteraient plantés au milieu du couloir. Le tirage est figé ici et pas
+  // recalculé par frame, sinon ils changeraient de camp en permanence et
+  // scintilleraient.
+  const COTE = new Int8Array(NB);
+  for (let i = 0; i < NB; i++) COTE[i] = Math.random() < 0.5 ? -1 : 1;
+
   // L'entrée démarre quand le rideau de chargement s'efface (évènement émis par
   // index.html), pas au chargement du script — sinon elle se jouerait cachée
   // derrière le rideau. Filet de sécurité : on part quand même après 4s si
@@ -259,10 +267,16 @@
     for (let i = 0; i < NB; i++) {
       const ix = i * 3;
       const sx0 = from[ix] + (to[ix] - from[ix]) * blend + Math.sin(t + i) * 0.035;
-      // Le décalage suit le signe de x : les points déjà à gauche partent à gauche,
-      // ceux à droite partent à droite. Un point pile au centre ne bouge presque pas,
-      // ce qui évite un trou net et garde une transition organique.
-      const sx = ecart > 0.001 ? sx0 + Math.sign(sx0) * ecart * Math.min(1, Math.abs(sx0) / 1.2 + 0.25) : sx0;
+      // Écartement en rideau. Le côté suit la position réelle du point dès qu'il est
+      // franchement d'un bord, et bascule sur son côté tiré au départ quand il est
+      // trop près de l'axe pour trancher. La poussée garde un plancher (0,6) : sans
+      // lui les points du milieu restent dans le couloir qu'on cherche à dégager.
+      let sx = sx0;
+      if (ecart > 0.001) {
+        const dist = Math.abs(sx0);
+        const cote = dist > 0.35 ? Math.sign(sx0) : COTE[i];
+        sx = sx0 + cote * ecart * (0.6 + 0.4 * Math.tanh(dist * 3));
+      }
       const sy = from[ix + 1] + (to[ix + 1] - from[ix + 1]) * blend + Math.cos(t * 1.3 + i) * 0.035;
       const sz = from[ix + 2] + (to[ix + 2] - from[ix + 2]) * blend;
       if (introFini) {

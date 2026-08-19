@@ -568,7 +568,10 @@ html.anim-js .zn-ville .zn-pt,html.anim-js .zn-ville .zn-halo{opacity:0;}
 /* ── FOOTER ── */
 /* Contact : le titre grossit puis "explose" contre l'écran avant que le reste arrive. */
 .contact-pin{height:220vh;position:relative;}
-.contact-pin-inner{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+/* Colonne : titre puis boutons, centrés ensemble. C'est ce groupe qui doit rester
+   composé quand on arrive tout en bas de la page. */
+.contact-pin-inner{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(28px,4vw,52px);overflow:hidden;}
+.contact-pin-inner .contact-block{will-change:transform,opacity;}
 #contactTitle{will-change:transform,opacity;backface-visibility:hidden;}
 @media(max-width:760px){.contact-pin{height:180vh;}}
 
@@ -1270,11 +1273,17 @@ html.anim-js .hero-title{opacity:0;}
           <h2 class="hsplit" id="contactTitle">Parlons de<br><em>votre projet.</em></h2>
         </div>
       </div>
+      <!-- Le bloc de contact vit DANS le conteneur épinglé : dehors, une fois le pin
+           relâché, le titre restait collé en haut de l'écran et les boutons tombaient
+           bien plus bas — le dernier écran du site n'avait plus de composition. Ici
+           titre et boutons forment un seul groupe centré. Pas de classe .rv : c'est
+           la progression du pin qui les révèle, et deux systèmes sur le même élément
+           se marcheraient dessus. -->
+      <div class="contact-block">
+        <a href="tel:0745531434" class="contact-tel-big" data-cursor-label="Appeler">📞 07 45 53 14 34</a>
+        <a href="https://wa.me/33745531434" class="contact-wa-big" target="_blank" rel="noopener">💬 Discuter sur WhatsApp</a>
+      </div>
     </div>
-  </div>
-  <div class="contact-block rv">
-    <a href="tel:0745531434" class="contact-tel-big" data-cursor-label="Appeler">📞 07 45 53 14 34</a>
-    <a href="https://wa.me/33745531434" class="contact-wa-big" target="_blank" rel="noopener">💬 Discuter sur WhatsApp</a>
   </div>
 </section>
 
@@ -2000,6 +2009,7 @@ forceRevealEnBasDePage();
       const contactTitle = document.getElementById('contactTitle');
       const contactSecNo = document.getElementById('contactSecNo');
       const contactTag = document.getElementById('contactTag');
+      const contactBlock = document.querySelector('.contact-pin-inner .contact-block');
       let cpTicking = false;
 
       function updateContactPin() {
@@ -2029,6 +2039,15 @@ forceRevealEnBasDePage();
                             : Math.min(1, Math.max(0, (p - 0.62) / 0.14));
           if (contactSecNo) contactSecNo.style.opacity = String(sideOpacity);
           if (contactTag) contactTag.style.opacity = String(sideOpacity);
+
+          // Les boutons montent une fois le titre reposé à sa taille de lecture.
+          // Ils vivent dans le conteneur épinglé, donc ils restent composés avec le
+          // titre au lieu de tomber plus bas dans le flux.
+          if (contactBlock) {
+            const bp = Math.min(1, Math.max(0, (p - 0.6) / 0.18));
+            contactBlock.style.opacity = String(bp);
+            contactBlock.style.transform = 'translateY(' + ((1 - bp) * 26) + 'px)';
+          }
         }
         cpTicking = false;
       }
