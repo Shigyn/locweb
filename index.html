@@ -46,17 +46,25 @@ body::after{content:'';position:fixed;inset:0;z-index:9996;pointer-events:none;o
 .curtain svg{width:52px;height:52px;overflow:visible;}
 .curtain-progress{font-family:var(--disp);font-weight:700;font-size:.82rem;color:rgba(255,255,255,.45);letter-spacing:.04em;font-variant-numeric:tabular-nums;}
 
-/* Séquence d'ouverture : zoom dans l'écran d'un ordinateur, qui devient le site. */
-.zoomintro{position:fixed;inset:0;z-index:9996;background:var(--ink);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;}
-.zoomintro.play{opacity:1;visibility:visible;animation:ziFade 2.4s ease-out .1s forwards;}
-.zoomintro-monitor{position:relative;width:min(30vw,320px);aspect-ratio:16/10;background:#1c1c1e;border-radius:14px;padding:3.2%;box-shadow:0 30px 90px rgba(0,0,0,.55);will-change:transform;}
-.zoomintro.play .zoomintro-monitor{animation:ziZoom 2.4s cubic-bezier(.76,0,.24,1) .1s forwards;}
-.zoomintro-screen{width:100%;height:100%;border-radius:4px;background:radial-gradient(circle at 30% 20%,#1a1a1a,#0a0a0b 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;overflow:hidden;}
-.zoomintro-word{font-family:var(--disp);font-weight:700;font-size:1.5rem;letter-spacing:-.02em;color:#fff;}
-.zoomintro-word em{color:var(--red);font-style:normal;}
-.zoomintro-line{font-size:.5rem;color:rgba(255,255,255,.5);max-width:70%;text-align:center;line-height:1.4;}
-.zoomintro-stand{position:absolute;bottom:calc(50% - min(15vw,160px) - 22px);left:50%;width:56px;height:22px;background:linear-gradient(#26262a,#1c1c1e);clip-path:polygon(28% 0,72% 0,100% 100%,0 100%);transform:translateX(-50%);opacity:.9;}
-.zoomintro.play .zoomintro-stand{animation:ziStandOut .9s ease-out .1s forwards;}
+/* Séquence d'ouverture : zoom très lent dans l'écran d'un vrai MacBook (photo),
+   dont l'écran affiche un clone réduit du vrai hero — jusqu'à plein écran. */
+.zoomintro{position:fixed;inset:0;z-index:9996;background:#e9e6e0;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;overflow:hidden;}
+.zoomintro.play{opacity:1;visibility:visible;animation:ziFade 6.8s ease-in .1s forwards;}
+.zoomintro-laptop{position:relative;width:min(52vw,760px);will-change:transform;transform-origin:49.5% 52%;}
+.zoomintro.play .zoomintro-laptop{animation:ziZoom 6.8s cubic-bezier(.45,0,.4,1) forwards;}
+.zoomintro-photo{display:block;width:100%;height:auto;user-select:none;pointer-events:none;}
+.zoomintro-screen{position:absolute;left:29%;top:34%;width:41%;height:36%;background:var(--ink);overflow:hidden;border-radius:1px;display:flex;flex-direction:column;}
+.zi-nav{display:flex;align-items:center;gap:4px;padding:4% 6%;font-family:var(--disp);font-weight:700;font-size:.62rem;color:#fff;border-bottom:1px solid rgba(255,255,255,.08);}
+.zi-nav span{color:var(--red);}
+.zi-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:6% 7%;gap:5%;}
+.zi-tag{font-size:.32rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700;}
+.zi-title{font-family:var(--disp);font-weight:800;font-size:clamp(.62rem,2.6vw,1rem);line-height:1.05;color:#fff;letter-spacing:-.01em;}
+.zi-title em{color:var(--red);font-style:normal;}
+.zi-sub{font-size:.34rem;color:rgba(255,255,255,.55);max-width:80%;line-height:1.5;}
+.zi-cta{align-self:flex-start;margin-top:4%;font-size:.32rem;font-weight:700;background:var(--red);color:#fff;padding:6% 10%;border-radius:100px;}
+
+@keyframes ziZoom{0%{transform:scale(1);}45%{transform:scale(1);}100%{transform:scale(15.5);}}
+@keyframes ziFade{0%,80%{opacity:1;}100%{opacity:0;}}
 
 @keyframes ziZoom{0%{transform:scale(1);}55%{transform:scale(1);}100%{transform:scale(34);}}
 @keyframes ziFade{0%,78%{opacity:1;}100%{opacity:0;}}
@@ -434,6 +442,13 @@ section{padding:76px 20px;position:relative;}
 .legal-modal-close{position:absolute;top:16px;right:16px;background:var(--paper2);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:.9rem;color:var(--ink);}
 
 /* ── FOOTER ── */
+/* Contact : le titre grossit puis "explose" contre l'écran avant que le reste arrive. */
+.contact-pin{height:220vh;position:relative;}
+.contact-pin-inner{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+#contactTitle{will-change:transform,opacity;backface-visibility:hidden;}
+.contact-flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:50;}
+@media(max-width:760px){.contact-pin{height:180vh;}}
+
 footer{background:var(--ink);padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
 footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 .footer-links{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
@@ -480,13 +495,18 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
      devient le site lui-même — se déclenche au moment précis où le rideau
      ci-dessus s'efface, voir le JS de #curtain. -->
 <div class="zoomintro" id="zoomintro" aria-hidden="true">
-  <div class="zoomintro-monitor">
-    <div class="zoomintro-screen">
-      <span class="zoomintro-word">Loc<em>Web</em></span>
-      <span class="zoomintro-line">Votre image en ligne, on s'occupe de tout.</span>
+  <div class="zoomintro-laptop">
+    <img class="zoomintro-photo" src="https://images.unsplash.com/photo-1597673030062-0a0f1a801a31?w=1600&amp;q=80" alt="" fetchpriority="high">
+    <div class="zoomintro-screen" id="zoomintroScreen">
+      <div class="zi-nav"><span>L</span>ocWeb</div>
+      <div class="zi-body">
+        <span class="zi-tag">Agence web — Béziers</span>
+        <p class="zi-title">Votre image en ligne,<br><em>on s'occupe de tout.</em></p>
+        <p class="zi-sub">Site web, réseaux sociaux, fiche Google, supports print.</p>
+        <span class="zi-cta">Voir nos réalisations →</span>
+      </div>
     </div>
   </div>
-  <div class="zoomintro-stand"></div>
 </div>
 
 <!-- NAV -->
@@ -986,13 +1006,18 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="s-head">
-    <span class="sec-no" aria-hidden="true">04</span>
-    <div>
-      <div class="s-tag rv" style="justify-content:center;">Discutons</div>
-      <h2 class="hsplit">Parlons de<br><em>votre projet.</em></h2>
+  <div class="contact-pin">
+    <div class="contact-pin-inner">
+      <div class="s-head" style="margin-bottom:0;">
+        <span class="sec-no" id="contactSecNo" aria-hidden="true">04</span>
+        <div>
+          <div class="s-tag rv" id="contactTag" style="justify-content:center;">Discutons</div>
+          <h2 class="hsplit" id="contactTitle">Parlons de<br><em>votre projet.</em></h2>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="contact-flash" aria-hidden="true"></div>
   <div class="contact-block rv">
     <a href="tel:0745531434" class="contact-tel-big" data-cursor-label="Appeler">📞 07 45 53 14 34</a>
     <a href="https://wa.me/33745531434" class="contact-wa-big" target="_blank" rel="noopener">💬 Discuter sur WhatsApp</a>
@@ -1002,12 +1027,12 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 </main>
 
 <footer>
-  <a href="#" class="logo-wrap" aria-label="LocWeb — Retour en haut">
+  <a href="#" class="logo-wrap rv" aria-label="LocWeb — Retour en haut">
     <div class="logo-icon" style="width:30px;height:30px;"><svg viewBox="0 0 64 64" fill="none" style="width:30px;height:30px;" aria-hidden="true"><polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text></svg></div>
     <span class="logo-text" style="color:rgba(255,255,255,.8);">Loc<span>Web</span></span>
   </a>
-  <p>Agence web Béziers — Votre image en ligne, on s'occupe de tout · Partout en France</p>
-  <div class="footer-links">
+  <p class="rv">Agence web Béziers — Votre image en ligne, on s'occupe de tout · Partout en France</p>
+  <div class="footer-links rv">
     <button type="button" id="mentionsLink" class="footer-link-btn">Mentions légales</button>
     <button type="button" id="partnerLink" class="footer-link-btn">Devenir partenaire</button>
     <a href="https://locweb.fr">© 2025 LocWeb</a>
@@ -1231,6 +1256,26 @@ const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isInterse
   io.unobserve(e.target);
 }});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
+
+// Filet de sécurité : un élément assis tout en bas de la page (le footer, par
+// exemple) peut ne jamais franchir le seuil de l'observer ci-dessus — le
+// rootMargin négatif rétrécit la zone d'observation de 40px, et si l'élément
+// est collé à la toute fin du document, il n'y a plus de scroll disponible
+// pour le pousser dans cette zone réduite. Bug réel rencontré et vérifié en
+// test (footer resté à opacity:0 indéfiniment). Dès qu'on approche du bas de
+// page, on révèle directement ce qu'il reste, sans attendre l'observer.
+let boTicking = false;
+function forceRevealEnBasDePage() {
+  const prochePied = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 80;
+  if (prochePied) {
+    document.querySelectorAll('.rv:not(.on),.rvl:not(.on),.rvs:not(.on),.hsplit:not(.on)').forEach(el => el.classList.add('on'));
+  }
+  boTicking = false;
+}
+window.addEventListener('scroll', () => {
+  if (!boTicking) { boTicking = true; requestAnimationFrame(forceRevealEnBasDePage); }
+}, { passive: true });
+forceRevealEnBasDePage();
 </script>
 <script>
   window.LOCWEB_CONFIG = {
@@ -1258,9 +1303,100 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
     });
   }
 
-  if (window.HeroBg) {
-    HeroBg.initMetaballes('hero-canvas', { bg: '#0d0d0f', c: ['232,40,30','120,40,35','70,40,42'] });
-  }
+  // Fond du hero : champ de particules qui réagit vraiment au curseur (répulsion,
+  // liens qui se dessinent entre points proches et vers la souris elle-même) —
+  // remplace l'ancien fond ambiant (metaballes, purement décoratif) par quelque
+  // chose que le visiteur peut réellement "toucher" du curseur. Vanilla/canvas,
+  // aucune dépendance à hero-backgrounds.js pour cet effet précis.
+  (function initHeroParticles() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas || reduced) return;
+    const ctx = canvas.getContext('2d');
+    const heroEl = document.getElementById('hero');
+    let w, h, dpr;
+    let particules = [];
+    const mouse = { x: -9999, y: -9999, actif: false };
+    const COULEURS = ['232,40,30', '201,169,97', '245,245,245'];
+    const NB = isMobile ? 34 : 70;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = heroEl.offsetWidth; h = heroEl.offsetHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function init() {
+      resize();
+      particules = Array.from({ length: NB }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25,
+        r: 1.2 + Math.random() * 1.6,
+        c: COULEURS[Math.floor(Math.random() * COULEURS.length)]
+      }));
+    }
+    function tick() {
+      ctx.clearRect(0, 0, w, h);
+      particules.forEach((p) => {
+        // Répulsion douce autour du curseur : le champ "s'écarte" au passage.
+        if (mouse.actif) {
+          const dx = p.x - mouse.x, dy = p.y - mouse.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 140 && dist > 0.01) {
+            const force = (140 - dist) / 140 * 0.9;
+            p.vx += (dx / dist) * force * 0.06;
+            p.vy += (dy / dist) * force * 0.06;
+          }
+        }
+        p.x += p.vx; p.y += p.vy;
+        p.vx *= .985; p.vy *= .985;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+        p.x = Math.max(0, Math.min(w, p.x)); p.y = Math.max(0, Math.min(h, p.y));
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.c},.75)`;
+        ctx.fill();
+      });
+      // Liens entre particules proches + vers la souris (constellation).
+      for (let i = 0; i < particules.length; i++) {
+        for (let j = i + 1; j < particules.length; j++) {
+          const a = particules[i], b = particules[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 110) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = `rgba(232,40,30,${(1 - d / 110) * .18})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+        if (mouse.actif) {
+          const p = particules[i];
+          const d = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+          if (d < 160) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(201,169,97,${(1 - d / 160) * .35})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    init();
+    requestAnimationFrame(tick);
+    window.addEventListener('resize', () => { resize(); }, { passive: true });
+    if (!isTouch) {
+      heroEl.addEventListener('mousemove', (e) => {
+        const r = heroEl.getBoundingClientRect();
+        mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.actif = true;
+      });
+      heroEl.addEventListener('mouseleave', () => { mouse.actif = false; });
+    }
+  })();
 
   // Section "Échelle des tiers" : curseur mini-mockup, actif dès qu'on a une vraie souris,
   // indépendant du chargement GSAP (ne dépend que du CSS ci-dessous pour son opacité).
@@ -1467,7 +1603,7 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
         const x = e.clientX - r.left - r.width / 2;
         const y = e.clientY - r.top - r.height / 2;
         if (window.gsap) {
-          if (!qx) { qx = gsap.quickTo(el, 'x', { duration: .5, ease: 'power3' }); qy = gsap.quickTo(el, 'y', { duration: .5, ease: 'power3' }); }
+          if (!qx) { qx = gsap.quickTo(el, 'x', { duration: .7, ease: 'power3.out' }); qy = gsap.quickTo(el, 'y', { duration: .7, ease: 'power3.out' }); }
           qx(x * 0.18); qy(y * 0.35);
         } else {
           el.style.transition = 'transform 0s';
@@ -1510,6 +1646,56 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
       computeHeroScroll();
     }
 
+    // Contact : le titre grossit avec le scroll puis "explose" (pic d'échelle + flash
+    // blanc) avant de laisser place au bloc téléphone/WhatsApp puis au footer. Vanilla,
+    // rAF-throttled, actif desktop ET mobile (contrairement aux effets GSAP, gated
+    // ailleurs derrière !isMobile — celui-ci doit rester fluide partout).
+    const contactPin = document.querySelector('.contact-pin');
+    if (contactPin) {
+      const contactTitle = document.getElementById('contactTitle');
+      const contactSecNo = document.getElementById('contactSecNo');
+      const contactTag = document.getElementById('contactTag');
+      const contactFlash = document.querySelector('.contact-flash');
+      let cpTicking = false;
+
+      function updateContactPin() {
+        const rect = contactPin.getBoundingClientRect();
+        const scrollable = contactPin.offsetHeight - window.innerHeight;
+        if (scrollable > 0 && contactTitle) {
+          const p = Math.min(1, Math.max(0, -rect.top / scrollable));
+          const growP = Math.min(1, p / 0.55);
+          const easedGrow = 1 - Math.pow(1 - growP, 2); // ease-out quadratique, plus fluide qu'un scrub linéaire
+          let scale = 1 + easedGrow * 2.2;
+          let opacity = 1;
+
+          if (p >= 0.55 && p < 0.72) {
+            const explodeP = (p - 0.55) / 0.17;
+            scale = 3.2 + explodeP * 3.4;
+            opacity = 1 - explodeP;
+            if (contactFlash) contactFlash.style.opacity = String(Math.sin(explodeP * Math.PI) * 0.75);
+          } else if (p >= 0.72) {
+            opacity = 0;
+            if (contactFlash) contactFlash.style.opacity = '0';
+          } else if (contactFlash) {
+            contactFlash.style.opacity = '0';
+          }
+
+          contactTitle.style.transform = `scale(${scale})`;
+          contactTitle.style.opacity = String(opacity);
+          const fadeEarly = String(Math.max(0, 1 - p / 0.3));
+          if (contactSecNo) contactSecNo.style.opacity = fadeEarly;
+          if (contactTag) contactTag.style.opacity = fadeEarly;
+        }
+        cpTicking = false;
+      }
+      function onContactScroll() {
+        if (!cpTicking) { cpTicking = true; requestAnimationFrame(updateContactPin); }
+      }
+      window.addEventListener('scroll', onContactScroll, { passive: true });
+      window.addEventListener('resize', onContactScroll);
+      updateContactPin();
+    }
+
     if (heroGlow && heroSection && !isTouch) {
       heroSection.addEventListener('mousemove', (e) => {
         const r = heroSection.getBoundingClientRect();
@@ -1534,8 +1720,8 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
         if (window.gsap) {
           if (!qrx) {
             gsap.set(card, { transformPerspective: 1000 });
-            qrx = gsap.quickTo(card, 'rotateX', { duration: .5, ease: 'power3' });
-            qry = gsap.quickTo(card, 'rotateY', { duration: .5, ease: 'power3' });
+            qrx = gsap.quickTo(card, 'rotateX', { duration: .7, ease: 'power3.out' });
+            qry = gsap.quickTo(card, 'rotateY', { duration: .7, ease: 'power3.out' });
           }
           qrx((0.5 - py) * 8); qry((px - 0.5) * 8);
         } else {

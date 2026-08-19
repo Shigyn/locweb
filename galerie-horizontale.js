@@ -34,28 +34,37 @@
         return;
       }
 
+      // Sur mobile, un flick au doigt couvre la même distance de scroll bien plus vite
+      // qu'un geste de molette souris — même piste (en vh) = translation ressentie comme
+      // trop rapide. On allonge simplement la piste sur mobile (plus de scroll vertical
+      // nécessaire pour la même traversée horizontale), sans toucher au comportement desktop.
+      if (window.innerWidth < 760) {
+        const hauteurActuelle = parseFloat(wrap.style.height) || 200;
+        wrap.style.height = (hauteurActuelle * 1.65) + 'vh';
+      }
+
       track.style.backfaceVisibility = 'hidden';
 
-      let ticking = false;
-      function update() {
+      // Lissage (lerp) : la position affichée rattrape la cible au lieu de s'y caler
+      // au pixel près à chaque frame — c'est ce petit temps de retard qui donne la
+      // sensation de fluidité "premium" plutôt qu'un défilement mécanique 1:1. Boucle
+      // rAF continue (plutôt que déclenchée par scroll) : nécessaire pour que le
+      // rattrapage se termine même une fois le scroll arrêté.
+      let current = 0;
+      function frame() {
         const rect = wrap.getBoundingClientRect();
         const scrollable = wrap.offsetHeight - window.innerHeight;
         if (scrollable > 0) {
           const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
           const maxTranslate = track.scrollWidth - sticky.offsetWidth;
-          track.style.transform = `translate3d(-${progress * maxTranslate}px,0,0)`;
+          const target = progress * maxTranslate;
+          current += (target - current) * 0.14;
+          if (Math.abs(target - current) < 0.05) current = target;
+          track.style.transform = `translate3d(-${current}px,0,0)`;
         }
-        ticking = false;
+        requestAnimationFrame(frame);
       }
-      function onScroll() {
-        if (!ticking) {
-          ticking = true;
-          requestAnimationFrame(update);
-        }
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
-      update();
+      requestAnimationFrame(frame);
     });
   }
 
