@@ -434,7 +434,6 @@ section{padding:76px 20px;position:relative;}
 .contact-pin{height:220vh;position:relative;}
 .contact-pin-inner{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 #contactTitle{will-change:transform,opacity;backface-visibility:hidden;}
-.contact-flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:50;}
 @media(max-width:760px){.contact-pin{height:180vh;}}
 
 footer{background:rgba(13,13,15,.85);backdrop-filter:blur(8px);border-top:1px solid var(--line-dark);padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
@@ -995,7 +994,6 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
       </div>
     </div>
   </div>
-  <div class="contact-flash" aria-hidden="true"></div>
   <div class="contact-block rv">
     <a href="tel:0745531434" class="contact-tel-big" data-cursor-label="Appeler">📞 07 45 53 14 34</a>
     <a href="https://wa.me/33745531434" class="contact-wa-big" target="_blank" rel="noopener">💬 Discuter sur WhatsApp</a>
@@ -1049,10 +1047,19 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 <script>
 const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Signale que le rideau de chargement a fini de s'effacer : c'est à ce moment que
+// l'animation d'entrée du décor WebGL doit démarrer (sinon elle se jouerait cachée
+// derrière le rideau). Voir webgl-backdrop.js.
+function annoncerIntro(){
+  window.__locwebIntroReady = true;
+  document.dispatchEvent(new CustomEvent('locweb:intro'));
+}
+
 (function(){
   const curtain = document.getElementById('curtain');
   if (!curtain || reducedMotionMQ) {
     if (curtain) curtain.remove();
+    annoncerIntro();
     return;
   }
   requestAnimationFrame(() => curtain.classList.add('show'));
@@ -1100,6 +1107,7 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
       setTimeout(() => {
         curtain.classList.remove('show');
         curtain.classList.add('hide');
+        annoncerIntro();
         setTimeout(() => curtain.remove(), 950);
       }, 300);
     }
@@ -1321,7 +1329,10 @@ forceRevealEnBasDePage();
         // au chargement, pour rester synchro avec contenu-loader.js si le texte Supabase
         // a remplacé le texte par défaut entre-temps.
         if (window.SplitText) {
-          gsap.delayedCall(2.5, () => {
+          // Calé sur la fin du rideau (évènement) plutôt que sur un délai fixe : si le
+          // chargement est plus lent ou plus rapide, le titre arrive toujours juste
+          // après l'ouverture, jamais dans le vide ni derrière le rideau.
+          const lancerTitre = () => {
             [document.getElementById('heroLigne1'), document.getElementById('heroAccent')].forEach((el, i) => {
               if (!el) return;
               // 'words,chars' et pas 'chars' seul : sans conteneur de mot, chaque
@@ -1337,7 +1348,9 @@ forceRevealEnBasDePage();
                 delay: i * 0.18
               });
             });
-          });
+          };
+          if (window.__locwebIntroReady) gsap.delayedCall(0.25, lancerTitre);
+          else document.addEventListener('locweb:intro', () => gsap.delayedCall(0.25, lancerTitre), { once: true });
         }
 
         // Choré­graphie de grille : remplace le simple fade+translateY de .rv par un vrai
@@ -1541,16 +1554,16 @@ forceRevealEnBasDePage();
       computeHeroScroll();
     }
 
-    // Contact : le titre grossit avec le scroll puis revient s'écraser contre l'écran
-    // (impact + flash), avant de laisser place au bloc téléphone/WhatsApp puis au
-    // footer. Vanilla, rAF-throttled, actif desktop ET mobile (contrairement aux effets
+    // Contact : le titre s'approche (il grossit avec le scroll) puis se repose à sa
+    // taille de lecture — et il y RESTE, lisible, au-dessus du bloc téléphone. Pas de
+    // flash ni de disparition : le dernier écran du site doit toujours dire de quoi il
+    // s'agit. Vanilla, rAF-throttled, actif desktop ET mobile (contrairement aux effets
     // GSAP, gated ailleurs derrière !isMobile — celui-ci doit rester fluide partout).
     const contactPin = document.querySelector('.contact-pin');
     if (contactPin) {
       const contactTitle = document.getElementById('contactTitle');
       const contactSecNo = document.getElementById('contactSecNo');
       const contactTag = document.getElementById('contactTag');
-      const contactFlash = document.querySelector('.contact-flash');
       let cpTicking = false;
 
       function updateContactPin() {
@@ -1558,36 +1571,28 @@ forceRevealEnBasDePage();
         const scrollable = contactPin.offsetHeight - window.innerHeight;
         if (scrollable > 0 && contactTitle) {
           const p = Math.min(1, Math.max(0, -rect.top / scrollable));
-          const growP = Math.min(1, p / 0.5);
-          const easedGrow = 1 - Math.pow(1 - growP, 2); // ease-out quadratique, plus fluide qu'un scrub linéaire
-          let scaleX = 1 + easedGrow * 2.4;
-          let scaleY = scaleX;
-          let opacity = 1;
+          let scale;
 
-          if (p >= 0.5 && p < 0.62) {
-            // Retombe et s'écrase contre l'écran : la hauteur se compresse plus vite que
-            // la largeur (effet "impact"), avec un flash au moment du choc.
-            const crashP = (p - 0.5) / 0.12;
-            scaleX = 3.4 - crashP * 2.75;
-            scaleY = 3.4 - crashP * 3.05;
-            if (contactFlash) contactFlash.style.opacity = String(Math.sin(crashP * Math.PI) * .8);
-          } else if (p >= 0.62 && p < 0.78) {
-            const fadeP = (p - 0.62) / 0.16;
-            scaleX = 0.65; scaleY = 0.35;
-            opacity = 1 - fadeP;
-            if (contactFlash) contactFlash.style.opacity = '0';
-          } else if (p >= 0.78) {
-            opacity = 0;
-            if (contactFlash) contactFlash.style.opacity = '0';
-          } else if (contactFlash) {
-            contactFlash.style.opacity = '0';
+          if (p < 0.5) {
+            // Approche : ease-out quadratique, plus fluide qu'un scrub linéaire.
+            const growP = p / 0.5;
+            scale = 1 + (1 - Math.pow(1 - growP, 2)) * 1.6;
+          } else if (p < 0.72) {
+            // Retour à la taille de lecture, avec une légère décélération.
+            const backP = (p - 0.5) / 0.22;
+            scale = 2.6 - (1 - Math.pow(1 - backP, 3)) * 1.6;
+          } else {
+            scale = 1;
           }
 
-          contactTitle.style.transform = `scale(${scaleX}, ${scaleY})`;
-          contactTitle.style.opacity = String(opacity);
-          const fadeEarly = String(Math.max(0, 1 - p / 0.3));
-          if (contactSecNo) contactSecNo.style.opacity = fadeEarly;
-          if (contactTag) contactTag.style.opacity = fadeEarly;
+          contactTitle.style.transform = `scale(${scale})`;
+          contactTitle.style.opacity = '1';
+          // Le numéro de section et le tag s'effacent pendant l'approche (ils
+          // parasiteraient le zoom) et reviennent une fois le titre reposé.
+          const sideOpacity = p < 0.5 ? Math.max(0, 1 - p / 0.3)
+                            : Math.min(1, Math.max(0, (p - 0.62) / 0.14));
+          if (contactSecNo) contactSecNo.style.opacity = String(sideOpacity);
+          if (contactTag) contactTag.style.opacity = String(sideOpacity);
         }
         cpTicking = false;
       }

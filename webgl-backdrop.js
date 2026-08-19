@@ -108,6 +108,12 @@
   }
 
   const SHAPES = [shapeScatter(), shapeSphere(), shapeRing(), shapeGrid(), shapeColumn()];
+
+  // Animation d'entrée du site : les points arrivent de très loin et s'allument.
+  // C'est la métaphore du site (une présence en ligne qui se forme) jouée comme
+  // ouverture, plutôt qu'une séquence décorative plaquée devant la page.
+  const FAR = new Float32Array(NB * 3);
+  for (let i = 0; i < NB * 3; i++) FAR[i] = SHAPES[0][i] * 4.5;
   const TINTS = [
     new THREE.Color(0x3a3a42), // éteint
     new THREE.Color(0xE8281E), // rouge LocWeb — le signal
@@ -169,6 +175,17 @@
   const tmp = new THREE.Color();
   const smooth = (t) => t * t * (3 - 2 * t);
 
+  // L'entrée démarre quand le rideau de chargement s'efface (évènement émis par
+  // index.html), pas au chargement du script — sinon elle se jouerait cachée
+  // derrière le rideau. Filet de sécurité : on part quand même après 4s si
+  // l'évènement n'arrive jamais.
+  const INTRO_MS = 1900;
+  let introStart = null;
+  function beginIntro() { if (introStart === null) introStart = performance.now(); }
+  if (window.__locwebIntroReady) beginIntro();
+  else document.addEventListener('locweb:intro', beginIntro, { once: true });
+  setTimeout(beginIntro, 4000);
+
   // La position affichée rattrape la cible au lieu de s'y caler au pixel près :
   // c'est ce léger retard qui donne la fluidité "premium" plutôt qu'un
   // défilement mécanique 1:1 (même principe que l'ancienne galerie horizontale).
@@ -184,12 +201,20 @@
     const from = SHAPES[idx], to = SHAPES[idx + 1];
     tmp.copy(TINTS[idx]).lerp(TINTS[idx + 1], blend);
 
+    // Entrée : 0 = points très loin et invisibles, 1 = position pilotée par le scroll.
+    const rawIntro = introStart === null ? 0 : Math.min(1, (performance.now() - introStart) / INTRO_MS);
+    const intro = 1 - Math.pow(1 - rawIntro, 3); // ease-out cubique : arrivée qui décélère
+    mat.opacity = intro;
+
     const t = performance.now() * 0.0004;
     for (let i = 0; i < NB; i++) {
       const ix = i * 3;
-      posAttr.array[ix] = from[ix] + (to[ix] - from[ix]) * blend + Math.sin(t + i) * 0.035;
-      posAttr.array[ix + 1] = from[ix + 1] + (to[ix + 1] - from[ix + 1]) * blend + Math.cos(t * 1.3 + i) * 0.035;
-      posAttr.array[ix + 2] = from[ix + 2] + (to[ix + 2] - from[ix + 2]) * blend;
+      const sx = from[ix] + (to[ix] - from[ix]) * blend + Math.sin(t + i) * 0.035;
+      const sy = from[ix + 1] + (to[ix + 1] - from[ix + 1]) * blend + Math.cos(t * 1.3 + i) * 0.035;
+      const sz = from[ix + 2] + (to[ix + 2] - from[ix + 2]) * blend;
+      posAttr.array[ix] = FAR[ix] + (sx - FAR[ix]) * intro;
+      posAttr.array[ix + 1] = FAR[ix + 1] + (sy - FAR[ix + 1]) * intro;
+      posAttr.array[ix + 2] = FAR[ix + 2] + (sz - FAR[ix + 2]) * intro;
       colAttr.array[ix] = tmp.r; colAttr.array[ix + 1] = tmp.g; colAttr.array[ix + 2] = tmp.b;
     }
     posAttr.needsUpdate = true;
