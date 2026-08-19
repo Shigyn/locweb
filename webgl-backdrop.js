@@ -165,21 +165,36 @@
     progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
   }
 
-  // Esquive : quand une section porteuse d'un gros module opaque (marquée
-  // data-backdrop-dodge dans le HTML) occupe l'écran, le décor glisse sur le côté
-  // au lieu de rester caché derrière, puis revient au centre. Déclaratif pour
-  // pouvoir l'appliquer à d'autres sections sans retoucher ce fichier.
+  // Esquive : quand une section porteuse d'un gros module opaque occupe l'écran, le
+  // décor glisse sur le côté au lieu de rester caché derrière, puis revient au centre
+  // dès qu'elle est passée. Déclaratif et DIRECTIONNEL :
+  //   data-backdrop-dodge="left"   -> glisse à gauche
+  //   data-backdrop-dodge="right"  -> glisse à droite (valeur par défaut)
+  //   data-backdrop-dodge="split"  -> le nuage s'écarte des DEUX côtés et dégage le
+  //                                   centre, où vit le texte
+  // Une section sans l'attribut ramène naturellement le décor au centre, il n'y a
+  // rien à déclarer pour cela.
   const esquiveurs = Array.from(document.querySelectorAll('[data-backdrop-dodge]'));
-  let esquiveCible = 0, esquiveAffichee = 0;
+  let esquiveCible = 0, esquiveAffichee = 0;   // décalage latéral signé
+  let ecartCible = 0, ecartAffiche = 0;        // écartement symétrique
   function updateEsquive() {
     const vh = window.innerHeight || 1;
-    let d = 0;
+    let d = 0, e = 0, meilleure = 0;
     for (const el of esquiveurs) {
       const r = el.getBoundingClientRect();
       const recouvrement = Math.min(r.bottom, vh) - Math.max(r.top, 0);
-      if (recouvrement > 0) d = Math.max(d, Math.min(1, recouvrement / vh));
+      if (recouvrement <= 0) continue;
+      const part = Math.min(1, recouvrement / vh);
+      // On ne garde que la section qui couvre le plus d'écran : sans ça, deux
+      // sections voisines se disputeraient le décor pendant leur transition.
+      if (part <= meilleure) continue;
+      meilleure = part;
+      const mode = (el.getAttribute('data-backdrop-dodge') || 'right').toLowerCase();
+      if (mode === 'split') { e = part; d = 0; }
+      else { d = part * (mode === 'left' ? -1 : 1); e = 0; }
     }
     esquiveCible = d;
+    ecartCible = e;
   }
 
   const mouse = { x: 0, y: 0 };
@@ -233,11 +248,21 @@
     // Les points s'allument en arrivant : gris éteint -> teinte de la section.
     mat.color.copy(COL_OFF).lerp(tmpTeinte, mat.opacity);
 
+    // Écartement : chaque point est repoussé du côté où il se trouve déjà, donc le
+    // nuage s'ouvre en deux et dégage le centre. Calculé ici pour être appliqué
+    // dans la boucle ci-dessous, au même titre que la position.
+    ecartAffiche += (ecartCible - ecartAffiche) * 0.05;
+    const ecart = ecartAffiche * (window.innerWidth > 1000 ? 3.6 : 1.8);
+
     const t = performance.now() * 0.0004;
     const arr = posAttr.array;
     for (let i = 0; i < NB; i++) {
       const ix = i * 3;
-      const sx = from[ix] + (to[ix] - from[ix]) * blend + Math.sin(t + i) * 0.035;
+      const sx0 = from[ix] + (to[ix] - from[ix]) * blend + Math.sin(t + i) * 0.035;
+      // Le décalage suit le signe de x : les points déjà à gauche partent à gauche,
+      // ceux à droite partent à droite. Un point pile au centre ne bouge presque pas,
+      // ce qui évite un trou net et garde une transition organique.
+      const sx = ecart > 0.001 ? sx0 + Math.sign(sx0) * ecart * Math.min(1, Math.abs(sx0) / 1.2 + 0.25) : sx0;
       const sy = from[ix + 1] + (to[ix + 1] - from[ix + 1]) * blend + Math.cos(t * 1.3 + i) * 0.035;
       const sz = from[ix + 2] + (to[ix + 2] - from[ix + 2]) * blend;
       if (introFini) {
@@ -259,7 +284,9 @@
     const large = window.innerWidth > 1000;
     points.position.x = esquiveAffichee * (large ? 4.6 : 0);
     // Écran étroit : pas la place de glisser sur le côté, on s'efface en opacité.
-    if (!large) mat.opacity *= (1 - esquiveAffichee * 0.75);
+    // Math.abs car le décalage est signé depuis le mode directionnel — sans lui, une
+    // esquive vers la gauche augmenterait l'opacité au lieu de la réduire.
+    if (!large) mat.opacity *= (1 - Math.abs(esquiveAffichee) * 0.75);
 
     camera.position.x += (mouse.x * 0.7 - camera.position.x) * 0.04;
     camera.position.y += (-mouse.y * 0.45 - camera.position.y) * 0.04;
