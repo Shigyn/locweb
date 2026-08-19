@@ -37,7 +37,15 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --ink:#0d0d0f; --paper:#f7f5f0; --paper2:#efece4; --white:#fff;
-  --red:#E8281E; --red-soft:rgba(232,40,30,.1); --line:rgba(13,13,15,.1); --line-dark:rgba(255,255,255,.12);
+  /* Un seul rouge ne peut pas servir les deux usages : mesuré sur le site, #E8281E
+     donne 4,42 en blanc-sur-rouge (boutons) et 4,39 en rouge-sur-sombre (texte),
+     tous deux sous le seuil AA de 4,5 — et les corriger tire dans des directions
+     opposées. D'où trois jetons : la marque, la surface de bouton (plus foncée),
+     le texte sur fond sombre (plus clair). */
+  --red:#E8281E;
+  --red-surface:#E32519;  /* fond de bouton : blanc dessus = 4,62 */
+  --red-texte:#FF3A2E;    /* texte rouge sur --ink = 5,45 */
+  --red-soft:rgba(232,40,30,.1); --line:rgba(13,13,15,.1); --line-dark:rgba(255,255,255,.12);
   --gold:#C9A961; --gold-soft:rgba(201,169,97,.14);
   --sans:'Plus Jakarta Sans',sans-serif; --disp:'Bricolage Grotesque',sans-serif;
 }
@@ -86,7 +94,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 20px;d
 .logo-icon{width:34px;height:34px;}
 .logo-icon svg{width:34px;height:34px;}
 .logo-text{font-family:var(--disp);font-weight:700;font-size:1.05rem;color:var(--white);letter-spacing:-.02em;}
-.logo-text span{color:var(--red);}
+.logo-text span{color:var(--red-texte);}
 .nav-right{display:flex;align-items:center;gap:26px;}
 .nav-links{display:flex;gap:26px;list-style:none;}
 .nav-links a{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.78);text-decoration:none;position:relative;padding-bottom:2px;}
@@ -132,9 +140,9 @@ h2 em{font-style:normal;color:var(--red);}
 .hero-title em{font-style:normal;color:var(--red);}
 .hero-sub{font-size:clamp(.92rem,2vw,1rem);color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:14px;max-width:440px;}
 .hero-cycle-line{font-size:.9rem;color:rgba(255,255,255,.6);margin-bottom:30px;}
-.hero-cycle-word{color:var(--red);font-weight:700;display:inline-block;}
+.hero-cycle-word{color:var(--red-texte);font-weight:700;display:inline-block;}
 .hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;}
-.btn-hero-primary{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:white;font-weight:700;font-size:.92rem;padding:16px 28px;border-radius:100px;text-decoration:none;box-shadow:0 8px 28px rgba(232,40,30,.3);transition:transform .2s;}
+.btn-hero-primary{display:inline-flex;align-items:center;gap:10px;background:var(--red-surface);color:white;font-weight:700;font-size:.92rem;padding:16px 28px;border-radius:100px;text-decoration:none;box-shadow:0 8px 28px rgba(232,40,30,.3);transition:transform .2s;}
 .btn-hero-ghost{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25);font-weight:600;font-size:.92rem;padding:16px 28px;border-radius:100px;text-decoration:none;transition:border-color .2s,color .2s;}
 .btn-hero-ghost:hover{border-color:var(--red);color:var(--red);}
 .scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;}
@@ -159,7 +167,7 @@ h2 em{font-style:normal;color:var(--red);}
 .cta-band{background:rgba(13,13,15,.5);backdrop-filter:blur(4px);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:22px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
 .cta-band-text{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.7);}
 .cta-band-text strong{color:white;}
-.cta-band-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:white;font-weight:700;font-size:.82rem;padding:11px 20px;border-radius:100px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .25s cubic-bezier(.16,1,.3,1);}
+.cta-band-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red-surface);color:white;font-weight:700;font-size:.82rem;padding:11px 20px;border-radius:100px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .25s cubic-bezier(.16,1,.3,1);}
 .cta-band-btn:hover{opacity:.88;}
 @media(min-width:768px){.cta-band{padding:22px 5vw;}}
 
@@ -243,7 +251,7 @@ section{padding:76px 20px;position:relative;}
 .real-toggle{position:sticky;top:78px;z-index:50;display:inline-flex;flex-wrap:wrap;gap:4px;background:rgba(20,20,22,.75);backdrop-filter:blur(10px);padding:5px;border-radius:100px;margin:26px 20px 0;box-shadow:0 10px 30px rgba(0,0,0,.3);}
 @media(min-width:768px){.real-toggle{margin-left:5vw;}}
 .real-toggle-btn{background:none;border:none;font-family:var(--sans);font-size:.8rem;font-weight:700;color:rgba(255,255,255,.5);padding:9px 20px;border-radius:100px;cursor:pointer;transition:background .2s,color .2s;}
-.real-toggle-btn.active{background:var(--red);color:#fff;}
+.real-toggle-btn.active{background:var(--red-surface);color:#fff;}
 .real-toggle-btn:not(.active):hover{color:rgba(255,255,255,.8);}
 .real-item[data-set]{display:none;}
 .real-item[data-set].set-active{display:flex;}
@@ -263,7 +271,7 @@ section{padding:76px 20px;position:relative;}
 .td-intro{max-width:520px;color:rgba(255,255,255,.6);font-size:1rem;margin:-8px 0 48px;line-height:1.7;}
 .td-pin{position:relative;max-width:1500px;margin:0 auto;display:flex;flex-direction:column;align-items:center;padding:20px 0;}
 .td-stage-label{display:flex;align-items:baseline;gap:12px;margin-bottom:22px;}
-.td-num{font-family:var(--disp);font-weight:800;font-size:clamp(.78rem,1.1vw,1rem);letter-spacing:.14em;text-transform:uppercase;color:var(--red);}
+.td-num{font-family:var(--disp);font-weight:800;font-size:clamp(.78rem,1.1vw,1rem);letter-spacing:.14em;text-transform:uppercase;color:var(--red-texte);}
 .td-name{font-family:var(--disp);font-weight:700;font-size:clamp(1.3rem,2.6vw,2.1rem);color:var(--white);}
 
 .td-pin{padding:40px 0 20px;}
@@ -450,7 +458,7 @@ section{padding:76px 20px;position:relative;}
 .tarif-card .prix-list{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:auto;flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 4px 0 0;border-top:1px solid rgba(255,255,255,.1);}
 .tarif-card .prix-list li{font-size:.85rem;display:flex;gap:11px;align-items:flex-start;line-height:1.45;color:rgba(255,255,255,.78);}
 .tarif-card .prix-list li::before{content:'→';color:var(--red);flex-shrink:0;font-weight:700;}
-.tarif-card .btn-prix{display:block;flex-shrink:0;text-align:center;background:var(--red);color:white;font-weight:800;font-size:.92rem;padding:16px;border-radius:100px;text-decoration:none;margin-top:22px;transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s;box-shadow:0 8px 24px -8px rgba(232,40,30,.6);}
+.tarif-card .btn-prix{display:block;flex-shrink:0;text-align:center;background:var(--red-surface);color:white;font-weight:800;font-size:.92rem;padding:16px;border-radius:100px;text-decoration:none;margin-top:22px;transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s;box-shadow:0 8px 24px -8px rgba(232,40,30,.6);}
 .tarif-card .btn-prix:hover{transform:translateY(-2px);box-shadow:0 14px 32px -8px rgba(232,40,30,.8);}
 .tarif-card .prix-note{flex-shrink:0;font-size:.72rem;color:rgba(255,255,255,.42);margin-top:14px;text-align:center;line-height:1.6;}
 /* Les options ne sont pas des alternatives au site mais des compléments : poids
