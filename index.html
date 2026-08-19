@@ -111,7 +111,8 @@ h2 em{font-style:normal;color:var(--red);}
 @media(max-width:600px){.s-head{gap:12px;}.sec-no{font-size:2rem;}}
 
 /* ── HERO (minimal) ── */
-#hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:84px 20px 40px;position:relative;overflow:hidden;background:var(--ink);}
+#hero,.zi-screen-clone{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:84px 20px 40px;position:relative;overflow:hidden;background:var(--ink);}
+.zi-screen-clone canvas,.zi-screen-clone .wa,.zi-screen-clone .scroll-cue{display:none;}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;will-change:transform;}
 .hero-vignette{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 100%,rgba(13,13,15,.8) 0%,rgba(13,13,15,.2) 45%,transparent 70%);will-change:transform;}
 .hero-glow{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .5s;background:radial-gradient(circle 420px at var(--gx,50%) var(--gy,40%),rgba(232,40,30,.35),transparent 70%);mix-blend-mode:screen;}
