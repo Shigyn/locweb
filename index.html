@@ -1430,6 +1430,61 @@ forceRevealEnBasDePage();
           else document.addEventListener('locweb:intro', () => gsap.delayedCall(0.3, ouvrirHero), { once: true });
         }
 
+        // Galerie des réalisations : la piste est tirée par ScrollTrigger (pin + scrub)
+        // au lieu du rAF+lerp maison. Le scrub cale le déplacement sur la barre de
+        // défilement elle-même, ce que l'interpolation manuelle ne pouvait qu'imiter.
+        // Chaque carte est mise en scène à son passage devant le centre : c'est la
+        // profondeur, pas le défilement, qui fait la différence de perception.
+        const galWrap = document.querySelector('#realisations .galerie-horiz-wrap');
+        const galSticky = galWrap && galWrap.querySelector('.galerie-horiz-sticky');
+        const galTrack = galWrap && galWrap.querySelector('.galerie-horiz-track');
+        if (galWrap && galSticky && galTrack) {
+          // Le pin de ScrollTrigger remplace le position:sticky du CSS ; les laisser
+          // tous les deux ferait doubler le décalage.
+          galSticky.style.position = 'relative';
+          // Et la hauteur de piste en vh du CSS (prévue pour le script maison)
+          // s'ajouterait à la distance générée par le pin : on obtiendrait du scroll
+          // mort après la dernière carte.
+          galWrap.style.height = 'auto';
+
+          const distance = () => Math.max(0, galTrack.scrollWidth - galSticky.offsetWidth);
+
+          const stGal = gsap.to(galTrack, {
+            x: () => -distance(),
+            ease: 'none',
+            scrollTrigger: {
+              trigger: galWrap,
+              start: 'top top',
+              end: () => '+=' + distance(),
+              pin: galSticky,
+              scrub: 1,          // 1 et non true : léger retard, c'est ce qui donne la fluidité
+              invalidateOnRefresh: true,
+              anticipatePin: 1
+            }
+          });
+
+          // Mise en scène au passage : la carte au centre est nette et au premier plan,
+          // celles qui s'éloignent reculent légèrement. containerAnimation permet à
+          // ScrollTrigger de suivre un élément qui bouge horizontalement — sans lui,
+          // un trigger vertical ne détecte jamais l'entrée d'une carte épinglée (piège
+          // déjà rencontré : cartes bloquées à opacity 0).
+          gsap.utils.toArray('#realisations .real-item').forEach((carte) => {
+            gsap.fromTo(carte,
+              { scale: .9, opacity: .55 },
+              {
+                scale: 1, opacity: 1, ease: 'none',
+                scrollTrigger: {
+                  trigger: carte,
+                  containerAnimation: stGal,
+                  start: 'left 85%',
+                  end: 'center 55%',
+                  scrub: true
+                }
+              }
+            );
+          });
+        }
+
         // Choré­graphie de grille : remplace le simple fade+translateY de .rv par un vrai
         // stagger GSAP (échelle + légère rotation + flou d'entrée). Volontairement PAS
         // appliqué à .tarif-card/.real-item : ces cards vivent dans une galerie sticky à
@@ -1568,7 +1623,11 @@ forceRevealEnBasDePage();
     TitreCyclique.init('.titre-cyclique', { intervalle: 2800 });
   }
 
-  if (window.GalerieHorizontale) {
+  // Galerie des réalisations : pilotée par ScrollTrigger quand GSAP est là (desktop),
+  // sinon repli sur le script maison. Voir la mise en place ScrollTrigger plus bas —
+  // ce drapeau évite que les deux moteurs pilotent la même piste en même temps.
+  const galerieGSAP = !reduced && !isMobile;
+  if (window.GalerieHorizontale && !galerieGSAP) {
     // Uniquement les réalisations : les tarifs sont passés en grille comparable
     // (voir #tarifs), une galerie horizontale y empêchait la comparaison.
     GalerieHorizontale.init('#realisations .galerie-horiz-wrap');
@@ -1585,7 +1644,11 @@ forceRevealEnBasDePage();
   // GSAP n'est pas encore prêt (quickTo vérifié à chaque mousemove, pas seulement au
   // setup, pour ne pas dépendre de l'ordre de chargement).
   if (!reduced && !isTouch) {
-    document.querySelectorAll('.btn-hero-primary, .btn-prix, .cta-band-btn, .contact-tel-big').forEach((el) => {
+    // Un seul élément magnétique par écran : appliqué aux 4 boutons de tarifs, qui
+    // sont désormais tous visibles ensemble dans la grille, l'effet devenait du bruit
+    // et diluait ce qu'il est censé souligner. Réservé au CTA focal du hero et à
+    // celui du contact — un par écran, jamais deux.
+    document.querySelectorAll('.btn-hero-primary, .contact-tel-big').forEach((el) => {
       let qx, qy;
       el.addEventListener('mousemove', (e) => {
         const r = el.getBoundingClientRect();
