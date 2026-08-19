@@ -31,7 +31,16 @@
   --sans:'Plus Jakarta Sans',sans-serif; --disp:'Bricolage Grotesque',sans-serif;
 }
 html{scroll-behavior:auto;}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;overflow-x:hidden;}
+/* Un seul sol sombre sur toute la page : le décor WebGL fixe reste visible d'un bout
+   à l'autre, et le site se traverse comme un espace continu au lieu d'une pile de
+   blocs clairs/sombres alternés. Les sections qui ont besoin d'une surface (lecture
+   dense : tarifs, support) posent un voile translucide, pas un aplat opaque. */
+body{background:var(--ink);color:var(--white);font-family:var(--sans);line-height:1.6;overflow-x:hidden;}
+/* Le contenu passe systématiquement au-dessus du canvas de fond (z-index 0). */
+nav,.nav-mobile-panel,main,footer,.mq,.cta-band,.wa,.scroll-bar{position:relative;z-index:1;}
+nav,.nav-mobile-panel{z-index:500;}
+.wa{z-index:400;}
+.scroll-bar{z-index:9995;}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 
@@ -47,24 +56,9 @@ body::after{content:'';position:fixed;inset:0;z-index:9996;pointer-events:none;o
 .curtain svg{width:52px;height:52px;overflow:visible;}
 .curtain-progress{font-family:var(--disp);font-weight:700;font-size:.82rem;color:rgba(255,255,255,.45);letter-spacing:.04em;font-variant-numeric:tabular-nums;}
 
-/* Séquence d'ouverture : laptop dessiné en SVG (fond noir, découpe nette — plus de
-   photo), zoom scrollé jusqu'à ce que l'écran corresponde EXACTEMENT (calculé en JS,
-   pas estimé) au vrai hero qui apparaît juste en dessous dans le flux normal. */
-#zi-section{background:var(--ink);}
-.zi-pin{height:340vh;position:relative;}
-.zi-stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--ink);}
-.zi-laptop{position:relative;width:min(46vw,640px);will-change:transform;transform-origin:50% 46.4%;}
-.zi-svg{display:block;width:100%;height:auto;}
-.zi-screen{position:absolute;left:3.5%;top:4.8%;width:93%;height:83.2%;overflow:hidden;background:var(--ink);}
-.zi-screen-clone{transform-origin:top left;pointer-events:none;}
-.zi-caption{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);font-family:var(--disp);font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);white-space:nowrap;}
-@media(max-width:760px){.zi-pin{height:280vh;}}
-
-@keyframes ziZoom{0%{transform:scale(1);}55%{transform:scale(1);}100%{transform:scale(34);}}
-@keyframes ziFade{0%,78%{opacity:1;}100%{opacity:0;}}
-@keyframes ziStandOut{0%{opacity:.9;}100%{opacity:0;}}
-
-@media(prefers-reduced-motion: reduce){#zi-section{display:none;}}
+/* Décor WebGL : fixe derrière toute la page, jamais dans le flux. Le contenu passe
+   au-dessus via z-index — voir la règle sur section/nav/footer plus bas. */
+#backdrop-canvas{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none;}
 
 /* ── CURSEUR : TRAÎNÉE ── */
 .cursor-trail-dot{position:fixed;top:0;left:0;border-radius:50%;background:var(--red);pointer-events:none;z-index:9994;}
@@ -75,47 +69,45 @@ body.cursor-ready{cursor:none;}
 body.cursor-ready a,body.cursor-ready button,body.cursor-ready input{cursor:none;}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(247,245,240,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
-.logo-wrap{text-decoration:none;display:flex;align-items:center;gap:10px;flex-shrink:0;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(13,13,15,.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-dark);}
+.logo-wrap{text-decoration:none;color:var(--white);display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .logo-icon{width:34px;height:34px;}
 .logo-icon svg{width:34px;height:34px;}
-.logo-text{font-family:var(--disp);font-weight:700;font-size:1.05rem;color:var(--ink);letter-spacing:-.02em;}
+.logo-text{font-family:var(--disp);font-weight:700;font-size:1.05rem;color:var(--white);letter-spacing:-.02em;}
 .logo-text span{color:var(--red);}
 .nav-right{display:flex;align-items:center;gap:26px;}
 .nav-links{display:flex;gap:26px;list-style:none;}
-.nav-links a{font-size:.82rem;font-weight:600;color:var(--ink);text-decoration:none;position:relative;padding-bottom:2px;}
+.nav-links a{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.78);text-decoration:none;position:relative;padding-bottom:2px;}
 .nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:var(--red);transition:width .25s cubic-bezier(.16,1,.3,1);}
 .nav-links a:hover::after{width:100%;}
-.nav-tel{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:white;font-weight:700;font-size:.76rem;padding:9px 16px;border-radius:100px;text-decoration:none;transition:background .2s;flex-shrink:0;}
+.nav-tel{display:inline-flex;align-items:center;gap:7px;background:var(--white);color:var(--ink);font-weight:700;font-size:.76rem;padding:9px 16px;border-radius:100px;text-decoration:none;transition:background .2s,color .2s;flex-shrink:0;}
+.nav-tel:hover{color:var(--white);}
 .nav-tel:hover{background:var(--red);}
 .nav-burger{display:none;background:none;border:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px 4px;}
-.nav-burger span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .25s;}
+.nav-burger span{width:22px;height:2px;background:var(--white);border-radius:2px;transition:transform .25s,opacity .25s;}
 .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .nav-burger.open span:nth-child(2){opacity:0;}
 .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.nav-mobile-panel{position:fixed;top:64px;left:0;right:0;z-index:499;background:var(--paper);max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.16,1,.3,1);}
-.nav-mobile-panel.open{max-height:260px;border-bottom:1px solid var(--line);}
+.nav-mobile-panel{position:fixed;top:64px;left:0;right:0;z-index:499;background:rgba(13,13,15,.94);backdrop-filter:blur(16px);max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.16,1,.3,1);}
+.nav-mobile-panel.open{max-height:260px;border-bottom:1px solid var(--line-dark);}
 .nav-mobile-panel-inner{display:flex;flex-direction:column;padding:8px 20px 20px;}
-.nav-mobile-panel a{font-family:var(--disp);font-size:1.1rem;font-weight:600;color:var(--ink);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--line);}
+.nav-mobile-panel a{font-family:var(--disp);font-size:1.1rem;font-weight:600;color:var(--white);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--line-dark);}
 @media(min-width:768px){nav{padding:0 5vw;}}
 @media(max-width:860px){.nav-links{display:none;}.nav-burger{display:flex;}}
 @media(min-width:861px){.nav-mobile-panel{display:none;}}
 
 /* ── HEADER DE SECTION ÉDITORIAL ── */
 .s-head{display:flex;gap:18px;align-items:flex-start;margin-bottom:32px;}
-.sec-no{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,6vw,3.6rem);line-height:.8;flex-shrink:0;color:transparent;-webkit-text-stroke:1.5px rgba(232,40,30,.4);letter-spacing:-.03em;}
-#realisations .sec-no,#contact .sec-no{-webkit-text-stroke-color:rgba(255,255,255,.3);}
+.sec-no{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,6vw,3.6rem);line-height:.8;flex-shrink:0;color:transparent;-webkit-text-stroke:1.5px rgba(232,40,30,.55);letter-spacing:-.03em;}
 .s-tag{font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:var(--red);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-weight:700;}
-h2{font-family:var(--disp);font-size:clamp(1.9rem,5.2vw,3.4rem);font-weight:700;line-height:1.04;letter-spacing:-.03em;margin-bottom:8px;color:var(--ink);}
+h2{font-family:var(--disp);font-size:clamp(1.9rem,5.2vw,3.4rem);font-weight:700;line-height:1.04;letter-spacing:-.03em;margin-bottom:8px;color:var(--white);}
 h2 em{font-style:normal;color:var(--red);}
-.s-sub{font-size:.92rem;color:#7a7770;line-height:1.75;max-width:480px;}
+.s-sub{font-size:.92rem;color:rgba(255,255,255,.6);line-height:1.75;max-width:480px;}
 @media(max-width:600px){.s-head{gap:12px;}.sec-no{font-size:2rem;}}
 
 /* ── HERO (minimal) ── */
-#hero,.zi-screen-clone{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:84px 20px 40px;position:relative;overflow:hidden;background:var(--ink);}
-.zi-screen-clone canvas,.zi-screen-clone .wa,.zi-screen-clone .scroll-cue{display:none;}
-#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;will-change:transform;}
-.hero-vignette{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 100%,rgba(13,13,15,.8) 0%,rgba(13,13,15,.2) 45%,transparent 70%);will-change:transform;}
+#hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:84px 20px 40px;position:relative;background:transparent;}
+.hero-vignette{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(140% 100% at 25% 50%,rgba(13,13,15,.92) 0%,rgba(13,13,15,.55) 40%,transparent 72%);will-change:transform;}
 .hero-glow{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .5s;background:radial-gradient(circle 420px at var(--gx,50%) var(--gy,40%),rgba(232,40,30,.35),transparent 70%);mix-blend-mode:screen;}
 #hero:hover .hero-glow{opacity:1;}
 .hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;width:100%;will-change:transform;}
@@ -138,19 +130,19 @@ h2 em{font-style:normal;color:var(--red);}
 @media(max-width:600px){.scroll-cue{display:none;}}
 
 /* ── MARQUEE ── */
-.mq{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 0;background:var(--paper);}
+.mq{overflow:hidden;border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:11px 0;background:rgba(13,13,15,.6);backdrop-filter:blur(6px);}
 .mq-track{display:flex;width:max-content;animation:mq 50s linear infinite;}
-.mq-item{font-family:var(--disp);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#a8a49a;padding:0 20px;white-space:nowrap;font-weight:600;}
+.mq-item{font-family:var(--disp);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.42);padding:0 20px;white-space:nowrap;font-weight:600;}
 .mq-item .dot{color:var(--red);margin-left:20px;}
 @keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .mq2{border-top:none;padding:9px 0;}
 .mq2 .mq-track{animation-name:mq2;animation-duration:38s;}
-.mq2 .mq-item{color:rgba(232,40,30,.6);font-weight:700;}
-.mq2 .mq-item .dot{color:rgba(13,13,15,.25);}
+.mq2 .mq-item{color:rgba(232,40,30,.75);font-weight:700;}
+.mq2 .mq-item .dot{color:rgba(255,255,255,.2);}
 @keyframes mq2{from{transform:translateX(-50%);}to{transform:translateX(0);}}
 
 /* ── CTA BAND ── */
-.cta-band{background:var(--ink);padding:22px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+.cta-band{background:rgba(13,13,15,.7);backdrop-filter:blur(6px);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:22px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
 .cta-band-text{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.7);}
 .cta-band-text strong{color:white;}
 .cta-band-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:white;font-weight:700;font-size:.82rem;padding:11px 20px;border-radius:100px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .25s cubic-bezier(.16,1,.3,1);}
@@ -162,8 +154,7 @@ section{padding:76px 20px;position:relative;}
 @media(min-width:768px){section{padding:96px 5vw;}}
 
 /* ── RÉALISATIONS : GALERIE HORIZONTALE (hero-only, animée, native) ── */
-#realisations{background:var(--ink);}
-#realisations h2{color:#fff;}
+#realisations{background:transparent;}
 .galerie-horiz-wrap{height:280vh;position:relative;}
 .galerie-horiz-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;}
 .galerie-horiz-track{display:flex;gap:24px;will-change:transform;padding:0 20px;}
@@ -254,8 +245,7 @@ section{padding:76px 20px;position:relative;}
 
 /* SUPPORT INCLUS : bandeau compact avant les tarifs, mockup fidèle de l'éditeur réel */
 /* ÉCHELLE DES TIERS */
-#tiers-demo{background:var(--ink);padding:100px 5vw 120px;color:var(--white);}
-#tiers-demo .sec-no{-webkit-text-stroke-color:rgba(255,255,255,.3);}
+#tiers-demo{background:transparent;padding:100px 5vw 120px;color:var(--white);}
 .td-intro{max-width:520px;color:rgba(255,255,255,.6);font-size:1rem;margin:-8px 0 48px;line-height:1.7;}
 .td-pin{position:relative;max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;padding:20px 0;}
 .td-stage-label{display:flex;align-items:baseline;gap:12px;margin-bottom:22px;}
@@ -346,7 +336,9 @@ section{padding:76px 20px;position:relative;}
   .td-cards{grid-template-columns:repeat(2,1fr);}
 }
 
-#support-inclus{background:var(--paper);padding:64px 0;}
+/* Lecture dense : voile translucide (le décor reste perceptible derrière) plutôt
+   qu'un aplat opaque qui redécouperait la page en blocs. */
+#support-inclus{background:rgba(13,13,15,.78);backdrop-filter:blur(8px);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:64px 0;}
 .support-wrap{max-width:1180px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
 @media(min-width:768px){.support-wrap{padding:0 5vw;}}
 @media(max-width:900px){.support-wrap{grid-template-columns:1fr;gap:36px;}}
@@ -354,13 +346,13 @@ section{padding:76px 20px;position:relative;}
 .support-tag{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:14px;}
 .support-title{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.15;margin:0 0 14px;}
 .support-title em{font-style:normal;color:var(--red);}
-.support-intro{font-size:.94rem;color:#6b6862;max-width:440px;margin-bottom:26px;line-height:1.6;}
+.support-intro{font-size:.94rem;color:rgba(255,255,255,.6);max-width:440px;margin-bottom:26px;line-height:1.6;}
 
 .support-points{display:flex;flex-direction:column;gap:20px;}
 .support-point{display:flex;gap:16px;align-items:flex-start;}
-.support-point-ico{font-size:1.2rem;flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:10px;border:1px solid rgba(0,0,0,.06);}
-.support-point strong{display:block;font-size:.92rem;font-weight:700;margin-bottom:3px;}
-.support-point p{font-size:.83rem;color:#6b6862;line-height:1.55;max-width:380px;margin:0;}
+.support-point-ico{font-size:1.2rem;flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border-radius:10px;border:1px solid var(--line-dark);}
+.support-point strong{display:block;font-size:.92rem;font-weight:700;margin-bottom:3px;color:var(--white);}
+.support-point p{font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.55;max-width:380px;margin:0;}
 
 .support-shot{position:relative;}
 .editor-mock{border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.16);border:1px solid rgba(0,0,0,.06);background:#f7f6f3;font-family:'Inter',sans-serif;transform:rotate(-1.1deg);max-width:400px;margin:0 auto;}
@@ -382,7 +374,7 @@ section{padding:76px 20px;position:relative;}
 @media(max-width:900px){.editor-mock{transform:none;}}
 
 /* ── TARIFS : même traitement galerie que réalisations ── */
-#tarifs{background:var(--paper2);}
+#tarifs{background:rgba(13,13,15,.78);backdrop-filter:blur(8px);}
 #tarifs .galerie-horiz-sticky{background:transparent;}
 .tarif-card{flex:0 0 min(88vw,440px);height:min(78vh,660px);background:var(--ink);border-radius:24px;padding:44px 36px;box-shadow:0 30px 80px rgba(13,13,15,.25);display:flex;flex-direction:column;color:#fff;position:relative;will-change:transform;overflow:hidden;}
 .tarif-card::after{content:'';position:absolute;inset:0;z-index:6;border-radius:inherit;background:radial-gradient(circle 220px at var(--mx,50%) var(--my,50%),rgba(255,255,255,.12),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;}
@@ -411,12 +403,12 @@ section{padding:76px 20px;position:relative;}
 .tarif-badge-top.ultra{background:rgba(232,40,30,.18);color:#ff6b5f;}
 .tarif-badge-top.ecom{background:rgba(37,150,190,.18);color:#6bc4e8;}
 .tarif-badge-top.premium{background:rgba(242,201,76,.16);color:#f2c94c;}
-.prix-footnote{font-style:italic;font-size:.78rem;color:#8a8780;margin-top:22px;padding:0 20px;}
+.prix-footnote{font-style:italic;font-size:.78rem;color:rgba(255,255,255,.42);margin-top:22px;padding:0 20px;}
 @media(min-width:768px){.prix-footnote{padding:0 5vw;}}
 
 /* ── CONTACT (sans formulaire) ── */
-#contact{background:var(--ink);text-align:center;}
-#contact h2{color:#fff;margin-bottom:32px;}
+#contact{background:transparent;text-align:center;}
+#contact h2{margin-bottom:32px;}
 #contact .s-head{flex-direction:column;align-items:center;}
 .contact-block{display:flex;flex-direction:column;align-items:center;gap:16px;}
 .contact-tel-big{display:inline-flex;align-items:center;gap:14px;background:var(--red);color:white;font-family:var(--disp);font-weight:700;font-size:clamp(1.4rem,4vw,2rem);padding:22px 40px;border-radius:100px;text-decoration:none;box-shadow:0 12px 40px rgba(232,40,30,.35);transition:transform .2s;}
@@ -444,7 +436,7 @@ section{padding:76px 20px;position:relative;}
 .contact-flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:50;}
 @media(max-width:760px){.contact-pin{height:180vh;}}
 
-footer{background:var(--ink);padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
+footer{background:rgba(13,13,15,.85);backdrop-filter:blur(8px);border-top:1px solid var(--line-dark);padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
 footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 .footer-links{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
 .footer-links a{font-size:.68rem;color:rgba(255,255,255,.32);text-decoration:none;transition:color .2s;}
@@ -490,26 +482,10 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   </div>
 </div>
 
-<!-- Séquence d'ouverture : la caméra "entre" dans l'écran d'un ordinateur, qui
-     devient le site lui-même — se déclenche au moment précis où le rideau
-     ci-dessus s'efface, voir le JS de #curtain. -->
-<!-- Intro : laptop dessiné (SVG, fond noir), zoom au scroll jusqu'à révéler le vrai hero -->
-<section id="zi-section" aria-hidden="true">
-  <div class="zi-pin">
-    <div class="zi-stage">
-      <div class="zi-laptop" id="ziLaptop">
-        <svg class="zi-svg" viewBox="0 0 400 250" aria-hidden="true">
-          <rect x="168" y="222" width="64" height="6" rx="3" fill="#242424"/>
-          <path d="M60 228 L340 228 L360 240 L40 240 Z" fill="#1a1a1a"/>
-          <rect x="8" y="6" width="384" height="220" rx="12" fill="#1c1c1e"/>
-          <rect x="14" y="12" width="372" height="208" rx="7" fill="#050505"/>
-        </svg>
-        <div class="zi-screen" id="ziScreen"></div>
-        <span class="zi-caption">Scrollez pour entrer</span>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- Décor WebGL de toute la page (webgl-backdrop.js) : fixe derrière le contenu,
+     il se re-forme au fil du scroll. C'est lui qui tient la continuité visuelle
+     du site, à la place de l'ancienne intro "zoom dans l'écran d'un laptop". -->
+<canvas id="backdrop-canvas" aria-hidden="true"></canvas>
 
 <!-- NAV -->
 <nav role="navigation" aria-label="Navigation principale">
@@ -1288,7 +1264,7 @@ forceRevealEnBasDePage();
 <script src="galerie-horizontale.js"></script>
 <script src="lenis.min.js"></script>
 <script src="three.min.js" defer></script>
-<script src="webgl-hero.js" defer></script>
+<script src="webgl-backdrop.js" defer></script>
 <script>
 (function(){
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1622,59 +1598,6 @@ forceRevealEnBasDePage();
       window.addEventListener('scroll', onContactScroll, { passive: true });
       window.addEventListener('resize', onContactScroll);
       updateContactPin();
-    }
-
-    // Intro laptop : le scale du groupe est calculé une fois (mesures réelles, pas
-    // estimées) pour qu'à progress=1 l'écran (via le clone du vrai hero, mêmes
-    // dimensions/police) corresponde exactement au hero réel qui suit dans le flux —
-    // "millimétré" par construction, pas par réglage à l'œil.
-    const ziPin = document.querySelector('.zi-pin');
-    const ziLaptop = document.getElementById('ziLaptop');
-    const ziScreen = document.getElementById('ziScreen');
-    const realHero = document.getElementById('hero');
-    if (ziPin && ziLaptop && ziScreen && realHero) {
-      const clone = realHero.cloneNode(true);
-      clone.removeAttribute('id');
-      clone.classList.add('zi-screen-clone');
-      clone.querySelectorAll('[id]').forEach((elC) => elC.removeAttribute('id'));
-      ziScreen.appendChild(clone);
-
-      let finalScale = 10;
-      let ztTicking = false;
-
-      function calibrer() {
-        const laptopW = ziLaptop.getBoundingClientRect().width;
-        const screenW = ziScreen.getBoundingClientRect().width;
-        const heroW = realHero.getBoundingClientRect().width || window.innerWidth;
-        // Le clone doit tenir dans le petit écran : facteur de réduction fixe.
-        const fitScale = screenW / heroW;
-        clone.style.transform = `scale(${fitScale})`;
-        clone.style.width = heroW + 'px';
-        clone.style.height = realHero.getBoundingClientRect().height + 'px';
-        // À progress=1, le groupe doit être assez grand pour que l'écran (petit,
-        // fitScale du hero) redevienne exactement la taille réelle du viewport.
-        finalScale = window.innerWidth / screenW;
-      }
-
-      function updateZi() {
-        const rect = ziPin.getBoundingClientRect();
-        const scrollable = ziPin.offsetHeight - window.innerHeight;
-        if (scrollable > 0) {
-          const p = Math.min(1, Math.max(0, -rect.top / scrollable));
-          const eased = 1 - Math.pow(1 - p, 2);
-          const scale = 1 + eased * (finalScale - 1);
-          ziLaptop.style.transform = `scale(${scale})`;
-          ziLaptop.style.opacity = p > 0.92 ? String(1 - (p - 0.92) / 0.08) : '1';
-        }
-        ztTicking = false;
-      }
-      function onZiScroll() {
-        if (!ztTicking) { ztTicking = true; requestAnimationFrame(updateZi); }
-      }
-      calibrer();
-      window.addEventListener('resize', () => { calibrer(); updateZi(); });
-      window.addEventListener('scroll', onZiScroll, { passive: true });
-      updateZi();
     }
 
     if (heroGlow && heroSection && !isTouch) {
