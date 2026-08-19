@@ -46,31 +46,24 @@ body::after{content:'';position:fixed;inset:0;z-index:9996;pointer-events:none;o
 .curtain svg{width:52px;height:52px;overflow:visible;}
 .curtain-progress{font-family:var(--disp);font-weight:700;font-size:.82rem;color:rgba(255,255,255,.45);letter-spacing:.04em;font-variant-numeric:tabular-nums;}
 
-/* Séquence d'ouverture : zoom très lent dans l'écran d'un vrai MacBook (photo),
-   dont l'écran affiche un clone réduit du vrai hero — jusqu'à plein écran. */
-.zoomintro{position:fixed;inset:0;z-index:9996;background:#e9e6e0;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;overflow:hidden;}
-.zoomintro.play{opacity:1;visibility:visible;animation:ziFade 6.8s ease-in .1s forwards;}
-.zoomintro-laptop{position:relative;width:min(52vw,760px);will-change:transform;transform-origin:49.5% 52%;}
-.zoomintro.play .zoomintro-laptop{animation:ziZoom 6.8s cubic-bezier(.45,0,.4,1) forwards;}
-.zoomintro-photo{display:block;width:100%;height:auto;user-select:none;pointer-events:none;}
-.zoomintro-screen{position:absolute;left:29%;top:34%;width:41%;height:36%;background:var(--ink);overflow:hidden;border-radius:1px;display:flex;flex-direction:column;}
-.zi-nav{display:flex;align-items:center;gap:4px;padding:4% 6%;font-family:var(--disp);font-weight:700;font-size:.62rem;color:#fff;border-bottom:1px solid rgba(255,255,255,.08);}
-.zi-nav span{color:var(--red);}
-.zi-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:6% 7%;gap:5%;}
-.zi-tag{font-size:.32rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700;}
-.zi-title{font-family:var(--disp);font-weight:800;font-size:clamp(.62rem,2.6vw,1rem);line-height:1.05;color:#fff;letter-spacing:-.01em;}
-.zi-title em{color:var(--red);font-style:normal;}
-.zi-sub{font-size:.34rem;color:rgba(255,255,255,.55);max-width:80%;line-height:1.5;}
-.zi-cta{align-self:flex-start;margin-top:4%;font-size:.32rem;font-weight:700;background:var(--red);color:#fff;padding:6% 10%;border-radius:100px;}
-
-@keyframes ziZoom{0%{transform:scale(1);}45%{transform:scale(1);}100%{transform:scale(15.5);}}
-@keyframes ziFade{0%,80%{opacity:1;}100%{opacity:0;}}
+/* Séquence d'ouverture : laptop dessiné en SVG (fond noir, découpe nette — plus de
+   photo), zoom scrollé jusqu'à ce que l'écran corresponde EXACTEMENT (calculé en JS,
+   pas estimé) au vrai hero qui apparaît juste en dessous dans le flux normal. */
+#zi-section{background:var(--ink);}
+.zi-pin{height:340vh;position:relative;}
+.zi-stage{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--ink);}
+.zi-laptop{position:relative;width:min(46vw,640px);will-change:transform;transform-origin:50% 46.4%;}
+.zi-svg{display:block;width:100%;height:auto;}
+.zi-screen{position:absolute;left:3.5%;top:4.8%;width:93%;height:83.2%;overflow:hidden;background:var(--ink);}
+.zi-screen-clone{transform-origin:top left;pointer-events:none;}
+.zi-caption{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);font-family:var(--disp);font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);white-space:nowrap;}
+@media(max-width:760px){.zi-pin{height:280vh;}}
 
 @keyframes ziZoom{0%{transform:scale(1);}55%{transform:scale(1);}100%{transform:scale(34);}}
 @keyframes ziFade{0%,78%{opacity:1;}100%{opacity:0;}}
 @keyframes ziStandOut{0%{opacity:.9;}100%{opacity:0;}}
 
-@media(prefers-reduced-motion: reduce){.zoomintro{display:none;}}
+@media(prefers-reduced-motion: reduce){#zi-section{display:none;}}
 
 /* ── CURSEUR : TRAÎNÉE ── */
 .cursor-trail-dot{position:fixed;top:0;left:0;border-radius:50%;background:var(--red);pointer-events:none;z-index:9994;}
@@ -494,20 +487,23 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 <!-- Séquence d'ouverture : la caméra "entre" dans l'écran d'un ordinateur, qui
      devient le site lui-même — se déclenche au moment précis où le rideau
      ci-dessus s'efface, voir le JS de #curtain. -->
-<div class="zoomintro" id="zoomintro" aria-hidden="true">
-  <div class="zoomintro-laptop">
-    <img class="zoomintro-photo" src="https://images.unsplash.com/photo-1597673030062-0a0f1a801a31?w=1600&amp;q=80" alt="" fetchpriority="high">
-    <div class="zoomintro-screen" id="zoomintroScreen">
-      <div class="zi-nav"><span>L</span>ocWeb</div>
-      <div class="zi-body">
-        <span class="zi-tag">Agence web — Béziers</span>
-        <p class="zi-title">Votre image en ligne,<br><em>on s'occupe de tout.</em></p>
-        <p class="zi-sub">Site web, réseaux sociaux, fiche Google, supports print.</p>
-        <span class="zi-cta">Voir nos réalisations →</span>
+<!-- Intro : laptop dessiné (SVG, fond noir), zoom au scroll jusqu'à révéler le vrai hero -->
+<section id="zi-section" aria-hidden="true">
+  <div class="zi-pin">
+    <div class="zi-stage">
+      <div class="zi-laptop" id="ziLaptop">
+        <svg class="zi-svg" viewBox="0 0 400 250" aria-hidden="true">
+          <rect x="168" y="222" width="64" height="6" rx="3" fill="#242424"/>
+          <path d="M60 228 L340 228 L360 240 L40 240 Z" fill="#1a1a1a"/>
+          <rect x="8" y="6" width="384" height="220" rx="12" fill="#1c1c1e"/>
+          <rect x="14" y="12" width="372" height="208" rx="7" fill="#050505"/>
+        </svg>
+        <div class="zi-screen" id="ziScreen"></div>
+        <span class="zi-caption">Scrollez pour entrer</span>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- NAV -->
 <nav role="navigation" aria-label="Navigation principale">
@@ -1073,10 +1069,8 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
 
 (function(){
   const curtain = document.getElementById('curtain');
-  const zoomintro = document.getElementById('zoomintro');
   if (!curtain || reducedMotionMQ) {
     if (curtain) curtain.remove();
-    if (zoomintro) zoomintro.remove();
     return;
   }
   requestAnimationFrame(() => curtain.classList.add('show'));
@@ -1124,9 +1118,7 @@ const reducedMotionMQ = window.matchMedia && window.matchMedia('(prefers-reduced
       setTimeout(() => {
         curtain.classList.remove('show');
         curtain.classList.add('hide');
-        if (zoomintro) zoomintro.classList.add('play');
         setTimeout(() => curtain.remove(), 950);
-        setTimeout(() => { if (zoomintro) zoomintro.remove(); }, 2500);
       }, 300);
     }
   }
@@ -1646,10 +1638,10 @@ forceRevealEnBasDePage();
       computeHeroScroll();
     }
 
-    // Contact : le titre grossit avec le scroll puis "explose" (pic d'échelle + flash
-    // blanc) avant de laisser place au bloc téléphone/WhatsApp puis au footer. Vanilla,
-    // rAF-throttled, actif desktop ET mobile (contrairement aux effets GSAP, gated
-    // ailleurs derrière !isMobile — celui-ci doit rester fluide partout).
+    // Contact : le titre grossit avec le scroll puis revient s'écraser contre l'écran
+    // (impact + flash), avant de laisser place au bloc téléphone/WhatsApp puis au
+    // footer. Vanilla, rAF-throttled, actif desktop ET mobile (contrairement aux effets
+    // GSAP, gated ailleurs derrière !isMobile — celui-ci doit rester fluide partout).
     const contactPin = document.querySelector('.contact-pin');
     if (contactPin) {
       const contactTitle = document.getElementById('contactTitle');
@@ -1663,24 +1655,32 @@ forceRevealEnBasDePage();
         const scrollable = contactPin.offsetHeight - window.innerHeight;
         if (scrollable > 0 && contactTitle) {
           const p = Math.min(1, Math.max(0, -rect.top / scrollable));
-          const growP = Math.min(1, p / 0.55);
+          const growP = Math.min(1, p / 0.5);
           const easedGrow = 1 - Math.pow(1 - growP, 2); // ease-out quadratique, plus fluide qu'un scrub linéaire
-          let scale = 1 + easedGrow * 2.2;
+          let scaleX = 1 + easedGrow * 2.4;
+          let scaleY = scaleX;
           let opacity = 1;
 
-          if (p >= 0.55 && p < 0.72) {
-            const explodeP = (p - 0.55) / 0.17;
-            scale = 3.2 + explodeP * 3.4;
-            opacity = 1 - explodeP;
-            if (contactFlash) contactFlash.style.opacity = String(Math.sin(explodeP * Math.PI) * 0.75);
-          } else if (p >= 0.72) {
+          if (p >= 0.5 && p < 0.62) {
+            // Retombe et s'écrase contre l'écran : la hauteur se compresse plus vite que
+            // la largeur (effet "impact"), avec un flash au moment du choc.
+            const crashP = (p - 0.5) / 0.12;
+            scaleX = 3.4 - crashP * 2.75;
+            scaleY = 3.4 - crashP * 3.05;
+            if (contactFlash) contactFlash.style.opacity = String(Math.sin(crashP * Math.PI) * .8);
+          } else if (p >= 0.62 && p < 0.78) {
+            const fadeP = (p - 0.62) / 0.16;
+            scaleX = 0.65; scaleY = 0.35;
+            opacity = 1 - fadeP;
+            if (contactFlash) contactFlash.style.opacity = '0';
+          } else if (p >= 0.78) {
             opacity = 0;
             if (contactFlash) contactFlash.style.opacity = '0';
           } else if (contactFlash) {
             contactFlash.style.opacity = '0';
           }
 
-          contactTitle.style.transform = `scale(${scale})`;
+          contactTitle.style.transform = `scale(${scaleX}, ${scaleY})`;
           contactTitle.style.opacity = String(opacity);
           const fadeEarly = String(Math.max(0, 1 - p / 0.3));
           if (contactSecNo) contactSecNo.style.opacity = fadeEarly;
@@ -1694,6 +1694,59 @@ forceRevealEnBasDePage();
       window.addEventListener('scroll', onContactScroll, { passive: true });
       window.addEventListener('resize', onContactScroll);
       updateContactPin();
+    }
+
+    // Intro laptop : le scale du groupe est calculé une fois (mesures réelles, pas
+    // estimées) pour qu'à progress=1 l'écran (via le clone du vrai hero, mêmes
+    // dimensions/police) corresponde exactement au hero réel qui suit dans le flux —
+    // "millimétré" par construction, pas par réglage à l'œil.
+    const ziPin = document.querySelector('.zi-pin');
+    const ziLaptop = document.getElementById('ziLaptop');
+    const ziScreen = document.getElementById('ziScreen');
+    const realHero = document.getElementById('hero');
+    if (ziPin && ziLaptop && ziScreen && realHero) {
+      const clone = realHero.cloneNode(true);
+      clone.removeAttribute('id');
+      clone.classList.add('zi-screen-clone');
+      clone.querySelectorAll('[id]').forEach((elC) => elC.removeAttribute('id'));
+      ziScreen.appendChild(clone);
+
+      let finalScale = 10;
+      let ztTicking = false;
+
+      function calibrer() {
+        const laptopW = ziLaptop.getBoundingClientRect().width;
+        const screenW = ziScreen.getBoundingClientRect().width;
+        const heroW = realHero.getBoundingClientRect().width || window.innerWidth;
+        // Le clone doit tenir dans le petit écran : facteur de réduction fixe.
+        const fitScale = screenW / heroW;
+        clone.style.transform = `scale(${fitScale})`;
+        clone.style.width = heroW + 'px';
+        clone.style.height = realHero.getBoundingClientRect().height + 'px';
+        // À progress=1, le groupe doit être assez grand pour que l'écran (petit,
+        // fitScale du hero) redevienne exactement la taille réelle du viewport.
+        finalScale = window.innerWidth / screenW;
+      }
+
+      function updateZi() {
+        const rect = ziPin.getBoundingClientRect();
+        const scrollable = ziPin.offsetHeight - window.innerHeight;
+        if (scrollable > 0) {
+          const p = Math.min(1, Math.max(0, -rect.top / scrollable));
+          const eased = 1 - Math.pow(1 - p, 2);
+          const scale = 1 + eased * (finalScale - 1);
+          ziLaptop.style.transform = `scale(${scale})`;
+          ziLaptop.style.opacity = p > 0.92 ? String(1 - (p - 0.92) / 0.08) : '1';
+        }
+        ztTicking = false;
+      }
+      function onZiScroll() {
+        if (!ztTicking) { ztTicking = true; requestAnimationFrame(updateZi); }
+      }
+      calibrer();
+      window.addEventListener('resize', () => { calibrer(); updateZi(); });
+      window.addEventListener('scroll', onZiScroll, { passive: true });
+      updateZi();
     }
 
     if (heroGlow && heroSection && !isTouch) {
