@@ -13,6 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://locweb.fr">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"LocWeb","description":"Agence web à Béziers — création de site internet, fiche Google Business, réseaux sociaux, supports print pour artisans et indépendants.","url":"https://locweb.fr","telephone":"+33745531434","address":{"@type":"PostalAddress","addressLocality":"Béziers","postalCode":"34500","addressCountry":"FR"},"areaServed":["Béziers","Hérault","Agde","Pézenas","Narbonne","Montpellier","Occitanie","France"],"priceRange":"€","sameAs":["https://locweb.fr"]}</script>
+<link rel="stylesheet" href="lenis.css">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/favicon.png">
 <!-- Google Analytics -->
@@ -467,6 +468,10 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 .ha{opacity:0;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) forwards;}
 .ha1{animation-delay:.15s;}.ha2{animation-delay:.3s;}.ha3{animation-delay:.46s;}.ha4{animation-delay:.62s;}
 
+/* Le masque du reveal est porté par le mot ; le padding/margin compensés laissent
+   passer les jambages (g, p, q) que overflow:hidden couperait sinon. */
+.hero-word{display:inline-block;overflow:hidden;padding-bottom:.16em;margin-bottom:-.16em;}
+.hero-char{display:inline-block;will-change:transform;}
 .hsplit{opacity:1;}
 .word-rv{display:inline-block;opacity:0;transform:translateY(24px) rotate(2deg);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);}
 .hsplit.on .word-rv{opacity:1;transform:translateY(0) rotate(0);}
@@ -1278,15 +1283,26 @@ forceRevealEnBasDePage();
   };
 </script>
 <script src="contenu-loader.js"></script>
-<script src="hero-backgrounds.js"></script>
 <script src="cursor-premium.js"></script>
 <script src="titre-cyclique.js"></script>
 <script src="galerie-horizontale.js"></script>
+<script src="lenis.min.js"></script>
+<script src="three.min.js" defer></script>
+<script src="webgl-hero.js" defer></script>
 <script>
 (function(){
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches;
   const isMobile = isTouch || window.innerWidth < 860;
+
+  // Lenis : moteur de scroll fluide (socle "tier 5"), remplace le scroll natif.
+  // Souris/trackpad uniquement : sur tactile le scroll natif est déjà fluide et plus
+  // réactif, superposer Lenis dessus ajoute de la latence perçue.
+  if (!reduced && !isMobile && window.Lenis) {
+    const lenis = new Lenis({ duration: 1.05, smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
 
   function loadScript(src){
     return new Promise((resolve, reject) => {
@@ -1296,100 +1312,8 @@ forceRevealEnBasDePage();
     });
   }
 
-  // Fond du hero : champ de particules qui réagit vraiment au curseur (répulsion,
-  // liens qui se dessinent entre points proches et vers la souris elle-même) —
-  // remplace l'ancien fond ambiant (metaballes, purement décoratif) par quelque
-  // chose que le visiteur peut réellement "toucher" du curseur. Vanilla/canvas,
-  // aucune dépendance à hero-backgrounds.js pour cet effet précis.
-  (function initHeroParticles() {
-    const canvas = document.getElementById('hero-canvas');
-    if (!canvas || reduced) return;
-    const ctx = canvas.getContext('2d');
-    const heroEl = document.getElementById('hero');
-    let w, h, dpr;
-    let particules = [];
-    const mouse = { x: -9999, y: -9999, actif: false };
-    const COULEURS = ['232,40,30', '201,169,97', '245,245,245'];
-    const NB = isMobile ? 34 : 70;
-
-    function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = heroEl.offsetWidth; h = heroEl.offsetHeight;
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    function init() {
-      resize();
-      particules = Array.from({ length: NB }, () => ({
-        x: Math.random() * w, y: Math.random() * h,
-        vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25,
-        r: 1.2 + Math.random() * 1.6,
-        c: COULEURS[Math.floor(Math.random() * COULEURS.length)]
-      }));
-    }
-    function tick() {
-      ctx.clearRect(0, 0, w, h);
-      particules.forEach((p) => {
-        // Répulsion douce autour du curseur : le champ "s'écarte" au passage.
-        if (mouse.actif) {
-          const dx = p.x - mouse.x, dy = p.y - mouse.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < 140 && dist > 0.01) {
-            const force = (140 - dist) / 140 * 0.9;
-            p.vx += (dx / dist) * force * 0.06;
-            p.vy += (dy / dist) * force * 0.06;
-          }
-        }
-        p.x += p.vx; p.y += p.vy;
-        p.vx *= .985; p.vy *= .985;
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 0 || p.y > h) p.vy *= -1;
-        p.x = Math.max(0, Math.min(w, p.x)); p.y = Math.max(0, Math.min(h, p.y));
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${p.c},.75)`;
-        ctx.fill();
-      });
-      // Liens entre particules proches + vers la souris (constellation).
-      for (let i = 0; i < particules.length; i++) {
-        for (let j = i + 1; j < particules.length; j++) {
-          const a = particules[i], b = particules[j];
-          const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d < 110) {
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(232,40,30,${(1 - d / 110) * .18})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-        if (mouse.actif) {
-          const p = particules[i];
-          const d = Math.hypot(p.x - mouse.x, p.y - mouse.y);
-          if (d < 160) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(201,169,97,${(1 - d / 160) * .35})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(tick);
-    }
-
-    init();
-    requestAnimationFrame(tick);
-    window.addEventListener('resize', () => { resize(); }, { passive: true });
-    if (!isTouch) {
-      heroEl.addEventListener('mousemove', (e) => {
-        const r = heroEl.getBoundingClientRect();
-        mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.actif = true;
-      });
-      heroEl.addEventListener('mouseleave', () => { mouse.actif = false; });
-    }
-  })();
+  // Fond du hero : voir webgl-hero.js (scène Three.js "le signal", chargée juste
+  // après three.min.js dans les <script> de fin de body).
 
   // Section "Échelle des tiers" : curseur mini-mockup, actif dès qu'on a une vraie souris,
   // indépendant du chargement GSAP (ne dépend que du CSS ci-dessous pour son opacité).
@@ -1410,23 +1334,32 @@ forceRevealEnBasDePage();
   const tdPin = document.querySelector('.td-pin');
   if (!reduced && !isMobile) {
     loadScript('gsap.min.js')
-      .then(() => Promise.all([loadScript('ScrollTrigger.min.js'), loadScript('ScrambleTextPlugin.min.js')]))
+      .then(() => Promise.all([loadScript('ScrollTrigger.min.js'), loadScript('SplitText.min.js')]))
       .then(() => {
         if (!window.gsap || !window.ScrollTrigger) return;
-        gsap.registerPlugin(ScrollTrigger, window.ScrambleTextPlugin);
+        gsap.registerPlugin(ScrollTrigger, window.SplitText);
 
-        // "Le hero du futur" : une fois le rideau + le zoom dans l'écran terminés (~2.6s),
-        // le titre se décode brièvement avec ScrambleTextPlugin puis se stabilise sur son
-        // texte réel — jamais un texte différent, juste l'effet visuel de décodage. Lit
-        // .textContent au moment du déclenchement (pas une chaîne figée dans le JS) pour
-        // rester synchro avec contenu-loader.js si le texte Supabase a déjà remplacé le
-        // texte par défaut entre-temps. N'agit qu'une fois, jamais en boucle.
-        if (window.ScrambleTextPlugin) {
-          [document.getElementById('heroLigne1'), document.getElementById('heroAccent')].forEach((el, i) => {
-            if (!el) return;
-            const texteFinal = el.textContent;
-            gsap.delayedCall(2.5 + i * 0.12, () => {
-              gsap.to(el, { duration: .9, scrambleText: { text: texteFinal, chars: 'upperCase', speed: .32, revealDelay: .1 } });
+        // Titre du hero : révélation caractère par caractère derrière un masque (les
+        // lettres montent depuis sous leur propre ligne de base). Déclenché après le
+        // rideau + le zoom dans l'écran (~2.5s). Split au moment du déclenchement, pas
+        // au chargement, pour rester synchro avec contenu-loader.js si le texte Supabase
+        // a remplacé le texte par défaut entre-temps.
+        if (window.SplitText) {
+          gsap.delayedCall(2.5, () => {
+            [document.getElementById('heroLigne1'), document.getElementById('heroAccent')].forEach((el, i) => {
+              if (!el) return;
+              // 'words,chars' et pas 'chars' seul : sans conteneur de mot, chaque
+              // caractère devient une unité de retour à la ligne et les mots se coupent
+              // en plein milieu. Le masque (overflow) est porté par le mot, en CSS.
+              const split = new SplitText(el, { type: 'words,chars', wordsClass: 'hero-word', charsClass: 'hero-char' });
+              gsap.from(split.chars, {
+                yPercent: 115,
+                opacity: 0,
+                duration: .9,
+                ease: 'expo.out',
+                stagger: .022,
+                delay: i * 0.18
+              });
             });
           });
         }
@@ -1505,7 +1438,12 @@ forceRevealEnBasDePage();
   // quatre. Chargés uniquement sur desktop : sur mobile, on garde le fond sombre uni déjà
   // en place en CSS (léger, pas de GPU/scroll-jank, chargement bien plus rapide).
   if (!reduced && !isMobile) {
-    loadScript('three.min.js')
+    // three.min.js est déjà chargé en <script defer> pour le hero WebGL. Les scripts
+    // defer s'exécutant avant DOMContentLoaded, on attend cet évènement plutôt que de
+    // recharger la lib ici (sinon warning "Multiple instances of Three.js").
+    new Promise((r) => {
+      if (document.readyState !== 'loading') r(); else document.addEventListener('DOMContentLoaded', r);
+    })
       .then(() => Promise.all(['vanta.net.min.js','vanta.rings.min.js','vanta.fog.min.js','vanta.birds.min.js'].map(loadScript)))
       .then(() => {
         if (!window.VANTA) return;
@@ -1573,16 +1511,6 @@ forceRevealEnBasDePage();
     CursorPremium.init({ mode: 'full' });
   }
 
-  // Lenis (scroll fluide JS) uniquement sur souris/trackpad — sur tactile le scroll natif
-  // est déjà fluide et plus réactif ; superposer Lenis dessus ajoute de la latence perçue.
-  if (!reduced && !isMobile) {
-    loadScript('https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js').then(() => {
-      const lenis = new Lenis();
-      function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
-      requestAnimationFrame(raf);
-    }).catch(() => {});
-  }
-
   // Boutons magnétiques avec rebond élastique au relâchement. Version GSAP (quickTo)
   // dès que GSAP est chargé — interpolation lissée au lieu d'un snap direct au pixel,
   // sensiblement plus premium au ressenti ; repli vanilla identique à avant tant que
@@ -1627,7 +1555,6 @@ forceRevealEnBasDePage();
       function computeHeroScroll() {
         const y = window.scrollY;
         const p = Math.min(1, y / (heroSection.offsetHeight || 1));
-        heroCanvas.style.transform = `translate3d(${p * -18}px, ${p * 70}px, 0) scale(${1 + p * 0.06})`;
         if (heroVignette) heroVignette.style.transform = `translate3d(${p * 24}px, ${p * -30}px, 0)`;
         if (heroInner) heroInner.style.transform = `translate3d(0, ${p * -14}px, 0)`;
         heroTicking = false;
