@@ -527,7 +527,9 @@ section{padding:76px 20px;position:relative;}
 #zone{background:transparent;}
 .zone-wrap{display:grid;grid-template-columns:1.35fr .8fr;gap:clamp(28px,4vw,64px);align-items:center;max-width:1300px;margin:0 auto;}
 @media(max-width:900px){.zone-wrap{grid-template-columns:1fr;}}
-.zone-carte{position:relative;overflow:hidden;border-radius:18px;border:1px solid var(--line-dark);background:rgba(255,255,255,.02);}
+/* Fond plus dense que le simple voile initial : à 2% de blanc la carte se noyait
+   dans le décor animé et ne se lisait plus comme un objet posé sur la page. */
+.zone-carte{position:relative;overflow:hidden;border-radius:18px;border:1px solid var(--line-dark);background:rgba(16,16,20,.78);backdrop-filter:blur(3px);}
 .zone-carte svg{display:block;width:100%;height:auto;}
 /* Le parallax ne s'applique qu'aux plans décoratifs, jamais au texte à côté. */
 .zn-plan{will-change:transform;}
@@ -938,7 +940,7 @@ html.anim-js .hero-title{opacity:0;}
   <div class="td-pin">
     <div class="td-stage-label" aria-hidden="true">
       <span class="td-num">Site simple</span>
-      <span class="td-name">Pour être joint vite</span>
+      <span class="td-name">Pour un contact rapide</span>
     </div>
 
     <div class="td-frame t0">
@@ -1821,7 +1823,7 @@ forceRevealEnBasDePage();
           // Le petit libellé dit le type de site, le grand dit ce qu'il apporte —
           // jamais "Tier 2", qui ne veut rien dire pour un artisan.
           const typesSite = ['Site simple', 'Site soigné', 'Site animé', 'Site premium', 'Sur mesure'];
-          const noms = ['Pour être joint vite', 'Pour inspirer confiance', 'Pour se démarquer', 'Pour marquer les esprits', 'Sans limite'];
+          const noms = ['Pour un contact rapide', 'Pour inspirer confiance', 'Pour se démarquer', 'Pour marquer les esprits', 'Sans limite'];
           let current = 0;
 
           ScrollTrigger.create({
