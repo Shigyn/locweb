@@ -26,6 +26,7 @@
 :root{
   --ink:#0d0d0f; --paper:#f7f5f0; --paper2:#efece4; --white:#fff;
   --red:#E8281E; --red-soft:rgba(232,40,30,.1); --line:rgba(13,13,15,.1); --line-dark:rgba(255,255,255,.12);
+  --gold:#C9A961; --gold-soft:rgba(201,169,97,.14);
   --sans:'Plus Jakarta Sans',sans-serif; --disp:'Bricolage Grotesque',sans-serif;
 }
 html{scroll-behavior:auto;}
@@ -231,6 +232,67 @@ section{padding:76px 20px;position:relative;}
 .site-preview-label .spl-tag{flex-shrink:0;font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.14);padding:6px 11px;border-radius:100px;white-space:nowrap;}
 
 /* SUPPORT INCLUS : bandeau compact avant les tarifs, mockup fidèle de l'éditeur réel */
+/* ÉCHELLE DES TIERS */
+#tiers-demo{background:var(--ink);padding:100px 5vw 120px;color:var(--white);}
+#tiers-demo .sec-no{-webkit-text-stroke-color:rgba(255,255,255,.3);}
+.td-intro{max-width:520px;color:rgba(255,255,255,.6);font-size:1rem;margin:-8px 0 48px;line-height:1.7;}
+.td-pin{position:relative;max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;padding:20px 0;}
+.td-stage-label{display:flex;align-items:baseline;gap:12px;margin-bottom:22px;}
+.td-num{font-family:var(--disp);font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);}
+.td-name{font-family:var(--disp);font-weight:700;font-size:1.3rem;color:var(--white);}
+
+.td-frame{position:relative;width:100%;max-width:760px;aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 30px 80px -30px rgba(0,0,0,.6);transition:box-shadow .5s cubic-bezier(.16,1,.3,1);}
+.td-chrome{display:flex;gap:6px;padding:11px 14px;background:#e9e7e2;}
+.td-chrome span{width:9px;height:9px;border-radius:50%;background:#d3d0c8;}
+.td-viewport{position:relative;height:calc(100% - 33px);overflow:hidden;background:#fff;}
+.td-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .6s ease;}
+.td-cursor{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--red);opacity:0;pointer-events:none;transform:translate(-50%,-50%);transition:opacity .3s;z-index:5;mix-blend-mode:difference;}
+.td-content{position:relative;height:100%;padding:5% 6%;display:flex;flex-direction:column;gap:4%;}
+
+.td-nav{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;}
+.td-logo{font-weight:800;color:#111;}
+.td-tel{font-weight:700;color:#111;background:#eee;padding:5px 10px;border-radius:100px;}
+
+.td-hero{position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:4% 0;}
+.td-title{font-family:var(--disp);font-weight:800;font-size:clamp(1.1rem,3.4vw,1.8rem);line-height:1.05;color:#111;}
+.td-sub{font-size:.72rem;color:#555;max-width:280px;}
+.td-cta{align-self:flex-start;margin-top:6px;font-size:.68rem;font-weight:700;background:#111;color:#fff;border:none;padding:9px 16px;border-radius:4px;cursor:default;}
+
+.td-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;}
+.td-card{background:#f3f1ec;border-radius:6px;height:34px;}
+
+.td-gallery{display:none;gap:6px;}
+.td-gitem{width:44px;height:26px;border-radius:4px;background:#f3f1ec;flex-shrink:0;}
+
+.td-caption{max-width:480px;text-align:center;margin-top:26px;color:rgba(255,255,255,.65);font-size:.9rem;min-height:2.6em;}
+.td-dots{display:flex;gap:8px;margin-top:18px;}
+.td-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s,transform .3s;}
+.td-dots span.on{background:var(--red);transform:scale(1.3);}
+
+.td-frame.t1 .td-cta,.td-frame.t2 .td-cta,.td-frame.t3 .td-cta,.td-frame.t4 .td-cta{border-radius:100px;box-shadow:0 6px 16px -4px rgba(0,0,0,.25);}
+.td-frame.t1 .td-cards,.td-frame.t2 .td-cards,.td-frame.t3 .td-cards,.td-frame.t4 .td-cards{opacity:1;transform:none;}
+.td-frame.t1 .td-card,.td-frame.t2 .td-card,.td-frame.t3 .td-card,.td-frame.t4 .td-card{box-shadow:0 4px 14px -6px rgba(0,0,0,.15);}
+
+.td-frame.t2 .td-canvas,.td-frame.t3 .td-canvas,.td-frame.t4 .td-canvas{opacity:1;}
+.td-frame.t2 .td-canvas{background:radial-gradient(circle at 30% 30%, rgba(232,40,30,.18), transparent 55%),radial-gradient(circle at 75% 65%, rgba(60,130,255,.14), transparent 55%);animation:tdDrift 7s ease-in-out infinite;}
+
+.td-frame.t3 .td-canvas,.td-frame.t4 .td-canvas{background:radial-gradient(circle at 25% 30%, rgba(232,40,30,.28), transparent 50%),radial-gradient(circle at 70% 30%, rgba(255,178,60,.22), transparent 50%),radial-gradient(circle at 50% 80%, rgba(120,60,255,.2), transparent 55%);animation:tdDrift 5s ease-in-out infinite;}
+.td-frame.t3 .td-cursor,.td-frame.t4 .td-cursor{opacity:1;}
+.td-frame.t3 .td-gallery,.td-frame.t4 .td-gallery{display:flex;}
+
+.td-frame.t4{box-shadow:0 40px 100px -30px rgba(232,40,30,.35),0 0 0 1px rgba(232,40,30,.15);}
+.td-frame.t4 .td-title{background:linear-gradient(90deg,#111,var(--red),#111);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:tdShine 3s linear infinite;}
+.td-frame.t4 .td-card{background:linear-gradient(135deg,#f7f1ea,#f0e6da);}
+
+@keyframes tdDrift{0%,100%{transform:scale(1) translate(0,0);}50%{transform:scale(1.08) translate(-2%,1%);}}
+@keyframes tdShine{to{background-position:200% center;}}
+
+@media(max-width:760px){
+  .td-pin{padding:10px 0;}
+  .td-frame{aspect-ratio:4/5;}
+  .td-cards{grid-template-columns:repeat(2,1fr);}
+}
+
 #support-inclus{background:var(--paper);padding:64px 0;}
 .support-wrap{max-width:1180px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
 @media(min-width:768px){.support-wrap{padding:0 5vw;}}
@@ -615,6 +677,58 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
   <p class="demo-disclaimer">Les sites présentés sont des démonstrations.</p>
 </section>
 
+<!-- ÉCHELLE DES TIERS -->
+<section id="tiers-demo">
+  <div class="s-head">
+    <span class="sec-no" aria-hidden="true">02</span>
+    <div>
+      <div class="s-tag rv">Un seul système, cinq niveaux</div>
+      <h2 class="hsplit">On dose le mouvement,<br><em>jamais la qualité.</em></h2>
+    </div>
+  </div>
+  <p class="td-intro rv">Le même site, au fil du scroll, du plus sobre au plus démonstratif. Le niveau se choisit selon votre métier — pas au hasard.</p>
+
+  <div class="td-pin">
+    <div class="td-stage-label" aria-hidden="true">
+      <span class="td-num">Tier 0</span>
+      <span class="td-name">L'essentiel</span>
+    </div>
+
+    <div class="td-frame t0">
+      <div class="td-chrome"><span></span><span></span><span></span></div>
+      <div class="td-viewport">
+        <canvas class="td-canvas" aria-hidden="true"></canvas>
+        <div class="td-cursor" aria-hidden="true"></div>
+        <div class="td-content">
+          <div class="td-nav"><span class="td-logo">Martin&nbsp;&amp;&nbsp;Fils</span><span class="td-tel">04 67 00 00 00</span></div>
+          <div class="td-hero">
+            <h3 class="td-title" data-text="Plombier de confiance">Plombier de confiance</h3>
+            <p class="td-sub">Dépannage 7j/7 — intervention en 30 min</p>
+            <button class="td-cta" type="button" tabindex="-1">Appeler maintenant</button>
+          </div>
+          <div class="td-cards">
+            <div class="td-card"><span></span></div>
+            <div class="td-card"><span></span></div>
+            <div class="td-card"><span></span></div>
+          </div>
+          <div class="td-gallery" aria-hidden="true">
+            <div class="td-gitem"></div><div class="td-gitem"></div><div class="td-gitem"></div><div class="td-gitem"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="td-caption"
+       data-tier0="Le strict nécessaire : rapide, lisible, zéro fioriture."
+       data-tier1="Reveals discrets, ombres douces — le confort visuel apparaît."
+       data-tier2="Un fond de hero prend vie, les cartes se dévoilent en cascade."
+       data-tier3="Curseur sur-mesure, galerie, particules — le site devient une expérience."
+       data-tier4="Profondeur, lumière, mouvement choréographié. Sans limite.">Le strict nécessaire : rapide, lisible, zéro fioriture.</p>
+
+    <div class="td-dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+  </div>
+</section>
+
 <!-- SUPPORT INCLUS -->
 <section id="support-inclus">
   <div class="support-wrap">
@@ -672,7 +786,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 <!-- TARIFS -->
 <section id="tarifs">
   <div class="s-head">
-    <span class="sec-no" aria-hidden="true">02</span>
+    <span class="sec-no" aria-hidden="true">03</span>
     <div>
       <div class="s-tag rv">Nos tarifs</div>
       <h2 class="hsplit">Un site professionnel,<br><em>sans mauvaise surprise.</em></h2>
@@ -809,7 +923,7 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.32);}
 <!-- CONTACT -->
 <section id="contact">
   <div class="s-head">
-    <span class="sec-no" aria-hidden="true">03</span>
+    <span class="sec-no" aria-hidden="true">04</span>
     <div>
       <div class="s-tag rv" style="justify-content:center;">Discutons</div>
       <h2 class="hsplit">Parlons de<br><em>votre projet.</em></h2>
@@ -1077,6 +1191,99 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
     HeroBg.initMetaballes('hero-canvas', { bg: '#0d0d0f', c: ['232,40,30','120,40,35','70,40,42'] });
   }
 
+  // Section "Échelle des tiers" : curseur mini-mockup, actif dès qu'on a une vraie souris,
+  // indépendant du chargement GSAP (ne dépend que du CSS ci-dessous pour son opacité).
+  const tdViewport = document.querySelector('.td-viewport');
+  const tdCursor = document.querySelector('.td-cursor');
+  if (tdViewport && tdCursor && !isTouch) {
+    tdViewport.addEventListener('mousemove', (e) => {
+      const r = tdViewport.getBoundingClientRect();
+      tdCursor.style.left = (e.clientX - r.left) + 'px';
+      tdCursor.style.top = (e.clientY - r.top) + 'px';
+    });
+  }
+
+  // GSAP devient le moteur d'animation du site (pin du bloc tiers + choré­graphie des
+  // grilles de cards ci-dessous) — desktop uniquement, comme Vanta/Lenis : le mobile
+  // garde le fallback CSS/IntersectionObserver déjà en place plus haut dans ce fichier,
+  // plus léger et suffisant sur un petit écran.
+  const tdPin = document.querySelector('.td-pin');
+  if (!reduced && !isMobile) {
+    loadScript('gsap.min.js')
+      .then(() => Promise.all([loadScript('ScrollTrigger.min.js'), loadScript('ScrambleTextPlugin.min.js')]))
+      .then(() => {
+        if (!window.gsap || !window.ScrollTrigger) return;
+        gsap.registerPlugin(ScrollTrigger, window.ScrambleTextPlugin);
+
+        // Choré­graphie de grille : remplace le simple fade+translateY de .rv par un vrai
+        // stagger GSAP (échelle + légère rotation + flou d'entrée). Volontairement PAS
+        // appliqué à .tarif-card/.real-item : ces cards vivent dans une galerie sticky à
+        // défilement horizontal (galerie-horizontale.js, .galerie-horiz-wrap) où le "top"
+        // de chaque carte reste identique une fois épinglée — un trigger vertical par carte
+        // ne peut pas détecter leur entrée réelle (bug rencontré et corrigé en test : cards
+        // restées bloquées à opacity:0). Réservé aux grilles verticales classiques.
+        // ScrollTrigger.create() par élément plutôt que .batch() : plus fiable si la page
+        // est déjà scrollée jusque-là avant que GSAP finisse de charger (testé).
+        const grilles = ['.support-point'];
+        grilles.forEach((sel) => {
+          const els = document.querySelectorAll(sel);
+          if (!els.length) return;
+          gsap.set(els, { opacity: 0, y: 34, scale: .94, filter: 'blur(6px)' });
+          els.forEach((el, i) => {
+            ScrollTrigger.create({
+              trigger: el,
+              start: 'top 92%',
+              once: true,
+              onEnter: () => gsap.to(el, {
+                opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
+                duration: .8, delay: (i % 4) * 0.08, ease: 'back.out(1.4)'
+              })
+            });
+          });
+        });
+
+        if (tdPin) {
+          const frame = document.querySelector('.td-frame');
+          const numEl = document.querySelector('.td-num');
+          const nameEl = document.querySelector('.td-name');
+          const caption = document.querySelector('.td-caption');
+          const dots = document.querySelectorAll('.td-dots span');
+          const noms = ["L'essentiel", 'Le soigné', 'Le vivant', 'Le remarquable', 'Sans limite'];
+          let current = 0;
+
+          ScrollTrigger.create({
+            trigger: '.td-pin',
+            start: 'top top+=64',
+            end: '+=280%',
+            pin: true,
+            scrub: 0.4,
+            onUpdate(self) {
+              const idx = Math.min(4, Math.floor(self.progress * 5));
+              if (idx === current && self.progress > 0) return;
+              current = idx;
+              frame.className = 'td-frame t' + idx;
+              numEl.textContent = 'Tier ' + idx;
+              nameEl.textContent = noms[idx];
+              dots.forEach((d, i) => d.classList.toggle('on', i === idx));
+              const texte = caption.getAttribute('data-tier' + idx);
+              if (window.ScrambleTextPlugin) {
+                gsap.to(caption, { duration: 0.5, scrambleText: { text: texte, chars: 'lowerCase', speed: 0.45 } });
+              } else {
+                caption.textContent = texte;
+              }
+            }
+          });
+        }
+
+        // GSAP charge en asynchrone : si l'utilisateur a déjà scrollé au-delà d'une carte
+        // avant que ce script arrive, ScrollTrigger doit le détecter dès sa création — mais
+        // un refresh explicite ici lève tout doute (coûte rien, évite une carte bloquée à
+        // opacity:0, même piège déjà rencontré et corrigé sur clients/Ksm-Camion).
+        ScrollTrigger.refresh();
+      })
+      .catch(() => {});
+  }
+
   // Les 4 cartes "site animé" utilisent Vanta.js (WebGL/Three.js) — ~660 Ko de JS à eux
   // quatre. Chargés uniquement sur desktop : sur mobile, on garde le fond sombre uni déjà
   // en place en CSS (léger, pas de GPU/scroll-jank, chargement bien plus rapide).
@@ -1159,19 +1366,29 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
     }).catch(() => {});
   }
 
-  // Boutons magnétiques avec rebond élastique au relâchement.
+  // Boutons magnétiques avec rebond élastique au relâchement. Version GSAP (quickTo)
+  // dès que GSAP est chargé — interpolation lissée au lieu d'un snap direct au pixel,
+  // sensiblement plus premium au ressenti ; repli vanilla identique à avant tant que
+  // GSAP n'est pas encore prêt (quickTo vérifié à chaque mousemove, pas seulement au
+  // setup, pour ne pas dépendre de l'ordre de chargement).
   if (!reduced && !isTouch) {
     document.querySelectorAll('.btn-hero-primary, .btn-prix, .cta-band-btn, .contact-tel-big').forEach((el) => {
+      let qx, qy;
       el.addEventListener('mousemove', (e) => {
-        el.style.transition = 'transform 0s';
         const r = el.getBoundingClientRect();
         const x = e.clientX - r.left - r.width / 2;
         const y = e.clientY - r.top - r.height / 2;
-        el.style.transform = `translate(${x * 0.18}px, ${y * 0.35}px)`;
+        if (window.gsap) {
+          if (!qx) { qx = gsap.quickTo(el, 'x', { duration: .5, ease: 'power3' }); qy = gsap.quickTo(el, 'y', { duration: .5, ease: 'power3' }); }
+          qx(x * 0.18); qy(y * 0.35);
+        } else {
+          el.style.transition = 'transform 0s';
+          el.style.transform = `translate(${x * 0.18}px, ${y * 0.35}px)`;
+        }
       });
       el.addEventListener('mouseleave', () => {
-        el.style.transition = 'transform .6s cubic-bezier(.34,1.56,.64,1)';
-        el.style.transform = '';
+        if (qx) { qx(0); qy(0); }
+        else { el.style.transition = 'transform .6s cubic-bezier(.34,1.56,.64,1)'; el.style.transform = ''; }
       });
     });
   }
@@ -1214,18 +1431,32 @@ document.querySelectorAll('.rv,.rvl,.rvs,.hsplit').forEach(el=>io.observe(el));
     }
   }
 
-  // Tilt 3D + reflet lumineux sur les cartes tarifs et réalisations.
+  // Tilt 3D + reflet lumineux sur les cartes tarifs et réalisations. Même logique que
+  // les boutons magnétiques : quickTo dès que GSAP est prêt pour un tilt qui suit la
+  // souris avec un léger temps de retard (plus organique), repli vanilla sinon.
   if (!reduced && !isTouch) {
     document.querySelectorAll('.tarif-card, .real-item').forEach((card) => {
+      let qrx, qry;
       card.addEventListener('mousemove', (e) => {
         const r = card.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width;
         const py = (e.clientY - r.top) / r.height;
-        card.style.transform = `perspective(1000px) rotateX(${(0.5 - py) * 8}deg) rotateY(${(px - 0.5) * 8}deg)`;
         card.style.setProperty('--mx', (px * 100) + '%');
         card.style.setProperty('--my', (py * 100) + '%');
+        if (window.gsap) {
+          if (!qrx) {
+            gsap.set(card, { transformPerspective: 1000 });
+            qrx = gsap.quickTo(card, 'rotateX', { duration: .5, ease: 'power3' });
+            qry = gsap.quickTo(card, 'rotateY', { duration: .5, ease: 'power3' });
+          }
+          qrx((0.5 - py) * 8); qry((px - 0.5) * 8);
+        } else {
+          card.style.transform = `perspective(1000px) rotateX(${(0.5 - py) * 8}deg) rotateY(${(px - 0.5) * 8}deg)`;
+        }
       });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+      card.addEventListener('mouseleave', () => {
+        if (qrx) { qrx(0); qry(0); } else { card.style.transform = ''; }
+      });
     });
   }
 
