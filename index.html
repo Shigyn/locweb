@@ -343,11 +343,14 @@ section{padding:76px 20px;position:relative;}
 @keyframes tdPulse{0%,100%{box-shadow:0 6px 16px -4px rgba(51,34,26,.45);}50%{box-shadow:0 6px 26px -2px rgba(251,243,231,.75);}}
 @keyframes tdCardGlow{0%,100%{box-shadow:0 4px 14px -6px rgba(0,0,0,.15);}50%{box-shadow:0 6px 18px -4px rgba(201,169,97,.5);}}
 
-.td-frame.t4 .td-canvas{background:conic-gradient(from 0deg at 50% 50%, rgba(232,40,30,.35), rgba(201,169,97,.3), rgba(120,60,255,.28), rgba(255,178,60,.3), rgba(232,40,30,.35));animation:tdSpin 8s linear infinite;}
+/* Intensité contenue : à pleine puissance le dégradé conique délavait le texte du
+   mini-site posé par-dessus. */
+.td-frame.t4 .td-canvas{background:conic-gradient(from 0deg at 50% 50%, rgba(232,40,30,.26), rgba(201,169,97,.22), rgba(120,60,255,.18), rgba(255,178,60,.22), rgba(232,40,30,.26));animation:tdSpin 8s linear infinite;}
 .td-frame.t4{box-shadow:0 50px 120px -30px rgba(201,169,97,.45),0 0 0 1px rgba(201,169,97,.3),0 0 60px -10px rgba(232,40,30,.3);}
-/* Le titre est sur fond clair (le calque animé reste pâle) : le dégradé part de
-   l'encre, sinon les extrémités disparaissent dans le fond. */
-.td-frame.t4 .td-title{background:linear-gradient(90deg,var(--td-encre),var(--td-terre),var(--gold),var(--td-encre));background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:tdShine 2.4s linear infinite;}
+/* Balayage animé sur le titre. Toutes les étapes du dégradé doivent rester sombres :
+   le fond du mini-site est crème, donc une étape claire (l'or, essayé) fait
+   littéralement disparaître le titre au passage du balayage. */
+.td-frame.t4 .td-title{background:linear-gradient(90deg,var(--td-encre),var(--td-terre),#8E4A22,var(--td-terre),var(--td-encre));background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:tdShine 2.4s linear infinite;}
 .td-frame.t4 .td-card{background:linear-gradient(135deg,#FBF3E7,#F0DFC8);box-shadow:0 8px 20px -8px rgba(201,169,97,.5);}
 
 @keyframes tdDrift{0%,100%{transform:scale(1) translate(0,0) rotate(0deg);}50%{transform:scale(1.12) translate(-2%,1%) rotate(4deg);}}
