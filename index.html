@@ -188,9 +188,13 @@ section{padding:76px 20px;position:relative;}
 @media(max-width:900px){.pb-fil{display:none;}}
 .pb-scenes{position:relative;z-index:1;display:flex;flex-direction:column;gap:clamp(56px,9vw,120px);max-width:900px;margin:clamp(40px,6vw,80px) auto 0;}
 .pb-scene{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3vw,44px);align-items:start;}
-.pb-heure{font-family:var(--disp);font-weight:800;font-size:clamp(1.1rem,2.4vw,1.7rem);
-          color:transparent;-webkit-text-stroke:1.2px rgba(255,255,255,.28);
-          font-variant-numeric:tabular-nums;letter-spacing:-.02em;white-space:nowrap;padding-top:.15em;}
+/* Le contour ajouré était illisible : un trait de 1,2px à 28% d'opacité ne tient
+   pas sur un fond sombre. Passé en plein, avec un fond discret qui l'ancre comme
+   une étiquette d'horodatage. */
+.pb-heure{font-family:var(--disp);font-weight:800;font-size:clamp(1rem,2vw,1.35rem);
+          color:var(--red-texte);background:rgba(232,40,30,.1);
+          border:1px solid rgba(232,40,30,.28);border-radius:6px;padding:5px 10px;
+          font-variant-numeric:tabular-nums;letter-spacing:.01em;white-space:nowrap;}
 .pb-txt{font-family:var(--disp);font-weight:600;font-size:clamp(1.15rem,2.9vw,2.05rem);
         line-height:1.28;letter-spacing:-.02em;color:rgba(255,255,255,.92);text-wrap:balance;}
 .pb-txt em{font-style:normal;color:var(--red-texte);}
@@ -733,7 +737,7 @@ html.anim-js .hero-title{opacity:0;}
     </article>
     <article class="pb-scene">
       <span class="pb-heure" aria-hidden="true">09:02</span>
-      <p class="pb-txt">On vous a recommandé. La personne cherche votre nom, tombe sur une page Facebook abandonnée depuis deux ans. <em>Elle hésite, puis rappelle son cousin.</em></p>
+      <p class="pb-txt">On vous a recommandé. La personne cherche votre nom, tombe sur une page Facebook abandonnée depuis deux ans. <em>Elle n'appelle pas.</em></p>
     </article>
     <article class="pb-scene">
       <span class="pb-heure" aria-hidden="true">14:37</span>
@@ -915,7 +919,9 @@ html.anim-js .hero-title{opacity:0;}
   <p class="demo-disclaimer">Les sites présentés sont des démonstrations.</p>
 </section>
 
-<!-- ÉCHELLE DES TIERS -->
+<!-- LES NIVEAUX — le mot "tier" est du jargon interne (voir GRILLE-TIERS-ANIMATION.md) :
+     un artisan ne sait pas ce qu'est un "tier 2". Chaque étape est nommée par ce
+     qu'elle apporte au visiteur, pas par son rang dans notre échelle. -->
 <section id="tiers-demo" data-backdrop-dodge>
   <div class="s-head">
     <span class="sec-no" aria-hidden="true">03</span>
@@ -928,8 +934,8 @@ html.anim-js .hero-title{opacity:0;}
 
   <div class="td-pin">
     <div class="td-stage-label" aria-hidden="true">
-      <span class="td-num">Tier 0</span>
-      <span class="td-name">L'essentiel</span>
+      <span class="td-num">Site simple</span>
+      <span class="td-name">Pour être joint vite</span>
     </div>
 
     <div class="td-frame t0">
@@ -1803,7 +1809,10 @@ forceRevealEnBasDePage();
           const nameEl = document.querySelector('.td-name');
           const caption = document.querySelector('.td-caption');
           const dots = document.querySelectorAll('.td-dots span');
-          const noms = ["L'essentiel", 'Le soigné', 'Le vivant', 'Le remarquable', 'Sans limite'];
+          // Le petit libellé dit le type de site, le grand dit ce qu'il apporte —
+          // jamais "Tier 2", qui ne veut rien dire pour un artisan.
+          const typesSite = ['Site simple', 'Site soigné', 'Site animé', 'Site premium', 'Sur mesure'];
+          const noms = ['Pour être joint vite', 'Pour inspirer confiance', 'Pour se démarquer', 'Pour marquer les esprits', 'Sans limite'];
           let current = 0;
 
           ScrollTrigger.create({
@@ -1818,7 +1827,7 @@ forceRevealEnBasDePage();
               current = idx;
               frame.className = 'td-frame t' + idx;
               gsap.fromTo(frame, { scale: .95 }, { scale: 1, duration: .55, ease: 'back.out(2.4)' });
-              numEl.textContent = 'Tier ' + idx;
+              numEl.textContent = typesSite[idx];
               nameEl.textContent = noms[idx];
               dots.forEach((d, i) => d.classList.toggle('on', i === idx));
               const texte = caption.getAttribute('data-tier' + idx);
