@@ -149,8 +149,8 @@ body.cursor-ready a,body.cursor-ready button,body.cursor-ready input{cursor:none
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(13,13,15,.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-dark);}
 .logo-wrap{text-decoration:none;color:var(--white);display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.logo-icon{width:34px;height:34px;}
-.logo-icon svg{width:34px;height:34px;}
+.logo-icon{height:34px;display:flex;align-items:center;}
+.logo-icon img{height:100%;width:auto;display:block;}
 .logo-text{font-family:var(--disp);font-weight:700;font-size:1.05rem;color:var(--white);letter-spacing:-.02em;}
 .logo-text span{color:var(--red-texte);}
 .nav-right{display:flex;align-items:center;gap:26px;}
@@ -689,7 +689,7 @@ html.anim-js .hero-title{opacity:0;}
 <!-- NAV -->
 <nav role="navigation" aria-label="Navigation principale">
   <a href="#" class="logo-wrap" aria-label="LocWeb — Accueil">
-    <div class="logo-icon"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text></svg></div>
+    <div class="logo-icon"><img src="/logo-repere.png" alt="" width="26" height="34"></div>
     <span class="logo-text">Loc<span>Web</span></span>
   </a>
   <div class="nav-right">
@@ -1351,7 +1351,7 @@ html.anim-js .hero-title{opacity:0;}
 
 <footer>
   <a href="#" class="logo-wrap rv" aria-label="LocWeb — Retour en haut">
-    <div class="logo-icon" style="width:30px;height:30px;"><svg viewBox="0 0 64 64" fill="none" style="width:30px;height:30px;" aria-hidden="true"><polygon points="32,2 58,17 58,47 32,62 6,47 6,17" fill="#E8281E"/><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,sans-serif" font-weight="800" font-size="22" fill="white">L</text></svg></div>
+    <div class="logo-icon" style="height:30px;"><img src="/logo-repere.png" alt="" width="26" height="34"></div>
     <span class="logo-text" style="color:rgba(255,255,255,.8);">Loc<span>Web</span></span>
   </a>
   <p class="rv">Agence web Béziers — Votre image en ligne, on s'occupe de tout · Partout en France</p>
