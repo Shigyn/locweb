@@ -1,6 +1,5 @@
 # robots.txt — locweb.fr
-# Tout le site est ouvert à l'indexation : c'est un site vitrine, il n'y a rien à
-# masquer et le moindre blocage involontaire coûterait la visibilité recherchée.
+# Site vitrine : tout est ouvert a l'indexation.
 
 User-agent: *
 Allow: /

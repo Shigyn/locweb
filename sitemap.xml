@@ -1,29 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Sitemap locweb.fr.
-  Une seule URL aujourd'hui : le site est en page unique à ancres. Les ancres
-  (#tarifs, #realisations…) ne sont PAS listées ici — Google ne les traite pas
-  comme des pages distinctes, elles n'apporteraient rien. C'est précisément ce
-  que corrige la priorité 2 (découper en URLs réelles) : chaque page créée
-  devra être ajoutée ici.
--->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://locweb.fr/creation-site-internet-beziers/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/site-vitrine/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/site-ecommerce/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/refonte-site-internet/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/google-business/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/referencement-local/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/gestion-reseaux-sociaux/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/depannage-informatique/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/galerie/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/tarifs/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/a-propos/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/contact/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/conditions/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://locweb.fr/confidentialite/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.2</priority>
+  </url>
+  <url>
     <loc>https://locweb.fr/</loc>
-    <lastmod>2026-08-19</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-12</lastmod>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://locweb.fr/confidentialite</loc>
-    <lastmod>2026-08-27</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://locweb.fr/conditions</loc>
-    <lastmod>2026-08-27</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
   </url>
 </urlset>

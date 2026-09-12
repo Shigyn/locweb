@@ -1,0 +1,466 @@
+/* =====================================================================
+   LOCWEB — feuille de style unique.
+
+   DIRECTION : un studio, pas un template. Beaucoup d'air, des filets
+   fins au lieu de cartes encadrees, une typographie qui porte tout le
+   caractere. Le premium ne vient pas de ce qu'on ajoute : il vient de
+   ce qu'on retire et de la precision de ce qui reste.
+
+   LE ROUGE EST UNE SIGNATURE, PAS UNE COULEUR DE FOND. Il marque le
+   signe LocWeb, les fleches, le focus et l'objet du hero. Les boutons
+   principaux sont a l'encre : un rouge repete sur chaque bouton finit
+   par ne plus rien signifier.
+
+   DEUX THEMES DES LE DEPART. Toute la palette vit dans des variables,
+   le theme sombre ne fait que les redefinir.
+   ===================================================================== */
+
+@font-face { font-family: 'Clash Display'; src: url('/assets/fonts/clash-display-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap }
+@font-face { font-family: 'Clash Display'; src: url('/assets/fonts/clash-display-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap }
+@font-face { font-family: 'Switzer'; src: url('/assets/fonts/switzer-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap }
+@font-face { font-family: 'Switzer'; src: url('/assets/fonts/switzer-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap }
+@font-face { font-family: 'Switzer'; src: url('/assets/fonts/switzer-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap }
+
+:root {
+  --rouge: #E8281E;
+  --rouge-vif: #FF3B30;
+
+  --fond: #FFFFFF;
+  --fond-doux: #F7F7F5;
+  --encre: #0A0A0A;
+  --encre-douce: #5C5C5F;
+  --encre-tenue: #8E8E93;
+  --filet: #EAEAE7;
+  --filet-fort: #D6D6D2;
+  --bt-fond: #0A0A0A;
+  --bt-texte: #FFFFFF;
+  --voile-entete: rgba(255, 255, 255, .82);
+  --ombre: 0 30px 80px rgba(10, 10, 10, .08);
+
+  --titre: 'Clash Display', 'Helvetica Neue', Arial, sans-serif;
+  --texte: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --enveloppe: 1320px;
+  --gouttiere: clamp(20px, 4vw, 48px);
+  --r: 14px;
+  --ressort: cubic-bezier(.2, .7, .2, 1);
+}
+
+:root[data-theme="sombre"] {
+  --fond: #0A0A0B;
+  --fond-doux: #111113;
+  --encre: #F4F4F5;
+  --encre-douce: #A1A1A8;
+  --encre-tenue: #6E6E76;
+  --filet: #1E1E22;
+  --filet-fort: #2E2E34;
+  --bt-fond: #F4F4F5;
+  --bt-texte: #0A0A0B;
+  --voile-entete: rgba(10, 10, 11, .78);
+  --ombre: 0 30px 80px rgba(0, 0, 0, .5);
+  --rouge: #FF3B30;
+  --rouge-vif: #FF5C52;
+}
+
+/* --- Socle ---------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; background: var(--fond) }
+body {
+  margin: 0; background: var(--fond); color: var(--encre);
+  font-family: var(--texte); font-size: 17px; line-height: 1.65; font-weight: 400;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; overflow-x: hidden;
+  transition: background-color .4s ease, color .4s ease;
+}
+img, svg, video, canvas { display: block; max-width: 100% }
+p, figure { margin: 0 }
+ul, ol { margin: 0; padding: 0; list-style: none }
+a { color: inherit; text-decoration: none }
+h1, h2, h3, h4 { margin: 0; font-family: var(--titre); font-weight: 500; line-height: 1.02; letter-spacing: -.035em; text-wrap: balance }
+button { font: inherit; color: inherit }
+:focus-visible { outline: 2px solid var(--rouge); outline-offset: 4px; border-radius: 4px }
+::selection { background: var(--rouge); color: #fff }
+[hidden] { display: none !important }
+
+.enveloppe { width: 100%; max-width: calc(var(--enveloppe) + 2 * var(--gouttiere)); margin-inline: auto; padding-inline: var(--gouttiere) }
+
+.saut {
+  position: fixed; top: 12px; left: 12px; z-index: 300;
+  transform: translateY(-200%); transition: transform .2s;
+  background: var(--encre); color: var(--fond); padding: 12px 18px; border-radius: 999px;
+}
+.saut:focus { transform: none }
+
+/* --- Typographie ------------------------------------------------------ */
+/*  Clash Display serre fort : a -0,045 em les mots se collaient
+    (« sitesqui »). On rend un peu d'air entre les mots, pas entre les
+    lettres.  */
+.titre-geant { font-size: clamp(48px, 8.6vw, 136px); line-height: .94; letter-spacing: -.04em; word-spacing: .08em }
+.titre-1 { font-size: clamp(38px, 5.2vw, 76px); line-height: .98; letter-spacing: -.035em; word-spacing: .06em }
+.titre-2 { font-size: clamp(28px, 3vw, 42px); letter-spacing: -.03em }
+.titre-3 { font-size: clamp(20px, 1.6vw, 24px); letter-spacing: -.02em; line-height: 1.15 }
+.surtitre {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--texte); font-size: 13px; font-weight: 500; letter-spacing: .02em;
+  color: var(--encre-douce);
+}
+/*  Le point rouge : la seule marque de couleur d'un surtitre.  */
+.surtitre::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--rouge); flex: none }
+.chapo { font-size: clamp(18px, 1.55vw, 21px); line-height: 1.55; color: var(--encre-douce); max-width: 58ch }
+.manifeste { font-family: var(--titre); font-weight: 500; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.12; letter-spacing: -.03em; max-width: 26ch; text-wrap: balance }
+.manifeste em { font-style: normal; color: var(--encre-tenue) }
+.discret { color: var(--encre-douce) }
+
+section { padding: clamp(80px, 11vw, 168px) 0 }
+
+/* --- Boutons ---------------------------------------------------------- */
+.bt {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 54px; padding: 0 28px; border-radius: 999px; border: 1px solid transparent;
+  font-weight: 500; font-size: 16px; letter-spacing: -.005em; cursor: pointer; white-space: nowrap;
+  transition: transform .3s var(--ressort), background-color .3s, color .3s, border-color .3s;
+}
+.bt:hover { transform: translateY(-2px) }
+.bt-plein { background: var(--bt-fond); color: var(--bt-texte) }
+.bt-nu { border-color: var(--filet-fort); color: var(--encre) }
+.bt-nu:hover { border-color: var(--encre) }
+/*  La fleche du bouton principal : le rouge, en petit, au bout du geste. */
+.bt .fl { color: var(--rouge); transition: transform .3s var(--ressort) }
+.bt:hover .fl { transform: translateX(4px) }
+
+.lien-fleche {
+  display: inline-flex; align-items: center; gap: 8px; font-weight: 500; font-size: 15.5px;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size .35s var(--ressort); padding-bottom: 2px;
+}
+.lien-fleche:hover { background-size: 100% 1px }
+.lien-fleche span { color: var(--rouge) }
+
+/* --- Entete ----------------------------------------------------------- */
+.entete {
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid transparent;
+  transition: background-color .35s, border-color .35s, backdrop-filter .35s;
+}
+.entete[data-pose] { background: var(--voile-entete); border-bottom-color: var(--filet); backdrop-filter: blur(18px) saturate(1.5) }
+.entete-in { display: flex; align-items: center; gap: 28px; min-height: 80px }
+
+.marque { display: inline-flex; align-items: center; gap: 10px; font-family: var(--titre); font-size: 22px; font-weight: 500; letter-spacing: -.03em }
+/*  Le signe : un L plein, rouge. C'est la forme que reprend l'objet du
+    hero.  */
+.marque-signe {
+  width: 18px; height: 20px; flex: none; background: var(--rouge);
+  clip-path: polygon(0 0, 40% 0, 40% 62%, 100% 62%, 100% 100%, 0 100%);
+}
+
+.nav { display: flex; align-items: center; gap: 2px }
+.nav-lien {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 14px; font-size: 15px; font-weight: 500; color: var(--encre-douce);
+  cursor: pointer; transition: color .2s;
+}
+.nav-lien:hover, .nav-lien.actif { color: var(--encre) }
+.nav-lien svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; transition: transform .3s var(--ressort) }
+
+.nav-services { position: relative }
+.nav-services > summary { list-style: none }
+.nav-services > summary::-webkit-details-marker { display: none }
+.nav-services[open] > summary svg { transform: rotate(180deg) }
+.nav-panneau {
+  position: absolute; top: calc(100% + 14px); left: -14px; z-index: 10;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 8px;
+  width: min(92vw, 600px); padding: 12px;
+  background: var(--fond); border: 1px solid var(--filet); border-radius: var(--r); box-shadow: var(--ombre);
+}
+.nav-panneau a { padding: 12px 14px; border-radius: 10px; transition: background-color .2s }
+.nav-panneau a:hover { background: var(--fond-doux) }
+.nav-panneau b { display: block; font-size: 15px; font-weight: 500 }
+.nav-panneau span { display: block; font-size: 13.4px; color: var(--encre-tenue); margin-top: 1px }
+.nav-panneau a[aria-current="page"] b { color: var(--rouge) }
+
+.entete-actions { margin-left: auto; display: flex; align-items: center; gap: 8px }
+.entete-cta { min-height: 44px; padding: 0 20px; font-size: 15px }
+.theme-bt {
+  width: 44px; height: 44px; display: grid; place-items: center; flex: none;
+  border: 0; border-radius: 999px; background: transparent; cursor: pointer; color: var(--encre-douce);
+  transition: color .2s, background-color .2s;
+}
+.theme-bt:hover { color: var(--encre); background: var(--fond-doux) }
+.theme-bt svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round }
+:root[data-theme="clair"] .i-clair, :root[data-theme="sombre"] .i-sombre { display: none }
+
+.burger { display: none; width: 44px; height: 44px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; padding: 0; place-content: center; gap: 6px }
+.burger span { display: block; width: 20px; height: 1.5px; background: currentColor; transition: transform .35s var(--ressort) }
+.burger[aria-expanded="true"] span:first-child { transform: translateY(3.75px) rotate(45deg) }
+.burger[aria-expanded="true"] span:last-child { transform: translateY(-3.75px) rotate(-45deg) }
+
+.menu-mobile { border-top: 1px solid var(--filet); background: var(--fond); padding: 8px 0 28px; max-height: calc(100svh - 80px); overflow-y: auto }
+.menu-mobile a:not(.bt) { display: flex; align-items: center; min-height: 52px; border-bottom: 1px solid var(--filet); font-size: 18px; font-family: var(--titre); letter-spacing: -.02em }
+.menu-mobile .bt { width: 100%; margin-top: 20px }
+.menu-mobile-titre { font-size: 13px; color: var(--encre-tenue); margin: 18px 0 2px }
+
+@media (max-width: 1100px) {
+  .nav { display: none }
+  .burger { display: grid }
+  .entete-cta { display: none }
+}
+@media (min-width: 1101px) { .menu-mobile { display: none !important } }
+
+/* --- Pied de page ------------------------------------------------------ */
+.pied { border-top: 1px solid var(--filet); padding: clamp(64px, 8vw, 110px) 0 32px }
+.pied-in { display: grid; gap: 44px; grid-template-columns: 1.5fr repeat(3, 1fr) }
+@media (max-width: 900px) { .pied-in { grid-template-columns: 1fr 1fr } .pied-marque { grid-column: 1 / -1 } }
+@media (max-width: 520px) { .pied-in { grid-template-columns: 1fr } }
+.pied-marque { max-width: 36ch; display: grid; gap: 18px; justify-items: start; align-content: start }
+.pied-marque p { color: var(--encre-douce); font-size: 15.5px }
+.pied-col h2 { font-family: var(--texte); font-size: 13px; font-weight: 500; letter-spacing: 0; color: var(--encre-tenue); margin-bottom: 16px }
+.pied-col li { margin-bottom: 10px; font-size: 15.5px }
+.pied-col a { transition: color .2s }
+.pied-col a:hover { color: var(--rouge) }
+.pied-bas {
+  margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--filet);
+  display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between;
+  font-size: 13.6px; color: var(--encre-tenue);
+}
+.pied-bas a:hover { color: var(--encre) }
+
+/* --- Apparitions --------------------------------------------------------- */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ressort), transform 1s var(--ressort) }
+.reveal.vu { opacity: 1; transform: none }
+.reveal[data-retard="1"] { transition-delay: .08s }
+.reveal[data-retard="2"] { transition-delay: .16s }
+.reveal[data-retard="3"] { transition-delay: .24s }
+
+@view-transition { navigation: auto }
+::view-transition-old(root) { animation: sortie .25s ease both }
+::view-transition-new(root) { animation: entree .45s var(--ressort) both }
+@keyframes sortie { to { opacity: 0 } }
+@keyframes entree { from { opacity: 0; transform: translateY(12px) } }
+
+/* =====================================================================
+   HERO (accueil)
+   ===================================================================== */
+.hero { padding: clamp(24px, 5vh, 64px) 0 clamp(64px, 10vh, 120px) }
+.hero-grille {
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  gap: clamp(32px, 5vw, 80px); align-items: end; min-height: calc(100svh - 80px - 120px);
+}
+.hero-in { display: grid; gap: 28px; order: -1; padding-bottom: clamp(8px, 2vh, 24px) }
+.hero h1 { font-size: clamp(48px, 6.6vw, 112px); max-width: 10ch }
+.hero .chapo { max-width: 42ch }
+.hero-bas { display: grid; gap: 30px; justify-items: start }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center }
+
+/*  Le panneau de l'objet : toujours sombre, quel que soit le theme. Le
+    verre n'est beau que sur du noir. Rien de ce qui compte pour Google
+    ni pour un lecteur d'ecran ne depend de lui.  */
+.hero-objet {
+  position: relative; aspect-ratio: 4 / 5; width: 100%; max-height: calc(100svh - 150px);
+  border-radius: 24px; overflow: hidden; background: #0D0D10; justify-self: end;
+  box-shadow: 0 40px 120px rgba(10, 10, 10, .16);
+}
+:root[data-theme="sombre"] .hero-objet { box-shadow: 0 0 0 1px var(--filet) }
+.hero-objet canvas, .hero-objet img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover }
+.hero-objet img { transition: opacity .8s ease }
+.hero-objet[data-mode="scene"] img { opacity: 0 }
+
+@media (max-width: 900px) {
+  .hero-grille { grid-template-columns: 1fr; min-height: 0; align-items: start }
+  /*  Sur telephone le titre passe AVANT le panneau : sinon le h1
+      tombait a 538 px, sous la ligne de flottaison.  */
+  .hero-in { order: 0 }
+  .hero-objet { order: 1; aspect-ratio: 1 / 1; max-height: 440px; justify-self: stretch; border-radius: 18px }
+}
+
+/* =====================================================================
+   SECTIONS COMMUNES
+   ===================================================================== */
+.tete { display: grid; gap: 18px; max-width: 64ch; margin-bottom: clamp(44px, 6vw, 88px) }
+.tete-ligne { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; margin-bottom: clamp(44px, 6vw, 88px) }
+.tete-ligne .tete { margin-bottom: 0 }
+
+.intro { display: grid; gap: clamp(48px, 7vw, 96px) }
+.faits { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--filet) }
+@media (max-width: 900px) { .faits { grid-template-columns: 1fr 1fr } }
+@media (max-width: 520px) { .faits { grid-template-columns: 1fr } }
+.fait { padding: 26px 24px 0 0 }
+.fait b { display: block; font-weight: 500; font-size: 16px; margin-bottom: 6px }
+.fait span { color: var(--encre-douce); font-size: 15px }
+
+/*  Liste a filets : pas de cartes, une ligne par entree, le filet fait
+    la structure. Au survol, la ligne s'ecarte et la fleche avance.  */
+.liste-filets { border-top: 1px solid var(--filet) }
+.liste-filets a {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr) auto; align-items: center; gap: 24px;
+  padding: 30px 0; border-bottom: 1px solid var(--filet);
+  transition: padding .45s var(--ressort);
+}
+.liste-filets a:hover { padding-inline: 18px }
+.liste-filets h3 { font-size: clamp(22px, 2.3vw, 34px); letter-spacing: -.03em }
+.liste-filets p { color: var(--encre-douce); font-size: 16px }
+.liste-filets .fl { color: var(--rouge); font-size: 22px; transition: transform .4s var(--ressort) }
+.liste-filets a:hover .fl { transform: translateX(8px) }
+@media (max-width: 760px) {
+  .liste-filets a { grid-template-columns: 1fr auto; gap: 6px 16px; padding: 22px 0 }
+  .liste-filets p { grid-column: 1; grid-row: 2 }
+  .liste-filets .fl { grid-column: 2; grid-row: 1 / span 2 }
+  .liste-filets a:hover { padding-inline: 0 }
+}
+
+.etapes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 32px }
+@media (max-width: 1000px) { .etapes { grid-template-columns: 1fr 1fr; gap: 0 28px } }
+@media (max-width: 560px) { .etapes { grid-template-columns: 1fr } }
+.etape { display: grid; gap: 12px; align-content: start; padding: 28px 0 36px; border-top: 1px solid var(--filet) }
+.etape-n { font-size: 13px; color: var(--rouge); font-variant-numeric: tabular-nums }
+.etape p { color: var(--encre-douce); font-size: 15.6px }
+
+.offres { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--filet) }
+@media (max-width: 900px) { .offres { grid-template-columns: 1fr } }
+.offre { display: grid; gap: 14px; align-content: start; padding: 34px 32px 38px 0 }
+.offre + .offre { padding-left: 32px; border-left: 1px solid var(--filet) }
+@media (max-width: 900px) {
+  .offre, .offre + .offre { padding: 30px 0; border-left: 0; border-bottom: 1px solid var(--filet) }
+}
+.offre-prix { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 4px 0 2px }
+.offre-prix b { font-family: var(--titre); font-weight: 500; font-size: clamp(44px, 4.4vw, 64px); letter-spacing: -.045em; line-height: 1 }
+.offre-prix span { color: var(--encre-tenue); font-size: 15px }
+.offre .discret { font-size: 15.5px; max-width: 34ch }
+
+.inclus { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--filet) }
+.inclus li { display: inline-flex; align-items: center; gap: 10px; color: var(--encre-douce); font-size: 15.2px }
+.inclus li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--rouge); flex: none }
+
+.appel { border-top: 1px solid var(--filet) }
+.appel-in { display: grid; gap: 34px }
+.appel h2 { max-width: 14ch }
+.appel-bas { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px }
+.appel-tel { font-family: var(--titre); font-size: clamp(24px, 2.6vw, 36px); letter-spacing: -.03em; transition: color .2s }
+.appel-tel:hover { color: var(--rouge) }
+
+/* =====================================================================
+   PAGES INTERIEURES
+   ===================================================================== */
+.page-tete { padding: clamp(56px, 9vw, 140px) 0 clamp(48px, 6vw, 96px) }
+.page-tete .enveloppe { display: grid; gap: 24px; justify-items: start }
+.page-tete h1 { max-width: 16ch }
+.fil { font-size: 13.6px; color: var(--encre-tenue) }
+.fil a:hover { color: var(--encre) }
+
+/*  Colonne de lecture : une ligne ne depasse pas 70 caracteres. Au-dela,
+    l'oeil perd le debut de la suivante.  */
+.lecture { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 28px clamp(32px, 6vw, 96px); padding-top: 40px; border-top: 1px solid var(--filet) }
+@media (max-width: 900px) { .lecture { grid-template-columns: 1fr } }
+.lecture > h2 { font-size: clamp(26px, 2.6vw, 38px) }
+.prose { display: grid; gap: 20px; max-width: 68ch; align-content: start }
+.prose p { color: var(--encre-douce); font-size: 17.5px }
+.prose strong { color: var(--encre); font-weight: 500 }
+.prose h3 { font-size: 22px; margin-top: 12px }
+.prose a:not(.bt) { text-decoration: underline; text-decoration-color: var(--filet-fort); text-underline-offset: 4px }
+.prose a:not(.bt):hover { text-decoration-color: var(--rouge) }
+.puces { display: grid; gap: 12px }
+.puces li { position: relative; padding-left: 22px; color: var(--encre-douce) }
+.puces li::before { content: ''; position: absolute; left: 0; top: .72em; width: 6px; height: 6px; border-radius: 50%; background: var(--rouge) }
+.puces li strong { color: var(--encre); font-weight: 500 }
+
+.section-serree { padding: clamp(48px, 6vw, 88px) 0 }
+
+.faq { border-top: 1px solid var(--filet) }
+.faq details { border-bottom: 1px solid var(--filet) }
+.faq summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 26px 0; cursor: pointer; list-style: none;
+  font-family: var(--titre); font-size: clamp(19px, 1.7vw, 24px); letter-spacing: -.02em; font-weight: 500;
+}
+.faq summary::-webkit-details-marker { display: none }
+.faq summary::after { content: '+'; font-family: var(--texte); font-size: 26px; font-weight: 400; color: var(--rouge); transition: transform .35s var(--ressort); flex: none }
+.faq details[open] summary::after { transform: rotate(45deg) }
+.faq details p { padding: 0 0 28px; max-width: 70ch; color: var(--encre-douce) }
+
+.table-tarifs { width: 100%; border-collapse: collapse }
+.table-tarifs th, .table-tarifs td { text-align: left; padding: 26px 20px 26px 0; border-bottom: 1px solid var(--filet); vertical-align: top }
+.table-tarifs thead th { font-size: 13px; font-weight: 500; color: var(--encre-tenue); padding-top: 0 }
+.table-tarifs tbody th { font-family: var(--titre); font-weight: 500; font-size: clamp(20px, 1.9vw, 26px); letter-spacing: -.02em; width: 28% }
+.table-tarifs td { font-variant-numeric: tabular-nums; font-size: 16.5px }
+.table-tarifs td.desc { color: var(--encre-douce); font-size: 15.5px }
+.table-tarifs .prix { font-family: var(--titre); font-size: clamp(22px, 2vw, 28px); letter-spacing: -.03em; white-space: nowrap }
+.table-tarifs .prix small { display: block; font-family: var(--texte); font-size: 13.6px; letter-spacing: 0; color: var(--encre-tenue) }
+@media (max-width: 760px) {
+  .table-tarifs thead { display: none }
+  .table-tarifs tr { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; padding: 22px 0; border-bottom: 1px solid var(--filet) }
+  /*  `tbody th` et non `th` seul : la largeur de 28 % du bureau est
+      posee sur `.table-tarifs tbody th`, plus specifique, et gardait
+      « Site vitrine » coupe en deux sur telephone.  */
+  .table-tarifs th, .table-tarifs td, .table-tarifs tbody th { padding: 0; border: 0; width: auto }
+  .table-tarifs tbody th, .table-tarifs td.desc { grid-column: 1 / -1 }
+}
+
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(44px, 7vw, 110px); padding-top: 44px; border-top: 1px solid var(--filet) }
+@media (max-width: 900px) { .contact { grid-template-columns: 1fr } }
+.coordonnees { display: grid; gap: 30px; align-content: start }
+.coordonnees a.gros { font-family: var(--titre); font-size: clamp(26px, 2.8vw, 40px); letter-spacing: -.03em; line-height: 1.1; transition: color .2s; overflow-wrap: anywhere }
+.coordonnees a.gros:hover { color: var(--rouge) }
+.etiquette { font-size: 13px; color: var(--encre-tenue); margin-bottom: 6px }
+.formulaire { display: grid; gap: 24px; position: relative }
+.champ { display: grid; gap: 6px }
+.champ label { font-size: 14px; color: var(--encre-douce) }
+.champ input, .champ textarea, .champ select {
+  width: 100%; font: inherit; font-size: 17px; color: var(--encre);
+  background: transparent; border: 0; border-bottom: 1px solid var(--filet-fort); border-radius: 0;
+  padding: 12px 0; transition: border-color .25s; -webkit-appearance: none; appearance: none;
+}
+.champ select { background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 12px) 55%, calc(100% - 7px) 55%; background-size: 5px 5px; background-repeat: no-repeat }
+.champ select option { color: #0A0A0A }
+.champ textarea { min-height: 130px; resize: vertical }
+.champ input:focus, .champ textarea:focus, .champ select:focus { outline: none; border-bottom-color: var(--encre) }
+.deux-champs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px }
+@media (max-width: 560px) { .deux-champs { grid-template-columns: 1fr } }
+.formulaire .mention { font-size: 13.4px; color: var(--encre-tenue) }
+.formulaire .bt { justify-self: start }
+.formulaire-etat { font-size: 15.5px }
+.formulaire-etat[data-etat="ok"] { color: #1F8A4C }
+:root[data-theme="sombre"] .formulaire-etat[data-etat="ok"] { color: #4ADE80 }
+.formulaire-etat[data-etat="erreur"] { color: var(--rouge) }
+.piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden }
+
+.autres { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); column-gap: 32px; border-top: 1px solid var(--filet) }
+.autres a { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 22px 0; border-bottom: 1px solid var(--filet); font-weight: 500 }
+.autres a span { color: var(--rouge); transition: transform .35s var(--ressort) }
+.autres a:hover span { transform: translateX(6px) }
+
+/* =====================================================================
+   GALERIE
+   ===================================================================== */
+.galerie-section { padding-top: 0 }
+.filtres { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px }
+.filtre {
+  min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--filet); background: transparent; color: var(--encre-douce);
+  font-size: 15px; font-weight: 500; transition: background-color .2s, color .2s, border-color .2s;
+}
+.filtre:hover { border-color: var(--filet-fort); color: var(--encre) }
+.filtre[aria-pressed="true"] { background: var(--encre); border-color: var(--encre); color: var(--fond) }
+.grille-exemples { display: grid; gap: 56px 32px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)) }
+.exemple-lien { display: grid; gap: 20px }
+.exemple-ecran { aspect-ratio: 3 / 2; overflow: hidden; border-radius: var(--r); background: var(--fond-doux); display: grid; place-items: center }
+/*  `height: 100%` explicite : l'attribut HTML height="800" des captures
+    bat aspect-ratio.  */
+.exemple-ecran img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 1s var(--ressort) }
+.exemple-lien:hover .exemple-ecran img { transform: scale(1.03) }
+.exemple-ecran span { font-family: var(--titre); font-size: 26px; color: var(--encre-tenue) }
+.exemple-txt { display: grid; gap: 8px }
+.exemple-metier { font-size: 13px; color: var(--encre-tenue) }
+.exemple-txt p:not(.exemple-metier) { color: var(--encre-douce); font-size: 15.4px }
+.galerie-vide { display: grid; gap: 16px; justify-items: start; max-width: 56ch; padding-top: 36px; border-top: 1px solid var(--filet) }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important }
+  html { scroll-behavior: auto }
+  .reveal { opacity: 1; transform: none }
+  @view-transition { navigation: none }
+}
+
+/* Textes legaux : titres de rubrique et listes. */
+.legal h2 { font-size: clamp(22px, 2vw, 28px); margin-top: 28px }
+.legal h3 { font-size: 19px; margin-top: 16px }
+.legal ul { display: grid; gap: 10px; padding-left: 20px; list-style: disc; color: var(--encre-douce) }
+.legal li::marker { color: var(--rouge) }
