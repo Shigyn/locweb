@@ -147,9 +147,10 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
 /* --- Entete : toujours noire ------------------------------------------ */
 .entete {
   position: sticky; top: 0; z-index: 100; color: var(--t-texte);
-  background: rgba(10, 10, 11, .82); backdrop-filter: saturate(1.8) blur(20px);
-  -webkit-backdrop-filter: saturate(1.8) blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, .06);
+  /*  Noir PLEIN. La version translucide (82 % + flou) laissait passer
+      le blanc des pages claires : l'entete paraissait grise.  */
+  background: var(--noir);
+  border-bottom: 1px solid #1A1A1C;
 }
 .entete-in { display: flex; align-items: center; gap: 28px; min-height: 64px }
 .marque { display: inline-flex; align-items: center; gap: 10px; font-family: var(--titre); font-size: 21px; font-weight: 600; letter-spacing: -.03em }
