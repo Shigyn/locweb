@@ -41,6 +41,7 @@
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://locweb.fr/#agence","name":"LocWeb","description":"Création de sites internet pour artisans, commerçants et indépendants à Béziers et dans toute la France.","url":"https://locweb.fr/","telephone":"+33745531434","priceRange":"€€","address":{"@type":"PostalAddress","streetAddress":"24 rue Diderot","postalCode":"34500","addressLocality":"Béziers","addressRegion":"Hérault","addressCountry":"FR"},"areaServed":[{"@type":"City","name":"Béziers"},{"@type":"AdministrativeArea","name":"Hérault"},{"@type":"Country","name":"France"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://locweb.fr/"},{"@type":"ListItem","position":2,"name":"Galerie","item":"https://locweb.fr/galerie/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Galerie — exemples de sites LocWeb","hasPart":[{"@type":"WebSite","name":"Vallier & Fils","url":"https://shigyn.github.io/vallier/"},{"@type":"WebSite","name":"KSM Burger","url":"https://ksmburger.fr/"},{"@type":"WebSite","name":"Rapid’Eau Plomberie","url":"https://shigyn.github.io/rapideau-plomberie/"}]}</script>
 </head>
 <body>
 
@@ -58,28 +59,28 @@
         <summary class="nav-lien">Services<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
         <div class="nav-panneau">
           <a href="/creation-site-internet-beziers/">
-            <b>Création de site à Béziers</b><span>La page de référence locale</span>
+            <b>Création de site à Béziers</b><span>Votre site, conçu et suivi depuis Béziers</span>
           </a>
           <a href="/site-vitrine/">
-            <b>Site vitrine</b><span>Présenter votre activité</span>
+            <b>Site vitrine</b><span>Présenter votre activité et être appelé</span>
           </a>
           <a href="/site-ecommerce/">
-            <b>Site e-commerce</b><span>Vendre en ligne</span>
+            <b>Site e-commerce</b><span>Vendre vos produits en ligne</span>
           </a>
           <a href="/refonte-site-internet/">
-            <b>Refonte de site</b><span>Moderniser l’existant</span>
+            <b>Refonte de site</b><span>Moderniser un site qui a vieilli</span>
           </a>
           <a href="/google-business/">
-            <b>Fiche Google Business</b><span>Exister sur Google Maps</span>
+            <b>Fiche Google Business</b><span>Être trouvé sur Google Maps</span>
           </a>
           <a href="/referencement-local/">
-            <b>Référencement local</b><span>Être trouvé près de chez vous</span>
+            <b>Référencement local</b><span>Apparaître près de chez vous</span>
           </a>
           <a href="/gestion-reseaux-sociaux/">
             <b>Réseaux sociaux</b><span>Publier sans y passer vos soirées</span>
           </a>
           <a href="/depannage-informatique/">
-            <b>Dépannage informatique</b><span>Quand ça ne marche plus</span>
+            <b>Dépannage informatique</b><span>Quand l’ordinateur vous bloque</span>
           </a>
         </div>
       </details>
@@ -131,12 +132,47 @@
     </div>
   </section>
 
-  <section class="galerie-section">
+  <section class="section-serree tuile-claire">
     <div class="enveloppe">
-      <div class="galerie-vide reveal">
-        <p class="titre-3">La galerie arrive bientôt.</p>
-        <p class="discret">En attendant, parlons de votre projet : je vous montre des exemples proches de votre métier pendant notre appel.</p>
-        <a class="bt bt-plein" href="/contact/">Parlons de votre projet</a>
+      <div class="filtres" role="group" aria-label="Filtrer par métier">
+        <button type="button" class="filtre" aria-pressed="true" data-filtre="tous">Tous</button>
+        <button type="button" class="filtre" aria-pressed="false" data-filtre="artisan">Artisans</button>
+        <button type="button" class="filtre" aria-pressed="false" data-filtre="restaurant">Restaurants</button>
+      </div>
+      <div class="grille-exemples">
+        <article class="exemple reveal" data-type="artisan" data-retard="0">
+          <a class="exemple-lien" href="https://shigyn.github.io/vallier/" target="_blank" rel="noopener">
+            <div class="exemple-ecran"><img src="/assets/galerie/vallier.webp" alt="Aperçu du site Vallier &amp; Fils" width="1200" height="800" loading="lazy" decoding="async"></div>
+            <div class="exemple-txt">
+              <p class="exemple-metier">Salles de bain sur mesure · Béziers</p>
+              <h2 class="titre-3">Vallier &amp; Fils</h2>
+              <p>Une mise en scène éditoriale pour un artisan haut de gamme : la pièce finie en plein écran, la matière au premier plan.</p>
+              <span class="lien-fleche">Voir le site <span aria-hidden="true">↗</span></span>
+            </div>
+         </a>
+        </article>
+        <article class="exemple reveal" data-type="restaurant" data-retard="1">
+          <a class="exemple-lien" href="https://ksmburger.fr/" target="_blank" rel="noopener">
+            <div class="exemple-ecran"><img src="/assets/galerie/ksm.webp" alt="Aperçu du site KSM Burger" width="1200" height="800" loading="lazy" decoding="async"></div>
+            <div class="exemple-txt">
+              <p class="exemple-metier">Restaurant · Fleurie</p>
+              <h2 class="titre-3">KSM Burger</h2>
+              <p>La carte complète et la commande à emporter, avec les commandes qui arrivent sur la tablette du comptoir.</p>
+              <span class="lien-fleche">Voir le site <span aria-hidden="true">↗</span></span>
+            </div>
+         </a>
+        </article>
+        <article class="exemple reveal" data-type="artisan" data-retard="2">
+          <a class="exemple-lien" href="https://shigyn.github.io/rapideau-plomberie/" target="_blank" rel="noopener">
+            <div class="exemple-ecran"><img src="/assets/galerie/rapideau.webp" alt="Aperçu du site Rapid’Eau Plomberie" width="1200" height="800" loading="lazy" decoding="async"></div>
+            <div class="exemple-txt">
+              <p class="exemple-metier">Plombier · Béziers</p>
+              <h2 class="titre-3">Rapid’Eau Plomberie</h2>
+              <p>Un site de dépannage pensé pour l’urgence : le numéro partout, le devis en deux minutes.</p>
+              <span class="lien-fleche">Voir le site <span aria-hidden="true">↗</span></span>
+            </div>
+         </a>
+        </article>
       </div>
     </div>
   </section>
@@ -188,6 +224,6 @@
 </script>
 <script src="/assets/site.js?v=1" defer></script>
 <script src="/assets/mesure.js" defer></script>
-
+<script src="/assets/galerie.js?v=1" defer></script>
 </body>
 </html>

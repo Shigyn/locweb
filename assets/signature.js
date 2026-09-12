@@ -11,7 +11,7 @@
    600 Ko de Three.js pour un objet qui tourne doucement, ce n'est pas
    un echange raisonnable sur une connexion mobile.
 
-   L'OBJET VIT DANS UN PANNEAU SOMBRE, quel que soit le theme du site.
+   L'OBJET VIT SUR LE NOIR DE LA TUILE DU HERO, quel que soit le theme.
    Essaye aussi sur fond blanc : un verre clair y disparait, et le
    meme L teinte en gris ressemblait a une lettre en plastique. Le
    verre n'est beau que sur du noir ; c'est donc le noir qui vient a
@@ -58,7 +58,7 @@
 
     var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: !!capture });
     renderer.setPixelRatio(capture ? 1 : Math.min(window.devicePixelRatio || 1, 1.75));
-    renderer.setClearColor(0x0d0d10, 1);   /* la couleur du panneau */
+    renderer.setClearColor(0x0a0a0b, 1);   /* le noir de la tuile du hero */
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.physicallyCorrectLights = true;
@@ -138,6 +138,7 @@
     var groupe = new THREE.Group();
     groupe.add(halo, barre, L);
     groupe.rotation.set(-0.12, -0.5, 0.03);
+    groupe.position.y = 0.1;
 
     scene.add(groupe);
 
@@ -150,12 +151,14 @@
 
     function taille() {
       var r = hote.getBoundingClientRect();
-      var w = capture ? 1000 : Math.max(1, r.width), h = capture ? 1250 : Math.max(1, r.height);
+      var w = capture ? 1600 : Math.max(1, r.width), h = capture ? 800 : Math.max(1, r.height);
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       /* Sur un cadre plus large que haut, on recule pour que le L tienne
          entier en hauteur. */
-      camera.position.z = camera.aspect < 1 ? 11 / camera.aspect : 11;
+      /* Cadre large (le hero, 2/1) : on s'approche, le L remplit la
+         hauteur. Cadre haut : on recule pour qu'il tienne entier. */
+      camera.position.z = camera.aspect < 1 ? 11 / camera.aspect : 7.6;
       camera.updateProjectionMatrix();
     }
     taille();
@@ -189,7 +192,7 @@
       courant.y += (cible.y - courant.y) * 0.045;
       groupe.rotation.y = -0.5 + Math.sin(s * 0.35) * 0.16 + courant.x * 0.3;
       groupe.rotation.x = -0.12 + Math.cos(s * 0.28) * 0.05 + courant.y * 0.16;
-      groupe.position.y = Math.sin(s * 0.6) * 0.08;
+      groupe.position.y = 0.1 + Math.sin(s * 0.6) * 0.08;
       renderer.render(scene, camera);
       requestAnimationFrame(boucle);
     }
