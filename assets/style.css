@@ -69,16 +69,6 @@
   --t-filet: #242427; --t-carte: #161618; --t-carte-bord: #242427;
   --t-action: var(--rouge-vif);
 }
-/*  Theme sombre : les tuiles claires passent au gris tres profond. Les
-    tuiles noires restent noires ; la rythmique noir / gris demeure.  */
-:root[data-theme="sombre"] body, :root[data-theme="sombre"] .tuile-claire {
-  --t-fond: #111113; --t-texte: #F5F5F7; --t-doux: #A1A1A6; --t-tenu: #86868B;
-  --t-filet: #26262A; --t-carte: #1B1B1E; --t-carte-bord: #26262A; --t-action: var(--rouge-vif);
-}
-:root[data-theme="sombre"] .tuile-parchemin {
-  --t-fond: #18181B; --t-texte: #F5F5F7; --t-doux: #A1A1A6; --t-tenu: #86868B;
-  --t-filet: #2C2C30; --t-carte: #222226; --t-carte-bord: #2C2C30; --t-action: var(--rouge-vif);
-}
 .tuile-claire, .tuile-parchemin, .tuile-sombre, .page-tete { background: var(--t-fond); color: var(--t-texte) }
 
 /* --- Socle ---------------------------------------------------------- */
@@ -192,15 +182,11 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
 .nav-panneau a[aria-current="page"] b { color: var(--rouge-vif) }
 
 .entete-actions { display: flex; align-items: center; gap: 6px }
-.entete-cta { min-height: 38px; padding: 0 18px; font-size: 14.5px }
-.theme-bt {
-  width: 40px; height: 40px; display: grid; place-items: center; flex: none;
-  border: 0; border-radius: 999px; background: transparent; cursor: pointer; color: rgba(245, 245, 247, .78);
-  transition: color .2s, background-color .2s;
-}
-.theme-bt:hover { color: #fff; background: rgba(255, 255, 255, .08) }
-.theme-bt svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round }
-:root[data-theme="clair"] .i-clair, :root[data-theme="sombre"] .i-sombre { display: none }
+/*  Le numero, et non « Parlons de votre projet » (Nicolas, 2026-09-13) :
+    sur un site d'agence locale, le telephone est l'action qui compte.
+    Il reste visible sur telephone, a cote du menu.  */
+.entete-cta { min-height: 38px; padding: 0 16px; font-size: 14.5px; gap: 8px; font-variant-numeric: tabular-nums }
+.entete-cta svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
 .burger { display: none; width: 44px; height: 44px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; padding: 0; place-content: center; gap: 6px; color: #fff }
 .burger span { display: block; width: 20px; height: 1.5px; background: currentColor; transition: transform .35s var(--ressort) }
 .burger[aria-expanded="true"] span:first-child { transform: translateY(3.75px) rotate(45deg) }
@@ -213,7 +199,6 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
   .nav { display: none }
   .entete-actions { margin-left: auto }
   .burger { display: grid }
-  .entete-cta { display: none }
 }
 @media (min-width: 1061px) { .menu-mobile { display: none !important } }
 
@@ -426,7 +411,6 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
 .formulaire-etat { font-size: 15.5px }
 .formulaire-etat:empty { display: none }
 .formulaire-etat[data-etat="ok"] { color: #1F8A4C }
-:root[data-theme="sombre"] .formulaire-etat[data-etat="ok"] { color: #4ADE80 }
 .formulaire-etat[data-etat="erreur"] { color: var(--t-action) }
 .piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden }
 
@@ -477,3 +461,54 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
   .reveal { opacity: 1; transform: none }
   @view-transition { navigation: none }
 }
+
+
+/* =====================================================================
+   PAGE SERVICE — version claire (2026-09-13)
+   ===================================================================== */
+.service-tete { background: linear-gradient(#FFFFFF, #F5F5F7); padding: clamp(56px, 8vw, 104px) 0 clamp(64px, 8vw, 110px); border-bottom: 1px solid #E5E5EA }
+.service-grille { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, .8fr); gap: clamp(36px, 6vw, 88px); align-items: center }
+@media (max-width: 920px) { .service-grille { grid-template-columns: 1fr } }
+.service-intro { display: grid; gap: 20px; justify-items: start }
+.service-intro h1 { max-width: 16ch }
+.service-intro .fil span { margin: 0 4px }
+
+/*  L'encadre de resume : blanc, net, la seule carte de l'en-tete.  */
+.resume {
+  display: grid; gap: 14px; padding: clamp(28px, 3vw, 36px);
+  background: #fff; border: 1px solid #E5E5EA; border-radius: 24px;
+  box-shadow: 0 24px 60px -30px rgba(29, 29, 31, .25);
+}
+.resume-etiquette { font-size: 13.5px; color: var(--t-tenu) }
+.resume-prix { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-top: -8px }
+.resume-prix b { font-family: var(--titre); font-weight: 600; font-size: clamp(48px, 4.4vw, 64px); letter-spacing: -.05em; line-height: 1 }
+.resume-prix b.resume-devis { font-size: clamp(34px, 3vw, 44px); letter-spacing: -.035em }
+.resume-prix span { font-size: 16px; color: var(--t-doux) }
+.resume-note { font-size: 14px; color: var(--t-tenu); margin-top: -6px }
+.resume .coches { padding-top: 16px; border-top: 1px solid #E5E5EA }
+.resume-bt { width: 100%; margin-top: 6px; white-space: normal; text-align: center }
+
+/*  Les coches : ce qui est compris.  */
+.coches { display: grid; gap: 12px }
+.coches li { position: relative; padding-left: 30px; font-size: 16px; line-height: 1.45; color: var(--t-texte) }
+.coches li::before {
+  content: ''; position: absolute; left: 0; top: .1em; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--rouge-bouton) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 13px no-repeat;
+}
+.coches-grandes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 36px }
+@media (max-width: 700px) { .coches-grandes { grid-template-columns: 1fr } }
+.coches-grandes li { font-size: 17.5px; color: var(--t-doux) }
+.coches-grandes li strong { color: var(--t-texte); font-weight: 500 }
+
+/*  Une seule colonne de lecture, centree : plus clair que le titre a
+    gauche et le texte a droite.  */
+.colonne { max-width: calc(780px + 2 * var(--gouttiere)); display: grid; gap: 28px }
+.colonne .prose { max-width: none }
+
+.puces-liens { display: flex; flex-wrap: wrap; gap: 10px }
+.puces-liens a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px;
+  background: var(--t-carte); border: 1px solid var(--t-filet); font-size: 15.5px; font-weight: 500;
+  transition: border-color .2s, color .2s;
+}
+.puces-liens a:hover { border-color: var(--rouge-bouton); color: var(--t-action) }

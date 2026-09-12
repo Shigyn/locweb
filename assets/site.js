@@ -1,29 +1,12 @@
 /* =====================================================================
    LOCWEB — le script commun.
 
-   Trois choses seulement : le theme, le menu telephone, les
-   apparitions au defilement. Rien ici n'est necessaire pour lire la
+   Deux choses seulement : le menu telephone et les apparitions au
+   defilement. Rien ici n'est necessaire pour lire la
    page : sans JavaScript, le site reste entierement navigable.
    ===================================================================== */
 (function () {
   'use strict';
-
-  var racine = document.documentElement;
-
-  /* --- Le theme ------------------------------------------------------
-     Le choix est pose avant le premier rendu par le petit script de la
-     tete ; ici on ne gere que le bouton. Le choix du visiteur prime sur
-     celui de son systeme, et il est retenu d'une page a l'autre. */
-  var bouton = document.getElementById('theme-bt');
-  if (bouton) {
-    bouton.addEventListener('click', function () {
-      var nouveau = racine.dataset.theme === 'sombre' ? 'clair' : 'sombre';
-      racine.dataset.theme = nouveau;
-      try { localStorage.setItem('locweb-theme', nouveau); } catch (e) {}
-      var meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', nouveau === 'sombre' ? '#08090A' : '#FFFFFF');
-    });
-  }
 
   /* --- L'entete se pose des qu'on quitte le haut de la page ---------- */
   var entete = document.getElementById('entete');

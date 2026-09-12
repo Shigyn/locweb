@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="clair">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,23 +22,10 @@
 
 <link rel="icon" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/favicon.png">
-<meta name="theme-color" content="#0B0B0C">
+<meta name="theme-color" content="#0A0A0B">
 
-<link rel="stylesheet" href="/assets/style.css?v=2">
+<link rel="stylesheet" href="/assets/style.css?v=3">
 
-<!--  Le theme est pose AVANT le premier rendu : lu une fois dans le
-      navigateur du visiteur, sinon celui de son systeme. Applique plus
-      tard, on verrait la page blanche clignoter avant de passer au
-      sombre — le defaut le plus visible d'un site a deux themes.  -->
-<script>
-(function () {
-  try {
-    var t = localStorage.getItem('locweb-theme');
-    if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'sombre' : 'clair';
-    document.documentElement.dataset.theme = t;
-  } catch (e) { document.documentElement.dataset.theme = 'clair'; }
-})();
-</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://locweb.fr/#agence","name":"LocWeb","description":"Création de sites internet pour artisans, commerçants et indépendants à Béziers et dans toute la France.","url":"https://locweb.fr/","telephone":"+33745531434","priceRange":"€€","address":{"@type":"PostalAddress","streetAddress":"24 rue Diderot","postalCode":"34500","addressLocality":"Béziers","addressRegion":"Hérault","addressCountry":"FR"},"areaServed":[{"@type":"City","name":"Béziers"},{"@type":"AdministrativeArea","name":"Hérault"},{"@type":"Country","name":"France"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://locweb.fr/"},{"@type":"ListItem","position":2,"name":"Site e-commerce","item":"https://locweb.fr/site-ecommerce/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Site e-commerce","serviceType":"Site e-commerce","description":"Création de site e-commerce pour commerçants et artisans : catalogue, panier, commandes, et un espace pour gérer vos produits vous-même. Dès 290 € puis 79 €/mois.","provider":{"@id":"https://locweb.fr/#agence"},"areaServed":[{"@type":"City","name":"Béziers"},{"@type":"Country","name":"France"}],"offers":[{"@type":"Offer","name":"Site e-commerce","price":"290","priceCurrency":"EUR","description":"290 € de création puis 79 € par mois"}]}</script>
@@ -92,11 +79,10 @@
     </nav>
 
     <div class="entete-actions">
-      <button class="theme-bt" id="theme-bt" type="button" aria-label="Changer de thème">
-        <svg class="i-clair" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M4.2 4.2l1.9 1.9M17.9 17.9l1.9 1.9M2 12h2.6M19.4 12H22M4.2 19.8l1.9-1.9M17.9 6.1l1.9-1.9"/></svg>
-        <svg class="i-sombre" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/></svg>
-      </button>
-      <a class="bt bt-plein entete-cta" href="/contact/">Parlons de votre projet</a>
+      <a class="bt bt-plein entete-cta" href="tel:+33745531434" aria-label="Appeler LocWeb au 07 45 53 14 34">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg>
+        <span>07 45 53 14 34</span>
+      </a>
       <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile">
         <span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
@@ -125,22 +111,41 @@
 
 <main id="contenu">
 
-  <section class="page-tete">
-    <div class="enveloppe">
-      <p class="fil reveal"><a href="/">Accueil</a> / <a href="/creation-site-internet-beziers/">Services</a> / Site e-commerce</p>
-      <p class="surtitre reveal">Site e-commerce</p>
-      <h1 class="titre-1 reveal" data-retard="1">Vendre en ligne, sans devenir informaticien</h1>
-      <p class="chapo reveal" data-retard="2">Un catalogue clair, un panier simple, des commandes qui arrivent. Et un espace où vous ajoutez vos produits, changez un prix ou retirez un article épuisé en deux minutes.</p>
-      <div class="hero-actions reveal" data-retard="3">
-        <a class="bt bt-plein" href="/contact/">Parlons de votre projet</a>
-        <a class="bt bt-nu" href="/tarifs/">Voir les tarifs</a>
+  <!-- L'en-tete de service, sur fond clair (Nicolas, 2026-09-13 : la
+       version noire, il n'aimait pas). A gauche le message, a droite
+       un resume qu'on lit en trois secondes : combien, ce qui est
+       compris, et le numero. -->
+  <section class="service-tete">
+    <div class="enveloppe service-grille">
+      <div class="service-intro">
+        <p class="fil reveal"><a href="/">Accueil</a> <span aria-hidden="true">›</span> <a href="/creation-site-internet-beziers/">Services</a> <span aria-hidden="true">›</span> Site e-commerce</p>
+        <p class="surtitre reveal">Site e-commerce</p>
+        <h1 class="titre-1 reveal" data-retard="1">Vendre en ligne, sans devenir informaticien</h1>
+        <p class="chapo reveal" data-retard="2">Un catalogue clair, un panier simple, des commandes qui arrivent. Et un espace où vous ajoutez vos produits, changez un prix ou retirez un article épuisé en deux minutes.</p>
+        <div class="hero-actions gauche reveal" data-retard="3">
+          <a class="bt bt-plein" href="/contact/">Parlons de votre projet</a>
+          <a class="bt bt-nu" href="tel:+33745531434">07 45 53 14 34</a>
+        </div>
       </div>
+
+      <aside class="resume reveal" data-retard="2" aria-label="En résumé">
+        <p class="resume-etiquette">À partir de</p>
+        <p class="resume-prix"><b>290&nbsp;€</b><span>puis 79&nbsp;€/mois</span></p>
+        <p class="resume-note">TTC, sans engagement de durée</p>
+        <ul class="coches">
+          <li>La création de la boutique et de vos premières fiches produits</li>
+          <li>Un parcours d’achat pensé pour le téléphone</li>
+          <li>Le nom de domaine et l’hébergement</li>
+          <li>Votre espace pour gérer produits</li>
+        </ul>
+        <a class="bt bt-plein resume-bt" href="tel:+33745531434">Appeler le 07 45 53 14 34</a>
+      </aside>
     </div>
   </section>
 
   <section class="section-serree tuile-claire">
-    <div class="enveloppe lecture">
-      <h2 class="reveal">Pour qui</h2>
+    <div class="enveloppe colonne">
+      <h2 class="titre-2 reveal">Pour qui</h2>
       <div class="prose reveal" data-retard="1">
         
         <p>Pour les commerçants et artisans qui ont des <strong>produits à vendre</strong> et des clients au-delà de leur quartier : épiceries fines, caves, créateurs, producteurs, boutiques de décoration, artisans d’art.</p>
@@ -150,8 +155,8 @@
   </section>
 
   <section class="section-serree tuile-parchemin">
-    <div class="enveloppe lecture">
-      <h2 class="reveal">Une boutique que vous gérez vous-même</h2>
+    <div class="enveloppe colonne">
+      <h2 class="titre-2 reveal">Une boutique que vous gérez vous-même</h2>
       <div class="prose reveal" data-retard="1">
         
         <p>Le quotidien d’une boutique en ligne, ce n’est pas la création : c’est ajouter un produit le mardi, changer un prix le jeudi et marquer un article épuisé le samedi. Si chacune de ces actions demande d’appeler quelqu’un, la boutique meurt en trois mois.</p>
@@ -161,8 +166,8 @@
   </section>
 
   <section class="section-serree tuile-claire">
-    <div class="enveloppe lecture">
-      <h2 class="reveal">Ce qui fait vendre</h2>
+    <div class="enveloppe colonne">
+      <h2 class="titre-2 reveal">Ce qui fait vendre</h2>
       <div class="prose reveal" data-retard="1">
         
         <p>Des photos de produits nettes et cohérentes entre elles. Des fiches qui répondent aux questions avant qu’on les pose : dimensions, composition, délais, conditions. Un panier qui ne demande pas de créer un compte pour acheter. Et un site rapide sur téléphone, parce que c’est là que la plupart des commandes commencent.</p>
@@ -172,35 +177,27 @@
   </section>
 
   <section class="section-serree tuile-parchemin">
-    <div class="enveloppe lecture">
-      <h2 class="reveal">Ce qui est compris</h2>
-      <div class="prose reveal" data-retard="1">
-        <ul class="puces"><li>La création de la boutique et de vos premières fiches produits</li><li>Un parcours d’achat pensé pour le téléphone</li><li>Le nom de domaine et l’hébergement</li><li>Votre espace pour gérer produits, prix, photos et stock</li><li>Le référencement des pages produits</li><li>Le suivi des visites et des commandes</li><li>Les mises à jour, la sécurité et le support</li></ul>
-      </div>
+    <div class="enveloppe colonne">
+      <h2 class="titre-2 reveal">Ce qui est compris</h2>
+      <ul class="coches coches-grandes reveal" data-retard="1">
+        <li>La création de la boutique et de vos premières fiches produits</li>
+        <li>Un parcours d’achat pensé pour le téléphone</li>
+        <li>Le nom de domaine et l’hébergement</li>
+        <li>Votre espace pour gérer produits, prix, photos et stock</li>
+        <li>Le référencement des pages produits</li>
+        <li>Le suivi des visites et des commandes</li>
+        <li>Les mises à jour, la sécurité et le support</li>
+      </ul>
     </div>
   </section>
 
   
 
-  <section class="section-serree tuile-claire">
-    <div class="enveloppe">
-      <div class="tete-ligne">
-        <div class="tete reveal"><h2 class="titre-1">Combien ça coûte.</h2><p class="chapo">Prix TTC, sans engagement de durée.</p></div>
-        <a class="lien-fleche reveal" href="/tarifs/">Tous les tarifs <span aria-hidden="true">›</span></a>
-      </div>
-      <div class="offres">
-        <article class="offre reveal" data-retard="0">
-          <h3 class="titre-3">Site e-commerce</h3>
-          <p class="offre-prix"><b>290&nbsp;€</b><span>puis 79&nbsp;€/mois</span></p>
-          <p class="discret">Votre boutique en ligne, vos produits, vos commandes.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+  
 
-  <section class="section-serree tuile-parchemin">
-    <div class="enveloppe lecture">
-      <h2 class="reveal">Questions fréquentes</h2>
+  <section class="section-serree tuile-claire">
+    <div class="enveloppe colonne">
+      <h2 class="titre-2 reveal">Questions fréquentes</h2>
       <div class="faq">
         <details class="reveal">
           <summary>Combien coûte une boutique en ligne ?</summary>
@@ -222,17 +219,17 @@
     </div>
   </section>
 
-  <section class="section-serree tuile-claire">
-    <div class="enveloppe">
-      <div class="tete reveal"><h2 class="titre-2">Les autres services</h2></div>
-      <nav class="autres reveal" aria-label="Autres services">
-        <a href="/creation-site-internet-beziers/">Création de site à Béziers <span aria-hidden="true">→</span></a>
-        <a href="/site-vitrine/">Site vitrine <span aria-hidden="true">→</span></a>
-        <a href="/refonte-site-internet/">Refonte de site <span aria-hidden="true">→</span></a>
-        <a href="/google-business/">Fiche Google Business <span aria-hidden="true">→</span></a>
-        <a href="/referencement-local/">Référencement local <span aria-hidden="true">→</span></a>
-        <a href="/gestion-reseaux-sociaux/">Réseaux sociaux <span aria-hidden="true">→</span></a>
-        <a href="/depannage-informatique/">Dépannage informatique <span aria-hidden="true">→</span></a>
+  <section class="section-serree tuile-parchemin">
+    <div class="enveloppe colonne">
+      <h2 class="titre-3 reveal">Les autres services</h2>
+      <nav class="puces-liens reveal" aria-label="Autres services">
+        <a href="/creation-site-internet-beziers/">Création de site à Béziers</a>
+        <a href="/site-vitrine/">Site vitrine</a>
+        <a href="/refonte-site-internet/">Refonte de site</a>
+        <a href="/google-business/">Fiche Google Business</a>
+        <a href="/referencement-local/">Référencement local</a>
+        <a href="/gestion-reseaux-sociaux/">Réseaux sociaux</a>
+        <a href="/depannage-informatique/">Dépannage informatique</a>
       </nav>
     </div>
   </section>
@@ -294,7 +291,7 @@
     ga4Id: ''
   };
 </script>
-<script src="/assets/site.js?v=2" defer></script>
+<script src="/assets/site.js?v=3" defer></script>
 <script src="/assets/mesure.js" defer></script>
 
 </body>
