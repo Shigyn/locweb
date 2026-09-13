@@ -832,3 +832,152 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
   background:
     radial-gradient(40% 70% at 85% 30%, rgba(232, 40, 30, .09), transparent 70%),
     radial-gradient(circle at 1px 1px, rgba(29, 29, 31, .07) 1px, transparent 0) 0 0 / 26px 26px, #fff }
+
+
+/* =====================================================================
+   L'OUTIL INCLUS (2026-09-13) — l'argument des 49 €/mois
+   ===================================================================== */
+.outil { position: relative; overflow: hidden; background: linear-gradient(#fff, #FBF5F4 60%, #fff); padding-top: clamp(96px, 12vw, 160px) }
+.outil-pastille {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px;
+  background: var(--rouge-bouton); color: #fff; font-size: 14px; font-weight: 600;
+  box-shadow: 0 10px 24px -12px rgba(212, 36, 25, .7);
+}
+.outil-grille { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(40px, 6vw, 88px); align-items: center }
+@media (max-width: 1040px) { .outil-grille { grid-template-columns: 1fr } }
+
+/* --- La scene : l'ecran et ses deux fenetres flottantes ----------------- */
+.outil-scene { position: relative; padding: 30px 30px 60px 0 }
+@media (max-width: 1040px) { .outil-scene { max-width: 720px; margin-inline: auto; width: 100% } }
+.ecran {
+  background: #fff; border: 1px solid #E8E8ED; border-radius: 20px; overflow: hidden;
+  box-shadow: 0 60px 110px -60px rgba(29, 29, 31, .5), 0 0 0 12px rgba(255, 255, 255, .7);
+}
+.ecran-barre { display: flex; align-items: center; gap: 7px; padding: 12px 16px; background: #FAFAFB; border-bottom: 1px solid #F0F0F3 }
+.ecran-barre i { width: 10px; height: 10px; border-radius: 50%; background: #E5E5EA }
+.ecran-barre i:first-child { background: #FF6159 }
+.ecran-barre i:nth-child(2) { background: #FFBD2E }
+.ecran-barre i:nth-child(3) { background: #28C840 }
+.ecran-barre span { margin: 0 auto; padding: 3px 14px; border-radius: 6px; background: #F0F0F3; font-size: 12px; color: #6E6E73 }
+.ecran-corps { display: grid; grid-template-columns: 170px 1fr; min-height: 330px }
+.ecran-menu { display: grid; align-content: start; gap: 4px; padding: 18px 12px; background: #FBFBFC; border-right: 1px solid #F0F0F3 }
+.ecran-marque { display: flex; align-items: center; gap: 8px; font-family: var(--titre); font-weight: 600; font-size: 15px; padding: 0 8px 12px; color: #1D1D1F }
+.ecran-marque .marque-signe { width: 12px; height: 14px }
+.ecran-menu span { display: flex; align-items: center; gap: 9px; padding: 9px 10px; border-radius: 9px; font-size: 13px; color: #6E6E73 }
+.ecran-menu span.actif { background: #FDECEA; color: var(--rouge-texte); font-weight: 600 }
+.ecran-menu svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
+.ecran-principal { padding: 20px 22px; display: grid; gap: 16px; align-content: start }
+.ecran-titre { font-family: var(--titre); font-weight: 600; font-size: 20px; color: #1D1D1F }
+.ecran-kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px }
+.ecran-kpi div { display: grid; gap: 10px; padding: 12px; border-radius: 12px; background: #F7F7F9 }
+.ecran-kpi span { font-size: 12px; color: #6E6E73 }
+.kpi-barre { display: block; height: 8px; border-radius: 6px; background: #EBEBEF; position: relative; overflow: hidden }
+.kpi-barre::after { content: ''; position: absolute; inset: 0 auto 0 0; width: var(--l); border-radius: 6px; background: linear-gradient(90deg, #FF5A4E, #E8281E) }
+.ecran-courbe { width: 100%; height: 80px }
+.ecran-lignes { display: grid; gap: 8px }
+.ecran-lignes i { display: block; height: 9px; border-radius: 6px; background: #EFEFF3 }
+@media (max-width: 560px) { .ecran-corps { grid-template-columns: 1fr } .ecran-menu { display: none } }
+
+.flottant {
+  position: absolute; background: #fff; border: 1px solid #ECECF0; border-radius: 16px;
+  box-shadow: 0 30px 60px -28px rgba(29, 29, 31, .45);
+}
+.flottant svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex: none }
+.flottant-edition { right: -6px; bottom: 6px; width: min(300px, 62%); padding: 16px 18px; display: grid; gap: 10px; animation: flotte 6s ease-in-out infinite }
+.flottant-etiquette { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--rouge-texte) }
+.flottant-champ { font-size: 14.5px; color: #1D1D1F; padding: 10px 12px; border-radius: 10px; border: 1.5px solid var(--rouge-bouton); background: #fff; box-shadow: 0 0 0 4px rgba(232, 40, 30, .12) }
+.curseur { display: inline-block; width: 1.5px; height: 1em; margin-left: 2px; vertical-align: -2px; background: var(--rouge-bouton); animation: clignote 1s steps(1) infinite }
+@keyframes clignote { 50% { opacity: 0 } }
+.flottant-ok { display: inline-flex; align-items: center; gap: 6px; justify-self: start; padding: 5px 10px; border-radius: 999px; background: #E9F7EE; color: #1F7A45; font-size: 12.5px; font-weight: 600 }
+.flottant-notif { left: -22px; top: 70px; display: flex; align-items: center; gap: 12px; padding: 12px 16px 12px 12px; animation: flotte 7s ease-in-out -2s infinite }
+.notif-icone { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--rouge-bouton); color: #fff }
+.flottant-notif b { display: block; font-size: 14px; color: #1D1D1F }
+.flottant-notif span:not(.notif-icone) { display: block; font-size: 12.5px; color: #6E6E73 }
+@keyframes flotte { 50% { transform: translateY(-8px) } }
+@media (max-width: 1040px) { .flottant-notif { left: 8px; top: 54px } }
+@media (max-width: 560px) {
+  .outil-scene { padding: 20px 0 110px }
+  .flottant-edition { right: 8px; bottom: 0; width: calc(100% - 40px) }
+  .flottant-notif { left: 8px; top: 8px }
+}
+
+/* --- La liste des fonctions ----------------------------------------------- */
+.outil-liste { display: grid; gap: 22px }
+.outil-liste li { display: flex; gap: 16px; align-items: flex-start }
+.outil-picto { display: grid; place-items: center; width: 46px; height: 46px; flex: none; border-radius: 14px; background: #FDECEA; color: var(--rouge-bouton) }
+.outil-picto svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round }
+.outil-liste h3 { font-size: 19px; letter-spacing: -.015em; margin: 2px 0 4px }
+.outil-liste p { font-size: 15.5px; line-height: 1.5; color: #6E6E73 }
+@media (prefers-reduced-motion: reduce) { .flottant, .curseur { animation: none } }
+
+/* Le bandeau de confiance est suivi de l'outil : plus d'espace blanc
+   double entre les deux. */
+.confiance + * { margin-top: 0 }
+
+
+/* =====================================================================
+   ANCIEN LOGO, TITRE ANIME, SIGNE STYLISE (2026-09-13)
+   ===================================================================== */
+.marque { gap: 9px }
+.marque-logo { width: auto; height: 32px; flex: none }
+.marque b { font-family: var(--titre); font-weight: 600; letter-spacing: -.02em }
+.marque b span { color: var(--rouge-texte) }
+.pied .marque-logo { height: 30px }
+
+/* --- La fin du titre qui change ------------------------------------------ */
+/*  Hauteur reservee pour la phrase la plus longue : sans elle, le titre
+    passerait de trois a quatre lignes et pousserait toute la page.  */
+.hc-titre { min-height: 3.05em }
+@media (max-width: 600px) { .hc-titre { min-height: 4.05em } }
+.rotation { display: inline }
+.rotation .souligne { display: inline; transition: opacity .38s ease, transform .38s var(--ressort), filter .38s ease; }
+.rotation .souligne.sort { opacity: 0; filter: blur(6px); transform: translateY(-.25em) }
+.rotation .souligne.entre { opacity: 0; filter: blur(6px); transform: translateY(.3em); transition: none }
+
+/* --- Le signe anime --------------------------------------------------------- */
+.hc-visuel { display: grid; place-items: center }
+.signe-anime { position: relative; width: min(100%, 560px); aspect-ratio: 1 / 1 }
+.signe-svg { width: 100%; height: 100%; overflow: visible }
+.signe-svg .anneau, .signe-svg .arc-jauge, .signe-svg .orbite, .signe-svg .L-flotte {
+  transform-box: view-box; transform-origin: 300px 300px;
+}
+.anneau-pointille { animation: tourne 60s linear infinite }
+.anneau-jauge { animation: tourne 40s linear infinite reverse }
+.arc-jauge { transform: rotate(-120deg); animation: jauge 5.5s var(--ressort) infinite }
+.orbite { animation: tourne 14s linear infinite }
+.L-flotte { animation: flotte-l 6s ease-in-out infinite }
+@keyframes tourne { to { transform: rotate(360deg) } }
+@keyframes jauge {
+  0% { stroke-dasharray: 8 100; transform: rotate(-120deg) }
+  55% { stroke-dasharray: 62 100; transform: rotate(-120deg) }
+  100% { stroke-dasharray: 8 100; transform: rotate(240deg) }
+}
+@keyframes flotte-l { 50% { transform: translateY(-14px) rotate(-1.5deg) } }
+
+.puce {
+  position: absolute; display: inline-flex; align-items: center; gap: 9px; white-space: nowrap;
+  padding: 10px 16px 10px 10px; border-radius: 999px; background: #fff; border: 1px solid #F0E3E1;
+  font-size: 14px; font-weight: 600; color: #1D1D1F;
+  box-shadow: 0 20px 40px -22px rgba(184, 28, 21, .45);
+}
+.puce svg {
+  width: 30px; height: 30px; padding: 7px; border-radius: 50%; flex: none;
+  background: var(--rouge-bouton); fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
+}
+.puce-1 { top: 16%; right: 2%; animation: flotte 5s ease-in-out infinite }
+.puce-2 { bottom: 20%; left: -4%; animation: flotte 6.5s ease-in-out -1.5s infinite }
+.puce-3 { bottom: 4%; right: 10%; animation: flotte 5.8s ease-in-out -3s infinite }
+@media (max-width: 960px) { .signe-anime { width: min(100%, 440px); margin-top: 8px } .puce-2 { left: 0 } }
+@media (max-width: 480px) { .puce { font-size: 12.5px; padding: 8px 12px 8px 8px } .puce svg { width: 26px; height: 26px; padding: 6px } }
+
+@media (prefers-reduced-motion: reduce) {
+  .anneau-pointille, .anneau-jauge, .arc-jauge, .orbite, .L-flotte, .puce { animation: none }
+}
+
+.ecran-marque img { width: 12px; height: 16px }
+
+/* La notification recouvrait le « Bonjour » de la maquette : elle passe
+   au-dessus de l'ecran, en haut a droite. */
+.flottant-notif { left: auto; right: 28px; top: -4px }
+@media (max-width: 1040px) { .flottant-notif { left: auto; right: 16px; top: -4px } }
+@media (max-width: 560px) { .outil-scene { padding-top: 48px } .flottant-notif { left: 8px; right: auto; top: 0 } }

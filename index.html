@@ -20,13 +20,13 @@
 <meta property="og:image" content="https://locweb.fr/assets/og-locweb.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="/assets/favicon.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/favicon.png">
 <meta name="theme-color" content="#FFFFFF">
 
-<link rel="stylesheet" href="/assets/style.css?v=8">
+<link rel="stylesheet" href="/assets/style.css?v=11">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://locweb.fr/#agence","name":"LocWeb","description":"Création de sites internet pour artisans, commerçants et indépendants à Béziers et dans toute la France.","url":"https://locweb.fr/","telephone":"+33745531434","priceRange":"€€","address":{"@type":"PostalAddress","streetAddress":"24 rue Diderot","postalCode":"34500","addressLocality":"Béziers","addressRegion":"Hérault","addressCountry":"FR"},"areaServed":[{"@type":"City","name":"Béziers"},{"@type":"AdministrativeArea","name":"Hérault"},{"@type":"Country","name":"France"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://locweb.fr/#agence","name":"LocWeb","description":"Création de sites internet pour artisans, commerçants et indépendants à Béziers et dans toute la France.","url":"https://locweb.fr/","telephone":"+33745531434","priceRange":"€€","address":{"@type":"PostalAddress","postalCode":"34500","addressLocality":"Béziers","addressRegion":"Hérault","addressCountry":"FR"},"areaServed":[{"@type":"City","name":"Béziers"},{"@type":"AdministrativeArea","name":"Hérault"},{"@type":"Country","name":"France"}]}</script>
 </head>
 <body class="p-accueil">
 
@@ -35,8 +35,7 @@
 <header class="entete" id="entete">
   <div class="enveloppe entete-in">
     <a class="marque" href="/" aria-label="LocWeb, accueil">
-      <span class="marque-signe" aria-hidden="true"></span>
-      <b>LocWeb</b>
+      <img class="marque-logo" src="/assets/logo-repere-encre.png" alt="" width="26" height="34"><b>Loc<span>Web</span></b>
     </a>
 
     <nav class="nav" aria-label="Navigation principale">
@@ -114,7 +113,11 @@
     <div class="enveloppe hc-grille">
       <div class="hc-texte">
         <p class="hc-badge reveal"><span class="hc-point" aria-hidden="true"></span> Agence web à Béziers · Hérault</p>
-        <h1 class="hc-titre reveal" data-retard="1">Des sites qui font <span class="souligne">sonner le téléphone</span>.</h1>
+        <!--  La fin de phrase change toutes les quelques secondes. Le HTML
+             porte la premiere : c'est elle que lisent Google et les
+             lecteurs d'ecran, et c'est elle qui reste si le visiteur a
+             demande a reduire les animations.  -->
+        <h1 class="hc-titre reveal" data-retard="1">Des sites qui <span class="rotation" data-phrases="font sonner le téléphone|vous ramènent des clients|vous donnent du sérieux|vous font trouver sur Google|travaillent pendant que vous travaillez"><span class="souligne">font sonner le téléphone</span></span>.</h1>
         <p class="hc-chapo reveal" data-retard="2">Création de sites internet pour les artisans, commerçants et indépendants. Nous créons votre site, nous le faisons trouver sur Google, et nous restons là.</p>
         <div class="hc-actions reveal" data-retard="3">
           <a class="bt bt-plein" href="/contact/">Parlons de votre projet</a>
@@ -126,9 +129,36 @@
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> Hébergement inclus</li>
         </ul>
       </div>
-      <div class="hc-visuel reveal" data-retard="2">
-        <div class="hero-objet hc-objet" id="signature" data-mode="image" aria-hidden="true">
-          <img src="/assets/signature-clair.webp" alt="" width="1200" height="1200" fetchpriority="high" decoding="async">
+      <!--  Le signe, stylise et anime en SVG : un L arrondi en degrade rouge,
+            dans la jauge de l'ancien logo qui tourne et se remplit. Aucune
+            bibliotheque : tout est dans la page, et tout tourne aussi sur
+            telephone.  -->
+      <div class="hc-visuel reveal" data-retard="2" aria-hidden="true">
+        <div class="signe-anime">
+          <svg class="signe-svg" viewBox="0 0 600 600">
+            <defs>
+              <linearGradient id="gL" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#FF6A5E"/><stop offset=".5" stop-color="#E8281E"/><stop offset="1" stop-color="#B0170F"/>
+              </linearGradient>
+              <radialGradient id="gHalo"><stop offset="0" stop-color="#E8281E" stop-opacity=".2"/><stop offset="1" stop-color="#E8281E" stop-opacity="0"/></radialGradient>
+              <filter id="fOmbre" x="-40%" y="-40%" width="180%" height="180%">
+                <feDropShadow dx="0" dy="26" stdDeviation="24" flood-color="#B81C15" flood-opacity=".38"/>
+              </filter>
+            </defs>
+            <circle cx="300" cy="300" r="290" fill="url(#gHalo)"/>
+            <circle class="anneau anneau-pointille" cx="300" cy="300" r="250" fill="none" stroke="#E8281E" stroke-opacity=".3" stroke-width="2" stroke-dasharray="3 13"/>
+            <circle class="anneau anneau-jauge" cx="300" cy="300" r="206" fill="none" stroke="#F6D9D6" stroke-width="12" stroke-linecap="round" stroke-dasharray="70 28"/>
+            <circle class="arc-jauge" cx="300" cy="300" r="206" fill="none" stroke="#E8281E" stroke-width="12" stroke-linecap="round" pathLength="100" stroke-dasharray="30 100"/>
+            <g class="orbite"><circle cx="300" cy="50" r="10" fill="#E8281E"/><circle cx="300" cy="50" r="20" fill="#E8281E" fill-opacity=".18"/></g>
+            <g class="L-flotte" filter="url(#fOmbre)">
+              <path d="M238 176 V412 H396" fill="none" stroke="url(#gL)" stroke-width="84" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M222 200 V372" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="10" stroke-linecap="round"/>
+              <path d="M262 432 H372" fill="none" stroke="#7A0F0A" stroke-opacity=".22" stroke-width="10" stroke-linecap="round"/>
+            </g>
+          </svg>
+          <div class="puce puce-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg><span>Appel reçu</span></div>
+          <div class="puce puce-2"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Nouvelle demande de devis</span></div>
+          <div class="puce puce-3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/></svg><span>Trouvé sur Google</span></div>
         </div>
       </div>
     </div>
@@ -144,6 +174,83 @@
     </ul>
   </div>
 
+  <!-- ======================= L'OUTIL INCLUS ========================
+       Place AVANT les services : c'est l'argument de l'abonnement. -->
+  <section class="outil" id="outil">
+    <div class="enveloppe">
+      <div class="tete centre reveal">
+        <p class="outil-pastille">Inclus dans l’abonnement à 49&nbsp;€/mois</p>
+        <h2 class="titre-1">Un site, et <span class="mot-rouge">l’outil pour le piloter</span>.</h2>
+        <p class="chapo">Votre espace LocWeb : vous modifiez votre site vous-même, et vous voyez enfin ce qu’il vous rapporte.</p>
+      </div>
+
+      <div class="outil-grille">
+        <div class="outil-scene reveal" aria-hidden="true">
+          <div class="ecran">
+            <div class="ecran-barre"><i></i><i></i><i></i><span>admin.locweb.fr</span></div>
+            <div class="ecran-corps">
+              <nav class="ecran-menu">
+                <p class="ecran-marque"><img src="/assets/logo-repere-encre.png" alt="" width="12" height="16"> Mon espace</p>
+                <span class="actif"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg> Tableau de bord</span>
+                <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="m13.5 6.5 4 4"/></svg> Mon site</span>
+                <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> Demandes</span>
+                <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/></svg> Statistiques</span>
+              </nav>
+              <div class="ecran-principal">
+                <p class="ecran-titre">Bonjour 👋</p>
+                <div class="ecran-kpi">
+                  <div><span>Visiteurs</span><b class="kpi-barre" style="--l:82%"></b></div>
+                  <div><span>Appels</span><b class="kpi-barre" style="--l:58%"></b></div>
+                  <div><span>Demandes</span><b class="kpi-barre" style="--l:40%"></b></div>
+                </div>
+                <svg class="ecran-courbe" viewBox="0 0 300 80" preserveAspectRatio="none"><defs><linearGradient id="oc" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#E8281E" stop-opacity=".2"/><stop offset="1" stop-color="#E8281E" stop-opacity="0"/></linearGradient></defs><path d="M0 64 C40 58 60 36 100 42 S160 18 200 26 S260 8 300 6 V80 H0Z" fill="url(#oc)"/><path d="M0 64 C40 58 60 36 100 42 S160 18 200 26 S260 8 300 6" fill="none" stroke="#E8281E" stroke-width="2.5"/></svg>
+                <div class="ecran-lignes"><i style="width:78%"></i><i style="width:60%"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flottant flottant-edition">
+            <p class="flottant-etiquette"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="m13.5 6.5 4 4"/></svg> Modifier le texte</p>
+            <p class="flottant-champ">Ouvert du lundi au samedi<span class="curseur"></span></p>
+            <p class="flottant-ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> Publié</p>
+          </div>
+
+          <div class="flottant flottant-notif">
+            <span class="notif-icone"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <div><b>Nouvelle demande de devis</b><span>depuis votre site</span></div>
+          </div>
+        </div>
+
+        <ul class="outil-liste">
+          <li class="reveal" data-retard="0">
+            <span class="outil-picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="m13.5 6.5 4 4"/></svg></span>
+            <div><h3>Vos textes et vos photos</h3><p>Changez un horaire, une photo, un tarif : c’est en ligne dans la minute, sans rien casser.</p></div>
+          </li>
+          <li class="reveal" data-retard="1">
+            <span class="outil-picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <div><h3>Vos visites</h3><p>Combien de personnes voient votre site, chaque semaine, chaque mois.</p></div>
+          </li>
+          <li class="reveal" data-retard="2">
+            <span class="outil-picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg></span>
+            <div><h3>Vos appels</h3><p>Chaque appui sur votre numéro depuis le site est compté. Vous savez ce que le site rapporte.</p></div>
+          </li>
+          <li class="reveal" data-retard="0">
+            <span class="outil-picto"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <div><h3>Vos demandes de devis</h3><p>Les messages envoyés depuis le site arrivent dans votre espace, rangés.</p></div>
+          </li>
+          <li class="reveal" data-retard="1">
+            <span class="outil-picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></span>
+            <div><h3>Votre carte et vos prix</h3><p>Plats, produits, tarifs : ajoutez, retirez, modifiez vous-même.</p></div>
+          </li>
+          <li class="reveal" data-retard="2">
+            <span class="outil-picto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6l-7-3z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <div><h3>Le reste, on s’en occupe</h3><p>Hébergement, nom de domaine, mises à jour, sécurité, sauvegardes.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== L'AGENCE : bloc rouge + texte ============ -->
   <section class="duo">
     <div class="enveloppe duo-grille">
@@ -155,7 +262,7 @@
           <li>Site conçu pour votre métier</li>
           <li>Nom de domaine et hébergement</li>
           <li>Référencement local</li>
-          <li>Suivi et modifications</li>
+          <li>Votre espace de pilotage</li>
         </ul>
         <span class="bloc-rouge-l" aria-hidden="true"></span>
       </div>
@@ -246,37 +353,6 @@
     </div>
   </section>
 
-  <!-- ================= L'ESPACE CLIENT : texte + maquette =========== -->
-  <section class="duo">
-    <div class="enveloppe duo-grille duo-inverse">
-      <div class="duo-texte reveal">
-        <p class="surtitre">Votre espace LocWeb</p>
-        <h2 class="titre-1">Vous voyez ce que votre site vous <span class="mot-rouge">rapporte</span>.</h2>
-        <p class="lead">Chaque mois : combien de visiteurs, combien d’appels depuis le site, combien de demandes de devis. Et vos textes se modifient en deux clics.</p>
-        <ul class="liste-coches">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Le nom de domaine et l’hébergement</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Votre espace pour modifier vos textes et vos photos</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Le suivi des visites, des appels et des demandes</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Les mises à jour et la sécurité</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Un interlocuteur unique, joignable directement</span></li>
-        </ul>
-      </div>
-      <div class="maquette reveal" data-retard="1" aria-hidden="true">
-        <div class="maquette-barre"><i></i><i></i><i></i><span>Mon espace</span></div>
-        <div class="maquette-corps">
-          <p class="maquette-titre">Ce mois-ci</p>
-          <div class="maquette-tuiles">
-            <div><span>Visiteurs</span><b class="barre-v" style="--h:78%"></b></div>
-            <div><span>Appels</span><b class="barre-v" style="--h:56%"></b></div>
-            <div><span>Devis</span><b class="barre-v" style="--h:40%"></b></div>
-          </div>
-          <svg class="maquette-courbe" viewBox="0 0 300 90" preserveAspectRatio="none"><defs><linearGradient id="mq" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#E8281E" stop-opacity=".22"/><stop offset="1" stop-color="#E8281E" stop-opacity="0"/></linearGradient></defs><path d="M0 70 C40 64 60 40 100 46 S160 20 200 28 S260 10 300 6 V90 H0Z" fill="url(#mq)"/><path d="M0 70 C40 64 60 40 100 46 S160 20 200 28 S260 10 300 6" fill="none" stroke="#E8281E" stroke-width="2.5"/></svg>
-          <div class="maquette-lignes"><i style="width:82%"></i><i style="width:64%"></i><i style="width:72%"></i></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- =========================== METHODE ========================== -->
   <section id="methode" class="tuile-parchemin">
     <div class="enveloppe">
@@ -358,7 +434,7 @@
 <footer class="pied">
   <div class="enveloppe pied-in">
     <div class="pied-marque">
-      <a class="marque" href="/"><span class="marque-signe" aria-hidden="true"></span><b>LocWeb</b></a>
+      <a class="marque" href="/"><img class="marque-logo" src="/assets/logo-repere-encre.png" alt="" width="26" height="34"><b>Loc<span>Web</span></b></a>
       <p>Agence web à Béziers. Des sites qui font sonner le téléphone des artisans, commerçants et indépendants.</p>
       <a class="bt bt-plein" href="/contact/">Parlons de votre projet</a>
     </div>
@@ -380,7 +456,7 @@
       <ul>
         <li><a href="tel:+33745531434">07 45 53 14 34</a></li>
         
-        <li>24 rue Diderot<br>34500 Béziers</li>
+        <li>Béziers, Hérault</li>
       </ul>
     </div>
   </div>
@@ -400,6 +476,6 @@
 </script>
 <script src="/assets/site.js?v=3" defer></script>
 <script src="/assets/mesure.js" defer></script>
-<script src="/assets/signature-clair.js?v=1" defer></script>
+<script src="/assets/rotation.js?v=1" defer></script>
 </body>
 </html>
