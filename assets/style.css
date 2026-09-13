@@ -981,3 +981,60 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
 .flottant-notif { left: auto; right: 28px; top: -4px }
 @media (max-width: 1040px) { .flottant-notif { left: auto; right: 16px; top: -4px } }
 @media (max-width: 560px) { .outil-scene { padding-top: 48px } .flottant-notif { left: 8px; right: auto; top: 0 } }
+
+/* ====================================================================
+   GUIDES (2026-09-14) : hub, articles, et le bloc questions de l'accueil.
+   ==================================================================== */
+.guides-grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 18px }
+.guide-carte {
+  display: grid; gap: 14px; align-content: start; padding: 32px 30px; border-radius: 24px;
+  background: var(--t-carte); border: 1px solid var(--t-filet); transition: border-color .25s, transform .25s;
+}
+.guide-carte:hover { border-color: var(--rouge-bouton); transform: translateY(-2px) }
+.guide-carte h2 { font-size: clamp(21px, 1.9vw, 25px); line-height: 1.2; text-wrap: balance }
+.guide-carte p { color: var(--t-doux); font-size: 16px; line-height: 1.55 }
+.guide-carte .lien-fleche { margin-top: 6px }
+
+.guide-tete h1 { max-width: 22ch; text-wrap: balance }
+.guide-maj { font-size: 14px; color: var(--t-tenu) }
+
+.en-bref {
+  display: grid; gap: 10px; padding: 28px 30px; border-radius: 22px;
+  background: #FFF4F3; border: 1px solid #F6D5D2;
+}
+.en-bref p:not(.en-bref-titre) { font-size: 19px; line-height: 1.6; color: #1D1D1F }
+.en-bref-titre { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--rouge-texte, #CF2219) }
+.sommaire { display: grid; gap: 12px; padding: 4px 2px }
+.sommaire ol { display: grid; gap: 8px; padding-left: 22px; list-style: decimal; color: var(--t-tenu) }
+.sommaire a { color: var(--t-texte); font-size: 16.5px }
+.sommaire a:hover { color: var(--t-action); text-decoration: underline; text-underline-offset: 4px }
+
+.tableau-defile { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 18px; border: 1px solid var(--t-filet) }
+.tableau { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 15.5px; background: #fff }
+.tableau th, .tableau td { text-align: left; vertical-align: top; padding: 16px 18px; border-bottom: 1px solid var(--t-filet); line-height: 1.5 }
+.tableau thead th { font-size: 12.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--t-tenu); background: var(--t-carte) }
+.tableau tbody th { font-weight: 600; color: var(--t-texte) }
+.tableau td { color: var(--t-doux) }
+.tableau tbody tr:last-child th, .tableau tbody tr:last-child td { border-bottom: 0 }
+
+.accueil-questions { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 32px clamp(32px, 6vw, 88px); align-items: start }
+.accueil-questions .tete { margin-bottom: 0; position: sticky; top: 110px }
+.accueil-questions .faq details p a { color: var(--t-action); text-decoration: underline; text-underline-offset: 3px }
+@media (max-width: 960px) { .accueil-questions { grid-template-columns: 1fr } .accueil-questions .tete { position: static } }
+.guides-liste { display: grid; gap: 4px; margin-top: 12px }
+.guides-liste a:not(.lien-fleche) {
+  display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--t-filet);
+  font-size: 15.5px; font-weight: 500; color: var(--t-texte)
+}
+.guides-liste a:not(.lien-fleche):hover { color: var(--t-action) }
+.guides-liste .lien-fleche { margin-top: 12px }
+.faq details p a { color: var(--t-action) }
+@media (max-width: 640px) {
+  .tableau-defile { overflow: visible; border: 0; border-radius: 0 }
+  .tableau { min-width: 0; background: transparent }
+  .tableau thead { display: none }
+  .tableau tr { display: grid; gap: 10px; padding: 20px 22px; margin-bottom: 12px; border-radius: 18px; background: #fff; border: 1px solid var(--t-filet) }
+  .tableau th, .tableau td, .tableau tbody tr:last-child th, .tableau tbody tr:last-child td { display: block; padding: 0; border: 0 }
+  .tableau tbody th { font-size: 17px }
+  .tableau td[data-label]::before { content: attr(data-label); display: block; font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--t-tenu); margin-bottom: 2px }
+}
