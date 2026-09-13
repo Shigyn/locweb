@@ -24,7 +24,7 @@
 <link rel="apple-touch-icon" href="/assets/favicon.png">
 <meta name="theme-color" content="#FFFFFF">
 
-<link rel="stylesheet" href="/assets/style.css?v=7">
+<link rel="stylesheet" href="/assets/style.css?v=8">
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://locweb.fr/#agence","name":"LocWeb","description":"Création de sites internet pour artisans, commerçants et indépendants à Béziers et dans toute la France.","url":"https://locweb.fr/","telephone":"+33745531434","priceRange":"€€","address":{"@type":"PostalAddress","streetAddress":"24 rue Diderot","postalCode":"34500","addressLocality":"Béziers","addressRegion":"Hérault","addressCountry":"FR"},"areaServed":[{"@type":"City","name":"Béziers"},{"@type":"AdministrativeArea","name":"Hérault"},{"@type":"Country","name":"France"}]}</script>
 </head>
@@ -109,28 +109,62 @@
 <main id="contenu">
 
   <!-- ============================ HERO ============================ -->
-  <section class="hero tuile-sombre">
-    <div class="enveloppe hero-in">
-      <p class="surtitre reveal">Agence web à Béziers</p>
-      <h1 class="titre-geant reveal" data-retard="1">Des sites qui font sonner le <span class="mot-rouge">téléphone</span>.</h1>
-      <p class="chapo reveal" data-retard="2">Pour les artisans, commerçants et indépendants. Nous créons votre site, nous le faisons trouver, et nous restons là.</p>
-      <div class="hero-actions reveal" data-retard="3">
-        <a class="bt bt-plein" href="/contact/">Parlons de votre projet</a>
-        <a class="bt bt-nu" href="/tarifs/">Voir les tarifs</a>
+  <section class="hc">
+    <div class="hc-fond" aria-hidden="true"></div>
+    <div class="enveloppe hc-grille">
+      <div class="hc-texte">
+        <p class="hc-badge reveal"><span class="hc-point" aria-hidden="true"></span> Agence web à Béziers · Hérault</p>
+        <h1 class="hc-titre reveal" data-retard="1">Des sites qui font <span class="souligne">sonner le téléphone</span>.</h1>
+        <p class="hc-chapo reveal" data-retard="2">Création de sites internet pour les artisans, commerçants et indépendants. Nous créons votre site, nous le faisons trouver sur Google, et nous restons là.</p>
+        <div class="hc-actions reveal" data-retard="3">
+          <a class="bt bt-plein" href="/contact/">Parlons de votre projet</a>
+          <a class="bt bt-nu" href="/tarifs/">Voir les tarifs</a>
+        </div>
+        <ul class="hc-coches reveal" data-retard="3">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> Sans engagement</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> Prix TTC affichés</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> Hébergement inclus</li>
+        </ul>
+      </div>
+      <div class="hc-visuel reveal" data-retard="2">
+        <div class="hero-objet hc-objet" id="signature" data-mode="image" aria-hidden="true">
+          <img src="/assets/signature-clair.webp" alt="" width="1200" height="1200" fetchpriority="high" decoding="async">
+        </div>
       </div>
     </div>
-    
   </section>
 
-  <!-- ========================== MANIFESTE ========================= -->
-  <section class="tuile-claire">
-    <div class="enveloppe intro">
-      <p class="manifeste centre reveal">Un site n’est pas une vitrine qu’on pose et qu’on oublie. <em>C’est un outil qui doit vous apporter des clients.</em></p>
-      <div class="faits">
-        <div class="fait reveal"><b>Un seul interlocuteur</b><span>Vous appelez directement, jamais un standard.</span></div>
-        <div class="fait reveal" data-retard="1"><b>Sans engagement</b><span>L’abonnement s’arrête quand vous le décidez.</span></div>
-        <div class="fait reveal" data-retard="2"><b>Vous gardez la main</b><span>Textes et photos modifiables depuis votre espace.</span></div>
-        <div class="fait reveal" data-retard="3"><b>Tout est mesuré</b><span>Visites, appels reçus, demandes de devis.</span></div>
+  <!-- ===================== BANDEAU DE CONFIANCE ===================== -->
+  <div class="enveloppe">
+    <ul class="confiance reveal">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg><div><b>Un seul interlocuteur</b><span>Vous appelez directement</span></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><div><b>Sans engagement</b><span>Vous arrêtez quand vous voulez</span></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="m13.5 6.5 4 4"/></svg><div><b>Vous gardez la main</b><span>Textes et photos modifiables</span></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/></svg><div><b>Tout est mesuré</b><span>Visites, appels, demandes</span></div></li>
+    </ul>
+  </div>
+
+  <!-- ===================== L'AGENCE : bloc rouge + texte ============ -->
+  <section class="duo">
+    <div class="enveloppe duo-grille">
+      <div class="bloc-rouge reveal">
+        <p class="bloc-rouge-sur">Dès</p>
+        <p class="bloc-rouge-prix">90&nbsp;€</p>
+        <p class="bloc-rouge-sous">puis 49&nbsp;€/mois, TTC</p>
+        <ul>
+          <li>Site conçu pour votre métier</li>
+          <li>Nom de domaine et hébergement</li>
+          <li>Référencement local</li>
+          <li>Suivi et modifications</li>
+        </ul>
+        <span class="bloc-rouge-l" aria-hidden="true"></span>
+      </div>
+      <div class="duo-texte reveal" data-retard="1">
+        <p class="surtitre">Agence web à Béziers</p>
+        <h2 class="titre-1">Un site n’est pas une vitrine qu’on pose et qu’on <span class="mot-rouge">oublie</span>.</h2>
+        <p class="lead">C’est un outil qui doit vous apporter des clients. Chez LocWeb, le site est un abonnement : nous restons responsables de ce qu’il devient.</p>
+        <p class="discret">Nom de domaine, hébergement, mises à jour, sécurité, suivi des appels — et quelqu’un au bout du fil à Béziers. Vous, vous gardez la main sur vos textes, vos photos et vos horaires.</p>
+        <a class="lien-fleche" href="/a-propos/">Découvrir l’agence <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -139,8 +173,8 @@
   <section id="services" class="tuile-parchemin">
     <div class="enveloppe">
       <div class="tete centre reveal">
-        <p class="surtitre">Services</p>
-        <h2 class="titre-1">Votre présence en ligne, de bout en bout.</h2>
+        <p class="surtitre">Nos services</p>
+        <h2 class="titre-1">Votre présence en ligne, <span class="mot-rouge">de bout en bout</span>.</h2>
         <p class="chapo">Un site que personne ne trouve ne sert à rien. Nous nous occupons des deux.</p>
       </div>
       <ul class="grille-services">
@@ -212,74 +246,98 @@
     </div>
   </section>
 
+  <!-- ================= L'ESPACE CLIENT : texte + maquette =========== -->
+  <section class="duo">
+    <div class="enveloppe duo-grille duo-inverse">
+      <div class="duo-texte reveal">
+        <p class="surtitre">Votre espace LocWeb</p>
+        <h2 class="titre-1">Vous voyez ce que votre site vous <span class="mot-rouge">rapporte</span>.</h2>
+        <p class="lead">Chaque mois : combien de visiteurs, combien d’appels depuis le site, combien de demandes de devis. Et vos textes se modifient en deux clics.</p>
+        <ul class="liste-coches">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Le nom de domaine et l’hébergement</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Votre espace pour modifier vos textes et vos photos</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Le suivi des visites, des appels et des demandes</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Les mises à jour et la sécurité</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Un interlocuteur unique, joignable directement</span></li>
+        </ul>
+      </div>
+      <div class="maquette reveal" data-retard="1" aria-hidden="true">
+        <div class="maquette-barre"><i></i><i></i><i></i><span>Mon espace</span></div>
+        <div class="maquette-corps">
+          <p class="maquette-titre">Ce mois-ci</p>
+          <div class="maquette-tuiles">
+            <div><span>Visiteurs</span><b class="barre-v" style="--h:78%"></b></div>
+            <div><span>Appels</span><b class="barre-v" style="--h:56%"></b></div>
+            <div><span>Devis</span><b class="barre-v" style="--h:40%"></b></div>
+          </div>
+          <svg class="maquette-courbe" viewBox="0 0 300 90" preserveAspectRatio="none"><defs><linearGradient id="mq" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#E8281E" stop-opacity=".22"/><stop offset="1" stop-color="#E8281E" stop-opacity="0"/></linearGradient></defs><path d="M0 70 C40 64 60 40 100 46 S160 20 200 28 S260 10 300 6 V90 H0Z" fill="url(#mq)"/><path d="M0 70 C40 64 60 40 100 46 S160 20 200 28 S260 10 300 6" fill="none" stroke="#E8281E" stroke-width="2.5"/></svg>
+          <div class="maquette-lignes"><i style="width:82%"></i><i style="width:64%"></i><i style="width:72%"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- =========================== METHODE ========================== -->
-  <section id="methode" class="tuile-sombre">
+  <section id="methode" class="tuile-parchemin">
     <div class="enveloppe">
       <div class="tete centre reveal">
-        <p class="surtitre">Méthode</p>
-        <h2 class="titre-1">Quatre étapes. Vous n’installez rien.</h2>
+        <p class="surtitre">Comment ça se passe</p>
+        <h2 class="titre-1">Quatre étapes. <span class="mot-rouge">Vous n’installez rien.</span></h2>
       </div>
-      <ol class="etapes">
-        <li class="etape reveal" data-retard="0">
-          <span class="etape-n">1</span>
-          <h3 class="titre-3">On parle de votre métier</h3>
-          <p>Vingt minutes au téléphone. Ce que vous faites, pour qui, et ce que le site doit vous rapporter.</p>
+      <ol class="frise">
+        <li class="reveal" data-retard="0">
+          <span class="frise-n">1</span>
+          <h3>On parle de votre métier</h3>
+          <p>Vingt minutes au téléphone : ce que vous faites, pour qui, ce que le site doit rapporter.</p>
         </li>
-        <li class="etape reveal" data-retard="1">
-          <span class="etape-n">2</span>
-          <h3 class="titre-3">Vous voyez une vraie version</h3>
-          <p>Pas une maquette : un site en ligne, que vous ouvrez sur votre téléphone.</p>
+        <li class="reveal" data-retard="1">
+          <span class="frise-n">2</span>
+          <h3>Vous voyez une vraie version</h3>
+          <p>Pas une maquette : un site en ligne, à ouvrir sur votre téléphone.</p>
         </li>
-        <li class="etape reveal" data-retard="2">
-          <span class="etape-n">3</span>
-          <h3 class="titre-3">On met en ligne</h3>
+        <li class="reveal" data-retard="2">
+          <span class="frise-n">3</span>
+          <h3>On met en ligne</h3>
           <p>Nom de domaine, hébergement, fiche Google, référencement. Vous n’installez rien.</p>
         </li>
-        <li class="etape reveal" data-retard="3">
-          <span class="etape-n">4</span>
-          <h3 class="titre-3">On reste là</h3>
-          <p>Vos textes et vos photos se modifient depuis votre espace. Pour le reste, vous appelez.</p>
+        <li class="reveal" data-retard="3">
+          <span class="frise-n">4</span>
+          <h3>On reste là</h3>
+          <p>Vos textes et photos se modifient depuis votre espace. Pour le reste, vous appelez.</p>
         </li>
       </ol>
     </div>
   </section>
 
   <!-- ============================ TARIFS ========================== -->
-  <section id="tarifs" class="tuile-claire">
+  <section id="tarifs">
     <div class="enveloppe">
       <div class="tete centre reveal">
         <p class="surtitre">Tarifs</p>
-        <h2 class="titre-1">Un prix de départ. Puis un abonnement.</h2>
+        <h2 class="titre-1">Un prix de départ. <span class="mot-rouge">Puis un abonnement.</span></h2>
         <p class="chapo">Tous nos prix sont TTC et sans engagement de durée.</p>
       </div>
-      <div class="offres">
-        <article class="offre reveal" data-retard="0">
-          <h3 class="titre-3">Site vitrine</h3>
-          <p class="offre-prix"><b>90&nbsp;€</b><span>puis 49&nbsp;€/mois</span></p>
+      <div class="offres-c">
+        <article class="offre-c reveal" data-retard="0">
+          <h3>Site vitrine</h3>
+          <p class="offre-c-prix"><b>90&nbsp;€</b><span>puis 49&nbsp;€/mois</span></p>
           <p class="discret">Un site clair qui présente votre activité et fait sonner le téléphone.</p>
-          <a class="lien-fleche" href="/site-vitrine/">En savoir plus <span aria-hidden="true">›</span></a>
+          <a class="bt bt-nu" href="/site-vitrine/">En savoir plus</a>
         </article>
-        <article class="offre reveal" data-retard="1">
-          <h3 class="titre-3">Site animé</h3>
-          <p class="offre-prix"><b>290&nbsp;€</b><span>puis 49&nbsp;€/mois</span></p>
+        <article class="offre-c reveal" data-retard="1">
+          <h3>Site animé</h3>
+          <p class="offre-c-prix"><b>290&nbsp;€</b><span>puis 49&nbsp;€/mois</span></p>
           <p class="discret">Le même socle, avec une mise en scène travaillée et des animations au défilement.</p>
-          <a class="lien-fleche" href="/site-vitrine/">En savoir plus <span aria-hidden="true">›</span></a>
+          <a class="bt bt-nu" href="/site-vitrine/">En savoir plus</a>
         </article>
-        <article class="offre reveal" data-retard="2">
-          <h3 class="titre-3">Site e-commerce</h3>
-          <p class="offre-prix"><b>290&nbsp;€</b><span>puis 79&nbsp;€/mois</span></p>
+        <article class="offre-c reveal" data-retard="2">
+          <h3>Site e-commerce</h3>
+          <p class="offre-c-prix"><b>290&nbsp;€</b><span>puis 79&nbsp;€/mois</span></p>
           <p class="discret">Votre boutique en ligne, vos produits, vos commandes.</p>
-          <a class="lien-fleche" href="/site-ecommerce/">En savoir plus <span aria-hidden="true">›</span></a>
+          <a class="bt bt-nu" href="/site-ecommerce/">En savoir plus</a>
         </article>
       </div>
-      <ul class="inclus reveal">
-        <li>Le nom de domaine et l’hébergement</li>
-        <li>Votre espace pour modifier vos textes et vos photos</li>
-        <li>Le suivi des visites, des appels et des demandes</li>
-        <li>Les mises à jour et la sécurité</li>
-        <li>Un interlocuteur unique, joignable directement</li>
-      </ul>
-      <p class="reveal" style="margin-top:40px;text-align:center"><a class="lien-fleche" href="/tarifs/">Tous les tarifs <span aria-hidden="true">›</span></a></p>
+      <p class="reveal" style="margin-top:36px;text-align:center"><a class="lien-fleche" href="/tarifs/">Tous les tarifs <span aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
@@ -342,6 +400,6 @@
 </script>
 <script src="/assets/site.js?v=3" defer></script>
 <script src="/assets/mesure.js" defer></script>
-
+<script src="/assets/signature-clair.js?v=1" defer></script>
 </body>
 </html>

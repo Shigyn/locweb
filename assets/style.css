@@ -630,3 +630,205 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
 .direction-blanc .filtre[aria-pressed="true"] { background: var(--rouge-bouton); border-color: var(--rouge-bouton); color: #fff }
 .direction-blanc .burger span { background: var(--rouge-bouton) }
 .direction-blanc .marque b { color: #1D1D1F }
+
+
+/* =====================================================================
+   ACCUEIL CLAIR (2026-09-13) — inspire de web-premiere.fr
+   Blanc, une seule couleur vive, sections en deux colonnes qui
+   alternent, gros blocs de couleur pleine, mots cles soulignes.
+   ===================================================================== */
+
+/* --- Hero --------------------------------------------------------------- */
+.hc { position: relative; padding: clamp(40px, 7vh, 88px) 0 clamp(96px, 12vh, 140px); overflow: hidden; background: #fff }
+/*  Le fond : une trame de points tres fine qui s'efface vers le bas, et
+    une lueur rouge derriere l'objet.  */
+.hc-fond {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(42% 60% at 76% 46%, rgba(232, 40, 30, .13), transparent 70%),
+    radial-gradient(circle at 1px 1px, rgba(29, 29, 31, .09) 1px, transparent 0) 0 0 / 26px 26px;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent);
+          mask-image: linear-gradient(#000 55%, transparent);
+}
+.hc-grille { position: relative; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: clamp(24px, 4vw, 64px); align-items: center }
+@media (max-width: 960px) { .hc-grille { grid-template-columns: 1fr } }
+.hc-texte { display: grid; gap: 24px; justify-items: start }
+.hc-badge {
+  display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 12px;
+  background: #fff; border: 1px solid #F0D5D2; border-radius: 999px;
+  font-size: 14px; font-weight: 500; color: #1D1D1F; box-shadow: 0 6px 20px -12px rgba(232, 40, 30, .45);
+}
+.hc-point { width: 8px; height: 8px; border-radius: 50%; background: var(--rouge); box-shadow: 0 0 0 4px rgba(232, 40, 30, .16); animation: pouls 2.4s ease-in-out infinite }
+@keyframes pouls { 50% { box-shadow: 0 0 0 7px rgba(232, 40, 30, 0) } }
+.hc-titre { font-size: clamp(44px, 5.8vw, 86px); line-height: 1; letter-spacing: -.04em; font-weight: 600; color: #1D1D1F; max-width: 13ch }
+/*  Le souligne : un trait rouge peint sous les mots, legerement incline,
+    comme un coup de feutre. En fond (et non en `text-decoration`) pour
+    qu'il suive le retour a la ligne.  */
+.souligne {
+  color: var(--rouge-texte);
+  background: linear-gradient(transparent 78%, rgba(232, 40, 30, .2) 78%, rgba(232, 40, 30, .2) 94%, transparent 94%);
+  -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 0 .04em;
+}
+.hc-chapo { font-size: clamp(18px, 1.45vw, 21px); line-height: 1.55; color: #515154; max-width: 44ch }
+.hc-actions { display: flex; flex-wrap: wrap; gap: 12px }
+.hc-coches { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 4px }
+.hc-coches li { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; color: #515154 }
+.hc-coches svg, .liste-coches svg {
+  width: 20px; height: 20px; padding: 4px; border-radius: 50%; flex: none;
+  background: #FDECEA; fill: none; stroke: var(--rouge-bouton); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+}
+.hc-visuel { position: relative }
+/*  L'objet : carre, sans voile (le voile vers le noir etait celui de la
+    version sombre).  */
+.hc-objet { width: 100%; max-width: 620px; aspect-ratio: 1 / 1; margin: 0 auto }
+.hc-objet::after { content: none }
+.hc-objet img, .hc-objet canvas { object-fit: contain }
+@media (max-width: 960px) { .hc-objet { max-width: 420px; margin-top: -8px } }
+
+/* --- Bandeau de confiance : chevauche le bas du hero -------------------- */
+.confiance {
+  position: relative; z-index: 2; margin-top: calc(-1 * clamp(56px, 7vh, 84px));
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  background: #fff; border: 1px solid #ECECF0; border-radius: 24px;
+  box-shadow: 0 30px 70px -40px rgba(29, 29, 31, .35);
+}
+.confiance li { display: flex; align-items: center; gap: 14px; padding: 26px 24px }
+.confiance li + li { border-left: 1px solid #ECECF0 }
+.confiance svg {
+  width: 46px; height: 46px; padding: 12px; flex: none; border-radius: 14px;
+  background: var(--rouge-bouton); fill: none; stroke: #fff; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round;
+}
+.confiance b { display: block; font-size: 16px; font-weight: 600; color: #1D1D1F }
+.confiance span { display: block; font-size: 14px; color: #6E6E73 }
+@media (max-width: 1000px) {
+  .confiance { grid-template-columns: 1fr 1fr }
+  .confiance li:nth-child(3) { border-left: 0 }
+  .confiance li:nth-child(n+3) { border-top: 1px solid #ECECF0 }
+}
+@media (max-width: 560px) {
+  .confiance { grid-template-columns: 1fr }
+  .confiance li + li { border-left: 0; border-top: 1px solid #ECECF0 }
+  .confiance li { padding: 18px 20px }
+}
+
+/* --- Sections en deux colonnes ------------------------------------------ */
+.duo { padding: clamp(88px, 11vw, 150px) 0 }
+.duo-grille { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 7vw, 110px); align-items: center }
+.duo-inverse { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) }
+@media (max-width: 960px) { .duo-grille, .duo-inverse { grid-template-columns: 1fr } }
+.duo-texte { display: grid; gap: 20px; justify-items: start }
+.duo-texte .titre-1 { font-size: clamp(34px, 4vw, 58px) }
+.lead { font-size: clamp(18px, 1.45vw, 21px); line-height: 1.55; color: #1D1D1F }
+
+/*  Le grand bloc rouge : la couleur pleine qui donne du poids a la page. */
+.bloc-rouge {
+  position: relative; overflow: hidden; color: #fff; border-radius: 32px;
+  padding: clamp(36px, 5vw, 64px);
+  background: radial-gradient(120% 90% at 100% 0%, #FF4A3D 0%, #E8281E 45%, #B81C15 100%);
+  box-shadow: 0 40px 80px -40px rgba(184, 28, 21, .6);
+}
+.bloc-rouge > * { position: relative }
+.bloc-rouge-sur { font-size: 16px; font-weight: 500; opacity: .9 }
+.bloc-rouge-prix { font-family: var(--titre); font-weight: 600; font-size: clamp(84px, 11vw, 150px); line-height: .9; letter-spacing: -.06em; margin: 6px 0 10px }
+.bloc-rouge-sous { font-size: 18px; opacity: .92; margin-bottom: 30px }
+.bloc-rouge ul { display: grid; gap: 12px; padding-top: 26px; border-top: 1px solid rgba(255, 255, 255, .28) }
+.bloc-rouge li { display: flex; gap: 12px; align-items: center; font-size: 16.5px }
+.bloc-rouge li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #fff; flex: none }
+/*  Un grand L en filigrane dans le coin : le signe de la marque. */
+.bloc-rouge-l {
+  position: absolute !important; right: -40px; bottom: -60px; width: 300px; height: 340px;
+  background: rgba(255, 255, 255, .1);
+  clip-path: polygon(0 0, 40% 0, 40% 62%, 100% 62%, 100% 100%, 0 100%);
+}
+
+/* --- Liste a coches ------------------------------------------------------ */
+.liste-coches { display: grid; gap: 14px; margin-top: 6px }
+.liste-coches li { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; color: #1D1D1F }
+.liste-coches svg { margin-top: 2px }
+
+/* --- La maquette de l'espace client ---------------------------------------- */
+.maquette {
+  background: #fff; border: 1px solid #E8E8ED; border-radius: 22px; overflow: hidden;
+  box-shadow: 0 50px 90px -50px rgba(29, 29, 31, .45), 0 0 0 10px #F5F5F7;
+  transform: rotate(-1.5deg);
+}
+.maquette-barre { display: flex; align-items: center; gap: 7px; padding: 14px 18px; border-bottom: 1px solid #F0F0F3; background: #FAFAFB }
+.maquette-barre i { width: 10px; height: 10px; border-radius: 50%; background: #E5E5EA }
+.maquette-barre i:first-child { background: #FF6159 }
+.maquette-barre span { margin-left: 10px; font-size: 13px; color: #86868B }
+.maquette-corps { padding: 26px 26px 30px; display: grid; gap: 20px }
+.maquette-titre { font-family: var(--titre); font-weight: 600; font-size: 22px; color: #1D1D1F }
+.maquette-tuiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px }
+.maquette-tuiles div { display: grid; gap: 12px; padding: 16px; border-radius: 14px; background: #F7F7F9 }
+.maquette-tuiles span { font-size: 13px; color: #6E6E73 }
+.barre-v { display: block; height: 70px; border-radius: 8px; background: #EDEDF1; position: relative; overflow: hidden }
+.barre-v::after { content: ''; position: absolute; inset: auto 0 0; height: var(--h); background: linear-gradient(#FF5A4E, #E8281E); border-radius: 8px }
+.maquette-courbe { width: 100%; height: 90px }
+.maquette-lignes { display: grid; gap: 10px }
+.maquette-lignes i { display: block; height: 10px; border-radius: 6px; background: #EFEFF3 }
+@media (max-width: 960px) { .maquette { transform: none; max-width: 520px; margin-inline: auto; width: 100% } }
+
+/* --- La frise de la methode ------------------------------------------------ */
+.frise { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px }
+.frise::before { content: ''; position: absolute; top: 27px; left: 12%; right: 12%; height: 2px; background: repeating-linear-gradient(90deg, #E8281E 0 10px, transparent 10px 18px); opacity: .5 }
+.frise li { position: relative; display: grid; gap: 12px; justify-items: center; text-align: center }
+.frise-n {
+  display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--rouge-bouton); color: var(--rouge-texte);
+  font-family: var(--titre); font-weight: 600; font-size: 22px; box-shadow: 0 0 0 8px #F5F5F7;
+}
+.frise li:first-child .frise-n { background: var(--rouge-bouton); color: #fff }
+.frise h3 { font-size: 21px; letter-spacing: -.02em; margin-top: 8px }
+.frise p { font-size: 15.5px; color: #6E6E73; max-width: 26ch }
+@media (max-width: 900px) {
+  .frise { grid-template-columns: 1fr; gap: 26px; max-width: 520px; margin-inline: auto }
+  .frise::before { top: 28px; bottom: 28px; left: 27px; right: auto; width: 2px; height: auto; background: repeating-linear-gradient(#E8281E 0 10px, transparent 10px 18px) }
+  .frise li { grid-template-columns: 56px 1fr; justify-items: start; text-align: left; column-gap: 18px; row-gap: 4px }
+  .frise-n { grid-row: span 2 }
+  .frise h3 { margin-top: 12px }
+}
+
+/* --- Les offres ------------------------------------------------------------- */
+.offres-c { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: stretch }
+@media (max-width: 960px) { .offres-c { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto } }
+.offre-c {
+  display: grid; gap: 14px; align-content: start; padding: 34px 30px;
+  background: #fff; border: 1px solid #ECECF0; border-radius: 26px;
+  transition: border-color .25s, box-shadow .25s, transform .25s var(--ressort);
+}
+.offre-c:hover { border-color: #F2B8B3; box-shadow: 0 30px 60px -36px rgba(232, 40, 30, .45); transform: translateY(-4px) }
+.offre-c h3 { font-size: 22px; letter-spacing: -.02em }
+.offre-c-prix { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap }
+.offre-c-prix b { font-family: var(--titre); font-weight: 600; font-size: clamp(54px, 5vw, 70px); letter-spacing: -.05em; line-height: 1; color: var(--rouge-texte) }
+.offre-c-prix span { font-size: 15px; color: #6E6E73 }
+.offre-c .bt { justify-self: start; margin-top: 8px; min-height: 44px; padding: 0 20px; font-size: 15px }
+
+/* --- L'appel final : un bloc rouge plein, arrondi ------------------------------ */
+.direction-blanc .appel { background: #fff; border-top: 0; padding: clamp(40px, 6vw, 80px) 0 clamp(80px, 9vw, 120px) }
+.direction-blanc .appel::before { content: none }
+.direction-blanc .appel-in {
+  position: relative; overflow: hidden; justify-items: center; text-align: center;
+  padding: clamp(56px, 8vw, 104px) clamp(24px, 5vw, 64px); border-radius: 36px; color: #fff;
+  background: radial-gradient(110% 120% at 0% 0%, #FF4A3D 0%, #E8281E 42%, #B81C15 100%);
+  box-shadow: 0 50px 100px -50px rgba(184, 28, 21, .65);
+}
+.direction-blanc .appel-in::after {
+  content: ''; position: absolute; left: -50px; top: -40px; width: 260px; height: 300px;
+  background: rgba(255, 255, 255, .08); clip-path: polygon(0 0, 40% 0, 40% 62%, 100% 62%, 100% 100%, 0 100%);
+}
+.direction-blanc .appel-in > * { position: relative; z-index: 1 }
+.direction-blanc .appel h2 { color: #fff }
+.direction-blanc .appel .chapo { color: rgba(255, 255, 255, .88) }
+.direction-blanc .appel-tel { color: #fff }
+.direction-blanc .appel .bt-plein { background: #fff; color: var(--rouge-texte) }
+.direction-blanc .appel .bt-plein:hover { background: #FFF1F0 }
+
+/* --- En-tetes des pages interieures : meme trame que le hero ---------------------- */
+.direction-blanc .page-tete { position: relative; overflow: hidden;
+  background:
+    radial-gradient(50% 70% at 50% 0%, rgba(232, 40, 30, .09), transparent 70%),
+    radial-gradient(circle at 1px 1px, rgba(29, 29, 31, .07) 1px, transparent 0) 0 0 / 26px 26px, #fff }
+.direction-blanc .service-tete {
+  background:
+    radial-gradient(40% 70% at 85% 30%, rgba(232, 40, 30, .09), transparent 70%),
+    radial-gradient(circle at 1px 1px, rgba(29, 29, 31, .07) 1px, transparent 0) 0 0 / 26px 26px, #fff }
