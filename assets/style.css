@@ -555,3 +555,78 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
   .carte-fleche { left: auto; right: 18px; top: 50%; bottom: auto; transform: translateY(-50%) }
   .carte-service:hover .carte-fleche { transform: translate(4px, -50%) }
 }
+
+
+/* =====================================================================
+   DIRECTION « TOUT BLANC » (2026-09-13)
+   Active par `DIRECTION = 'blanc'` dans src/site.mjs. Tout ce qui etait
+   noir devient blanc ou gris tres clair ; le rouge ne reste que par
+   touches : le signe, les petits titres, les icones, les fleches, un
+   mot du titre. Les boutons principaux passent a l'encre.
+   ===================================================================== */
+.direction-blanc .tuile-sombre, .direction-blanc .entete, .direction-blanc .pied, .direction-blanc .page-tete {
+  --t-fond: #FFFFFF; --t-texte: #1D1D1F; --t-doux: #6E6E73; --t-tenu: #737378;
+  --t-filet: #E8E8ED; --t-carte: #F5F5F7; --t-carte-bord: transparent; --t-action: var(--rouge-texte);
+}
+.direction-blanc #methode { --t-fond: #FAFAFB; --t-carte: #FFFFFF; --t-carte-bord: #ECECF0 }
+.direction-blanc html, html.direction-blanc { background: #fff }
+
+/* L'entete : blanche, un filet fin, texte encre. */
+.direction-blanc .entete { background: rgba(255, 255, 255, .92); backdrop-filter: saturate(1.6) blur(16px); -webkit-backdrop-filter: saturate(1.6) blur(16px); border-bottom: 1px solid #ECECF0 }
+.direction-blanc .nav-lien { color: #515154 }
+.direction-blanc .nav-lien:hover, .direction-blanc .nav-lien.actif { color: #1D1D1F }
+.direction-blanc .nav-panneau { background: #fff; border-color: #E8E8ED; box-shadow: 0 24px 60px -24px rgba(29, 29, 31, .25) }
+.direction-blanc .nav-panneau b { color: #1D1D1F }
+.direction-blanc .nav-panneau span { color: #6E6E73 }
+.direction-blanc .nav-panneau a:hover { background: #F5F5F7 }
+.direction-blanc .burger { color: #1D1D1F }
+.direction-blanc .menu-mobile { background: #fff; border-top-color: #ECECF0 }
+.direction-blanc .menu-mobile a:not(.bt) { color: #1D1D1F; border-bottom-color: #ECECF0 }
+
+/* Les boutons principaux : a l'encre. Le rouge reste sur les details. */
+.direction-blanc .bt-plein { background: #1D1D1F; color: #fff }
+.direction-blanc .bt-plein:hover { background: #000 }
+.direction-blanc .entete-cta svg { color: var(--rouge-vif) }
+.direction-blanc .mot-rouge { color: var(--rouge-texte) }
+
+/* Le hero : typographique, avec une lueur rouge a peine visible. */
+.direction-blanc .hero { padding: clamp(96px, 16vh, 180px) 0 clamp(96px, 14vh, 160px); background:
+  radial-gradient(60% 55% at 50% 0%, rgba(232, 40, 30, .07), transparent 70%), #fff }
+.direction-blanc .hero h1 { max-width: 15ch }
+
+/* Le pied : gris tres clair, texte encre. */
+.direction-blanc .pied { background: #F5F5F7; border-top: 1px solid #ECECF0 }
+.direction-blanc .pied-col a:hover, .direction-blanc .pied-bas a:hover { color: var(--rouge-texte) }
+
+/* La bande de fin : plus de degrade rouge. Un fond blanc, un filet
+   rouge fin au-dessus, le numero en rouge. */
+.direction-blanc .appel { background: #fff; color: #1D1D1F; border-top: 1px solid #ECECF0; position: relative }
+.direction-blanc .appel::before { content: ''; position: absolute; top: -1px; left: 50%; width: 64px; height: 3px; transform: translateX(-50%); background: var(--rouge); border-radius: 0 0 3px 3px }
+.direction-blanc .appel-in { justify-items: center; text-align: center }
+.direction-blanc .appel h2 { color: #1D1D1F; margin-inline: auto }
+.direction-blanc .appel .chapo { color: #6E6E73 }
+.direction-blanc .appel-bas { justify-content: center }
+.direction-blanc .appel-tel { color: var(--rouge-texte) }
+.direction-blanc .appel .bt-plein { background: #1D1D1F; color: #fff }
+
+/* L'en-tete des pages service garde son degrade, sans le filet sombre. */
+.direction-blanc .service-tete { background: linear-gradient(#FFFFFF, #FAFAFB) }
+
+
+/* =====================================================================
+   BLANC ET ROUGE, PLUS AUCUN NOIR (Nicolas, 2026-09-13)
+   Les boutons, la pastille du numero et les etats actifs passent au
+   rouge. Les boutons secondaires : contour et texte rouges. Seul le
+   texte reste en gris tres fonce (#1D1D1F) — en rouge, un paragraphe
+   entier deviendrait illisible.
+   ===================================================================== */
+.direction-blanc .bt-plein,
+.direction-blanc .appel .bt-plein { background: var(--rouge-bouton); color: #fff }
+.direction-blanc .bt-plein:hover,
+.direction-blanc .appel .bt-plein:hover { background: #BF1F15 }
+.direction-blanc .entete-cta svg { color: #fff }
+.direction-blanc .bt-nu { border-color: var(--rouge-bouton); color: var(--rouge-texte); opacity: 1 }
+.direction-blanc .bt-nu:hover { background: #FDECEA }
+.direction-blanc .filtre[aria-pressed="true"] { background: var(--rouge-bouton); border-color: var(--rouge-bouton); color: #fff }
+.direction-blanc .burger span { background: var(--rouge-bouton) }
+.direction-blanc .marque b { color: #1D1D1F }
