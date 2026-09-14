@@ -81,3 +81,4 @@
 
 - [Conditions d’utilisation](https://locweb.fr/conditions/): Les conditions du service LocWeb : ce que comprend l’abonnement, nos engagements, les vôtres, la résiliation et le droit applicable.
 - [Règles de confidentialité](https://locweb.fr/confidentialite/): Les données que LocWeb traite, pourquoi, où elles sont hébergées, combien de temps, et ce que vous pouvez en exiger.
+- [Mentions légales](https://locweb.fr/mentions-legales/): Mentions légales du site locweb.fr : éditeur, directeur de la publication, hébergeur, propriété intellectuelle et données personnelles.
