@@ -1039,3 +1039,6 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
   .tableau tbody th { font-size: 17px }
   .tableau td[data-label]::before { content: attr(data-label); display: block; font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--t-tenu); margin-bottom: 2px }
 }
+/* L'encadre « En bref » peut vivre dans une .prose : ses couleurs gagnent. */
+.prose .en-bref p.en-bref-titre { color: var(--rouge-texte, #CF2219); font-size: 13px; line-height: 1.4 }
+.prose .en-bref p:not(.en-bref-titre) { color: #1D1D1F }

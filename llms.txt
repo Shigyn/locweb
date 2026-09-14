@@ -1,6 +1,6 @@
 # LocWeb
 
-> LocWeb est une agence web basée à Béziers (Hérault, France). Elle crée des sites internet pour les artisans, commerçants et indépendants, les fait apparaître sur Google, et les entretient par abonnement mensuel sans engagement de durée. Elle travaille à Béziers, dans l'Hérault et à distance dans toute la France.
+> LocWeb est une agence web basée à Béziers (Hérault, 34, France). Elle crée des sites internet dès 90 € TTC pour les artisans, commerçants, indépendants, TPE et PME, les fait apparaître sur Google, et les entretient par abonnement mensuel sans engagement de durée. Elle travaille à Béziers, dans l'Hérault et à distance dans toute la France.
 
 ## Faits essentiels
 
@@ -24,23 +24,25 @@
 
 ## Pages principales
 
-- [Création de site internet à Béziers](https://locweb.fr/creation-site-internet-beziers/): Création de site internet à Béziers pour artisans, commerçants et TPE : site vitrine, e-commerce, refonte. Hébergement, nom de domaine, référencement local et suivi inclus.
+- [Création de site internet à Béziers et dans l’Hérault](https://locweb.fr/creation-site-internet-beziers/): Création de site internet à Béziers et dans l’Hérault (34) pour artisans, commerçants, indépendants et TPE. Site dès 90 €, hébergement et référencement inclus.
 - [Un site internet pour artisan à Béziers, qui fait sonner le téléphone](https://locweb.fr/site-internet-artisan-beziers/): Site internet pour artisan à Béziers et dans l’Hérault : numéro visible, zone d’intervention, photos de chantier, devis. 90 € puis 49 €/mois.
 - [Un site internet pour indépendant à Béziers, qui inspire confiance](https://locweb.fr/site-internet-independant-beziers/): Site internet pour indépendant ou auto-entrepreneur à Béziers : coach, consultant, photographe, formateur. Dès 90 € puis 49 €/mois, sans engagement.
 - [Un site internet pour TPE et PME à Béziers, qui travaille pour l’entreprise](https://locweb.fr/site-internet-tpe-pme-beziers/): Site internet pour TPE et PME à Béziers : une page par activité, boutique en ligne, refonte, référencement local et suivi des demandes. Prix TTC affichés.
+- [Un site internet pour commerçant à Béziers, qui fait venir en boutique](https://locweb.fr/site-internet-commercant-beziers/): Site internet pour commerçant à Béziers : horaires, itinéraire, produits, nouveautés et avis, vente en ligne en option. Site dès 90 €, service 49 €/mois.
+- [Un site internet pas cher à Béziers : dès 90 €, sans rogner sur l’essentiel](https://locweb.fr/site-internet-pas-cher-beziers/): Site internet pas cher à Béziers : le site dès 90 € TTC, le service à 49 €/mois (hébergement, espace client, support). Prix affichés, sans engagement.
 - [Un site vitrine qui fait son travail](https://locweb.fr/site-vitrine/): Un site vitrine clair qui présente votre activité et fait sonner le téléphone. Dès 90 € puis 49 €/mois : hébergement, nom de domaine, espace de modification et suivi inclus.
 - [Vendre en ligne, sans devenir informaticien](https://locweb.fr/site-ecommerce/): Création de site e-commerce pour commerçants et artisans : catalogue, panier, commandes, et un espace pour gérer vos produits vous-même. Dès 290 € puis 79 €/mois.
 - [Votre site existe. Il pourrait travailler davantage.](https://locweb.fr/refonte-site-internet/): Votre site a vieilli, il est lent ou ne vous apporte plus de clients ? Refonte complète : image, lisibilité sur mobile, référencement, vitesse et conversions.
 - [Un site de restaurant, avec votre carte et vos commandes](https://locweb.fr/site-restaurant/): Site pour restaurant, snack ou food truck : votre carte en ligne, modifiable vous-même. Dès 90 € puis 49 €/mois. Prise de commande et paiement en option.
 - [Être trouvé sur Google Maps](https://locweb.fr/google-business/): Création, optimisation et suivi de votre fiche Google Business Profile : apparaître sur Google Maps, récolter des avis et être appelé directement depuis la recherche.
-- [Apparaître quand on vous cherche, là où vous travaillez](https://locweb.fr/referencement-local/): Être trouvé par les clients qui vous cherchent près de chez vous : fiche Google, cohérence des informations, avis, contenus locaux et suivi des résultats.
+- [Apparaître quand on vous cherche, là où vous travaillez](https://locweb.fr/referencement-local/): Référencement local à Béziers et dans l’Hérault : fiche Google, cohérence des informations, avis, contenus locaux et suivi. Être trouvé près de chez vous.
 - [Des réseaux sociaux vivants, sans y passer vos soirées](https://locweb.fr/gestion-reseaux-sociaux/): Publier régulièrement sur Instagram et Facebook sans y passer vos soirées : contenus, visuels et calendrier pensés pour votre activité locale.
 - [Quand l’ordinateur vous empêche de travailler](https://locweb.fr/depannage-informatique/): Dépannage informatique à Béziers pour professionnels et particuliers : ordinateur lent, messagerie bloquée, impression, sauvegardes, installation. Sur place ou à distance.
 - [Galerie](https://locweb.fr/galerie/): Des exemples de sites internet créés par LocWeb pour des artisans, des restaurants et des commerces : ouvrez-les et parcourez-les sur votre téléphone.
 - [Tarifs](https://locweb.fr/tarifs/): Site vitrine 90 € puis 49 €/mois, site animé 290 € puis 49 €/mois, e-commerce 290 € puis 79 €/mois. Ce que contient l’abonnement, sans engagement de durée.
 - [À propos](https://locweb.fr/a-propos/): LocWeb est une agence web installée à Béziers. Comment nous travaillons, et pourquoi un artisan mérite mieux qu’un site livré puis abandonné.
 - [Contact](https://locweb.fr/contact/): Parlons de votre projet : appelez le 07 45 53 14 34 ou laissez un message, nous vous rappelons. LocWeb, agence web à Béziers.
-- [LocWeb — Agence web à Béziers pour artisans et commerçants](https://locweb.fr/): Agence web à Béziers : sites internet pour artisans, commerçants et indépendants. Site vitrine 90 € puis 49 €/mois TTC, hébergement et suivi inclus.
+- [Agence web à Béziers : sites internet dès 90 € — LocWeb](https://locweb.fr/): LocWeb, agence web à Béziers : création de sites internet dès 90 € pour artisans, commerçants, indépendants et TPE. Service tout compris, sans engagement.
 
 ## Guides
 
