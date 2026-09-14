@@ -94,10 +94,22 @@
   demanderALaBase(function (id) { if (id) poser(id); });
 
   function poser(idGa4) {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(idGa4);
-    document.head.appendChild(script);
+    // La bibliotheque Google (190 Ko) se charge APRES l'affichage de la
+    // page (2026-09-14, locweb.fr : elle occupait le processeur pendant
+    // le chargement sur mobile). Rien n'est perdu : les evenements
+    // attendent dans dataLayer et partent des qu'elle arrive.
+    function charger() {
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(idGa4);
+      document.head.appendChild(script);
+    }
+    function plusTard() {
+      if ('requestIdleCallback' in window) requestIdleCallback(charger, { timeout: 4000 });
+      else setTimeout(charger, 1500);
+    }
+    if (document.readyState === 'complete') plusTard();
+    else window.addEventListener('load', plusTard, { once: true });
     window.gtag = gtag;
     gtag('js', new Date());
     gtag('config', idGa4);

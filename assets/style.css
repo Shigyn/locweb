@@ -1042,3 +1042,23 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
 /* L'encadre « En bref » peut vivre dans une .prose : ses couleurs gagnent. */
 .prose .en-bref p.en-bref-titre { color: var(--rouge-texte, #CF2219); font-size: 13px; line-height: 1.4 }
 .prose .en-bref p:not(.en-bref-titre) { color: #1D1D1F }
+
+/* ====================================================================
+   VITESSE (2026-09-14, mesure Lighthouse mobile : LCP 5,2 s).
+   Le texte du haut de page attendait le JavaScript pour passer
+   d'invisible a visible : Google comptait 4,5 s de « retard de rendu ».
+   En haut de page, l'apparition se fait desormais en CSS seul, par un
+   leger glissement, sans jamais etre invisible.
+   ==================================================================== */
+.hc .reveal, .service-tete .reveal, .page-tete .reveal {
+  opacity: 1; transform: none; transition: none;
+  animation: monte-haut .9s var(--ressort) both;
+}
+.hc .reveal[data-retard="1"], .service-tete .reveal[data-retard="1"] { animation-delay: .06s }
+.hc .reveal[data-retard="2"], .service-tete .reveal[data-retard="2"] { animation-delay: .12s }
+.hc .reveal[data-retard="3"], .service-tete .reveal[data-retard="3"] { animation-delay: .18s }
+@keyframes monte-haut { from { transform: translateY(18px) } to { transform: none } }
+@media (prefers-reduced-motion: reduce) { .hc .reveal, .service-tete .reveal, .page-tete .reveal { animation: none } }
+
+/* Contraste du bas de pied (Lighthouse : 4,4:1 sur le gris clair). */
+.direction-blanc .pied-bas { color: #636366 }
