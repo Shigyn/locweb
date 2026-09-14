@@ -1080,3 +1080,32 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
   .metier-carte h3 { font-size: 16px }
   .metier-carte p, .metier-carte .lien-fleche { font-size: 13px }
 }
+
+/* ====================================================================
+   TEST DE VISIBILITE (2026-09-14).
+   ==================================================================== */
+.test { display: grid; gap: 24px }
+.test-questions { display: grid; gap: 12px; list-style: none; padding: 0 }
+.test-q fieldset { border: 1px solid var(--t-filet); border-radius: 18px; padding: 20px 22px; background: var(--t-carte); display: grid; gap: 14px; margin: 0 }
+.test-q legend { float: left; width: 100%; display: flex; gap: 12px; font-size: 17px; font-weight: 500; line-height: 1.4; color: var(--t-texte); padding: 0 }
+.test-n { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #FFF0EE; color: var(--rouge-texte); font-size: 14px; font-weight: 600 }
+.test-choix { clear: both; display: flex; flex-wrap: wrap; gap: 8px; padding-left: 40px }
+.test-choix label { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--t-filet); background: #fff; font-size: 15px; cursor: pointer }
+.test-choix label:has(input:checked) { border-color: var(--rouge-bouton); background: #FFF4F3; color: var(--rouge-texte) }
+.test-choix input { accent-color: var(--rouge-bouton) }
+.test-conseil { padding-left: 40px; font-size: 15px; line-height: 1.55; color: var(--t-doux) }
+.test-conseil a { color: var(--t-action); white-space: nowrap }
+.test-actif .test-conseil { display: none }
+.test-actif.test-fini .test-ko .test-conseil { display: block }
+.test-fini .test-ok fieldset { border-color: #CDE8D4 }
+.test-fini .test-ko fieldset { border-color: #F2C9C5; background: #FFF9F8 }
+.test-manque { color: var(--rouge-texte); font-weight: 500 }
+.test .bt { justify-self: start }
+.test-resultat { display: grid; gap: 12px; padding: 30px; border-radius: 22px; background: #FFF4F3; border: 1px solid #F6D5D2 }
+.test-resultat[hidden] { display: none }
+.test-score { font-family: var(--titre); letter-spacing: -.04em; line-height: 1 }
+.test-score b { font-size: clamp(56px, 8vw, 84px); font-weight: 600; color: var(--rouge-texte) }
+.test-score span { font-size: 26px; color: var(--t-tenu); margin-left: 4px }
+.test-verdict { font-size: 18px; line-height: 1.55; color: #1D1D1F; max-width: 60ch }
+.test-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 }
+@media (max-width: 560px) { .test-choix, .test-conseil { padding-left: 0 } .test-q fieldset { padding: 16px } }
