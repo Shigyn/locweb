@@ -1062,3 +1062,21 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
 
 /* Contraste du bas de pied (Lighthouse : 4,4:1 sur le gris clair). */
 .direction-blanc .pied-bas { color: #636366 }
+
+/* Page « par métier » : 50 cartes compactes (2026-09-14). */
+.metiers-grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 14px; margin-top: 28px }
+.metier-carte {
+  display: grid; gap: 8px; align-content: start; height: 100%; padding: 22px 22px 20px; border-radius: 18px;
+  background: var(--t-carte); border: 1px solid var(--t-filet); transition: border-color .2s, transform .2s;
+}
+.metier-carte:hover { border-color: var(--rouge-bouton); transform: translateY(-2px) }
+.metier-carte h3 { font-family: var(--titre); font-size: 19px; font-weight: 600; letter-spacing: -.01em; line-height: 1.2 }
+.metier-carte p { color: var(--t-doux); font-size: 14.5px; line-height: 1.45 }
+.metier-carte .lien-fleche { font-size: 14.5px; margin-top: 4px }
+.metier-dedie { background: #fff; border-color: #F2C9C5 }
+@media (max-width: 560px) {
+  .metiers-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 20px }
+  .metier-carte { padding: 16px 14px; border-radius: 14px; gap: 6px }
+  .metier-carte h3 { font-size: 16px }
+  .metier-carte p, .metier-carte .lien-fleche { font-size: 13px }
+}
