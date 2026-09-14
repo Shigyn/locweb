@@ -5,7 +5,7 @@
 ## Faits essentiels
 
 - Nom : LocWeb
-- Activité : création de sites internet, fiche Google Business, référencement local, réseaux sociaux, dépannage informatique
+- Activité : création de sites internet, fiche Google Business, référencement local, réseaux sociaux
 - Ville : Béziers (34500), Hérault, Occitanie, France — zone : Béziers et alentours, Hérault, et toute la France à distance
 - Téléphone : 07 45 53 14 34 (+33 7 45 53 14 34)
 - Site : https://locweb.fr/
@@ -54,7 +54,6 @@
 - [Être trouvé sur Google Maps](https://locweb.fr/google-business/): Création, optimisation et suivi de votre fiche Google Business Profile : apparaître sur Google Maps, récolter des avis et être appelé directement depuis la recherche.
 - [Apparaître quand on vous cherche, là où vous travaillez](https://locweb.fr/referencement-local/): Référencement local à Béziers et dans l’Hérault : fiche Google, cohérence des informations, avis, contenus locaux et suivi. Être trouvé près de chez vous.
 - [Des réseaux sociaux vivants, sans y passer vos soirées](https://locweb.fr/gestion-reseaux-sociaux/): Publier régulièrement sur Instagram et Facebook sans y passer vos soirées : contenus, visuels et calendrier pensés pour votre activité locale.
-- [Quand l’ordinateur vous empêche de travailler](https://locweb.fr/depannage-informatique/): Dépannage informatique à Béziers pour professionnels et particuliers : ordinateur lent, messagerie bloquée, impression, sauvegardes, installation. Sur place ou à distance.
 - [Galerie](https://locweb.fr/galerie/): Des exemples de sites internet créés par LocWeb pour des artisans, des restaurants et des commerces : ouvrez-les et parcourez-les sur votre téléphone.
 - [Tarifs](https://locweb.fr/tarifs/): Site vitrine 90 € puis 49 €/mois, site animé 290 € puis 49 €/mois, e-commerce 290 € puis 79 €/mois. Ce que contient l’abonnement, sans engagement de durée.
 - [À propos](https://locweb.fr/a-propos/): LocWeb est une agence web installée à Béziers. Comment nous travaillons, et pourquoi un artisan mérite mieux qu’un site livré puis abandonné.
