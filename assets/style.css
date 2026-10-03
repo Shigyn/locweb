@@ -1242,3 +1242,142 @@ body:has(.co-panier) { padding-bottom: 72px }
   .co-js .co-etape.co-active, .co-coche, .co-merci-rond, .co-pop { animation: none !important }
   .co-choix:hover { transform: none }
 }
+
+/* --- Vitalite des pages (2026-10-04) --------------------------------
+   « Les pages se ressemblent toutes, ca fait vide » (Nicolas). Les
+   en-tetes passent en deux colonnes avec un widget qui parle de la
+   page, les services se lisent en chapitres, les inclus en tuiles, et
+   le telephone gagne une barre d'onglets comme une appli. */
+
+/* En-tete en deux colonnes */
+.page-tete.tete-app { text-align: left; padding: clamp(48px, 7vw, 96px) 0 clamp(48px, 7vw, 88px); background: radial-gradient(900px 420px at 85% 0%, #FFE9E7, transparent 70%), var(--t-fond) }
+.tete-app-grille { display: grid !important; grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr); gap: clamp(32px, 6vw, 80px); align-items: center; justify-items: stretch !important }
+.tete-app-seule { grid-template-columns: minmax(0, 1fr) }
+.tete-app-texte { display: grid; gap: 18px; justify-items: start }
+.tete-app .tete-app-texte h1 { max-width: 16ch }
+.tete-app .chapo { margin-inline: 0 }
+.tete-app .hero-actions { justify-content: flex-start }
+.tete-app-widget { justify-self: end; width: 100%; max-width: 380px }
+@media (max-width: 900px) {
+  .tete-app-grille { grid-template-columns: 1fr }
+  .tete-app-widget { justify-self: start }
+}
+
+/* Les widgets : des cartes facon appli */
+.w-ticket, .w-chat, .w-profil, .w-notifs, .w-jauge, .w-metiers { padding: 22px; border-radius: 28px; background: #fff; box-shadow: 0 24px 60px -24px rgba(0, 0, 0, .28), 0 2px 8px rgba(0, 0, 0, .04); transform: rotate(1.2deg) }
+.w-etiquette { margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--rouge-texte) }
+.w-petit { margin: 6px 0 0; font-size: 13px; color: var(--t-doux) }
+.w-vert { color: #1C7A45 }
+.w-bouton { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; padding: 12px 16px; border-radius: 99px; background: var(--rouge-bouton); color: #fff; font-weight: 600; font-size: 15px; text-decoration: none }
+.w-bouton svg { width: 18px; height: 18px; fill: currentColor }
+.w-ticket ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px }
+.w-ticket li { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 10px; border-bottom: 1px dashed var(--t-filet); font-size: 15px }
+.w-ticket b { font-family: var(--titre); font-weight: 600; font-size: 18px }
+.w-chat { display: grid; gap: 10px }
+.w-bulle { margin: 0; max-width: 85%; padding: 12px 15px; border-radius: 20px; font-size: 14.5px; line-height: 1.4; animation: w-bulle .5s var(--ressort) both }
+.w-bulle-q { justify-self: end; background: var(--rouge-bouton); color: #fff; border-bottom-right-radius: 6px }
+.w-bulle-r { justify-self: start; background: var(--parchemin); border-bottom-left-radius: 6px }
+.w-chat .w-bulle:nth-child(2) { animation-delay: .5s }
+.w-chat .w-bulle:nth-child(3) { animation-delay: 1s }
+.w-chat .w-bulle:nth-child(4) { animation-delay: 1.5s }
+@keyframes w-bulle { from { opacity: 0; transform: translateY(10px) scale(.96) } to { opacity: 1; transform: none } }
+.w-ecrit { display: flex; gap: 5px; padding: 14px 16px }
+.w-ecrit i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .4; animation: w-point 1.2s ease-in-out infinite }
+.w-ecrit i:nth-child(2) { animation-delay: .2s }
+.w-ecrit i:nth-child(3) { animation-delay: .4s }
+@keyframes w-point { 0%, 100% { opacity: .25; transform: none } 50% { opacity: 1; transform: translateY(-3px) } }
+.w-profil { text-align: center }
+.w-avatar { width: 72px; height: 72px; margin: 0 auto 10px; border-radius: 24px; display: grid; place-items: center; background: linear-gradient(135deg, var(--rouge-bouton), #FF6B5E); color: #fff; font-family: var(--titre); font-size: 32px; font-weight: 600; transform: rotate(-4deg) }
+.w-nom { margin: 0; font-weight: 600; font-size: 19px }
+.w-nom span { display: block; font-weight: 400; font-size: 14px; color: var(--t-doux) }
+.w-pastilles { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center }
+.w-pastilles li { padding: 6px 11px; border-radius: 99px; background: var(--parchemin); font-size: 13px }
+.w-notifs { display: grid; gap: 10px; background: transparent; box-shadow: none; padding: 0 }
+.w-notif { display: flex; gap: 12px; align-items: center; margin: 0; padding: 14px 16px; border-radius: 20px; background: rgba(255, 255, 255, .92); box-shadow: 0 16px 40px -18px rgba(0, 0, 0, .3); font-size: 14px; animation: w-bulle .5s var(--ressort) both }
+.w-notif:nth-child(2) { animation-delay: .35s; margin-left: 18px }
+.w-notif:nth-child(3) { animation-delay: .7s; margin-left: 36px }
+.w-notif svg { width: 36px; height: 36px; padding: 8px; flex: none; border-radius: 12px; background: var(--rouge-bouton); fill: #fff }
+.w-notif b { display: block; font-size: 14.5px }
+.w-notif span { color: var(--t-doux) }
+.w-jauge { text-align: center }
+.w-jauge svg { width: 100%; max-width: 220px }
+.w-jauge path { fill: none; stroke-width: 12; stroke-linecap: round }
+.w-jauge-fond { stroke: var(--parchemin) }
+.w-jauge-plein { stroke: var(--rouge-bouton); stroke-dasharray: 158; stroke-dashoffset: 158; animation: w-jauge 2.4s var(--ressort) .4s infinite alternate }
+@keyframes w-jauge { to { stroke-dashoffset: 30 } }
+.w-jauge-score { margin: -28px 0 6px; font-family: var(--titre); font-size: 44px; font-weight: 600 }
+.w-jauge-score span { font-size: 18px; color: var(--t-doux) }
+.w-metiers { display: flex; flex-wrap: wrap; gap: 8px }
+.w-metiers span { padding: 9px 14px; border-radius: 99px; background: var(--parchemin); font-size: 14px; font-weight: 500 }
+.w-metiers span:nth-child(3n + 1) { background: var(--rouge-bouton); color: #fff }
+
+/* Les pages service : des chapitres numerotes */
+.chapitre { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.4fr); gap: clamp(24px, 5vw, 72px); align-items: start }
+.chapitre-tete { position: sticky; top: 100px; display: grid; gap: 12px; align-content: start }
+.chapitre-n { display: inline-grid; place-items: center; width: 54px; height: 54px; border-radius: 18px; background: var(--rouge-bouton); color: #fff; font-family: var(--titre); font-size: 22px; font-weight: 600; transform: rotate(-4deg) }
+.chapitre-tete .titre-2 { margin: 0 }
+@media (max-width: 860px) {
+  .chapitre { grid-template-columns: 1fr }
+  .chapitre-tete { position: static; grid-template-columns: auto 1fr; align-items: center }
+  .chapitre-n { width: 44px; height: 44px; font-size: 18px }
+}
+
+/* La carte « composez votre offre » */
+.carte-offre-zone { padding: clamp(24px, 4vw, 48px) 0; background: var(--t-fond) }
+.carte-offre { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding: clamp(26px, 4vw, 44px); border-radius: 32px; background: var(--noir); color: #fff; text-decoration: none; overflow: hidden; position: relative; transition: transform .3s var(--ressort) }
+.carte-offre:hover { transform: translateY(-4px) }
+.carte-offre::before { content: ''; position: absolute; right: -80px; top: -80px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(232, 40, 30, .45), transparent 70%) }
+.carte-offre-texte { position: relative; display: grid; gap: 12px; justify-items: start }
+.carte-offre-eti { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #ff8a80 }
+.carte-offre-texte b { font-family: var(--titre); font-weight: 600; font-size: clamp(26px, 3vw, 36px); line-height: 1.05; letter-spacing: -.01em }
+.carte-offre-texte > span:not(.bt):not(.carte-offre-eti) { color: rgba(255, 255, 255, .75); max-width: 46ch }
+.carte-offre-visuel { position: relative; display: grid; gap: 10px; padding: 18px; border-radius: 24px; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .12); transform: rotate(2deg) }
+.com-barre { height: 8px; border-radius: 99px; background: rgba(255, 255, 255, .12); overflow: hidden }
+.com-barre i { display: block; width: 60%; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--rouge-bouton), var(--rouge-vif)); animation: com-barre 3s var(--ressort) infinite alternate }
+@keyframes com-barre { from { width: 25% } to { width: 75% } }
+.com-carte { display: flex; justify-content: space-between; padding: 12px 14px; border-radius: 16px; background: rgba(255, 255, 255, .08); font-size: 14.5px; border: 2px solid transparent }
+.com-on { border-color: var(--rouge-vif); background: rgba(232, 40, 30, .15) }
+.com-total { display: flex; justify-content: space-between; align-items: baseline; padding-top: 6px; font-size: 13px; color: rgba(255, 255, 255, .7) }
+.com-total b { font-family: var(--titre); font-size: 26px; color: #fff }
+@media (max-width: 760px) { .carte-offre { grid-template-columns: 1fr } .carte-offre-visuel { display: none } }
+
+/* Ce qui est compris : des tuiles */
+.tuiles-inclus { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px }
+.tuiles-inclus li { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px; border-radius: 20px; background: var(--t-fond); border: 1px solid var(--t-filet); font-size: 16px; color: var(--t-doux); transition: transform .25s var(--ressort), box-shadow .25s ease }
+.tuiles-inclus li:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -16px rgba(0, 0, 0, .25) }
+.tuiles-inclus strong { color: var(--t-texte); font-weight: 600 }
+.tuile-coche { width: 28px; height: 28px; flex: none; border-radius: 10px; background: var(--rouge-bouton) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='m9.5 16.2-4-4 1.4-1.4 2.6 2.6 6.6-6.6 1.4 1.4z'/%3E%3C/svg%3E") center / 18px no-repeat }
+@media (max-width: 700px) { .tuiles-inclus { grid-template-columns: 1fr } }
+
+/* Les etapes : un parcours relie, comme une progression de jeu */
+.parcours { position: relative; counter-reset: none }
+.parcours::before { content: ''; position: absolute; left: 6%; right: 6%; top: 52px; height: 3px; border-radius: 3px; background: repeating-linear-gradient(90deg, var(--rouge-bouton) 0 12px, transparent 12px 22px); opacity: .35 }
+.parcours .etape { position: relative; background: var(--t-fond); border: 1px solid var(--t-filet) }
+.parcours .etape-n { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--rouge-bouton); color: #fff; font-size: 20px; letter-spacing: 0; box-shadow: 0 0 0 6px var(--t-fond) }
+@media (max-width: 900px) { .parcours::before { display: none } }
+
+/* Les autres services : des tuiles */
+.tuiles-liens { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 10px }
+.tuiles-liens a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 16px 18px; border-radius: 18px; background: var(--t-fond); border: 1px solid var(--t-filet); text-decoration: none; font-weight: 500; transition: border-color .2s ease, transform .2s var(--ressort) }
+.tuiles-liens a:hover { border-color: var(--rouge-bouton); transform: translateY(-2px) }
+.tuiles-liens b { color: var(--rouge-texte); font-size: 20px }
+
+/* La barre de lecture des guides */
+.barre-lecture { position: fixed; left: 0; right: 0; top: 0; z-index: 60; height: 4px; pointer-events: none }
+.barre-lecture i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--rouge-bouton), var(--rouge-vif)); border-radius: 0 4px 4px 0 }
+
+/* La barre d'onglets du telephone */
+.onglets { display: none }
+@media (max-width: 760px) {
+  body:has(.onglets) { padding-bottom: 76px }
+  .onglets { display: grid; grid-template-columns: repeat(5, 1fr); position: fixed; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 70; padding: 6px; border-radius: 26px; background: rgba(255, 255, 255, .92); backdrop-filter: blur(16px) saturate(160%); box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .3), 0 0 0 1px rgba(0, 0, 0, .05) }
+  .onglets a { display: grid; justify-items: center; gap: 2px; padding: 7px 2px; border-radius: 18px; text-decoration: none; color: var(--t-doux); font-size: 11px; font-weight: 600 }
+  .onglets svg { width: 22px; height: 22px; fill: currentColor }
+  .onglets a[aria-current="page"] { color: var(--rouge-texte) }
+  .onglets .onglet-central { color: #fff; background: var(--rouge-bouton); transform: translateY(-10px); box-shadow: 0 10px 22px -6px rgba(212, 36, 25, .6) }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-bulle, .w-notif, .w-ecrit i, .w-jauge-plein, .com-barre i { animation: none !important; opacity: 1 }
+  .w-jauge-plein { stroke-dashoffset: 60 }
+}

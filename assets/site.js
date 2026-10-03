@@ -67,4 +67,21 @@
 
   var annee = document.getElementById('annee');
   if (annee) annee.textContent = new Date().getFullYear();
+
+  /* --- La barre de lecture des guides (2026-10-04) -------------------
+     Elle se remplit a mesure qu'on descend, comme dans une appli de
+     lecture : on sait ou on en est, et combien il reste. */
+  var lecture = document.querySelector('.barre-lecture i');
+  if (lecture) {
+    var demande = false;
+    var maj = function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      lecture.style.width = (max > 0 ? Math.min(100, window.scrollY / max * 100) : 0) + '%';
+      demande = false;
+    };
+    window.addEventListener('scroll', function () {
+      if (!demande) { demande = true; requestAnimationFrame(maj); }
+    }, { passive: true });
+    maj();
+  }
 })();
