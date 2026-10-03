@@ -1110,72 +1110,135 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
 .test-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 }
 @media (max-width: 560px) { .test-choix, .test-conseil { padding-left: 0 } .test-q fieldset { padding: 16px } }
 
-/* --- Composer mon offre (2026-10-03) ---------------------------------
-   Chaque option est une carte cochable qui dit trois choses : a quoi
-   elle sert, pour qui, et quand s'en passer. Le recapitulatif reste
-   colle a droite et additionne en direct (assets/composer-offre.js). */
-.co { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: clamp(28px, 4vw, 48px); align-items: start }
+/* --- Composer mon offre, version appli (2026-10-03) ------------------
+   Une etape par ecran, des cartes a toucher, un panier qui compte en
+   bas. Sans JavaScript (pas de .co-js), tout reste affiche a la suite. */
+.co-tete { padding: clamp(36px, 6vw, 64px) 0 0; background: radial-gradient(1200px 380px at 70% -10%, #FFE7E5, transparent 70%) }
+.co-tete-in { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: end; max-width: 920px }
+body:has(.co-panier) { padding-bottom: 72px }
+.co-h1 { font-family: var(--titre); font-weight: 600; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; letter-spacing: -.02em; margin: 0 0 12px; text-wrap: balance }
+.co-h1 span { color: var(--rouge-texte) }
+.co-chapo { font-size: 18px; color: var(--t-doux); max-width: 52ch; margin: 0 }
+.co-badges { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; flex-wrap: wrap }
+.co-badges li { padding: 12px 16px; border-radius: 18px; background: #fff; box-shadow: 0 6px 20px rgba(0, 0, 0, .06); font-size: 13.5px; color: var(--t-doux); text-align: center; line-height: 1.2 }
+.co-badges b { display: block; font-family: var(--titre); font-size: 22px; color: var(--t-texte) }
+
+.co-zone { padding: 28px 0 120px }
+.co-app { max-width: 920px }
+.co-progres { position: sticky; top: 64px; z-index: 5; display: flex; align-items: center; gap: 16px; padding: 14px 0; background: var(--t-fond) }
+.co-progres[hidden], .co-app:not(.co-js) .co-progres { display: none }
+.co-progres-barre { flex: 1; height: 10px; border-radius: 99px; background: var(--t-carte); overflow: hidden }
+.co-progres-barre i { display: block; height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, var(--rouge-bouton), var(--rouge-vif)); transition: width .5s var(--ressort) }
+.co-progres-txt { margin: 0; font-size: 13.5px; font-weight: 600; color: var(--t-doux); white-space: nowrap }
+
 .co-form { display: grid; gap: 22px }
-.co-bloc { border: 0; margin: 0; padding: clamp(22px, 3vw, 32px); background: var(--t-carte); border-radius: 24px }
-.co-bloc[hidden] { display: none }
-.co-bloc legend { display: flex; align-items: center; gap: 12px; padding: 0; float: left; width: 100%; margin-bottom: 14px; font-family: var(--titre); font-weight: 600; font-size: clamp(22px, 2.4vw, 28px); color: var(--t-texte) }
-.co-bloc legend + * { clear: both }
-.co-n { display: grid; place-items: center; width: 34px; height: 34px; flex: none; border-radius: 50%; background: var(--rouge-bouton); color: #fff; font-family: var(--texte); font-size: 16px; font-weight: 600 }
-.co-aide { color: var(--t-doux); margin: 0 0 16px; max-width: 70ch }
+.co-etape { border: 0; margin: 0; padding: clamp(22px, 3.4vw, 36px); background: var(--t-carte); border-radius: 28px }
+.co-js .co-etape { display: none }
+.co-js .co-etape.co-active { display: block; animation: co-entre .45s var(--ressort) }
+.co-js .co-etape.co-depuis-gauche { animation-name: co-entre-gauche }
+@keyframes co-entre { from { opacity: 0; transform: translateX(28px) } to { opacity: 1; transform: none } }
+@keyframes co-entre-gauche { from { opacity: 0; transform: translateX(-28px) } to { opacity: 1; transform: none } }
+.co-etape legend { display: flex; align-items: center; gap: 14px; float: left; width: 100%; padding: 0; margin-bottom: 10px; font-family: var(--titre); font-weight: 600; font-size: clamp(24px, 3vw, 34px); letter-spacing: -.01em; color: var(--t-texte); outline: none }
+.co-etape legend + * { clear: both }
+.co-num { display: grid; place-items: center; width: 40px; height: 40px; flex: none; border-radius: 14px; background: var(--rouge-bouton); color: #fff; font-family: var(--texte); font-size: 17px; font-weight: 600; transform: rotate(-4deg) }
+.co-sous { color: var(--t-doux); margin: 0 0 20px; max-width: 64ch }
 .co-champs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px }
-.co-large { grid-column: 1 / -1 }
-.co-grille { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px }
-.co-choix { position: relative; display: block; cursor: pointer }
-.co-choix input { position: absolute; opacity: 0; pointer-events: none }
-.co-carte { display: grid; gap: 8px; height: 100%; padding: 18px 18px 16px 50px; background: var(--t-fond); border: 2px solid var(--t-filet); border-radius: 18px; transition: border-color .2s ease, box-shadow .2s ease; position: relative }
-.co-carte::before { content: ''; position: absolute; left: 16px; top: 20px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid #b8b8bf; background: #fff; transition: border-color .2s ease, box-shadow .2s ease }
-.co-case .co-carte::before { border-radius: 6px }
-.co-choix:hover .co-carte { border-color: #c9c9cf }
-.co-choix input:checked + .co-carte { border-color: var(--rouge-bouton); box-shadow: 0 0 0 3px color-mix(in srgb, var(--rouge) 14%, transparent) }
-.co-choix input:checked + .co-carte::before { border-color: var(--rouge-bouton); box-shadow: inset 0 0 0 4px #fff; background: var(--rouge-bouton) }
-.co-choix input:focus-visible + .co-carte { outline: 3px solid var(--rouge); outline-offset: 2px }
-.co-choix input:disabled + .co-carte { opacity: .45; cursor: not-allowed }
-.co-tete { display: flex; align-items: baseline; justify-content: space-between; gap: 12px }
-.co-tete b { font-size: 17px; line-height: 1.25 }
-.co-prix { font-family: var(--titre); font-weight: 600; font-size: 20px; white-space: nowrap; text-align: right; color: var(--rouge-texte) }
-.co-prix small { display: block; font-family: var(--texte); font-size: 12px; font-weight: 500; color: var(--t-doux) }
-.co-ligne { display: block; font-size: 14.5px; line-height: 1.5; color: var(--t-texte) }
-.co-ligne i { display: block; font-style: normal; font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--t-tenu); margin-bottom: 2px }
-.co-ligne a { color: var(--rouge-texte) }
-.co-passer { padding: 9px 11px; background: var(--t-carte); border-radius: 10px }
-.co-option { display: block; padding-top: 6px; border-top: 1px dashed var(--t-filet); font-size: 14.5px }
+
+.co-grille { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px }
+.co-grille-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+.co-choix { display: flex; flex-direction: column; background: var(--t-fond); border: 2px solid var(--t-filet); border-radius: 22px; overflow: hidden; transition: border-color .2s ease, transform .2s var(--ressort), box-shadow .2s ease }
+.co-choix:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0, 0, 0, .08) }
+.co-choix:has(input:checked) { border-color: var(--rouge-bouton); box-shadow: 0 0 0 4px color-mix(in srgb, var(--rouge) 14%, transparent) }
+.co-choix:has(.co-carte input:disabled) { opacity: .45 }
+.co-choix:has(.co-carte input:disabled):hover { transform: none; box-shadow: none }
+.co-carte { position: relative; display: grid; grid-template-columns: auto 1fr; grid-template-areas: "ico coche" "titre titre" "prix prix" "eco eco"; gap: 6px 10px; padding: 18px 18px 14px; cursor: pointer }
+.co-carte input { position: absolute; opacity: 0; pointer-events: none }
+.co-ico { grid-area: ico; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 16px; background: var(--t-carte); color: var(--t-texte); transition: background .2s ease, color .2s ease, transform .3s var(--ressort) }
+.co-ico svg { width: 24px; height: 24px; fill: currentColor }
+.co-carte:has(input:checked) .co-ico { background: var(--rouge-bouton); color: #fff; transform: rotate(-6deg) scale(1.05) }
+.co-coche { grid-area: coche; justify-self: end; width: 26px; height: 26px; border-radius: 50%; border: 2px solid #c7c7cc; transition: all .2s ease }
+.co-carte:has(input[type="checkbox"]) .co-coche { border-radius: 8px }
+.co-carte:has(input:checked) .co-coche { border-color: var(--rouge-bouton); background: var(--rouge-bouton) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='m9.5 16.2-4-4 1.4-1.4 2.6 2.6 6.6-6.6 1.4 1.4z'/%3E%3C/svg%3E") center / 18px no-repeat; animation: co-coche .35s var(--ressort) }
+@keyframes co-coche { 0% { transform: scale(.5) } 70% { transform: scale(1.15) } 100% { transform: scale(1) } }
+.co-carte input:focus-visible ~ .co-coche { outline: 3px solid var(--rouge); outline-offset: 3px }
+.co-titre { grid-area: titre; font-weight: 600; font-size: 16.5px; line-height: 1.25; margin-top: 6px }
+.co-prix { grid-area: prix; font-family: var(--titre); font-weight: 600; font-size: 26px; color: var(--rouge-texte); line-height: 1.1 }
+.co-prix small { display: block; font-family: var(--texte); font-size: 12.5px; font-weight: 500; color: var(--t-doux); margin-top: 2px }
+.co-eco { grid-area: eco; justify-self: start; margin-top: 4px; padding: 5px 10px; border-radius: 99px; background: #E3F6EA; color: #1C7A45; font-size: 12.5px; font-weight: 600 }
+.co-option { display: flex; gap: 10px; align-items: flex-start; margin: 0 18px 12px; padding: 12px; border-radius: 14px; background: #FFF1F0; font-size: 14px; cursor: pointer }
 .co-option[hidden] { display: none }
-.co-option label { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; cursor: pointer }
-.co-option input { position: static; opacity: 1; pointer-events: auto; accent-color: var(--rouge-bouton); width: 18px; height: 18px }
-.co-option small { color: var(--t-doux) }
-.co-note { display: block; font-size: 13.5px; color: var(--t-doux) }
+.co-option input { width: 20px; height: 20px; margin-top: 1px; accent-color: var(--rouge-bouton); flex: none }
+.co-option em { font-style: normal; font-weight: 700; color: var(--rouge-texte) }
+.co-option small { display: block; color: var(--t-doux) }
+.co-note { margin: 0 18px 12px; font-size: 13px; color: var(--t-doux) }
 .co-note[hidden] { display: none }
+.co-pourquoi { margin-top: auto; border-top: 1px solid var(--t-filet) }
+.co-pourquoi summary { list-style: none; display: flex; align-items: center; justify-content: space-between; padding: 11px 18px; font-size: 13.5px; font-weight: 600; color: var(--t-doux); cursor: pointer }
+.co-pourquoi summary::-webkit-details-marker { display: none }
+.co-pourquoi summary::after { content: '+'; font-size: 18px; line-height: 1; transition: transform .2s ease }
+.co-pourquoi[open] summary::after { transform: rotate(45deg) }
+.co-pourquoi dl { margin: 0; padding: 0 18px 16px; font-size: 14px; line-height: 1.5 }
+.co-pourquoi dt { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--t-tenu); margin-top: 10px }
+.co-pourquoi dd { margin: 2px 0 0 }
+.co-pourquoi dd a { color: var(--rouge-texte) }
+.co-pourquoi dt.co-passer { color: #1C7A45 }
+.co-pourquoi dd.co-passer { padding: 8px 10px; margin-top: 4px; border-radius: 10px; background: #EEF8F2 }
+
+.co-nav { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 24px }
+.co-app:not(.co-js) .co-nav button[type="button"] { display: none }
+.co-retour { border: 0; background: none; font: inherit; font-weight: 600; color: var(--t-doux); cursor: pointer; padding: 12px 6px }
+.co-retour[hidden] { display: none }
+.co-retour::before { content: '\2190  ' }
+.co-suivant, .co-envoyer { margin-left: auto }
+.co-passer-lien { border: 0; background: none; font: inherit; font-size: 14px; color: var(--t-doux); text-decoration: underline; cursor: pointer; order: 3; width: 100%; text-align: right; padding: 0 }
+
+.co-ticket { position: relative; margin: 6px 0 24px; padding: 24px 24px 30px; border-radius: 22px; background: var(--noir); color: #fff; overflow: hidden }
+.co-ticket::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 12px; background: radial-gradient(circle at 10px 12px, var(--t-carte) 7px, transparent 8px) 0 0 / 20px 12px repeat-x }
+.co-ticket-tete { margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #ff8a80 }
+.co-lignes { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 8px; font-size: 15px }
+.co-lignes li { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 8px; border-bottom: 1px dashed rgba(255, 255, 255, .18) }
+.co-lignes b { white-space: nowrap; font-weight: 600 }
+.co-vide { color: rgba(255, 255, 255, .6) }
+.co-total { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 0 }
+.co-total span { color: rgba(255, 255, 255, .75) }
+.co-total b { font-family: var(--titre); font-size: 32px; font-weight: 600 }
+.co-mention { margin: 10px 0 8px; font-size: 13px; color: rgba(255, 255, 255, .6) }
+.co-mention-sombre { color: var(--t-doux) }
+.co-mention-sombre a { color: var(--rouge-texte) }
+.co-fin .formulaire-etat[data-etat="erreur"] { color: var(--rouge-texte) }
 .co-piege { position: absolute; left: -9999px; width: 1px; height: 1px }
 
-.co-recap { position: sticky; top: 96px }
-.co-recap-in { padding: 26px; border-radius: 24px; background: var(--noir); color: #fff; display: grid; gap: 12px }
-.co-recap .surtitre { color: #ff8a80; margin: 0 }
-.co-lignes { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14.5px }
-.co-lignes li { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, .12) }
-.co-lignes b { white-space: nowrap; font-weight: 600 }
-.co-vide { color: rgba(255, 255, 255, .6); justify-content: flex-start !important }
-.co-total { display: flex; justify-content: space-between; align-items: baseline }
-.co-total span { color: rgba(255, 255, 255, .75) }
-.co-total b { font-family: var(--titre); font-size: 30px; font-weight: 600 }
-.co-mention { margin: 0; font-size: 13px; color: rgba(255, 255, 255, .6) }
-.co-mention a { color: #fff }
-.co-envoyer { width: 100% }
-.co-recap .formulaire-etat[data-etat="ok"] { color: #7ee2a8 }
-.co-recap .formulaire-etat[data-etat="erreur"] { color: #ff9a92 }
+.co-merci { position: relative; text-align: center; padding: clamp(40px, 7vw, 72px) 24px; border-radius: 28px; background: var(--t-carte); outline: none; overflow: hidden }
+.co-merci[hidden] { display: none }
+.co-merci h2 { font-family: var(--titre); font-weight: 600; font-size: clamp(30px, 4vw, 44px); margin: 18px 0 10px }
+.co-merci p { color: var(--t-doux); max-width: 46ch; margin: 0 auto 24px }
+.co-merci-rond { width: 84px; height: 84px; margin: 0 auto; border-radius: 50%; background: var(--rouge-bouton); display: grid; place-items: center; animation: co-coche .6s var(--ressort) }
+.co-merci-rond svg { width: 46px; height: 46px; fill: #fff }
+.co-confettis { position: absolute; inset: 0 0 auto 0; pointer-events: none }
 
-.co-mini { display: none }
-@media (max-width: 1000px) {
-  .co { grid-template-columns: 1fr }
-  .co-recap { position: static }
-  .co-mini { display: flex; justify-content: space-around; gap: 12px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: var(--noir); color: rgba(255, 255, 255, .75); font-size: 14px }
-  .co-mini b { color: #fff; font-family: var(--titre); font-size: 19px; margin-left: 6px }
-  .co { padding-bottom: 60px }
+.co-panier { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 12px 0 calc(12px + env(safe-area-inset-bottom)); background: rgba(10, 10, 11, .94); backdrop-filter: blur(12px); color: rgba(255, 255, 255, .7) }
+.co-panier-in { display: flex; align-items: center; gap: clamp(16px, 4vw, 40px); max-width: 920px }
+.co-panier small { display: block; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase }
+.co-panier b { font-family: var(--titre); font-weight: 600; font-size: 24px; color: #fff; display: inline-block }
+.co-panier-eco { margin-left: auto; padding: 7px 12px; border-radius: 99px; background: #E3F6EA; color: #1C7A45; font-size: 13px; font-weight: 600 }
+.co-panier-eco[hidden] { display: none }
+.co-pop { animation: co-pop .45s var(--ressort) }
+@keyframes co-pop { 0% { transform: scale(1) } 40% { transform: scale(1.14); color: #ff8a80 } 100% { transform: scale(1) } }
+
+@media (max-width: 860px) {
+  .co-tete-in { grid-template-columns: 1fr }
+  .co-grille { grid-template-columns: 1fr 1fr }
 }
-@media (max-width: 640px) {
-  .co-grille, .co-champs { grid-template-columns: 1fr }
+@media (max-width: 560px) {
+  .co-grille, .co-grille-2, .co-champs { grid-template-columns: 1fr }
+  .co-carte { grid-template-columns: auto 1fr auto; grid-template-areas: "ico titre coche" "ico prix coche" "eco eco eco"; align-items: center; padding: 14px 16px }
+  .co-titre { margin-top: 0 }
+  .co-prix { font-size: 21px }
+  .co-badges li { flex: 1; padding: 10px }
+  .co-progres { top: 56px }
+  .co-panier b { font-size: 20px }
+}
+@media (prefers-reduced-motion: reduce) {
+  .co-js .co-etape.co-active, .co-coche, .co-merci-rond, .co-pop { animation: none !important }
+  .co-choix:hover { transform: none }
 }
