@@ -1109,3 +1109,73 @@ section { padding: clamp(88px, 11vw, 150px) 0 }
 .test-verdict { font-size: 18px; line-height: 1.55; color: #1D1D1F; max-width: 60ch }
 .test-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 }
 @media (max-width: 560px) { .test-choix, .test-conseil { padding-left: 0 } .test-q fieldset { padding: 16px } }
+
+/* --- Composer mon offre (2026-10-03) ---------------------------------
+   Chaque option est une carte cochable qui dit trois choses : a quoi
+   elle sert, pour qui, et quand s'en passer. Le recapitulatif reste
+   colle a droite et additionne en direct (assets/composer-offre.js). */
+.co { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: clamp(28px, 4vw, 48px); align-items: start }
+.co-form { display: grid; gap: 22px }
+.co-bloc { border: 0; margin: 0; padding: clamp(22px, 3vw, 32px); background: var(--t-carte); border-radius: 24px }
+.co-bloc[hidden] { display: none }
+.co-bloc legend { display: flex; align-items: center; gap: 12px; padding: 0; float: left; width: 100%; margin-bottom: 14px; font-family: var(--titre); font-weight: 600; font-size: clamp(22px, 2.4vw, 28px); color: var(--t-texte) }
+.co-bloc legend + * { clear: both }
+.co-n { display: grid; place-items: center; width: 34px; height: 34px; flex: none; border-radius: 50%; background: var(--rouge-bouton); color: #fff; font-family: var(--texte); font-size: 16px; font-weight: 600 }
+.co-aide { color: var(--t-doux); margin: 0 0 16px; max-width: 70ch }
+.co-champs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px }
+.co-large { grid-column: 1 / -1 }
+.co-grille { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px }
+.co-choix { position: relative; display: block; cursor: pointer }
+.co-choix input { position: absolute; opacity: 0; pointer-events: none }
+.co-carte { display: grid; gap: 8px; height: 100%; padding: 18px 18px 16px 50px; background: var(--t-fond); border: 2px solid var(--t-filet); border-radius: 18px; transition: border-color .2s ease, box-shadow .2s ease; position: relative }
+.co-carte::before { content: ''; position: absolute; left: 16px; top: 20px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid #b8b8bf; background: #fff; transition: border-color .2s ease, box-shadow .2s ease }
+.co-case .co-carte::before { border-radius: 6px }
+.co-choix:hover .co-carte { border-color: #c9c9cf }
+.co-choix input:checked + .co-carte { border-color: var(--rouge-bouton); box-shadow: 0 0 0 3px color-mix(in srgb, var(--rouge) 14%, transparent) }
+.co-choix input:checked + .co-carte::before { border-color: var(--rouge-bouton); box-shadow: inset 0 0 0 4px #fff; background: var(--rouge-bouton) }
+.co-choix input:focus-visible + .co-carte { outline: 3px solid var(--rouge); outline-offset: 2px }
+.co-choix input:disabled + .co-carte { opacity: .45; cursor: not-allowed }
+.co-tete { display: flex; align-items: baseline; justify-content: space-between; gap: 12px }
+.co-tete b { font-size: 17px; line-height: 1.25 }
+.co-prix { font-family: var(--titre); font-weight: 600; font-size: 20px; white-space: nowrap; text-align: right; color: var(--rouge-texte) }
+.co-prix small { display: block; font-family: var(--texte); font-size: 12px; font-weight: 500; color: var(--t-doux) }
+.co-ligne { display: block; font-size: 14.5px; line-height: 1.5; color: var(--t-texte) }
+.co-ligne i { display: block; font-style: normal; font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--t-tenu); margin-bottom: 2px }
+.co-ligne a { color: var(--rouge-texte) }
+.co-passer { padding: 9px 11px; background: var(--t-carte); border-radius: 10px }
+.co-option { display: block; padding-top: 6px; border-top: 1px dashed var(--t-filet); font-size: 14.5px }
+.co-option[hidden] { display: none }
+.co-option label { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; cursor: pointer }
+.co-option input { position: static; opacity: 1; pointer-events: auto; accent-color: var(--rouge-bouton); width: 18px; height: 18px }
+.co-option small { color: var(--t-doux) }
+.co-note { display: block; font-size: 13.5px; color: var(--t-doux) }
+.co-note[hidden] { display: none }
+.co-piege { position: absolute; left: -9999px; width: 1px; height: 1px }
+
+.co-recap { position: sticky; top: 96px }
+.co-recap-in { padding: 26px; border-radius: 24px; background: var(--noir); color: #fff; display: grid; gap: 12px }
+.co-recap .surtitre { color: #ff8a80; margin: 0 }
+.co-lignes { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14.5px }
+.co-lignes li { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, .12) }
+.co-lignes b { white-space: nowrap; font-weight: 600 }
+.co-vide { color: rgba(255, 255, 255, .6); justify-content: flex-start !important }
+.co-total { display: flex; justify-content: space-between; align-items: baseline }
+.co-total span { color: rgba(255, 255, 255, .75) }
+.co-total b { font-family: var(--titre); font-size: 30px; font-weight: 600 }
+.co-mention { margin: 0; font-size: 13px; color: rgba(255, 255, 255, .6) }
+.co-mention a { color: #fff }
+.co-envoyer { width: 100% }
+.co-recap .formulaire-etat[data-etat="ok"] { color: #7ee2a8 }
+.co-recap .formulaire-etat[data-etat="erreur"] { color: #ff9a92 }
+
+.co-mini { display: none }
+@media (max-width: 1000px) {
+  .co { grid-template-columns: 1fr }
+  .co-recap { position: static }
+  .co-mini { display: flex; justify-content: space-around; gap: 12px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: var(--noir); color: rgba(255, 255, 255, .75); font-size: 14px }
+  .co-mini b { color: #fff; font-family: var(--titre); font-size: 19px; margin-left: 6px }
+  .co { padding-bottom: 60px }
+}
+@media (max-width: 640px) {
+  .co-grille, .co-champs { grid-template-columns: 1fr }
+}
